@@ -642,6 +642,8 @@ function c2V1Card(p) {
   if (!V.goal && (V.busy || !V.diagnostic)) return `<section class="c2-card c2-v1 c2-loading c2-scan"><span class="c2-scan-beam" aria-hidden="true"></span><span>${V.syncing ? "Lecture de tes dernières ranked" : "Ton objectif"}<span class="c2-wait" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></span></section>`;
   const last = V.history?.[0];
   const lastTxt = last ? `<p class="c2-v1-last ${last.outcome}">${C2_V1_OUTCOME[last.outcome] || "Objectif précédent sans verdict"} : ${esc(last.label)}, cible ${esc(last.target_text)} (${last.progress?.met ?? "?"}/${last.progress?.counted ?? "?"} parties)${last.progress?.review ? ` ; ${esc(last.progress.review)}` : ""}.</p>${c2V1Feedback(last)}` : "";
+  // Objectif tout juste maîtrisé : compte rendu avant de passer au suivant (demande d'Anthony, 31/10)
+  if (last?.outcome === "achieved" && !C2.wins?.[last.id]) return c2V1Win(last, V.history);
   const g = V.goal;
   // Un seul objectif à la fois (brief V1), sur le poste principal : si un autre poste est choisi au-dessus, on le dit au lieu de
   // montrer l'objectif du top sous l'onglet Jungle (retour d'Anthony, 29/10)
@@ -668,7 +670,8 @@ function c2V1Card(p) {
   const unit = g.unit && g.unit !== "%" ? `<small>${esc(g.unit === "/min" ? " / min" : " " + g.unit)}</small>` : "";
   const seenKey = `${g.id}:${g.status}`, enter = !c2Seen.has(seenKey);
   if (enter) { c2Seen.add(seenKey); setTimeout(c2CountUp, 0); }
-  const head = `<p class="label">${g.status === "proposed" ? "Ton prochain objectif" : "Ton objectif en cours"} ${c2AsRole(g.role)}</p>
+  const tier = c2V1Won(V.history).filter(x => x.metric === g.metric && x.role === g.role).length + 1;
+  const head = `<p class="label">${g.status === "proposed" ? "Ton prochain objectif" : "Ton objectif en cours"} ${c2AsRole(g.role)}${tier > 1 ? ` · palier ${tier}` : ""}</p>
     <h3 class="c2-v1-title">${esc(g.label)}</h3>
     <div class="c2-v1-nums"><div><span class="fine">Toi aujourd'hui</span><b><span data-count>${esc(g.baseline_text)}</span>${unit}</b></div><span class="c2-v1-arrow" aria-hidden="true">→</span><div class="goal"><span class="fine">${g.direction === "lower" ? "Au plus" : "Ta cible"}</span><b><span data-count data-delay="250">${esc(g.target_text)}</span>${unit}</b></div></div>`;
   // Conseils sourcés rédigés en français (non traduits) : en anglais, le bloc entier reste en français, annoncé comme tel,
@@ -683,7 +686,51 @@ function c2V1Card(p) {
       <p class="fine">${evs.filter(e => e.met).length} / ${g.success_required} réussites · ${evs.length} / ${g.evaluation_games} parties</p>${c2V1Verdict(g, evs)}</div>
       ${howHtml}${more}
       <button class="btn ghost sm" data-action="c2-v1-sync"${V.busy ? " disabled" : ""}>${V.busy ? "Mise à jour…" : "Mettre à jour mes parties"}</button>`;
-  return `<section class="c2-card c2-v1 c2-v1-live${enter ? " c2-v1-enter" : ""}">${lastTxt}${head}${body}${V.error ? `<p class="fine">${esc(V.error)}</p>` : ""}${c2V1Erase()}</section>`;
+  return `<section class="c2-card c2-v1 c2-v1-live${enter ? " c2-v1-enter" : ""}">${lastTxt}${head}${body}${V.error ? `<p class="fine">${esc(V.error)}</p>` : ""}${c2V1Trophies(V.history)}${c2V1Erase()}</section>`;
+}
+// Ce que chaque geste rapporte en partie, dit sans chiffre inventé (écran de validation)
+const C2_V1_WHY = {
+  farm: "Les sbires sont ta source d'or la plus sûre : chaque sbire tué, c'est de l'or gagné sans prendre de risque, donc tes objets plus tôt.",
+  xp_at_10: "L'expérience te donne tes niveaux : un niveau d'avance en début de partie pèse dans chaque échange et chaque combat.",
+  early_deaths: "Chaque mort donne de l'or à l'adversaire et te fait rater sbires et expérience pendant que tu attends de réapparaître.",
+  kill_participation: "Participer aux kills, c'est être là quand ton équipe se bat : tu prends ta part de l'or et ton équipe joue à plus.",
+  vision_per_min: "La vision te montre où sont les adversaires : tu vois venir les ganks et ton équipe prépare les objectifs sans surprise.",
+};
+const c2V1Why = m => C2_V1_WHY[m] || (/^(cs_|farm_)/.test(m) ? C2_V1_WHY.farm : "");
+// Objectifs maîtrisés, du plus ancien au plus récent : palier = combien de fois ce geste a été validé à ce poste
+const c2V1Won = (history = []) => history.filter(h => h.outcome === "achieved").sort((a, b) => (a.created_at || 0) - (b.created_at || 0))
+  .map((h, i, all) => ({ ...h, tier: all.slice(0, i + 1).filter(x => x.metric === h.metric && x.role === h.role).length }));
+function c2V1Win(h, history) {
+  const won = c2V1Won(history), me = won.find(x => x.id === h.id) || { tier: 1 };
+  const evs = (h.evaluations || []).filter(e => e.counted), vals = evs.map(e => e.value).filter(v => v != null);
+  const avg = vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : null;
+  const unit = h.unit && h.unit !== "%" ? `<small>${esc(h.unit === "/min" ? " / min" : " " + h.unit)}</small>` : "";
+  const dots = evs.map(e => `<span class="c2-v1-dot ${e.met ? "ok" : e.met === false ? "ko" : "na"}"></span>`).join("");
+  const met = evs.filter(e => e.met).length;
+  const guard = Object.values(h.progress?.guardrails || {}).filter(r => r.n);
+  const ref = h.reference?.source === "metric_references" ? h.reference : null;
+  const why = c2V1Why(h.metric);
+  return `<section class="c2-card c2-v1 c2-v1-win c2-v1-enter">
+    <p class="label">Objectif validé${me.tier > 1 ? ` · palier ${me.tier}` : ""}</p>
+    <h3 class="c2-v1-title">${esc(h.label)}</h3>
+    <p class="fine">${c2AsRole(h.role)}</p>
+    <div class="c2-v1-nums"><div><span class="fine">Avant</span><b>${esc(h.baseline_text)}${unit}</b></div><span class="c2-v1-arrow" aria-hidden="true">→</span><div class="goal"><span class="fine">Pendant l'objectif</span><b>${esc(c2V1Fmt(h, avg))}${unit}</b></div></div>
+    <p class="fine">Moyenne de tes ${vals.length} parties, pour une cible de ${esc(h.target_text)}.</p>
+    <div class="c2-v1-dots" aria-label="${met} cibles atteintes sur ${evs.length} parties">${dots}</div>
+    <p class="fine">Cible atteinte dans ${met} parties sur ${evs.length}.</p>
+    ${why ? `<div class="c2-v1-ex"><span class="label">Pourquoi c'est important</span><p>${esc(why)}</p>${ref ? `<p class="fine">Repère : joueurs ${esc(ref.level || "Diamant+")} à ce poste, ${esc(c2V1Fmt(h, ref.value))}.</p>` : ""}</div>` : ""}
+    ${guard.length && !guard.some(r => r.breach) ? `<p class="fine">Tes autres chiffres suivis n'ont pas baissé pendant ces parties : le progrès ne s'est pas fait au détriment du reste.</p>` : ""}
+    <div class="c2-v1-ex"><span class="label">Ce que tu gardes</span><p>Ajouté à ton palmarès : ${won.length} objectif${won.length > 1 ? "s" : ""} validé${won.length > 1 ? "s" : ""}. ${me.tier > 1 ? `Tu as validé ce geste ${me.tier} fois, chaque fois avec une cible plus haute.` : "Si ce geste reste ta priorité, le prochain objectif le reprend avec une cible plus haute."}</p></div>
+    <button class="btn primary" data-action="c2-v1-win-ok" data-id="${esc(h.id)}">Voir mon prochain objectif</button>
+    ${c2V1Feedback(h)}
+  </section>`;
+}
+// Palmarès gardé sur le compte du coach : objectifs maîtrisés, plus récent d'abord
+function c2V1Trophies(history) {
+  const won = c2V1Won(history).reverse();
+  if (!won.length) return "";
+  return `<details class="more c2-fold" data-fold="v1-wins"${c2ui.fold?.["v1-wins"] ? " open" : ""}><summary>Mes objectifs validés (${won.length})</summary><ul class="c2-v1-wins">${won.map(h =>
+    `<li><b>${esc(h.label)}</b><span class="fine">${esc(C2_V1_ROLE[h.role] || h.role)}${h.tier > 1 ? ` · palier ${h.tier}` : ""} · cible ${esc(h.target_text)} · ${h.progress?.met ?? "?"}/${h.progress?.counted ?? "?"} parties</span></li>`).join("")}</ul></details>`;
 }
 // Où en est le cycle, dit dès qu'on le sait (banc d'essai du 31/10 : réussite acquise avant la 5e partie dans 22 objectifs sur 82,
 // devenue impossible dans 28, sans que la carte le dise). Le verdict officiel reste donné après la dernière partie (garde-fous)
@@ -1789,6 +1836,7 @@ document.addEventListener("click", async e => {
     render(false);
   }
   if (a.dataset.action === "c2-v1-restart") { c2ui.v1 = {}; c2V1Load(true); }
+  if (a.dataset.action === "c2-v1-win-ok") { (C2.wins ||= {})[a.dataset.id] = Date.now(); c2Save(); render(false); }
   if (a.dataset.action === "c2-v1-start" && V.pid) {
     c2Burst(a);
     try { V.goal = (await c2V1(`/players/${V.pid}/goals/${a.dataset.id}/start`, "POST")).goal; V.evaluations = []; } catch (err) { V.error = err.message; }
