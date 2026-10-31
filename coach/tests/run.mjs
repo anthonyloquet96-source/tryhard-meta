@@ -223,8 +223,10 @@ await t("Relecture tactique : combats, objectifs, morts isolées, alliés morts"
   assert(o.kind === "Dragon" && !o.ours && o.allies === 2 && o.enemies === 5 && o.absent.some(a => a.champion === "C2" && a.dead) && o.absent.some(a => a.me), JSON.stringify(o));
   assert(r.fights.length === 2 && r.fights[0].allies === 2 && r.fights[0].enemies === 4 && r.fights[0].won === false, "combat au dragon mal reconstitué : " + JSON.stringify(r.fights));
   const kinds = r.lessons.map(l => l.kind);
-  // « Objectif disputé en infériorité » retiré au banc d'essai du 31/10 : il décrit la partie perdue, pas une erreur du joueur
-  assert(kinds.includes("mort-isolee") && !kinds.includes("objectif-inferiorite") && !kinds.includes("absent-objectif"), kinds.join());
+  // « Objectif disputé en infériorité » : situation à revoir (une question, pas une erreur), avec la nuance sur la position
+  const inf = r.lessons.find(l => l.kind === "objectif-inferiorite");
+  assert(kinds.includes("mort-isolee") && inf?.review === true && /\?$/.test(inf.better) && inf.facts.some(f => /pas forcément ta faute/.test(f)) && !kinds.includes("absent-objectif"), kinds.join());
+  assert(!r.lessons.find(l => l.kind === "mort-isolee").review, "mort isolée marquée à revoir");
   assert(r.summary.deathsIsolated === 1 && r.map.length === 31 && r.map[20][2][0] === 2000, "résumé ou mini-carte");
   assert(zone({ x: 7400, y: 7400 }, 100) === "mid lane" && zone({ x: 13900, y: 13900 }, 100) === "base adverse", "zones de la carte");
   // Élimination isolée en 1 contre 1 : pas un « combat »
