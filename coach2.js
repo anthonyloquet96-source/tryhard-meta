@@ -549,6 +549,10 @@ async function c2V1Load(force = false) {
   V.busy = true; V.forId = C2.account.riotId; V.error = null; render(false);
   try {
     if (!V.pid || V.pidFor !== C2.account.riotId) { const r = await c2V1(`/players/resolve?riot_id=${encodeURIComponent(C2.account.riotId)}&platform=${encodeURIComponent(C2.account.platform || "euw1")}`); V.pid = r.player_id; V.pidFor = C2.account.riotId; }
+    // Objectif déjà connu affiché tout de suite ; la mise à jour des parties continue derrière (retour d'Anthony, 01/11 :
+    // la carte restait sur « Lecture de tes dernières ranked » pendant toute la synchronisation)
+    if (!V.goal) await Promise.all([c2V1(`/players/${V.pid}/goals/active`), c2V1(`/players/${V.pid}/progress`)])
+      .then(([active, progress]) => Object.assign(V, { goal: active.goal, evaluations: active.evaluations, history: progress.goals, series: progress.series })).catch(() => {});
     // Synchronisation : nouvelles ranked, métriques, objectif (évalué ou proposé)
     V.syncing = true; render(false);
     const job = await c2V1(`/players/${V.pid}/sync`, "POST");
