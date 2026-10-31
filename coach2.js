@@ -413,16 +413,19 @@ const C2_KIND_TOPIC = {
   "ecart-visionMin": /ward|vision/i, "ecart-controlWards": /ward|vision/i, "balises-controle": /ward|vision/i, "aucune-balise-detruite": /ward|vision/i,
   "ecart-cs10": /vague|sbires|farm/i, "ecart-csMin": /vague|sbires|farm|pousse/i, "ecart-kp": /combat|rejoin|objectif/i,
 };
+// Conseil marqué jungle + tous postes mais adressé au jungler (« en jungle, reste près de sa lane ») : pas pour un laner
+const C2_TO_JUNGLER = /\ben jungle\b|en tant que jungler|quand tu jungles?|\btes camps\b|\bton clear\b|\bton pathing\b/i;
 function c2CoachTips(metric, role, kind = null) {
   const L = C2_LEARN[metric];
   if (!L || !COACH) return [];
   const seen = (c2ui.tipSeen ||= new Set());
   const list = COACH.units.filter(u => ["exploitable", "provisoire"].includes(u.status) && u.usage !== "correction" && u.nature !== "officiel" && !u.champions?.length && u.use?.when
-      && u.context?.queue !== "competition" && u.themes?.some(t => L.themes.includes(t)) && (!role || u.roles?.includes("all") || u.roles?.includes(role)) && !seen.has(u.id))
-    .map(u => ({ u, hit: C2_KIND_TOPIC[kind]?.test(`${u.claim} ${u.use?.when || ""}`) ? 1 : 0 }))
+      && u.context?.queue !== "competition" && u.themes?.some(t => L.themes.includes(t)) && (!role || u.roles?.includes("all") || u.roles?.includes(role)) && !seen.has(u.id)
+      && (!role || role === "jungle" || !(u.roles?.includes("jungle") && C2_TO_JUNGLER.test(u.claim))))
+    .map(u => ({ u, hit: C2_KIND_TOPIC[kind]?.test(`${u.claim} ${u.use?.when || ""}`) ? 1 : 0, own: role && u.roles?.includes(role) ? 1 : 0 }))
     // Avec un constat précis, seuls les conseils qui parlent de sa situation ; sinon, les plus sûrs du thème
     .filter(x => !C2_KIND_TOPIC[kind] || x.hit)
-    .sort((a, b) => b.hit - a.hit || (a.u.status !== "exploitable") - (b.u.status !== "exploitable") || !!a.u.nuance - !!b.u.nuance).slice(0, 2).map(x => x.u);
+    .sort((a, b) => b.hit - a.hit || b.own - a.own || (a.u.status !== "exploitable") - (b.u.status !== "exploitable") || !!a.u.nuance - !!b.u.nuance).slice(0, 2).map(x => x.u);
   list.forEach(u => seen.add(u.id));
   return list;
 }

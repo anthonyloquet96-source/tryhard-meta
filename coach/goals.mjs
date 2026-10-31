@@ -28,6 +28,9 @@ export const RULES = {
   evaluationGames: 5, minimumValid: 4, successRequired: 3,
   targetQuantile: 0.55, targetQuantileAfterMastery: 0.6,
   progressSd: 0.25, regressionSd: 0.75, guardrailSd: 0.75, guardrailGames: 4,
+  // Après une maîtrise, le départ du palier suivant = médiane des parties jouées depuis le début de l'objectif maîtrisé (au moins
+  // evaluationGames), si elle est meilleure que la médiane des 20 dernières (démo du 31/10 : 63 de moyenne, « Toi aujourd'hui 58 »)
+  freshAfterMastery: true, freshWeight: 0.5,
 };
 const FLOOR = { cs_at_10: 4, cs_at_15: 6, cs_per_min: 0.4, early_deaths: 0.75, kill_participation: 0.05, vision_per_min: 0.1, xp_at_10: 150, objective_participation: 0.1 };
 // Résultats d'un cycle d'évaluation
@@ -80,7 +83,7 @@ export function guardrailBaseline(windowGames, role, metric) {
 }
 
 // Diagnostic : toutes les métriques entraînables du rôle, notées ; la première éligible est l'objectif proposé
-export function prioritize(games, role, { references = null, exclude = [], quantileFor = () => RULES.targetQuantile, masteredTarget = () => null } = {}) {
+export function prioritize(games, role, { references = null, exclude = [], quantileFor = () => RULES.targetQuantile, masteredTarget = () => null, masteredSince = () => null } = {}) {
   const comparable = games.filter(g => g.valid && g.role === role).slice(0, RULES.historyMax);
   const out = [];
   for (const [key, c] of Object.entries(CATALOG)) {
@@ -94,7 +97,13 @@ export function prioritize(games, role, { references = null, exclude = [], quant
     if (exclude.includes(key)) { out.push({ ...row, reason: "mise de côté après un échec ou une alerte, jusqu'au prochain diagnostic" }); continue; }
     const dir = c.direction === "higher" ? 1 : -1;
     const recent = comparable.slice(0, RULES.baselineGames).map(g => g.metrics[key]?.value).filter(v => v != null);
-    const baseline = median(recent);
+    const windowBaseline = median(recent);
+    let baseline = windowBaseline;
+    const since = RULES.freshAfterMastery ? masteredSince(key) : null;
+    if (since != null) {
+      const fresh = comparable.filter(g => g.start_ms > since).map(g => g.metrics[key]?.value).filter(v => v != null);
+      if (fresh.length >= RULES.evaluationGames && dir * (median(fresh) - baseline) > 0) baseline += RULES.freshWeight * (median(fresh) - baseline);
+    }
     const ref = referenceFor(key, role, references, baseline);
     if (!ref) { out.push({ ...row, reason: "aucune référence pour ce rôle" }); continue; }
     const s = personalSd(key, recent);
@@ -132,7 +141,7 @@ export function prioritize(games, role, { references = null, exclude = [], quant
     // Proposition automatique suspendue (catalogue : autoPropose false) : la métrique reste au diagnostic
     const auto = c.autoPropose !== false;
     const eligible = gap > 0 && auto && visible;
-    out.push({ ...row, eligible, reason: gap <= 0 ? "déjà au niveau de la référence" : !visible ? "à moins d'un point de la référence" : auto ? null : "objectif automatique suspendu (risque de jeu passif)", baseline: round(baseline, 3), spread: round(s, 3), reference: ref, target, target_quantile: q,
+    out.push({ ...row, eligible, reason: gap <= 0 ? "déjà au niveau de la référence" : !visible ? "à moins d'un point de la référence" : auto ? null : "objectif automatique suspendu (risque de jeu passif)", baseline: round(baseline, 3), ...(baseline !== windowBaseline ? { window_baseline: round(windowBaseline, 3) } : {}), spread: round(s, 3), reference: ref, target, target_quantile: q,
       factors: { G: round(G, 3), I: c.impact, F: round(F, 3), A: c.actionability, C: round(C, 3) }, score: round(score, 2) });
   }
   return out.sort((a, b) => (b.eligible - a.eligible) || ((b.score ?? -1) - (a.score ?? -1)) || a.metric.localeCompare(b.metric));
@@ -154,7 +163,8 @@ export function proposeGoal(games, role, { references = null, pastGoals = [], no
   const exclude = last && ["failed", "needs_review"].includes(last.outcome) ? Object.keys(CATALOG).filter(k => fam(k) === fam(last.metric)) : [];
   const mastered = new Set(closed.filter(g => g.outcome === "achieved").map(g => g.metric));
   const lastMastered = k => closed.find(g => g.outcome === "achieved" && g.metric === k)?.target ?? null;
-  const rows = prioritize(games, role, { references, exclude, quantileFor: k => (mastered.has(k) ? RULES.targetQuantileAfterMastery : RULES.targetQuantile), masteredTarget: lastMastered });
+  const lastMasteredAt = k => closed.find(g => g.outcome === "achieved" && g.metric === k)?.active_at ?? null;
+  const rows = prioritize(games, role, { references, exclude, quantileFor: k => (mastered.has(k) ? RULES.targetQuantileAfterMastery : RULES.targetQuantile), masteredTarget: lastMastered, masteredSince: lastMasteredAt });
   const best = rows.find(r => r.eligible);
   if (!best) return { goal: null, diagnostic: rows };
   const c = CATALOG[best.metric];
@@ -164,7 +174,7 @@ export function proposeGoal(games, role, { references = null, pastGoals = [], no
     diagnostic: rows,
     goal: {
       id, chain_id: id, cycle: 1, metric: best.metric, role, direction: c.direction,
-      baseline: best.baseline, target: best.target, target_quantile: best.target_quantile, personal_sd: best.spread, reference: best.reference,
+      baseline: best.baseline, ...(best.window_baseline != null ? { regress_baseline: best.window_baseline } : {}), target: best.target, target_quantile: best.target_quantile, personal_sd: best.spread, reference: best.reference,
       baseline_window: win.info, guardrails: guardrailBaseline(win.games, role, best.metric),
       evaluation_games: RULES.evaluationGames, minimum_valid_games: RULES.minimumValid, success_required: RULES.successRequired,
       version: GOAL_VERSION, engine_version: GOAL_VERSION, status: "proposed", created_at: now, score: best.score, factors: best.factors,
@@ -173,7 +183,7 @@ export function proposeGoal(games, role, { references = null, pastGoals = [], no
     },
   };
 }
-const pick = g => Object.fromEntries(["metric", "role", "direction", "baseline", "target", "target_quantile", "personal_sd", "reference", "baseline_window", "guardrails",
+const pick = g => Object.fromEntries(["metric", "role", "direction", "baseline", "regress_baseline", "target", "target_quantile", "personal_sd", "reference", "baseline_window", "guardrails",
   "evaluation_games", "minimum_valid_games", "success_required", "version", "engine_version", "score", "factors", "kbThemes"].filter(k => k in g).map(k => [k, g[k]]));
 
 // Transitions autorisées
@@ -232,6 +242,8 @@ export function evaluateGoal(goal, games, now = Date.now()) {
   const values = counted.map(g => g.metrics[goal.metric]?.value).filter(v => v != null);
   const sd = goal.personal_sd || FLOOR[goal.metric] || 1;
   const deltaSd = values.length ? round(dir * (median(values) - goal.baseline) / sd, 2) : null;
+  // Palier relevé après une maîtrise : le recul se mesure depuis le niveau habituel (20 dernières), pas depuis le départ relevé
+  const regressSd = values.length && goal.regress_baseline != null ? round(dir * (median(values) - goal.regress_baseline) / sd, 2) : deltaSd;
   const guard = checkGuardrails(goal.guardrails, counted);
   const breach = Object.entries(guard).filter(([, r]) => r.breach).map(([k]) => k);
   let outcome = null;
@@ -239,7 +251,7 @@ export function evaluateGoal(goal, games, now = Date.now()) {
     if (validObs < goal.minimum_valid_games) outcome = "inconclusive";
     else if (breach.length) outcome = "needs_review";
     else if (met >= goal.success_required) outcome = "achieved";
-    else if (deltaSd <= -RULES.regressionSd) outcome = "needs_review";
+    else if (regressSd <= -RULES.regressionSd) outcome = "needs_review";
     else if (deltaSd >= RULES.progressSd) outcome = "improving";
     else outcome = goal.previous_outcome === "stable" ? "failed" : "stable";
   } else if (offRole >= goal.evaluation_games && inRole === 0) outcome = "inconclusive";
