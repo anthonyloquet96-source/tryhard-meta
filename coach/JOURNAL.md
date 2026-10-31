@@ -2,6 +2,12 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — fiche champion : toi sur ce champion, comparé aux Diamant+ du même champion
+- **Choix discuté avec ChatGPT** : pas de récolte par champion à chaque rang pour l'instant. Il faudrait environ 50 000 parties avec chronologie par groupe de rangs, alors qu'on en a 320 par rang sous Diamant. On compare plutôt le joueur, sur ce champion, aux Diamant+ du même champion. Une récolte par rang sur 20 à 30 champions populaires reste possible après la clé de production.
+- **Repères** (`coach/champ-references.mjs` → `worker/champrefs.json`, ignoré par git) : 39 181 parties Diamant+ (EUW 18 630, KR 10 596, NA 9 955). 267 couples champion + poste ont au moins 200 parties (exemples : Ahri mid 3 420, Thresh support 5 361). Comme les repères par rang, ils servent au test privé seulement : ils sont embarqués dans le Worker par `index.mjs` et servis aux testeurs connectés.
+- **Route** `GET /players/:id/champion?name=` : médiane des ranked valides du joueur sur ce champion, poste par poste, à côté des quartiles Diamant+. Si le champion n'a jamais été joué, on renvoie les repères seuls.
+- **Fiche champion** : bloc « Toi sur … ». Il montre les parties, les victoires et ta place parmi les Diamant+ (quart haut, moitié haute, moitié basse, quart bas), les plus gros écarts en premier. Avec moins de 5 parties, il est précisé que c'est une indication, pas un verdict. Test ajouté. Vérifié en local sur un compte de support Yuumi (19 parties).
+
 ## 2026-10-31, nuit (fin) — palier suivant, poste de l'objectif, conseils par poste, unité du farm
 - **Palier suivant après une maîtrise** (`goals.mjs`, `freshAfterMastery`) : le départ va à mi-chemin entre la médiane des 20 dernières parties et celle des parties jouées depuis le début de l'objectif maîtrisé (au moins 5, et seulement si elle est meilleure). Le recul (« à revoir ») se mesure toujours depuis la médiane des 20 dernières (`regress_baseline`), pour qu'un retour au niveau habituel ne soit pas signalé.
   - Simulation, deux objectifs à la suite sur les joueurs de la batterie : 16 premières maîtrises, dont 4 reprennent le même geste. Sans le changement, la cible du palier 2 était déjà atteinte dans 3,25 des 5 parties récentes en moyenne ; avec le départ entièrement relevé, 1,75.

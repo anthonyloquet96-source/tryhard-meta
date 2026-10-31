@@ -52,7 +52,8 @@ async function coachV1() {
   const key = process.env.RIOT_API_KEY?.trim();
   // Démo : sans les repères Diamant+ (calculés avec la clé de développement, pas encore autorisés par Riot)
   const refs = DEMO ? null : await readFile(join(ROOT, "coach", "cache", "metric-references.json"), "utf8").then(j => JSON.parse(j).references).catch(() => null);
-  const ctx = { store: DEMO ? createStore() : createStore({ file: join(ROOT, "coach", "cache", "v1", "store.json"), rawDir: join(ROOT, "coach", "cache", "v1", "raw") }), riot: key ? createRiotV1(key) : null, references: refs };
+  const champRefs = DEMO ? null : await readFile(join(ROOT, "worker", "champrefs.json"), "utf8").then(JSON.parse).catch(() => null);
+  const ctx = { store: DEMO ? createStore() : createStore({ file: join(ROOT, "coach", "cache", "v1", "store.json"), rawDir: join(ROOT, "coach", "cache", "v1", "raw") }), riot: key ? createRiotV1(key) : null, references: refs, champRefs };
   ctx.queue = createQueue(syncWorker(ctx));
   // Tuteur (COACH-010) : offre gratuite de Gemini, réponse JSON courte ; conseils sourcés de la base publiée
   const { chatHandler } = await import("../coach/v1/tutor.mjs");

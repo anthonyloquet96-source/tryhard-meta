@@ -1692,3 +1692,19 @@ html.ptr-on, html.ptr-on body { overscroll-behavior-y: none; }
 .nt-on { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 700; color: var(--ok); }
 .nt-btns { display: flex; gap: var(--s2); flex-wrap: wrap; }
 .nt .btn.primary { align-self: flex-start; }
+
+/* Fiche champion : toi sur ce champion, comparé aux Diamant+ du même champion (31/10) */
+.c2-cme { gap: var(--s3); }
+.c2-cme-roles { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.c2-cme-roles .pill-btn.on { background: var(--accent); color: #fff; }
+.c2-cme-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: var(--s2); }
+.c2-cme-head > div { display: grid; gap: 2px; padding: var(--s2) var(--s3); border-radius: var(--r-sm); background: var(--surface-2); }
+.c2-cme-head b { font-size: 22px; font-variant-numeric: tabular-nums; }
+.c2-cme-rows, .c2-cme-ref { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.c2-cme-rows li { display: grid; grid-template-columns: 1fr auto; gap: 2px var(--s3); padding: var(--s2) var(--s3); border-radius: var(--r-sm); background: var(--surface-2); border-left: 3px solid var(--surface-3); }
+.c2-cme-rows li.top { border-left-color: var(--ok); } .c2-cme-rows li.up { border-left-color: rgba(var(--ok-rgb), .5); }
+.c2-cme-rows li.mid { border-left-color: rgba(var(--accent-rgb), .55); } .c2-cme-rows li.down { border-left-color: var(--bad); }
+.c2-cme-v { display: flex; align-items: baseline; gap: 6px; font-variant-numeric: tabular-nums; }
+.c2-cme-p { grid-column: 1 / -1; font-size: var(--fs-sm); color: var(--text-2); }
+.c2-cme-rows li.down .c2-cme-p { color: var(--bad); } .c2-cme-rows li.top .c2-cme-p { color: var(--ok); }
+.c2-cme-ref li { display: flex; justify-content: space-between; gap: var(--s3); padding: 6px var(--s3); border-radius: var(--r-sm); background: var(--surface-2); }
