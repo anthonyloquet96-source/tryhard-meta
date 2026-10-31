@@ -81,7 +81,8 @@ export async function run() {
     ddragonVersion: L.changesDoc.ddragonVersion || null,
     patchEntities: L.changesDoc.patches,
     pilot, coverage,
-    sources: L.sources.sources.map(({ expertise, ...s }) => ({ ...s, expertise })),
+    // Présentation des chaînes (textes « À propos ») : adresses e-mail masquées comme dans les descriptions (tour de sécurité du 01/11)
+    sources: L.sources.sources.map(({ expertise, ...s }) => ({ ...s, expertise: expertise?.map(x => (x?.claim ? { ...x, claim: noEmail(x.claim) } : x)) })),
     contents,
     units: units.map(pub),
     glossary: L.glossary.terms,

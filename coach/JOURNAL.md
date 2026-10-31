@@ -2,6 +2,24 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — tour de sécurité
+- **Solide** :
+  - aucun secret dans le dépôt public ni dans son historique (la clé Supabase de la page est la clé publique) ;
+  - toutes les tables sont protégées par ligne : lues avec la clé publique, elles reviennent vides ;
+  - Worker : jeton vérifié, test privé, une ressource par propriétaire (fiche champion comprise), quotas ;
+  - notifications limitées aux services officiels, avec un quota par adresse IP ;
+  - textes externes échappés à l'affichage ;
+  - JSON bruts Riot dans un bucket privé.
+- **Corrigé** :
+  - `metric_references` était lisible par tout compte connecté, alors que les inscriptions Supabase sont ouvertes et confirmées automatiquement. Migration `20261101000000_references_private.sql` (suppression de la politique de lecture ; le Worker lit avec la clé de service). Test COACH-003 inversé. **À appliquer par Anthony dans l'éditeur SQL de Supabase.**
+  - 8 e-mails de créateurs restaient dans la présentation des chaînes (`sources[].expertise`) : masqués par `coach/build.mjs`. Le fichier en ligne sera propre à la prochaine veille.
+  - Règle de sécurité de la page (`Content-Security-Policy` dans index.html) : scripts du site seulement, appels réseau limités aux services connus. Les scripts écrits dans la page ont été déplacés dans des fichiers déjà publiés par `collecte.yml`, qui n'a pas été modifié : thème → `i18n.js`, configuration du test privé → `coach-select.js`, notifications → import dynamique dans `app.js`. Les 6 `onerror` d'images ont été remplacés par un écouteur global (`data-rm`). Vérifié en local sur toutes les pages : aucun blocage, et un script injecté, un script externe ou un envoi vers un site inconnu sont refusés.
+- **À décider par Anthony** : fermer les inscriptions Supabase ou exiger la confirmation de l'e-mail (réglage du compte).
+- **À surveiller** :
+  - liaison Riot ID sans RSO (avant l'ouverture publique) ;
+  - serveur local sans contrôle d'accès si HOST=0.0.0.0 ;
+  - faille fast-xml-parser limitée à XMLBuilder, qui n'est pas utilisé.
+
 ## 2026-11-01 — fiche champion : toi sur ce champion, comparé aux Diamant+ du même champion
 - **Choix discuté avec ChatGPT** : pas de récolte par champion à chaque rang pour l'instant. Il faudrait environ 50 000 parties avec chronologie par groupe de rangs, alors qu'on en a 320 par rang sous Diamant. On compare plutôt le joueur, sur ce champion, aux Diamant+ du même champion. Une récolte par rang sur 20 à 30 champions populaires reste possible après la clé de production.
 - **Repères** (`coach/champ-references.mjs` → `worker/champrefs.json`, ignoré par git) : 39 181 parties Diamant+ (EUW 18 630, KR 10 596, NA 9 955). 267 couples champion + poste ont au moins 200 parties (exemples : Ahri mid 3 420, Thresh support 5 361). Comme les repères par rang, ils servent au test privé seulement : ils sont embarqués dans le Worker par `index.mjs` et servis aux testeurs connectés.

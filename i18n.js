@@ -1,3 +1,5 @@
+// Thème choisi, appliqué avant le premier affichage (déplacé de index.html : la règle de sécurité du 01/11 interdit les scripts écrits dans la page)
+if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem("tm-prefs-v1")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){} }
 /* MINDIFF — version anglaise : traduction à l'affichage.
    La langue vient du choix enregistré (prefs.lang), sinon de la langue du téléphone (français → fr, sinon en).
    En anglais, chaque texte affiché est traduit à partir du dictionnaire ci-dessous :

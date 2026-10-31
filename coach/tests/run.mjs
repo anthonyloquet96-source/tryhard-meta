@@ -850,7 +850,9 @@ await t("COACH-003 Base Supabase : RLS (lecture du propriétaire seulement, aucu
   }
   assert((await as(B, "select match_id from public.matches")).rows[0].match_id === "EUW1_2", "B voit une partie de A");
   assert(await count(B, "coaching_goals") === 0 && await count(B, "goal_evaluations") === 0, "B voit l'objectif de A");
-  assert(await count(B, "metric_references") === 1, "références agrégées illisibles");
+  // Repères par rang (clé de développement, test privé) : plus lisibles avec la clé publique, même connecté (tour de sécurité du 01/11) ;
+  // le Worker les lit avec la clé de service
+  assert(await count(B, "metric_references") === 0, "références lisibles par n'importe quel compte connecté");
   // Aucune écriture côté client, même sur ses propres lignes
   let denied = 0;
   for (const sql of [`insert into public.coaching_goals (player_id, metric, role, direction, baseline, target, version, status) values ('10000000-0000-0000-0000-00000000000a', 'cs_at_10', 'MIDDLE', 'higher', 1, 2, 'x', 'proposed')`,
