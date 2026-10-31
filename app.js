@@ -74,6 +74,8 @@ let dataLoaded = false;
 let dataError = null;
 const ONLINE = location.protocol.startsWith("http");
 let HAS_SERVER = ONLINE && !/\.github\.io$/.test(location.hostname);
+// Image qui ne charge pas (logo d'équipe, illustration) : retirée, sans gestionnaire écrit dans le HTML (règle de sécurité du 01/11)
+document.addEventListener("error", e => { if (e.target?.tagName === "IMG" && e.target.hasAttribute("data-rm")) (e.target.dataset.rm === "parent" ? e.target.parentNode : e.target)?.remove(); }, true);
 const CACHE_KEY = "tm-cache-v1";
 
 async function fetchJson(url) {
@@ -344,8 +346,8 @@ function initials(name) {
   return ((words.length > 1 ? words[0][0] + words[1][0] : words[0]?.slice(0, 3)) || "?").toUpperCase();
 }
 // Logo ou portrait, avec repli propre sur les initiales si l'image manque
-const logo = (name, url, cls = "") => `<span class="logo ${cls}" aria-hidden="true"><span class="logo-txt">${esc(initials(name))}</span>${url ? `<img src="${esc(url)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</span>`;
-const portrait = (ent, cls = "") => `<span class="portrait ${cls}" aria-hidden="true"><span class="logo-txt">${esc(initials(ent.name))}</span>${ent.img ? `<img src="${esc(ent.img)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</span>`;
+const logo = (name, url, cls = "") => `<span class="logo ${cls}" aria-hidden="true"><span class="logo-txt">${esc(initials(name))}</span>${url ? `<img src="${esc(url)}" alt="" loading="lazy" decoding="async" data-rm>` : ""}</span>`;
+const portrait = (ent, cls = "") => `<span class="portrait ${cls}" aria-hidden="true"><span class="logo-txt">${esc(initials(ent.name))}</span>${ent.img ? `<img src="${esc(ent.img)}" alt="" loading="lazy" decoding="async" data-rm>` : ""}</span>`;
 
 async function loadRosters() {
   try {
@@ -716,7 +718,7 @@ function tournamentCard(t) {
   const st = t.stages[currentStage(t)];
   const nxt = nextMatchOf(t);
   return `<a class="tcard" href="${href(t.game, "tournoi", t.id)}">
-    <span class="tcard-media">${img ? `<img src="${esc(img)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : ""}<span class="tcard-mono">${esc(initials(t.name))}</span></span>
+    <span class="tcard-media">${img ? `<img src="${esc(img)}" alt="" loading="lazy" decoding="async" data-rm>` : ""}<span class="tcard-mono">${esc(initials(t.name))}</span></span>
     <span class="tcard-body">
       <span class="tcard-top">${statusChip(t.status)}${t.manual ? chip("Vérifié à la main", "soft") : ""}</span>
       <span class="tcard-name">${esc(t.name)}</span>
@@ -765,7 +767,7 @@ function viewSelect() {
       const fav = prefs.favGames.includes(g.id);
       return `<div class="gtile${LOCKED.includes(g.id) ? " locked" : ""}">
         <a class="gtile-link" href="${href(g.id)}">
-          <span class="gtile-media">${art ? `<img src="${esc(art)}" alt="" decoding="async" onerror="this.remove()">` : ""}</span>
+          <span class="gtile-media">${art ? `<img src="${esc(art)}" alt="" decoding="async" data-rm>` : ""}</span>
           ${LOCKED.includes(g.id) ? `<span class="gtile-lock">${icon("lock")}Bientôt</span>` : ""}<span class="gtile-body"><span class="gtile-name">${esc(g.name)}</span>
             <span class="gtile-tags">${live ? `<span class="chip live"><span class="live-dot"></span>${esc(live.name)}</span>` : ""}${p ? chip(`Patch ${patchOf(p, editOf(p)) || ""}`, "soft") : ""}</span></span>
         </a>
@@ -788,7 +790,7 @@ function viewHome() {
     const st = lead.stages[currentStage(lead)];
     const nxt = nextMatchOf(lead);
     leadHtml = `<section class="hero" aria-label="Tournoi à la une">
-      <div class="hero-media">${img ? `<img src="${esc(img)}" alt="" decoding="async" onerror="this.remove()">` : `<span class="hero-mono">${esc(initials(lead.name))}</span>`}</div>
+      <div class="hero-media">${img ? `<img src="${esc(img)}" alt="" decoding="async" data-rm>` : `<span class="hero-mono">${esc(initials(lead.name))}</span>`}</div>
       <div class="hero-body">
         <div class="hero-top">${statusChip(lead.status)}${st && lead.status !== "finished" ? `<span class="hero-phase">${esc(st.name)}</span>` : ""}</div>
         <h1 class="hero-title" tabindex="-1">${esc(lead.name)}</h1>
@@ -1376,7 +1378,7 @@ function newsRow(i) {
       <span class="nrow-title">${spoil ? "Résultat masqué (mode sans spoilers)" : esc(e.titre)}</span>
       ${!spoil && e.resume ? `<span class="nrow-dek">${esc(e.resume)}</span>` : ""}
     </span>
-    ${i.image && !spoil ? `<span class="nrow-thumb"><img src="${esc(i.image)}" alt="" loading="lazy" decoding="async" width="88" height="66" onerror="this.parentNode.remove()"></span>` : ""}
+    ${i.image && !spoil ? `<span class="nrow-thumb"><img src="${esc(i.image)}" alt="" loading="lazy" decoding="async" width="88" height="66" data-rm="parent"></span>` : ""}
   </a>`;
 }
 function newsDetail(k) {
@@ -2004,6 +2006,7 @@ function guideButton() {
 //     l'écran d'accueil (iOS 16.4 et plus). Quand le push est actif, le site n'affiche plus ses propres alertes de match
 //     (pas de doublon).
 // Moments forts et messages du coach : notif-events.mjs (window.NOTIF), partagé avec le Worker.
+import("./notif-events.mjs").then(N => { window.NOTIF = N; }).catch(() => {});
 const PUSH_API = window.MINDIFF_PILOT?.api || null;
 const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const STANDALONE = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;

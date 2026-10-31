@@ -1,3 +1,6 @@
+// Test privé du coach : adresse du service, de Supabase et sa clé publique (protégée par la sécurité par ligne de la base).
+// Déplacé de index.html (règle de sécurité du 01/11) ; chargé avant coach2.js et app.js qui la lisent.
+if (typeof window !== "undefined") window.MINDIFF_PILOT = { api: "https://mindiff-coach.mindiff.workers.dev", supabase: "https://ejnsrsbjrphdqfpcpudr.supabase.co", anon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqbnNyc2JqcnBoZHFmcGNwdWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwNDc5MzksImV4cCI6MjEwODYyMzkzOX0.8eeCywophV0g774ea4K2qBTQ_oin9PzoDGPbPvkPZJg" };
 /* MINDIFF — sélection des conseils du coach (étape 3, déterministe).
    Règles : coach/prompts/recommandation.v1.md. Utilisé par l'application (navigateur) et par les tests (Node).
    Aucune analyse n'est faite ici : on choisit parmi des connaissances déjà analysées et contrôlées. */

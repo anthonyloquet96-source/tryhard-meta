@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>try{var t=JSON.parse(localStorage.getItem("tm-prefs-v1")||"{}").theme;if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <!-- Règle de sécurité de la page (tour du 01/11) : scripts du site seulement, appels réseau limités aux services connus -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' https:; connect-src 'self' https://mindiff-coach.mindiff.workers.dev https://ejnsrsbjrphdqfpcpudr.supabase.co https://ddragon.leagueoflegends.com https://esports-api.lolesports.com https://feed.lolesports.com https://valorant-api.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
   <meta name="description" content="MINDIFF : compétitions, méta, tier lists, stratégies et coach pour League of Legends et Valorant, à partir de sources vérifiées.">
@@ -29,14 +30,12 @@
 
   <script src="i18n.js"></script>
   <script type="module" src="story.mjs"></script>
-  <script type="module">import * as N from "./notif-events.mjs"; window.NOTIF = N;</script>
   <script src="data/news.js"></script>
   <script src="data/esport.js"></script>
   <script src="data/meta.js"></script>
   <script src="coach-select.js"></script>
   <script src="coach.js"></script>
   <!-- Coach en test privé : service du coach et connexion des volontaires (clé « anon » publique par conception, RLS en base) -->
-  <script>window.MINDIFF_PILOT = { api: "https://mindiff-coach.mindiff.workers.dev", supabase: "https://ejnsrsbjrphdqfpcpudr.supabase.co", anon: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqbnNyc2JqcnBoZHFmcGNwdWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwNDc5MzksImV4cCI6MjEwODYyMzkzOX0.8eeCywophV0g774ea4K2qBTQ_oin9PzoDGPbPvkPZJg" };</script>
   <script src="coach2.js"></script>
   <script src="app.js"></script>
 </body>
