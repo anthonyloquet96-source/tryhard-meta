@@ -6,11 +6,13 @@ import { coachApi } from "../coach/coach-api.mjs";
 import benchmarks from "./benchmarks.json";
 import champstats from "./champstats.json";
 import builds from "./builds.json";
+// Repères par champion (fiche champion du coach V1) : même statut que les fichiers ci-dessus, ignoré par git, test privé seulement
+import champRefs from "./champrefs.json";
 import { createV1Worker, isTester } from "./v1.mjs";
 import { pushApi, pushLive, pushCoach } from "./push.mjs";
 
 // Coach V1 (/api/v1) : jeton Supabase, stockage Supabase, quotas ; voir worker/v1.mjs
-const v1 = createV1Worker();
+const v1 = createV1Worker({ champRefs });
 // Test privé (clé Riot personnelle) : l'ancien coach n'est servi qu'aux volontaires inscrits, sans les repères Diamant+
 // relevés avec la clé de développement (benchmarks, champstats, builds), qui restent privés jusqu'à la clé de production.
 const PUBLIC = env => env.COACH_ACCESS === "public";

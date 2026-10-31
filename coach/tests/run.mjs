@@ -967,6 +967,16 @@ await t("COACH-005 Synchronisation : aucune partie traitée deux fois, recalcul 
   assert(saved.status === 200 && saved.body.feedback.side_effects.length === 1 && saved.body.feedback.comment === "Je jouais trop safe.", "retour mal enregistré");
   const withFb = await handleV1({ method: "GET", path: `/api/v1/players/${pid}/progress` }, ctx);
   assert(withFb.body.goals[0].feedback?.relevance === 2, "retour absent de la progression");
+  // Fiche champion : tes parties sur ce champion à côté des repères Diamant+ du même champion au même poste
+  const champ = (await store.listMetrics(pid))[0].champion;
+  ctx.champRefs = { level: "Diamant+", champs: { [`${champ}|MIDDLE`]: { n: 300, winrate: 51, metrics: { cs_at_10: { n: 300, p25: 60, p50: 70, p75: 80 } } }, "Zed|MIDDLE": { n: 250, winrate: 50, metrics: { cs_at_10: { n: 250, p25: 61, p50: 71, p75: 81 } } } } };
+  const ch = await handleV1({ method: "GET", path: `/api/v1/players/${pid}/champion`, query: { name: champ } }, ctx);
+  const chRow = ch.body.roles?.[0]?.rows.find(x => x.metric === "cs_at_10");
+  assert(ch.status === 200 && ch.body.roles[0].role === "MIDDLE" && ch.body.roles[0].games === 21 && chRow?.ref?.p50 === 70 && chRow.me > 0, "fiche champion : " + JSON.stringify(ch.body).slice(0, 200));
+  const zed = await handleV1({ method: "GET", path: `/api/v1/players/${pid}/champion`, query: { name: "Zed" } }, ctx);
+  assert(!zed.body.roles.length && zed.body.ref_only?.role === "MIDDLE" && zed.body.ref_only.rows[0].p50_text, "champion pas joué : repères seuls");
+  assert((await handleV1({ method: "GET", path: `/api/v1/players/${pid}/champion`, query: { name: "<x>" } }, ctx)).status === 400, "nom de champion non contrôlé");
+  ctx.champRefs = null;
   // Nouvelle version des métriques : recalcul depuis le JSON brut, sans rappeler Riot
   const all = await store.listMetrics(pid);
   for (const m of all) await store.putMetrics(pid, { ...m, metric_version: "ancienne" });

@@ -22,3 +22,5 @@ worker/benchmarks.json
 worker/champstats.json
 worker/builds.json
 worker/.wrangler/
+# Repères par champion (clé de développement, test privé) embarqués dans le Worker au déploiement
+worker/champrefs.json

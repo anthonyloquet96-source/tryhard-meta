@@ -7,6 +7,7 @@
 //   GET  /api/v1/jobs/:id
 //   GET  /api/v1/players/:id/matches
 //   GET  /api/v1/players/:id/diagnostic
+//   GET  /api/v1/players/:id/champion?name=Ahri   (fiche champion : tes parties sur ce champion et les repères Diamant+ du même champion)
 //   GET  /api/v1/players/:id/goals/active
 //   POST /api/v1/players/:id/goals/:goalId/start (proposé → actif)
 //   GET  /api/v1/players/:id/progress
@@ -21,6 +22,7 @@ import { CATALOG, METRIC_VERSION, formatMetric, labelOf, unitOf } from "../metri
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 const fail = (status, code, message) => ({ status, body: { error: { code, message } } });
+const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length ? (s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2) : null; };
 // Effets indésirables proposés au testeur après un cycle (pilot_feedback.side_effects)
 export const SIDE_EFFECTS = ["jeu-plus-passif", "moins-de-farm", "moins-de-kills", "stress", "moins-de-plaisir", "conseil-inadapte", "objectif-incompris"];
 
@@ -31,7 +33,7 @@ export function createQueue(work) {
 }
 
 export async function handleV1({ method, path, query = {}, body = null }, ctx) {
-  const { store, riot, references = null, queue, chat = null } = ctx;
+  const { store, riot, references = null, queue, chat = null, champRefs = null } = ctx;
   try {
     if (path === "/api/v1/health") return { status: 200, body: { ok: true, metric_version: METRIC_VERSION, goal_version: GOAL_VERSION, riot: !!riot } };
     if (path === "/api/v1/players/resolve" && method === "GET") {
@@ -72,6 +74,29 @@ export async function handleV1({ method, path, query = {}, body = null }, ctx) {
     const metrics = await store.listMetrics(player.id);
     if (sub === "/matches" && method === "GET")
       return { status: 200, body: { matches: metrics.map(m => ({ match_id: m.match_id, start_ms: m.start_ms, role: m.role, champion: m.champion, won: m.won, valid: m.valid, invalid_reason: m.invalid_reason, metrics: Object.fromEntries(Object.entries(m.metrics).map(([k, v]) => [k, v.value])) })) } };
+    // Fiche champion : tes ranked valides sur ce champion, poste par poste (médiane de chaque métrique du catalogue), à côté des
+    // repères Diamant+ du même champion au même poste (champRefs, test privé). Pas de repère si le couple a moins de 200 parties.
+    if (sub === "/champion" && method === "GET") {
+      const name = String(query.name || "");
+      if (!/^[A-Za-z0-9' .&]{1,30}$/.test(name)) return fail(400, "champion-invalide", "Champion invalide.");
+      const byRole = {};
+      for (const m of metrics) if (m.valid && m.champion === name) (byRole[m.role] ||= []).push(m);
+      const roles = Object.entries(byRole).sort((a, b) => b[1].length - a[1].length).map(([role, games]) => {
+        const ref = champRefs?.champs?.[`${name}|${role}`] || null;
+        const rows = Object.keys(CATALOG).filter(k => CATALOG[k].roles.includes(role) && !CATALOG[k].diagnosticOnly && !CATALOG[k].needsOpponent).map(k => {
+          const vals = games.map(g => g.metrics[k]?.value).filter(v => v != null);
+          if (!vals.length) return null;
+          const r = ref?.metrics?.[k];
+          return { metric: k, label: labelOf(k, role), unit: unitOf(k, role), direction: CATALOG[k].direction, n: vals.length, me: median(vals), me_text: formatMetric(k, median(vals)),
+            ref: r ? { n: r.n, p25: r.p25, p50: r.p50, p75: r.p75, p50_text: formatMetric(k, r.p50) } : null };
+        }).filter(Boolean);
+        return { role, games: games.length, wins: games.filter(g => g.won).length, last_ms: games[0]?.start_ms ?? null, ref: ref ? { n: ref.n, winrate: ref.winrate, level: champRefs.level } : null, rows };
+      });
+      // Champion pas encore joué : les repères seuls, au poste où il est le plus joué en Diamant+
+      const refOnly = roles.length ? null : Object.entries(champRefs?.champs || {}).filter(([k]) => k.startsWith(`${name}|`)).sort((a, b) => b[1].n - a[1].n).slice(0, 1)
+        .map(([k, r]) => { const role = k.split("|")[1]; return { role, n: r.n, winrate: r.winrate, level: champRefs.level, rows: Object.entries(r.metrics).filter(([m]) => CATALOG[m] && !CATALOG[m].diagnosticOnly && !CATALOG[m].needsOpponent).map(([m, x]) => ({ metric: m, label: labelOf(m, role), p50_text: formatMetric(m, x.p50) })) }; })[0] || null;
+      return { status: 200, body: { champion: name, roles, ref_only: refOnly, refs_at: champRefs?.at ?? null } };
+    }
     if (sub === "/diagnostic" && method === "GET") {
       const role = CATALOG && (query.role && /^(TOP|JUNGLE|MIDDLE|BOTTOM|UTILITY)$/.test(query.role) ? query.role : mainRole(metrics));
       if (!role) return { status: 200, body: { role: null, rows: [], note: "Aucune partie classée valide pour l'instant." } };

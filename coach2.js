@@ -1509,13 +1509,47 @@ function c2Champions() {
   return `<label class="field"><span class="sr">Rechercher un champion</span><input id="c2-search" class="search" type="search" placeholder="Rechercher un champion" value="${esc(c2ui.q)}" autocomplete="off"></label>
     <div class="c2-grid">${list.map(c => `<a class="c2-champ" href="${c2Href("champions", c.id)}">${c2Img(c.id)}<span>${esc(c.name)}</span></a>`).join("") || `<p class="fine">Aucun champion trouvé.</p>`}</div>`;
 }
+// Toi sur ce champion (test privé, coach V1) : tes ranked récentes sur ce champion, poste par poste, comparées aux joueurs Diamant+
+// qui jouent le même champion au même poste (demande d'Anthony, 31/10 : « expliquer comment toi, tu joues ce champion »)
+function c2ChampMe(id) {
+  const V = c2ui.v1 || {};
+  if (C2_API == null) return "";
+  // Venu directement sur l'onglet Champions : le coach n'a pas encore résolu le joueur, on le fait (une fois par session)
+  if (!V.pid) { if (C2.account?.riotId) setTimeout(() => c2V1Load(), 0); return ""; }
+  const D = (c2ui.champMe ||= {});
+  if (!(id in D)) { D[id] = null; c2V1(`/players/${V.pid}/champion?name=${encodeURIComponent(id)}`).then(r => { D[id] = r; render(false); }).catch(() => { D[id] = { error: true }; render(false); }); }
+  const d = D[id];
+  if (!d) return `<section class="c2-card c2-loading"><span>Tes parties sur ${esc(c2Name(id))}<span class="c2-wait" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></span></section>`;
+  if (d.error) return "";
+  const name = esc(c2Name(id));
+  if (!d.roles?.length) {
+    const r = d.ref_only;
+    return `<section class="c2-card c2-cme"><p class="label">Toi sur ${name}</p><p>Pas de ranked récente sur ${name} dans tes parties suivies par le coach.</p>${r ? `<p class="fine">Repères des joueurs ${esc(r.level)} sur ${name} ${c2AsRole(r.role)} (${c2n(r.n)} parties) :</p><ul class="c2-cme-ref">${r.rows.slice(0, 6).map(x => `<li><span>${esc(x.label)}</span><b>${esc(x.p50_text)}</b></li>`).join("")}</ul><p class="fine">Joue quelques parties avec ce champion : le coach comparera tes chiffres à ceux-là.</p>` : ""}</section>`;
+  }
+  const pick = D[`${id}:role`] && d.roles.find(r => r.role === D[`${id}:role`]) || d.roles[0];
+  const tabs = d.roles.length > 1 ? `<div class="c2-cme-roles">${d.roles.map(r => `<button class="pill-btn${r === pick ? " on" : ""}" data-action="c2-cme-role" data-id="${esc(id)}" data-role="${esc(r.role)}">${esc(C2_V1_ROLE[r.role] || r.role)} · ${r.games}</button>`).join("")}</div>` : "";
+  // Place du joueur parmi les Diamant+ du même champion : quart haut, moitié haute, moitié basse, quart bas (dans le sens de la métrique)
+  const place = x => { const r = x.ref; if (!r) return null; const d = x.direction === "lower" ? -1 : 1, v = x.me;
+    return d * (v - r.p75) >= 0 ? ["top", "comme le quart des meilleurs"] : d * (v - r.p50) >= 0 ? ["up", "dans la moitié haute"] : d * (v - r.p25) >= 0 ? ["mid", "dans la moitié basse"] : ["down", "sous le quart le plus bas"]; };
+  const gap = x => { const r = x.ref; if (!r) return 0; const d = x.direction === "lower" ? -1 : 1, spread = Math.abs(r.p75 - r.p25) || 1; return d * (x.me - r.p50) / spread; };
+  const rows = [...pick.rows].sort((a, b) => !!b.ref - !!a.ref || gap(a) - gap(b)).slice(0, 8);
+  const few = pick.games < 5;
+  const wr = Math.round(100 * pick.wins / pick.games);
+  return `<section class="c2-card c2-cme"><p class="label">Toi sur ${name} ${c2AsRole(pick.role)}</p>${tabs}
+    <div class="c2-cme-head"><div><b>${pick.games}</b><span class="fine">partie${pick.games > 1 ? "s" : ""} classée${pick.games > 1 ? "s" : ""} récente${pick.games > 1 ? "s" : ""}</span></div><div><b>${wr} %</b><span class="fine">de victoires (${pick.wins})</span></div>${pick.ref ? `<div><b>${c2n(pick.ref.winrate)} %</b><span class="fine">chez les ${esc(pick.ref.level)}</span></div>` : ""}</div>
+    ${pick.ref ? `<p class="label">Comparé aux joueurs ${esc(pick.ref.level)} sur ${name}</p>
+    <ul class="c2-cme-rows">${rows.map(x => { const p = place(x); return `<li class="${p ? p[0] : ""}"><span class="c2-cme-k">${esc(x.label)}</span><span class="c2-cme-v"><b>${esc(x.me_text)}</b>${x.ref ? `<span class="fine">vs ${esc(x.ref.p50_text)}</span>` : ""}</span>${p ? `<span class="c2-cme-p">${p[1]}</span>` : ""}</li>`; }).join("")}</ul>
+    <p class="fine">Toi : la médiane de tes ${pick.games} partie${pick.games > 1 ? "s" : ""} sur ${name} à ce poste. Eux : la médiane de ${c2n(pick.ref.n)} parties ${esc(pick.ref.level)} sur ${name} au même poste (EUW, Corée, Amérique du Nord). Les points les plus éloignés sont en haut.${few ? " Avec moins de 5 parties, c'est encore une indication, pas un verdict." : ""}</p>`
+    : `<p class="fine">Pas encore assez de parties ${esc("Diamant+")} sur ${name} à ce poste pour un repère fiable (il en faut 200).</p>`}
+  </section>`;
+}
 function c2Champion(id) {
   const name = c2Name(id);
   const t = c2TipsFor(name, true);
   const coaching = t.play.filter(u => u.nature !== "officiel");
   const vids = c2VideosFor(name);
   setTimeout(() => c2LoadChamp(id), 0);
-  return `<div class="c2-duel">${c2Img(id, "c2-av xl")}</div>${c2Builds(id)}
+  return `<div class="c2-duel">${c2Img(id, "c2-av xl")}</div>${c2ChampMe(id)}${c2Builds(id)}
     ${coaching.length ? `<section class="c2-card"><p class="label">Astuces de Riot et des coachs</p><ul class="c2-tiplist">${coaching.map(c2Tip).join("")}</ul></section>` : ""}
     <section class="c2-card"><p class="label">Le jouer</p>${t.play.filter(u => u.nature === "officiel").length ? `<ul class="c2-tiplist">${t.play.filter(u => u.nature === "officiel").map(c2Tip).join("")}</ul>` : `<p class="fine">Riot ne publie pas de conseils officiels pour ${esc(name)}. Des pages officielles sont en cours d'analyse.</p>`}</section>
     <section class="c2-card"><p class="label">L'affronter</p>${t.against.length ? `<ul class="c2-tiplist">${t.against.map(c2Tip).join("")}</ul>` : `<p class="fine">Pas encore de conseil vérifié.</p>`}</section>
@@ -1868,6 +1902,7 @@ document.addEventListener("click", async e => {
     render(false);
   }
   if (a.dataset.action === "c2-v1-restart") { c2ui.v1 = {}; c2V1Load(true); }
+  if (a.dataset.action === "c2-cme-role") { (c2ui.champMe ||= {})[`${a.dataset.id}:role`] = a.dataset.role; render(false); }
   if (a.dataset.action === "c2-v1-win-ok") { (C2.wins ||= {})[a.dataset.id] = Date.now(); c2Save(); render(false); }
   if (a.dataset.action === "c2-v1-start" && V.pid) {
     c2Burst(a);
