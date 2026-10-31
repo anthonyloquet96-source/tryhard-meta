@@ -108,10 +108,30 @@ export function tactics(match, timeline, puuid) {
 
   // Ce qui aurait été mieux : règles de fondamentaux sur des faits mesurés, adaptées au rôle (relecture « joueur Argent » du 21/10)
   const lessons = [];
+  const deadAt = t => deadAtId(mine.id, t); // temps de réapparition approximatif
+  const diedBefore = (t, span = 90000) => kills.find(k => k.victim === mine.id && t - k.t >= 0 && t - k.t < span);
   const role = mine.role;
+  // Distances en repères compréhensibles plutôt qu'en unités du jeu
+  const far = d => (d < 2500 ? "tout près" : d < 6000 ? "à quelques secondes" : d < 9000 ? "loin" : "à l'autre bout de la carte");
+  // Liste des absents : le joueur est désigné par « toi »
+  const absents = list => { const me = list.some(a => a.me), others = list.filter(a => !a.me).map(a => `${champName(a.champion)} (${a.zone})`); return [me ? "toi" : null, ...others].filter(Boolean).join(", "); };
   // « Absent d'un objectif perdu » retiré au banc d'essai du 21/10 : sans effet au-delà de l'état de la partie (coût médian nul)
-  // « Objectif disputé en infériorité » et « combat perdu sans toi » retirés au banc d'essai du 31/10 (1 600 parties) : aussi fréquents
-  // de Fer à Challenger (44 / 46 / 43 % et 36 / 33 / 33 %), même quand le joueur était présent ou tout près : ils décrivent la partie perdue, pas une erreur
+  // « Objectif disputé en infériorité » et « combat perdu sans toi » : aussi fréquents de Fer à Challenger au banc du 31/10
+  // (44 / 46 / 43 % et 36 / 33 / 33 % des parties), on ne sait pas si le joueur y est pour quelque chose. Remis le 31/10 à la demande
+  // d'Anthony comme « situation à revoir » (review: true) : une question à se poser, pas une erreur ; hors priorité et hors bilan multi-parties
+  const NUANCE = "Ce n'est pas forcément ta faute : le coach ne voit ta position qu'une fois par minute et ne sait pas ce que ton équipe a décidé.";
+  for (const o of objectives.filter(o => !o.ours)) {
+    if (deadAt(o.t) || diedBefore(o.t)) continue; // le joueur réapparaissait : c'est sa mort d'avant qui compte, pas son absence
+    // Personne de l'équipe autour : décision d'équipe (céder), pas une situation à revoir
+    if (o.allies === 0) continue;
+    // Disputé en infériorité (combat autour, avec des pertes) ; céder un objectif sans combat n'est pas une erreur
+    const lostFight = fightView.find(f => Math.abs(f.t - o.t) < 45000 && dist(f, o) < R_OBJ && f.alliesDead > 0);
+    if (o.allies < o.enemies && lostFight) lessons.push({ kind: "objectif-inferiorite", review: true, t: o.t, at: o.at, title: `${o.kind} pris par l'adversaire à ${o.at} : disputé à ${o.allies} contre ${o.enemies}, après un combat perdu à ${lostFight.at}`,
+      better: o.absent.some(x => x.me) ? "Tu étais loin : fallait-il rejoindre ton équipe une minute avant l'objectif, ou lui signaler de le laisser et de prendre autre chose ?"
+        : o.absent.some(x => x.dead) ? "Un allié était mort : valait-il mieux céder l'objectif et prendre une tourelle ou une wave de l'autre côté de la carte ?"
+        : "En infériorité numérique, valait-il mieux céder l'objectif et prendre une tourelle ou une wave de l'autre côté de la carte ?",
+      facts: [...(o.absent.length ? [`Absents : ${absents(o.absent)}.`] : []), NUANCE] });
+  }
   for (const d of deaths) {
     const lowHp = d.hpBefore != null && d.hpBefore < 40 ? [`Il te restait ${d.hpBefore} % de tes points de vie une minute avant : un back t'aurait évité ce risque.`] : [];
     // « Gank subi » retiré au banc d'essai du 21/10 : aussi fréquent à tous les rangs, sans lien avec la victoire
@@ -120,6 +140,9 @@ export function tactics(match, timeline, puuid) {
         : d.enemyHalf ? "Évite d'avancer seul dans la moitié adverse quand plusieurs adversaires ne sont pas visibles : reste à portée de ton équipe ou replie-toi." : "Aucun allié n'était proche : replie-toi vers ton équipe avant que plusieurs adversaires arrivent.",
       facts: [`Tes adversaires : ${d.attackers.map(champName).join(", ")}.`, "Aucun allié n'était tout près de toi.", ...lowHp] });
   }
+  for (const f of fightView.filter(f => f.won === false && !f.me && !deadAt(f.t) && !diedBefore(f.t, 60000) && f.allies >= 2 && f.allies < f.enemies && f.myDist < 6000)) lessons.push({ kind: "combat-sans-toi", review: true, t: f.t, at: f.at, title: `Combat perdu à ${f.at} (${f.zone}) sans toi ; à ta dernière position connue, tu étais ${far(f.myDist)}`,
+    better: "Pouvais-tu rejoindre ce combat à temps ? Si oui, un joueur de plus change le rapport de force ; sinon, signale à ton équipe de ne pas engager.",
+    facts: [`${f.allies} de ton équipe contre ${f.enemies} : ${f.alliesDead} perte${f.alliesDead > 1 ? "s" : ""} de ton côté, ${f.enemiesDead ? `${f.enemiesDead} en face` : "aucune en face"}.`, NUANCE] });
   lessons.sort((a, b) => a.t - b.t);
 
   // Ce qui a suivi (2 minutes) : écart d'or entre les équipes et ce qui a été perdu — présenté comme une suite, pas comme une cause certaine

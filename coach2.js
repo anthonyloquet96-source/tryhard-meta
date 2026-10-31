@@ -633,6 +633,34 @@ function c2Intro(from) {
   o.addEventListener("pointerdown", done);
   setTimeout(done, 1600);
 }
+// Grands écrans de l'objectif (demande d'Anthony, 31/10), joués une fois par objectif et mémorisés sur l'appareil :
+// « Objectif rempli » (trophée, ondes, éclats, lettres) puis « Nouvel objectif » (cible, chiffres avant → cible).
+// Attendent la fin de l'écran « Bienvenue dans le coach » ; un toucher les passe ; coupés si les animations sont réduites.
+function c2Fx(kind, g, extra = {}) {
+  const key = (kind === "win" ? "w:" : "n:") + g.id;
+  if ((C2.fx ||= {})[key]) return;
+  if (document.querySelector(".coach-intro, .c2-fx")) return void setTimeout(() => c2Fx(kind, g, extra), 450);
+  C2.fx[key] = Date.now(); c2Save();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const win = kind === "win", o = document.createElement("div");
+  o.className = `c2-fx ${win ? "win" : "new"}`; o.setAttribute("aria-hidden", "true");
+  const en = window.LANG === "en", word = win ? (en ? "DONE" : "REMPLI") : (en ? "GOAL" : "OBJECTIF");
+  const sparks = win ? Array.from({ length: 28 }, (_, i) => `<i style="--a:${(i * 360) / 28 + (i % 3) * 4}deg;--d:${110 + (i % 5) * 34}px;--s:${4 + (i % 3) * 2}px;--t:${(i % 4) * 60}ms"></i>`).join("") : "";
+  const unit = g.unit && g.unit !== "%" ? ` ${g.unit === "/min" ? "/ min" : g.unit}` : "";
+  const sub = win ? `<span>${esc(g.label)}</span> · ${g.progress?.met ?? "?"}/${g.progress?.counted ?? "?"} ${en ? "games" : "parties"}` : `<span>${esc(g.label)}</span>${extra.tier > 1 ? ` · ${en ? "level" : "palier"} ${extra.tier}` : ""}`;
+  const nums = win ? "" : `<p class="fx-nums"><span>${esc(g.baseline_text)}${esc(unit)}</span><b>→</b><span class="to">${esc(g.target_text)}${esc(unit)}</span></p>`;
+  o.innerHTML = `<div class="fx-rays"></div><div class="fx-stage">
+    <span class="fx-ring"></span><span class="fx-ring r2"></span><span class="fx-ring r3"></span><span class="fx-sparks">${sparks}</span>
+    <span class="fx-icon">${icon(win ? "trophy" : "target")}</span>
+    <p class="fx-kicker">${win ? (en ? "Goal" : "Objectif") : (en ? "New" : "Nouvel")}</p>
+    <h2 class="fx-title">${[...word].map((c, i) => `<span style="--i:${i}">${c}</span>`).join("")}</h2>
+    <p class="fx-sub">${sub}</p>${nums}<p class="fx-tap">${en ? "Tap to continue" : "Touche pour continuer"}</p></div>`;
+  document.body.appendChild(o);
+  if (win) navigator.vibrate?.([40, 60, 90]);
+  const done = () => { if (!o.isConnected || o.classList.contains("out")) return; o.classList.add("out"); c2Warp(true); setTimeout(() => o.remove(), 600); };
+  o.addEventListener("pointerdown", () => setTimeout(done, 0));
+  setTimeout(done, win ? 3600 : 2800);
+}
 function c2V1Card(p) {
   if (C2_API == null) return "";
   setTimeout(() => c2V1Load(), 0);
@@ -643,7 +671,7 @@ function c2V1Card(p) {
   const last = V.history?.[0];
   const lastTxt = last ? `<p class="c2-v1-last ${last.outcome}">${C2_V1_OUTCOME[last.outcome] || "Objectif précédent sans verdict"} : ${esc(last.label)}, cible ${esc(last.target_text)} (${last.progress?.met ?? "?"}/${last.progress?.counted ?? "?"} parties)${last.progress?.review ? ` ; ${esc(last.progress.review)}` : ""}.</p>${c2V1Feedback(last)}` : "";
   // Objectif tout juste maîtrisé : compte rendu avant de passer au suivant (demande d'Anthony, 31/10)
-  if (last?.outcome === "achieved" && !C2.wins?.[last.id]) return c2V1Win(last, V.history);
+  if (last?.outcome === "achieved" && !C2.wins?.[last.id]) { setTimeout(() => c2Fx("win", last), 0); return c2V1Win(last, V.history); }
   const g = V.goal;
   // Un seul objectif à la fois (brief V1), sur le poste principal : si un autre poste est choisi au-dessus, on le dit au lieu de
   // montrer l'objectif du top sous l'onglet Jungle (retour d'Anthony, 29/10)
@@ -671,6 +699,7 @@ function c2V1Card(p) {
   const seenKey = `${g.id}:${g.status}`, enter = !c2Seen.has(seenKey);
   if (enter) { c2Seen.add(seenKey); setTimeout(c2CountUp, 0); }
   const tier = c2V1Won(V.history).filter(x => x.metric === g.metric && x.role === g.role).length + 1;
+  if (g.status === "proposed") setTimeout(() => c2Fx("new", g, { tier }), 0);
   const head = `<p class="label">${g.status === "proposed" ? "Ton prochain objectif" : "Ton objectif en cours"} ${c2AsRole(g.role)}${tier > 1 ? ` · palier ${tier}` : ""}</p>
     <h3 class="c2-v1-title">${esc(g.label)}</h3>
     <div class="c2-v1-nums"><div><span class="fine">Toi aujourd'hui</span><b><span data-count>${esc(g.baseline_text)}</span>${unit}</b></div><span class="c2-v1-arrow" aria-hidden="true">→</span><div class="goal"><span class="fine">${g.direction === "lower" ? "Au plus" : "Ta cible"}</span><b><span data-count data-delay="250">${esc(g.target_text)}</span>${unit}</b></div></div>`;
@@ -1185,7 +1214,7 @@ function c2DeadAt(T, i, t, q) {
 // Moments de la partie : erreurs relevées, tes morts, objectifs, combats
 function c2Moments(T) {
   const L = [];
-  T.lessons.forEach((l, n) => L.push({ t: l.t, type: "lesson", key: true, n, title: l.title, text: l.better, facts: l.facts, at: l.at }));
+  T.lessons.forEach((l, n) => L.push({ t: l.t, type: "lesson", key: true, n, title: l.title, text: l.better, facts: l.facts, at: l.at, review: !!l.review }));
   for (const d of T.deaths || []) L.push({ t: d.t, type: "death", key: true, mine: true, x: d.x, y: d.y, text: `Tu meurs (${d.zone}) : tué par ${c2Name(d.killer)}${d.attackers?.length > 1 ? `, ${d.attackers.length} adversaires sur toi` : ""}${d.alliesNear?.length ? "" : ", aucun allié autour"}` });
   for (const o of T.objectives) L.push({ t: o.t, type: "obj", key: true, good: o.ours, x: o.x, y: o.y, letter: (o.kind || "?")[0], text: `${o.kind} ${/^Larves/.test(o.kind) ? (o.ours ? "prises" : "perdues") : o.ours ? "pris" : "perdu"} : ${o.allies} contre ${o.enemies} autour${o.myDist > 6000 ? ", tu étais loin" : ""}` });
   for (const f of T.fights) L.push({ t: f.t, type: "fight", mine: f.me, good: f.won, x: f.x, y: f.y, text: `Combat ${f.zone} : ${f.allies} contre ${f.enemies}${f.won === true ? ", gagné" : f.won === false ? ", perdu" : ""}${f.me ? " (avec toi)" : ""}` });
@@ -1217,7 +1246,7 @@ function c2MarkHtml(m) {
 function c2NowHtml(T, id, t) {
   const L = c2Moments(T), f = c2ui.tf?.[id] || "all";
   const lesson = L.find(m => m.type === "lesson" && t >= m.t - 40000 && t <= m.t + 20000);
-  if (lesson) return `<div class="c2-now-lesson"><p class="label">Moment clé · ${esc(lesson.at)}</p><p class="c2-now-title">${esc(lesson.title)}</p>${bullets(lesson.facts.slice(0, 2))}<p class="c2-better"><b>Ce qui aurait été mieux</b> ${esc(lesson.text)}</p></div>`;
+  if (lesson) return `<div class="c2-now-lesson"><p class="label">${lesson.review ? "Situation à revoir" : "Moment clé"} · ${esc(lesson.at)}</p><p class="c2-now-title">${esc(lesson.title)}</p>${bullets(lesson.facts.slice(0, 2))}<p class="c2-better"><b>${lesson.review ? "La question à te poser" : "Ce qui aurait été mieux"}</b> ${esc(lesson.text)}</p></div>`;
   const near = L.filter(m => m.type !== "lesson" && c2Keep(m, f) && Math.abs(m.t - t) <= 30000);
   if (near.length) return `<ul class="c2-now-list">${near.map(m => `<li class="${m.type}${m.good === true ? " won" : m.good === false ? " lost" : ""}"><b>${c2Clock(m.t)}</b> ${esc(m.text)}</li>`).join("")}</ul>`;
   return `<p class="fine">Rien de marquant à cet instant. Lance la lecture ou saute au moment clé suivant.</p>`;
@@ -1370,7 +1399,7 @@ function c2Tactics(r, id) {
       <div class="c2-tile ${S.deathsGank ? "down" : ""}"><span class="c2-k">${S.deathsGank}</span><span class="fine">morts sur un gank avant 14 min</span></div>
     </div>
     ${c2Turns(T, id)}
-    ${T.lessons.length ? T.lessons.map(l => `<article class="c2-card c2-finding"><p class="label">À ${esc(l.at)}</p><h3 class="c2-f-title">${esc(l.title)}</h3>${bullets(l.facts)}<p class="c2-better"><b>Ce qui aurait été mieux</b> ${esc(l.better)}</p><button class="btn ghost sm" data-action="c2-tgo" data-id="${esc(id)}" data-t="${l.t}">Revoir ce moment</button></article>`).join("")
+    ${T.lessons.length ? T.lessons.map(l => `<article class="c2-card c2-finding"><p class="label">À ${esc(l.at)}${l.review ? " · situation à revoir" : ""}</p><h3 class="c2-f-title">${esc(l.title)}</h3>${bullets(l.facts)}<p class="c2-better"><b>${l.review ? "La question à te poser" : "Ce qui aurait été mieux"}</b> ${esc(l.better)}</p><button class="btn ghost sm" data-action="c2-tgo" data-id="${esc(id)}" data-t="${l.t}">Revoir ce moment</button></article>`).join("")
       : `<p class="inline-empty">Pas de moment clé à revoir sur la minimap pour cette partie. Tes constats sont dans L'essentiel.</p>`}
     <details class="more c2-card"><summary>Tous les combats (${T.fights.length}) et interactions</summary>
       <ul class="c2-events">${T.fights.map(f => `<li><b>${f.at}</b> ${esc(f.zone)} · ${f.allies} contre ${f.enemies} · <span class="${f.won === true ? "up" : f.won === false ? "bad" : ""}">${f.won === true ? "gagné" : f.won === false ? "perdu" : "égal"}</span> (${f.enemiesDead} adversaire${f.enemiesDead > 1 ? "s" : ""} éliminé${f.enemiesDead > 1 ? "s" : ""}, ${f.alliesDead} allié${f.alliesDead > 1 ? "s" : ""}) · ${f.me ? "avec toi" : `sans toi (${f.myDist < 2500 ? "tu étais tout près" : f.myDist < 6000 ? "tu étais à quelques secondes" : f.myDist < 9000 ? "tu étais loin" : "tu étais à l'autre bout de la carte"})`} <button class="linkish" data-action="c2-tgo" data-id="${esc(id)}" data-t="${f.t}">revoir</button></li>`).join("")}</ul>

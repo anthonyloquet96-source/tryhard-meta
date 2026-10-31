@@ -417,6 +417,17 @@
     "Morts seul face à plusieurs adversaires après 14 min": "Deaths alone against several enemies after 14 min",
     "Objectifs disputés en infériorité numérique": "Objectives contested while outnumbered",
     "Au plus une ward adverse détruite avant 20 min": "At most one enemy ward destroyed before 20 min",
+    "0 ou 1 ward adverse détruite avant 20 min": "0 or 1 enemy ward destroyed before 20 min",
+    "Détruire une ward, c'est la repérer avec ton trinket rouge (Lentille d'oracle) ou une control ward, puis la casser : l'adversaire ne voit plus ce coin de la carte.": "Destroying a ward means spotting it with your red trinket (Oracle Lens) or a control ward, then breaking it: the enemy no longer sees that part of the map.",
+    "Sur 329 parties de support analysées : 28 victoires sur 100 avec 0 ou 1 ward détruite, 57 sur 100 avec 4 ou plus. L'équipe qui gagne contrôle aussi mieux la carte : ce n'est pas la seule raison, mais c'est un geste qui compte.": "Across 329 analyzed support games: 28 wins out of 100 with 0 or 1 ward destroyed, 57 out of 100 with 4 or more. The winning team also controls the map better: it's not the only reason, but it's a move that matters.",
+    "En support, repère les wards adverses avec ton trinket rouge (Lentille d'oracle) ou une control ward et casse-les : l'adversaire ne voit plus la bot lane ni les abords du dragon. Sur 329 parties de support analysées, 28 victoires sur 100 avec 0 ou 1 ward détruite, 57 sur 100 avec 4 ou plus.": "As support, spot enemy wards with your red trinket (Oracle Lens) or a control ward and break them: the enemy loses sight of bot lane and the dragon area. Across 329 analyzed support games, 28 wins out of 100 with 0 or 1 ward destroyed, 57 out of 100 with 4 or more.",
+    // Situations à revoir (objectif disputé en infériorité, combat perdu sans toi)
+    "Situation à revoir": "Situation to review", "La question à te poser": "The question to ask yourself",
+    "Ce n'est pas forcément ta faute : le coach ne voit ta position qu'une fois par minute et ne sait pas ce que ton équipe a décidé.": "It's not necessarily your fault: the coach only sees your position once a minute and doesn't know what your team decided.",
+    "Tu étais loin : fallait-il rejoindre ton équipe une minute avant l'objectif, ou lui signaler de le laisser et de prendre autre chose ?": "You were far away: should you have joined your team a minute before the objective, or pinged them to leave it and take something else?",
+    "Un allié était mort : valait-il mieux céder l'objectif et prendre une tourelle ou une wave de l'autre côté de la carte ?": "An ally was dead: would it have been better to give up the objective and take a tower or a wave on the other side of the map?",
+    "En infériorité numérique, valait-il mieux céder l'objectif et prendre une tourelle ou une wave de l'autre côté de la carte ?": "Outnumbered, would it have been better to give up the objective and take a tower or a wave on the other side of the map?",
+    "Pouvais-tu rejoindre ce combat à temps ? Si oui, un joueur de plus change le rapport de force ; sinon, signale à ton équipe de ne pas engager.": "Could you have joined this fight in time? If so, one more player changes the balance; if not, ping your team not to engage.",
     "En jungle, au moins 4 morts avant 14 min": "In the jungle, at least 4 deaths before 14 min",
   };
   const headEn = h => HEAD[h] || h.replace(/^(.+) : moins bien que les bons joueurs$/, (m, p) => `${plainEn(p)}: worse than good players`).replace(/^(.+) au niveau des meilleurs$/, (m, p) => `${plainEn(p)} on par with the best`);
@@ -486,7 +497,7 @@
     [/^Plus forte en début de partie : elle gagne environ (\d+) parties sur 100 de moins quand la partie dépasse 32 min\. Joue la sécurité avant 20 min\.$/, "Stronger early: it wins about $1 fewer games out of 100 when the game goes past 32 min. Play safe before 20 min."],
     [/^écart d'or : ton équipe devant ▲$/, "gold gap: your team ahead ▲"],
     [/^(Dragon|Baron|Héraut|Larves du Néant|Atakhan) (prises|perdues) : (\d+) contre (\d+) autour(, tu étais loin)?$/, (m, k, w, a2, b2, far) => `${OBJ(k)} ${w === "prises" ? "taken" : "lost"}: ${a2} vs ${b2} around${far ? ", you were far" : ""}`],
-    [/^À (\d+:\d\d)$/, "At $1"], [/^([+−-]?[\d\s  ,.]+) golds$/, (m, n) => `${n.trim()} gold`],
+    [/^À (\d+:\d\d)$/, "At $1"], [/^À (\d+:\d\d) · situation à revoir$/, "At $1 · situation to review"], [/^Situation à revoir · (\d+:\d\d)$/, "Situation to review · $1"], [/^([+−-]?[\d\s  ,.]+) golds$/, (m, n) => `${n.trim()} gold`],
     // Bilan d'une partie
     [/^(\d+) morts? juste avant un objectif adverse$/, (m, n) => `${n} death${n === "1" ? "" : "s"} right before an enemy objective`],
     [/^(\d+:\d\d) : tué par (.+?)(?: \(\+(\d+) aides?\))?, puis (.+) pris par l'adversaire à (\d+:\d\d)( \(à revoir dans le Replay\))?$/, (m, at, k, h, o, at2, map) => `${at}: killed by ${who(k)}${h ? ` (+${h} assist${h === "1" ? "" : "s"})` : ""}, then the enemy took the ${objEn(o)} at ${at2}${map ? " (rewatch it in Replay)" : ""}`],

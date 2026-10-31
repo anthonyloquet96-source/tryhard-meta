@@ -2,6 +2,17 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-10-31, nuit (suite) — situations à revoir, wards du support, écrans animés (demandes d'Anthony)
+- **Règles remises** comme « situation à revoir » (`review: true`) : « objectif disputé en infériorité » et « combat perdu sans toi ». Elles reviennent sous forme de question à se poser, avec une nuance : le coach ne voit la position qu'une fois par minute. Elles ne servent ni à la priorité ni au bilan sur plusieurs parties. Banc rejoué : 44 / 46 / 43 % et 36 / 33 / 33 %, comme avant.
+- **Wards du support** : titre « 0 ou 1 ward adverse détruite avant 20 min », avec trois explications :
+  - comment détruire une ward (trinket rouge ou control ward) ;
+  - ce que font les Diamant+ ;
+  - 28 contre 57 victoires sur 100, avec la nuance que l'équipe qui gagne contrôle aussi la carte.
+- **Écrans animés**, joués une fois par objectif et passés d'un toucher :
+  - « Objectif rempli » : or, trophée qui tombe, ondes, éclats, lettres qui s'impriment ;
+  - « Nouvel objectif » : couleur du coach, cible qui tourne, palier, chiffres avant → cible.
+  Ils sont coupés si le téléphone demande moins d'animations. Vérifié en démo : 5 parties → « Objectif rempli » → compte rendu → « Nouvel objectif · palier 2 ».
+
 ## 2026-10-31, nuit — écran « objectif validé » et palmarès (demande d'Anthony)
 - **Constat en démo** (joueur fictif, 5 parties sur 5 au-dessus de la cible) : la validation tenait en une ligne verte, et le prochain objectif s'affichait tout de suite.
 - **Ajouté** : un compte rendu avant le prochain objectif. Il montre :
