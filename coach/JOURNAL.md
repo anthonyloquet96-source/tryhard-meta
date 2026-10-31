@@ -2,6 +2,20 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-10-31, nuit — écran « objectif validé » et palmarès (demande d'Anthony)
+- **Constat en démo** (joueur fictif, 5 parties sur 5 au-dessus de la cible) : la validation tenait en une ligne verte, et le prochain objectif s'affichait tout de suite.
+- **Ajouté** : un compte rendu avant le prochain objectif. Il montre :
+  - le niveau avant et la moyenne pendant l'objectif, avec les 5 pastilles ;
+  - pourquoi le geste compte (une phrase par famille, sans chiffre inventé) et le repère Diamant+ s'il est mesuré ;
+  - si les garde-fous n'ont pas baissé ;
+  - « Ce que tu gardes » : le nombre d'objectifs validés et le palier.
+  Un bouton « Voir mon prochain objectif » ferme le compte rendu, une seule fois par objectif, mémorisé sur l'appareil.
+- **Palmarès** : une section repliée « Mes objectifs validés (N) » dans la carte. Le prochain objectif sur le même geste affiche « palier N ».
+- **Règle support des wards** (banc, 329 parties de support d'au moins 20 min) : avec 0 ou 1 ward détruite, 28 % de victoires, contre 42 % avec 2 ou 3 et 57 % avec 4 ou plus. C'est un lien, pas une preuve de cause, car l'équipe qui gagne contrôle aussi la carte.
+- **À trancher avec Anthony** :
+  - après une maîtrise, « Toi aujourd'hui » reste la médiane des 20 dernières parties (58 en démo, alors que le joueur venait de faire 63 en moyenne) ;
+  - les deux règles retirées : ChatGPT propose de les garder dans une catégorie « situation à revoir », sans les présenter comme une erreur.
+
 ## 2026-10-31, soir — feu vert d'Anthony : notifs en ligne, YouTube conforme, règles du coach revues
 - **Notifs** : worker redéployé avec les corrections du tour de contrôle (ace, inhibiteurs, décalage, plafond d'envois, rappels).
 - **YouTube** : la veille ne lit plus `/feeds/videos.xml`, `/results` ni `/youtubei/` (interdits par le robots.txt). Elle lit la première page publique de l'onglet « vidéos » des 77 chaînes, sous le vrai nom du robot. Le titre, la durée, l'âge et les vues y sont, mais pas la description ni la date exacte. Essai : 78 sources lues sans erreur. La recherche de nouvelles chaînes est arrêtée, il faut les ajouter à la main.

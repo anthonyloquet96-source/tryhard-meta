@@ -614,6 +614,15 @@
     ", ton poste principal : le coach te fait travailler une seule chose à la fois.": ", your main role: the coach has you work on one thing at a time.",
     "Pas encore d'objectif : joue quelques ranked de plus.": "No goal yet: play a few more ranked games.",
     "Il faut au moins 15 parties classées au même poste.": "You need at least 15 ranked games in the same role.",
+    // Écran « Objectif validé » et palmarès
+    "Objectif validé": "Goal completed", "Avant": "Before", "Pendant l'objectif": "During the goal", "Pourquoi c'est important": "Why it matters", "Ce que tu gardes": "What you keep",
+    "Voir mon prochain objectif": "See my next goal",
+    "Les sbires sont ta source d'or la plus sûre : chaque sbire tué, c'est de l'or gagné sans prendre de risque, donc tes objets plus tôt.": "Minions are your safest source of gold: every last hit is gold earned without taking a risk, so your items come sooner.",
+    "L'expérience te donne tes niveaux : un niveau d'avance en début de partie pèse dans chaque échange et chaque combat.": "Experience gives you your levels: being a level ahead early weighs on every trade and every fight.",
+    "Chaque mort donne de l'or à l'adversaire et te fait rater sbires et expérience pendant que tu attends de réapparaître.": "Every death gives the enemy gold and makes you miss minions and experience while you wait to respawn.",
+    "Participer aux kills, c'est être là quand ton équipe se bat : tu prends ta part de l'or et ton équipe joue à plus.": "Taking part in kills means being there when your team fights: you get your share of the gold and your team plays with more people.",
+    "La vision te montre où sont les adversaires : tu vois venir les ganks et ton équipe prépare les objectifs sans surprise.": "Vision shows you where the enemies are: you see ganks coming and your team sets up objectives without surprises.",
+    "Tes autres chiffres suivis n'ont pas baissé pendant ces parties : le progrès ne s'est pas fait au détriment du reste.": "Your other tracked stats didn't drop during these games: the progress didn't come at the expense of the rest.",
     "Seules tes ranked": "Only your ranked games", "comptent : les parties à un autre poste ne font pas avancer le compteur.": "count: games in another role don't move the counter.",
     "donnée manquante": "missing data", "à jouer": "to play", "Toi aujourd'hui": "You today", "sbires": "CS", "morts": "deaths", "or": "gold",
     "Pourquoi cette cible": "Why this target", "C'est le repère du coach pour ce poste.": "That's the coach's benchmark for this role.",
@@ -696,6 +705,16 @@
     [/^(.+) : vise (.+)$/, (m, l, t) => { const e = goalEn(l); return e ? `${e}: aim for ${unitEn(t).replace(/ /g, " ")}` : m; }],
     [/^(\d+) réussites? sur (\d+) · (\d+) parties? à jouer$/, (m, a, b, n) => `${a} success${a === "1" ? "" : "es"} out of ${b} · ${n} game${n === "1" ? "" : "s"} to play`],
     [/^(\d+) réussites? sur (\d+) nécessaires$/, "$1 of $2 successes needed"],
+    [/^Objectif validé · palier (\d+)$/, "Goal completed · level $1"], [/^· palier (\d+)$/, "· level $1"],
+    [/^Moyenne de tes (\d+) parties?, pour une cible de (.+)\.$/, (m, n, t) => `Average over your ${n} game${n === "1" ? "" : "s"}, for a target of ${numEn(t)}.`],
+    [/^Cible atteinte dans (\d+) parties? sur (\d+)\.$/, (m, a, b) => `Target reached in ${a} of ${b} game${b === "1" ? "" : "s"}.`],
+    [/^Repère : joueurs (.+) à ce poste, ([^,]+)\.$/, (m, l, v) => `Benchmark: ${tierEn(l)} players in this role, ${numEn(v)}.`],
+    [/^Ajouté à ton palmarès : (\d+) objectifs? validés?\. (.+)$/, (m, n, rest) => {
+      const t = rest.match(/^Tu as validé ce geste (\d+) fois, chaque fois avec une cible plus haute\.$/);
+      const tail = t ? `You've completed this skill ${t[1]} times, each time with a higher target.` : rest === "Si ce geste reste ta priorité, le prochain objectif le reprend avec une cible plus haute." ? "If this skill is still your priority, the next goal picks it up with a higher target." : null;
+      return tail ? `Added to your record: ${n} goal${n === "1" ? "" : "s"} completed. ${tail}` : m; }],
+    [/^Mes objectifs validés \((\d+)\)$/, "My completed goals ($1)"],
+    [/^(Top|Jungle|Mid|ADC|Support|top|jungle|mid|support)(?: · palier (\d+))? · cible (.+) · ([\d?]+)\/([\d?]+) parties$/, (m, r, p, t, a, b) => `${r}${p ? ` · level ${p}` : ""} · target ${numEn(t)} · ${a}/${b} games`],
     [/^Cible atteinte (\d+) fois : c'est assez\. Joue encore (\d+) parties? pour valider l'objectif\.$/, (m, a, n) => `Target hit ${a} times: that's enough. Play ${n} more game${n === "1" ? "" : "s"} to confirm the goal.`],
     [/^Ce cycle ne sera pas réussi : il reste (\d+) parties? et il faudrait encore (\d+) réussites?\. Ce n'est pas un échec : finis-le, le coach mesure aussi ton progrès et peut relancer le même objectif\.$/, (m, n, k) => `This cycle can't be passed anymore: ${n} game${n === "1" ? "" : "s"} left and you would still need ${k} success${k === "1" ? "" : "es"}. It's not a failure: finish it, the coach also measures your progress and may restart the same goal.`],
     [/^(Objectif atteint|Objectif) : (.+) · (\d+)\/(\d+) réussies$/, (m, o, l, a, b) => { const e = goalEn(l); return e ? `${o === "Objectif" ? "Goal" : "Goal reached"}: ${e} · ${a}/${b} successful` : m; }],
