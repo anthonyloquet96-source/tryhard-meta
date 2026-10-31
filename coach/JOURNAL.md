@@ -3,7 +3,7 @@
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
 ## 2026-11-01 — chargement du coach trop long (capture d'Anthony, 00:09)
-- **Mesure** (table `sync_jobs`) : synchronisation demandée à 23:07:59 UTC, dernier paquet commencé à 23:10:10, 3 secondes de travail, 3 parties. La première exécution (`waitUntil`) a été coupée en route, sans doute par la limite d'appels du Worker gratuit : l'objectif venait de se terminer, donc il fallait archiver l'ancien et proposer le nouveau, ce qui ajoute des appels. La reprise n'arrivait qu'après 60 s sans nouvelles, et il en a fallu deux. Pendant ce temps, la carte attendait la fin de la synchronisation.
+- **Mesure** (table `sync_jobs`) : synchronisation demandée à 23:07:59 UTC, dernier paquet commencé à 23:10:10, 3 secondes de travail, 3 parties. La première exécution (`waitUntil`) a été coupée en route, sans doute par la limite d'appels du Worker gratuit : ces 3 parties faisaient passer le joueur à 15 parties en top, donc son premier objectif était calculé et proposé (repères, rang Riot), ce qui ajoute des appels. La reprise n'arrivait qu'après 60 s sans nouvelles, et il en a fallu deux. Pendant ce temps, la carte attendait la fin de la synchronisation.
 - **Corrigé** :
   - reprise après 20 s, y compris pour une synchronisation restée « en attente » sans jamais démarrer (`/jobs/:id`) ;
   - l'objectif connu et la progression s'affichent dès l'ouverture, avant la synchronisation, qui continue derrière.
