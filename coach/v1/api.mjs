@@ -51,8 +51,10 @@ export async function handleV1({ method, path, query = {}, body = null }, ctx) {
     if (jm) {
       let j = UUID.test(jm[1]) && await store.getJob(jm[1]);
       // Synchronisation par paquets (ctx.syncBudget) : chaque consultation traite le paquet suivant ; une synchronisation
-      // coupée en route (plus de nouvelles depuis 60 s) reprend là où elle s'était arrêtée
-      if (j && j.status === "running" && ctx.syncBudget && riot && ((j.extra?.more ?? j.more) || Date.now() - Date.parse(j.started_at || 0) > 60000)) {
+      // coupée en route (plus de nouvelles depuis 20 s) ou jamais démarrée reprend là où elle s'était arrêtée. Un paquet dure
+      // quelques secondes ; avec 60 s, une synchronisation coupée deux fois faisait attendre plus de 2 min (retour d'Anthony, 01/11)
+      const stale = t => Date.now() - Date.parse(t || 0) > 20000;
+      if (j && ctx.syncBudget && riot && ((j.status === "running" && ((j.extra?.more ?? j.more) || stale(j.started_at))) || (j.status === "queued" && stale(j.requested_at)))) {
         await syncWorker(ctx)(j);
         j = await store.getJob(j.id);
       }
