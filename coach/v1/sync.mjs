@@ -4,7 +4,7 @@
 
 import { normalizeMatch } from "../normalize.mjs";
 import { computeMetrics, METRIC_VERSION } from "../metrics.mjs";
-import { proposeGoal, evaluateGoal, transition } from "../goals.mjs";
+import { proposeGoal, evaluateGoal, transition, RULES } from "../goals.mjs";
 import { hasPlayer } from "./scrub.mjs";
 
 // Repères par rang (test privé) : { MASTER: { BOTTOM: { cs_at_10: {…} } }, … }. Le joueur vise le rang au-dessus du sien
@@ -22,10 +22,14 @@ export async function refsForPlayer(riot, player, references) {
 }
 
 // Rôle principal : le plus joué parmi les parties valides récentes
+// Poste de l'objectif : parmi les postes qui ont assez de parties pour un objectif, celui des 10 dernières parties d'abord,
+// puis celui des 30 dernières (banc du 31/10 : 4 objectifs sur 82 visaient un poste que le joueur ne jouait plus)
 export function mainRole(metrics) {
-  const n = {};
-  for (const m of metrics.slice(0, 30)) if (m.valid && m.role) n[m.role] = (n[m.role] || 0) + 1;
-  return Object.entries(n).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0] || null;
+  const valid = metrics.filter(m => m.valid && m.role);
+  const count = list => list.reduce((n, m) => ((n[m.role] = (n[m.role] || 0) + 1), n), {});
+  const recent = count(valid.slice(0, 10)), wide = count(valid.slice(0, 30)), all = count(valid.slice(0, RULES.historyMax));
+  const enough = r => (all[r] || 0) >= RULES.minGames;
+  return Object.keys(wide).sort((a, b) => enough(b) - enough(a) || (recent[b] || 0) - (recent[a] || 0) || wide[b] - wide[a] || a.localeCompare(b))[0] || null;
 }
 
 // budget : nombre maximal de parties téléchargées ou recalculées par appel. Le Worker gratuit de Cloudflare limite chaque requête

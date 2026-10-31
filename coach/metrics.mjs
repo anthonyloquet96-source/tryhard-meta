@@ -29,8 +29,8 @@ export const CATALOG = {
     // sur 30 000 joueurs Diamant+ : 44 % du farm de 10 min en lane, 48 % en jungle (et non la moitié)
     labelRole: { JUNGLE: "CS à 10 min (sbires et monstres)" }, unitRole: { JUNGLE: "CS" },
     exercise: (t, role) => role === "JUNGLE"
-      ? `Vise ${t} CS à 10:00, sbires et monstres. Repère intermédiaire : environ ${Math.round(t * 0.48)} à 5:00 ; enchaîne tes camps et, après un gank ou un combat, reprends tout de suite tes camps.`
-      : `Vise ${t} sbires à 10:00. Repère intermédiaire : environ ${Math.round(t * 0.44)} à 5:00 ; si tu es en dessous, ne force pas d'échange qui te fait rater des sbires.`,
+      ? `Vise ${t} CS à 10:00, sbires et monstres. Repère intermédiaire : environ ${Math.round(t * 0.48)} CS à 5:00 ; enchaîne tes camps et, après un gank ou un combat, reprends tout de suite tes camps.`
+      : `Vise ${t} sbires à 10:00. Repère intermédiaire : environ ${Math.round(t * 0.44)} sbires à 5:00 ; si tu es en dessous, ne force pas d'échange qui te fait rater des sbires.`,
   },
   cs_at_15: {
     label: "Sbires à 15 min", family: "farm", unit: "sbires", direction: "higher", roles: ["MIDDLE", "JUNGLE", "TOP", "BOTTOM"], trainable: true, impact: 0.7, actionability: 0.8,

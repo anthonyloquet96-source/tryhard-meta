@@ -2,6 +2,15 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-10-31, nuit (fin) — palier suivant, poste de l'objectif, conseils par poste, unité du farm
+- **Palier suivant après une maîtrise** (`goals.mjs`, `freshAfterMastery`) : le départ va à mi-chemin entre la médiane des 20 dernières parties et celle des parties jouées depuis le début de l'objectif maîtrisé (au moins 5, et seulement si elle est meilleure). Le recul (« à revoir ») se mesure toujours depuis la médiane des 20 dernières (`regress_baseline`), pour qu'un retour au niveau habituel ne soit pas signalé.
+  - Simulation, deux objectifs à la suite sur les joueurs de la batterie : 16 premières maîtrises, dont 4 reprennent le même geste. Sans le changement, la cible du palier 2 était déjà atteinte dans 3,25 des 5 parties récentes en moyenne ; avec le départ entièrement relevé, 1,75.
+  - Ces joueurs ne s'entraînaient pas, et 4 cas sont trop peu pour régler le dosage. Mi-chemin, à revoir avec les données du test privé.
+- **Poste de l'objectif** (`sync.mjs`, `mainRole`) : parmi les postes qui ont au moins 15 parties, celui des 10 dernières parties passe d'abord. Sur 90 joueurs : 3 changent de poste, et les objectifs sur un poste presque absent des 10 dernières passent de 4 à 2. Les 2 restants ont moins de 15 parties au nouveau poste.
+- **Conseils par poste** (`c2CoachTips`) : un conseil adressé au jungler (« en jungle, reste près de sa lane ») n'est plus montré aux laners, et les conseils écrits pour le poste du joueur passent avant ceux « tous postes ».
+- **Exercice de farm** : « environ 26 sbires à 5:00 » (« CS » en jungle) au lieu de « environ 26 à 5:00 ».
+- **Brainstorm ChatGPT** sur d'autres usages du coach : apprendre un nouveau champion, reprise après une pause, rapport partageable avec un coach humain, revue de duo, journal de progression. À trancher avec Anthony.
+
 ## 2026-10-31, nuit (suite) — situations à revoir, wards du support, écrans animés (demandes d'Anthony)
 - **Règles remises** comme « situation à revoir » (`review: true`) : « objectif disputé en infériorité » et « combat perdu sans toi ». Elles reviennent sous forme de question à se poser, avec une nuance : le coach ne voit la position qu'une fois par minute. Elles ne servent ni à la priorité ni au bilan sur plusieurs parties. Banc rejoué : 44 / 46 / 43 % et 36 / 33 / 33 %, comme avant.
 - **Wards du support** : titre « 0 ou 1 ward adverse détruite avant 20 min », avec trois explications :

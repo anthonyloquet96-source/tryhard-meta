@@ -578,7 +578,7 @@
   const EX = [
     [/Vise ([\d.,]+) CS à (10|15):00, sbires et monstres ?([.:])/, (m, n, t, p) => `Aim for ${n} CS at ${t}:00, minions and monsters${p}`],
     [/Vise ([\d.,]+) sbires à (10|15):00 ?([.:])/, "Aim for $1 CS at $2:00$3"],
-    [/Repère intermédiaire : environ (\d+) à 5:00 ;/, "Checkpoint: about $1 at 5:00;"],
+    [/Repère intermédiaire : environ (\d+) (?:CS|sbires) à 5:00 ;/, "Checkpoint: about $1 CS at 5:00;"],
     [/enchaîne tes camps et, après un gank ou un combat, reprends tout de suite tes camps\./, "chain your camps and, after a gank or a fight, go straight back to your camps."],
     [/si tu es en dessous, ne force pas d'échange qui te fait rater des sbires\./, "if you're below that, don't force trades that make you miss CS."],
     [/après chaque back, refais les camps sur ton chemin avant de chercher un combat\./, "after each back, clear the camps on your way before looking for a fight."],
