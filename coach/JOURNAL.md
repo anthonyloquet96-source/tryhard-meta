@@ -2,6 +2,14 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — habitudes : évolution d’un bilan à l’autre
+- Le détecteur d’habitudes sur ~20 parties existait déjà (« Mon bilan complet », règles du banc d’essai, parties concernées cliquables). Manquait : voir si une habitude recule.
+- Ajout : chaque bilan est gardé sur l’appareil (6 derniers par rôle ou champion, mis de côté par compte) ; carte « Tes habitudes depuis le … » sous la synthèse, comparée au dernier bilan qui porte sur au moins 5 parties différentes.
+  - Par habitude : « 8 parties sur 20 → 3 parties sur 20 : en baisse », « nouveau », « n’apparaît plus » (passé sous le seuil d’affichage, pas forcément disparu).
+  - Seuil honnête : 15 points d’écart et 2 parties de plus ou de moins, sinon « à peu près pareil ».
+  - Moins de 5 nouvelles parties : message « joue au moins 5 nouvelles parties ».
+- Site seulement (nombres lus dans les titres du bilan), pas de redéploiement du serveur. Vérifié avec deux bilans fictifs. Tests 59/60.
+
 ## 2026-11-01 — replay filtré « Mon objectif » et onglet Champions trié
 - Demande d’Anthony : le filtre par objectif est une option du replay ; l’onglet Champions propose d’abord les champions joués.
 - Replay : 5e bouton « Mon objectif » (affiché seulement s’il y a quelque chose à montrer). Ne garde que les moments liés à l’objectif en cours, et la lecture s’arrête dessus.
