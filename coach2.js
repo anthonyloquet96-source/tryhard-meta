@@ -489,7 +489,7 @@ function viewCoach2(rest = []) {
   c2ui.lastTab = ti;
   const nav = `<nav class="tabs c2-tabs" aria-label="Coach">${tabs.map(([k, l, ic, to]) => `<a class="tab" href="${to}" ${k === tab ? 'aria-current="page"' : ""}>${icon(ic)}${l}</a>`).join("")}</nav>`;
   const body = tab === "parties" ? c2GamesTab() : tab === "preparer" ? c2Prepare() : tab === "champions" ? c2Champions() : c2Home();
-  return `<header class="c2-head"><h1 class="page-title" tabindex="-1">Coach</h1></header>${nav}${screen(body)}<p class="fine c2-foot"><a href="${href("lol", "coach", "ancien")}" style="text-decoration: underline">Ancien coach</a> · <a href="confidentialite.html" style="text-decoration: underline">Confidentialité et conditions</a> · ${RIOT_LEGAL}</p>`;
+  return `<header class="c2-head"><h1 class="page-title" tabindex="-1">Coach</h1></header>${nav}${screen(body)}<p class="fine c2-foot"><a href="confidentialite.html" style="text-decoration: underline">Confidentialité et conditions</a> · ${RIOT_LEGAL}</p>`;
 }
 
 // Onglet « Parties » : toutes les parties lues, filtre par rôle
