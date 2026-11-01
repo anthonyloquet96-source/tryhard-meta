@@ -1,0 +1,27 @@
+# Tests du coach à chaque modification du code (bloc B de la todo du 01/11/2026) : jusque-là, seule la veille les lançait.
+# Les tests sur fixtures ne demandent ni clé ni cache privé ; ceux qui ont besoin du cache sont ignorés (« faute de cache »).
+name: Tests
+
+on:
+  push:
+    branches: [main, coach-v1]
+    paths: ["coach/**", "worker/**", "server/**", "collector/**", "*.js", "*.mjs", "package*.json", ".github/workflows/tests.yml"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Tests du coach
+        run: node coach/tests/run.mjs
