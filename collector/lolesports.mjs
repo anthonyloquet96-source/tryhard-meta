@@ -79,9 +79,10 @@ export function guessSide(final) {
   const b = final.blue, r = final.red;
   const pick = d => (d > 0 ? "blue" : d < 0 ? "red" : null);
   const inh = pick(b.inhibitors - r.inhibitors);
-  const gold = (b.totalGold ?? 0) - (r.totalGold ?? 0);
-  if (inh) return { side: inh, margin: 100 + Math.abs(gold) / 1000 };
-  const g = pick(gold); if (g) return { side: g, margin: Math.abs(gold) / 1000 };
+  const gold = (b.totalGold ?? 0) - (r.totalGold ?? 0), g = pick(gold);
+  // Inhibiteur et or d'accord : déduction sûre ; en désaccord (le flux s'est arrêté avant les derniers coups) : fragile
+  if (inh) return { side: inh, margin: g && g !== inh ? Math.abs(gold) / 1000 : 100 + Math.abs(gold) / 1000 };
+  if (g) return { side: g, margin: Math.abs(gold) / 1000 };
   const t = pick(b.towers - r.towers); if (t) return { side: t, margin: 0.5 };
   return { side: pick(b.totalKills - r.totalKills), margin: 0.1 };
 }
@@ -96,6 +97,11 @@ export function assignWinners(games, officialTeams) {
   const count = () => { const w = {}; for (const r of rows) if (r.side) { const id = r.g[r.side].teamId; w[id] = (w[id] || 0) + 1; } return w; };
   const ok = () => { const w = count(); return ids.length > 0 && ids.every(id => target[id] != null && (w[id] || 0) === target[id]); };
   let corrected = 0;
+  // Score officiel sans appel (2-0, 3-0) : toutes les parties vont au vainqueur de la série, quoi qu'en dise le flux
+  const sweep = ids.length === 2 && ids.find(id => target[id] > 0 && ids.every(o => o === id || target[o] === 0));
+  if (sweep && rows.length === target[sweep]) {
+    for (const r of rows) { const side = r.g.blue.teamId === sweep ? "blue" : r.g.red.teamId === sweep ? "red" : null; if (side && r.side !== side) corrected++; if (side) r.side = side; }
+  }
   if (rows.length && !ok()) {
     // Seules les déductions fragiles sont retournées : pas d'inhibiteur décisif et moins de 3 000 or d'écart
     for (const r of rows.filter(r => r.side && r.margin <= 3).sort((a, b) => a.margin - b.margin)) {
