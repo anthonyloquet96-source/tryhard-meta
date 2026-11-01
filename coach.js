@@ -81,7 +81,10 @@ function viewCoach() {
     if (route.rest[0] === "beta") return viewCoach2(route.rest.slice(1));
     if (!route.rest[0] || ["parties", "preparer", "draft", "face", "champions", "bilan", "partie"].includes(route.rest[0])) return viewCoach2(route.rest);
   }
-  const sub = route.rest[0] === "ancien" ? "" : route.rest[0] || "";
+  // Ancien écran d'accueil du coach (#/lol/coach/ancien) retiré du parcours le 01/11/2026 : il renvoie au nouveau coach.
+  // Le reste de ce fichier reste utilisé : chargement de la base de conseils (COACH), stratégies, carte d'accueil, liens de préparation.
+  if (route.game === "lol" && route.rest[0] === "ancien" && typeof viewCoach2 === "function") return viewCoach2([]);
+  const sub = route.rest[0] || "";
   if (route.game !== "lol") {
     const inner = viewStrats(sub === "strategies" ? route.rest.slice(1) : []);
     return `<header class="page-head"><h1 class="page-title" tabindex="-1">Coach</h1></header>${coachTabs("strategies")}
