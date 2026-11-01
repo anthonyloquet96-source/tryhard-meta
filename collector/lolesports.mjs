@@ -98,9 +98,13 @@ export function assignWinners(games, officialTeams) {
   const ok = () => { const w = count(); return ids.length > 0 && ids.every(id => target[id] != null && (w[id] || 0) === target[id]); };
   let corrected = 0;
   // Score officiel sans appel (2-0, 3-0) : toutes les parties vont au vainqueur de la série, quoi qu'en dise le flux
+  // (même si une partie manque encore au relevé : celles qu'on a sont forcément à lui)
   const sweep = ids.length === 2 && ids.find(id => target[id] > 0 && ids.every(o => o === id || target[o] === 0));
-  if (sweep && rows.length === target[sweep]) {
+  if (sweep && rows.length && rows.length <= target[sweep]) {
     for (const r of rows) { const side = r.g.blue.teamId === sweep ? "blue" : r.g.red.teamId === sweep ? "red" : null; if (side && r.side !== side) corrected++; if (side) r.side = side; }
+    const verified = rows.every(r => r.side && r.g[r.side].teamId === sweep);
+    for (const r of rows) { r.g.winnerTeamId = verified ? sweep : null; delete r.g.winnerSide; }
+    return { verified, corrected };
   }
   if (rows.length && !ok()) {
     // Seules les déductions fragiles sont retournées : pas d'inhibiteur décisif et moins de 3 000 or d'écart
