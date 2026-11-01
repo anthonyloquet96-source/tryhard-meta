@@ -527,7 +527,7 @@ function c2Home() {
   const err = c2ui.error ? `<div class="note warn">${icon("alert")}<span>${esc(c2ui.error)}</span><button class="btn ghost sm" data-action="c2-refresh">Réessayer</button></div>` : "";
   if (C2_EXTRAS) setTimeout(() => c2LoadLive(), 0);
   const recent = p.games.slice(0, 3);
-  return `${c2ui.switching ? c2Connect(true) : ""}${err}${c2ProfileCard(p)}${C2_EXTRAS ? c2Live(p) : ""}${c2V1Card(p)}${c2Ready(p)}${C2_EXTRAS ? c2Goal(p) : ""}
+  return `${c2ui.switching ? c2Connect(true) : ""}${err}${c2ProfileCard(p)}${C2_EXTRAS ? c2Live(p) : ""}${c2V1Card(p)}${c2V1Progress()}${c2Ready(p)}${C2_EXTRAS ? c2Goal(p) : ""}
     <a class="c2-ready c2-bilan-link" href="${c2Href("bilan")}">${icon("tiers")}<span><b>Mon bilan complet</b><span class="fine">Tes erreurs qui reviennent, tes forces et les adversaires à préparer, sur une vingtaine de tes dernières parties</span></span>${icon("chevron")}</a>
     ${recent.length ? `<section class="sec">${secHead("Dernières parties", seeAll(c2Href("parties"), "Toutes"))}${c2Games({ ...p, games: recent })}</section>` : ""}
     <p class="fine c2-foot">Données officielles de Riot Games${p.benchmark ? ` · référence : ${c2n(p.benchmark.games)} parties ${esc(p.benchmark.level)} (patch ${esc(c2Patch(p.benchmark.patch))})` : ""}</p>`;
@@ -838,6 +838,43 @@ function c2V1Tips(g) {
       && !L.avoid?.test(`${u.claim} ${u.use.when}`) && match.test(u.claim))
     .map(u => ({ u, score: 2 + (u.roles?.includes(role) ? 1 : 0) }))
     .sort((a, b) => b.score - a.score || (a.u.status !== "exploitable") - (b.u.status !== "exploitable") || a.u.id.localeCompare(b.u.id)).slice(0, 2).map(x => x.u);
+}
+// Ta progression (bloc D de la todo du 01/11 : « prouver la progression ») : pour chaque geste déjà travaillé (métrique + poste),
+// ton niveau avant le premier objectif, ton niveau sur tes 5 dernières parties à ce poste, l'écart lu en écart-type personnel
+// (même seuils que le moteur : 0,25 σ = progrès), et tes 30 dernières parties en courbe. Données : /progress (series, goals).
+// Honnête : 5 parties restent peu, et la mesure ne dit pas pourquoi ça a bougé.
+function c2V1Progress() {
+  const V = c2ui.v1 || {};
+  const hist = (V.history || []).filter(h => h.metric && h.baseline != null);
+  if (!hist.length || !V.series) return "";
+  const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length ? (s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2) : null; };
+  const skills = new Map();
+  for (const h of [...hist].sort((a, b) => (a.created_at || 0) - (b.created_at || 0))) {
+    const k = `${h.metric}|${h.role}`;
+    const s = skills.get(k) || { first: h, last: h, cycles: 0, mastered: 0 };
+    s.cycles++; if (h.outcome === "achieved") s.mastered++; s.last = h; skills.set(k, s);
+  }
+  const rows = [...skills.values()].sort((a, b) => (b.last.created_at || 0) - (a.last.created_at || 0)).map(s => {
+    const g = s.first, pts = (V.series[g.metric] || []).filter(x => x.role === g.role), recent = pts.slice(-5).map(x => x.value);
+    const now = recent.length >= 3 ? median(recent) : null, sd = g.personal_sd || null, dir = g.direction === "lower" ? -1 : 1;
+    const z = now != null && sd ? dir * (now - g.baseline) / sd : null;
+    const [cls, word] = z == null ? ["", "pas encore assez de parties récentes à ce poste"] : z >= 0.5 ? ["up", "net progrès"] : z >= 0.25 ? ["up", "léger progrès"] : z > -0.25 ? ["", "pas de changement net"] : ["down", "en baisse"];
+    const unit = g.unit && g.unit !== "%" ? ` ${g.unit === "/min" ? "/ min" : g.unit}` : "";
+    // Courbe : 30 dernières parties, ligne du niveau de départ et de la dernière cible
+    const vals = pts.map(x => x.value), W = 240, H = 44;
+    let spark = "";
+    if (vals.length >= 4) {
+      const lo = Math.min(...vals, g.baseline, s.last.target ?? g.baseline), hi = Math.max(...vals, g.baseline, s.last.target ?? g.baseline), span = hi - lo || 1;
+      const y = v => (H - 4 - ((v - lo) / span) * (H - 8)).toFixed(1), x = i => ((i / (vals.length - 1)) * (W - 4) + 2).toFixed(1);
+      spark = `<svg class="c2-prog-spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Tes ${vals.length} dernières parties"><line x1="0" x2="${W}" y1="${y(g.baseline)}" y2="${y(g.baseline)}" class="base"/>${s.last.target != null ? `<line x1="0" x2="${W}" y1="${y(s.last.target)}" y2="${y(s.last.target)}" class="goal"/>` : ""}<polyline points="${vals.map((v, i) => `${x(i)},${y(v)}`).join(" ")}"/></svg>`;
+    }
+    return `<li class="c2-prog-row ${cls}"><div class="c2-prog-head"><b>${esc(g.label)}</b><span class="fine">${esc(C2_V1_ROLE[g.role] || g.role)} · ${s.cycles} cycle${s.cycles > 1 ? "s" : ""}${s.mastered ? ` · ${s.mastered} validé${s.mastered > 1 ? "s" : ""}` : ""}</span></div>
+      <div class="c2-prog-nums"><div><span class="fine">Avant</span><b>${esc(c2V1Fmt(g, g.baseline))}${esc(unit)}</b></div><span aria-hidden="true">→</span><div><span class="fine">Tes 5 dernières</span><b>${esc(c2V1Fmt(g, now))}${now != null ? esc(unit) : ""}</b></div></div>
+      <p class="c2-prog-verdict">${word}</p>${spark}</li>`;
+  });
+  return `<section class="c2-card c2-prog"><p class="label">Ta progression</p><p class="fine">Pour chaque point travaillé : ton niveau avant de commencer, et ton niveau sur tes 5 dernières parties au même poste.</p>
+    <ul class="c2-prog-list">${rows.join("")}</ul>
+    <p class="fine">Courbe : tes 30 dernières parties ; ligne grise, ton niveau de départ ; ligne orange, ta dernière cible. Sur 5 parties, un changement peut encore venir du hasard : c'est la tendance sur plusieurs cycles qui compte.</p></section>`;
 }
 const c2V1Fmt = (g, v) => (v == null ? "—" : g.unit === "%" ? `${Math.round(v * 100)} %` : (Math.round(v * 100) / 100).toString().replace(".", ","));
 
