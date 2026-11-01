@@ -15,7 +15,7 @@ export const REFERENCE_VERSIONS = ["metrics-2", "metrics-1"];
 // Sert à la rotation anti-monotonie (coach/goals.mjs) et à l'affichage.
 export const CATEGORIES = { lane: "Lane & ressources", survie: "Survie & combats", vision: "Vision & information", tempo: "Tempo & économie", carte: "Carte & objectifs", poste: "Maîtrise du poste" };
 const CATEGORY_OF = { cs_at_10: "lane", cs_at_15: "lane", cs_per_min: "lane", farm_15_25: "lane", gold_at_10: "lane", xp_at_10: "lane", gold_diff_at_15: "lane", xp_diff_at_15: "lane",
-  early_deaths: "survie", dead_share: "survie", vision_per_min: "vision", wards_per_min: "vision", ward_kills_20: "vision", control_wards_20: "vision",
+  early_deaths: "survie", dead_share: "survie", vision_per_min: "vision", wards_per_min: "vision", ward_kills_20: "vision", control_wards_20: "vision", vision_per_ward: "vision",
   first_item_min: "tempo", gold_idle_share: "tempo", kill_participation: "carte", objective_participation: "carte", damage_per_gold: "poste", damage_per_min: "poste" };
 const mmss = t => `${Math.floor(t)}:${String(Math.round((t % 1) * 60)).padStart(2, "0")}`;
 const MIN = 60000;
@@ -145,6 +145,11 @@ export const CATALOG = {
     exercise: t => `Au plus ${Math.round(t * 100)} % du temps avec plus de 1 300 or en poche entre 10 et 25 min : dès que tu peux acheter un gros composant, cherche le prochain moment sûr pour rentrer.`,
   },
   dead_share: { label: "Part de la partie passée mort", unit: "%", direction: "lower", roles: ["MIDDLE", "JUNGLE", "TOP", "BOTTOM", "UTILITY"], trainable: false, impact: 0.8, actionability: 0.5, percent: true, decimals: 0 },
+  // Qualité de la vision (01/11/2026, objection d'Anthony : un objectif de quantité pousse à poser des wards n'importe où). Score de
+  // vision par ward posée : des wards inutiles, détruites vite, le font baisser. Stable chez un même joueur (jungle 0,45, support 0,59
+  // sur 70 joueurs), sépare les rangs en jungle (2,8 / 5,0 / 6,0). Garde-fou des objectifs de vision, pas un objectif : un ratio seul
+  // se manipule aussi, en posant moins. Au moins 3 wards posées pour être mesuré.
+  vision_per_ward: { label: "Score de vision par ward posée", unit: "", direction: "higher", roles: ["MIDDLE", "JUNGLE", "TOP", "BOTTOM", "UTILITY"], trainable: false, impact: 0.5, actionability: 0.6, decimals: 2 },
   // Diagnostic seulement (brief) : dépendent trop du champion et de l'issue de la partie pour devenir un objectif
   damage_per_gold: { label: "Dégâts aux champions par or", unit: "", direction: "higher", roles: ["MIDDLE", "TOP", "BOTTOM"], trainable: false, impact: 0.4, actionability: 0.2, decimals: 2, diagnosticOnly: true },
   damage_per_min: { label: "Dégâts aux champions par minute", unit: "/min", direction: "higher", roles: ["MIDDLE", "TOP", "BOTTOM"], trainable: false, impact: 0.4, actionability: 0.2, decimals: 0, diagnosticOnly: true },
@@ -154,15 +159,17 @@ export const CATALOG = {
 };
 for (const [k, c] of Object.entries(CATALOG)) c.category = CATEGORY_OF[k] || "poste";
 
-// Garde-fous anti-passivité (coach/goals.mjs, checkGuardrails) : surveillés pendant tout objectif ; une dégradation nette
-// refuse la validation. Sbires et XP à 10 min pour la phase de lane, activité selon le poste (validés par Anthony, 26/10).
-// L'XP à 10 min est calculée à tous les postes, même si elle n'est un indicateur de diagnostic qu'en jungle et au mid.
+// Garde-fous anti-effets pervers (coach/goals.mjs, checkGuardrails) : surveillés pendant tout objectif ; une dégradation nette
+// (médiane en baisse d'au moins 0,75 écart-type personnel ET 4 parties sur 5 sous le quart bas) demande une revue au lieu de valider.
+// Sbires et XP à 10 min pour la phase de lane ; part de la partie passée mort contre le jeu égoïste ; score de vision par ward
+// contre le spam de wards ; participation aux objectifs en jungle. Révisés le 01/11/2026 : la participation aux kills (fiabilité
+// intra-joueur 0,02-0,14 sur 70 joueurs) n'est plus un veto, elle reste visible au diagnostic.
 export const GUARDRAILS = {
-  TOP: ["cs_at_10", "xp_at_10", "kill_participation"],
-  MIDDLE: ["cs_at_10", "xp_at_10", "kill_participation"],
-  BOTTOM: ["cs_at_10", "xp_at_10", "kill_participation"],
-  JUNGLE: ["cs_at_10", "xp_at_10", "kill_participation", "objective_participation"],
-  UTILITY: ["xp_at_10", "kill_participation", "vision_per_min"],
+  TOP: ["cs_at_10", "xp_at_10", "dead_share"],
+  MIDDLE: ["cs_at_10", "xp_at_10", "dead_share", "vision_per_ward"],
+  BOTTOM: ["cs_at_10", "xp_at_10", "dead_share"],
+  JUNGLE: ["cs_at_10", "xp_at_10", "dead_share", "objective_participation", "vision_per_ward"],
+  UTILITY: ["xp_at_10", "dead_share", "vision_per_min", "vision_per_ward"],
 };
 
 // Une partie compte pour le coach : classée solo (420), pas de remake, au moins 15 min, rôle connu
@@ -222,6 +229,7 @@ export function computeMetrics(match, timeline, puuid) {
     first_item_min: q(firstItem ? Math.round(firstItem.timestamp / MIN * 10) / 10 : null, null, { item_id: firstItem?.itemId ?? null }),
     gold_idle_share: q(idle.length >= 5 ? idle.filter(g => g >= 1300).length / idle.length : null, null, { frames: idle.length }),
     dead_share: q(ratio(me.time_dead_s, n.duration_s)),
+    vision_per_ward: q(me.wards_placed != null && me.wards_placed >= 3 ? ratio(me.vision_score, me.wards_placed) : null, null, { wards: me.wards_placed ?? null }),
   };
   return { match_id: n.match_id, patch: n.patch, start_ms: n.start_ms, role: me.role, champion: me.champion, won: me.won, metric_version: METRIC_VERSION, valid: !invalid, invalid_reason: invalid, timeline_status: n.timeline_status, opponent_confidence: opp.confidence, metrics };
 }

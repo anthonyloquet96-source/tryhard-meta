@@ -71,8 +71,9 @@ export async function fetchStory(gameId, fetchImpl = fetch) {
   }
   const fin = last?.map(x => ({ g: x.totalGoldEarned, cs: x.creepScore, lv: x.level, kp: x.killParticipation, dmg: x.championDamageShare, wp: x.wardsPlaced, wd: x.wardsDestroyed,
     it: (x.items || []).filter(Boolean), rk: x.perkMetadata?.perks?.[0] ?? null, rs: x.perkMetadata ? [x.perkMetadata.styleId, x.perkMetadata.subStyleId] : null })) || null;
-  // Vainqueur déduit de l'image finale (inhibiteurs, puis tours, puis kills) ; la collecte le vérifie avec le score officiel
-  const L = mins.at(-1), sc = i => L.inhibs[i] * 100 + L.towers[i] * 10 + L.kills[i] / 100;
+  // Vainqueur déduit de l'image finale : inhibiteurs, puis écart d'or (les dernières tours ne sont pas toujours comptées quand le
+  // flux s'arrête), puis tours, puis kills. L'appli préfère le vainqueur vérifié par la collecte avec le score officiel.
+  const L = mins.at(-1), sc = i => L.inhibs[i] * 1e9 + L.gold[i] * 1e3 + L.towers[i] * 10 + L.kills[i] / 100;
   return { v: 2, gameId, duration: end, winner: sc(0) >= sc(1) ? "blue" : "red", players, mins, snap, fin, ev };
 }
 
