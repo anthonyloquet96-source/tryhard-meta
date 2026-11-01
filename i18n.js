@@ -141,6 +141,8 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
     "Voir ce compte": "View this account", "Analyser mes parties": "Analyze my games", "Région": "Region", "Riot ID": "Riot ID",
     "Seules des données de jeu publiques sont lues. Ton Riot ID reste sur cet appareil.": "Only public game data is read. Your Riot ID stays on this device.",
     "Riot ID attendu sous la forme Pseudo#TAG (le TAG est visible dans le client, sous ton pseudo).": "Riot ID expected as Name#TAG (the TAG is shown in the client, under your name).",
+    "Pseudo": "Name", "Tag": "Tag", "Serveur": "Server", "Pseudo attendu : de 3 à 16 caractères, tel qu'il apparaît dans le client.": "Name expected: 3 to 16 characters, as shown in the client.",
+    "Tag attendu : 2 à 5 lettres ou chiffres, sans le #. Il est visible dans le client, sous ton pseudo (par exemple EUW).": "Tag expected: 2 to 5 letters or digits, without the #. It is shown in the client, under your name (for example EUW).",
     "Non classé en solo/duo": "Unranked in solo/duo", "Lecture de tes dernières parties…": "Reading your recent games…", "Dernières parties": "Recent games", "Nouveau": "New",
     "Ta dernière partie est prête": "Your last game is ready", "· voir le bilan": "· see the review", "· contre": "· vs",
     "Choisir un point à améliorer": "Pick something to improve", "Ton objectif": "Your goal", "Rôle suivi": "Role followed",

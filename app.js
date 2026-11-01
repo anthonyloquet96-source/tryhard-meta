@@ -2024,7 +2024,7 @@ const b64key = s => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")
 const goalText = s => (window.LANG === "en" && window.i18nTr && s ? window.i18nTr(s) : s);
 // Ce qui part au service : l'abonnement, les choix, et le résumé de l'objectif si les rappels du coach sont activés (pas de Riot ID)
 function pushBody(sub, extra = {}) {
-  const S = prefs.notif.coach && typeof C2 !== "undefined" && C2.v1Snap;
+  const S = prefs.notif.coach && typeof C2 !== "undefined" && C2.account && C2.v1Snap?.for === C2.account.riotId && C2.v1Snap;
   return { sub: sub.toJSON(), matches: prefs.notif.matches, detail: prefs.notif.detail, fav: prefs.favTeams, coach: prefs.notif.coach, lang: window.LANG === "en" ? "en" : "fr",
     goal: S ? { label: goalText(S.label), role: S.role, target: S.target, unit: S.unit && S.unit !== "%" && S.unit !== "/min" ? goalText(S.unit) : S.unit, status: S.status, counted: S.counted, of: S.of } : null, ...extra };
 }

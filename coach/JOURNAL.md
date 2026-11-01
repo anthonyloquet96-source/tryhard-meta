@@ -2,6 +2,11 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — Riot ID en trois cases, objectif de l’ancien compte qui restait
+- Demande d’Anthony : trois cases au lieu d’un « Pseudo#TAG » : Pseudo, Tag (avec le # affiché devant), Serveur. Coller « Pseudo#TAG » dans la case pseudo envoie le tag dans sa case ; un # tapé dans le tag est ignoré. Messages d’erreur séparés pour le pseudo et le tag. Sur téléphone : pseudo sur toute la largeur, tag et serveur côte à côte.
+- Bug signalé par Anthony : après un changement de compte, l’objectif de la personne d’avant restait affiché. Cause : l’état du coach V1 (objectif, progression, diagnostic) n’était pas remis à zéro, et le chargement ne relisait l’objectif que s’il n’y en avait pas déjà un. Correction : tout l’état V1 (objectif, fiches champion, bilan, replay) est oublié au changement ; une synchronisation encore en cours pour l’ancien compte n’écrit plus le résumé ; les rappels de notification vérifient que le résumé est celui du compte affiché.
+- Vérifié en démo (découpage du tag, objectif vidé dès le changement). Tests 59/60.
+
 ## 2026-11-01 — habitudes : évolution d’un bilan à l’autre
 - Le détecteur d’habitudes sur ~20 parties existait déjà (« Mon bilan complet », règles du banc d’essai, parties concernées cliquables). Manquait : voir si une habitude recule.
 - Ajout : chaque bilan est gardé sur l’appareil (6 derniers par rôle ou champion, mis de côté par compte) ; carte « Tes habitudes depuis le … » sous la synthèse, comparée au dernier bilan qui porte sur au moins 5 parties différentes.
