@@ -285,15 +285,15 @@ function c2Remember(p) {
 function c2SwitchTo(riotId, platform) {
   const key = id => id.toLowerCase();
   C2.accounts ||= {};
-  if (C2.account?.riotId) C2.accounts[key(C2.account.riotId)] = { history: C2.history, goals: C2.goals, seen: C2.seen, role: C2.role, reports: C2.reports, habitLog: C2.habitLog };
+  if (C2.account?.riotId) C2.accounts[key(C2.account.riotId)] = { history: C2.history, goals: C2.goals, seen: C2.seen, role: C2.role, reports: C2.reports, habitLog: C2.habitLog, path: C2.path || null };
   const saved = C2.accounts[key(riotId)] || {};
   const prev = C2.account?.riotId && C2.profile ? [{ riotId: C2.account.riotId, platform: C2.account.platform }] : [];
-  Object.assign(C2, { account: { riotId, platform }, profile: null, profileAt: 0, reviews: {}, history: saved.history || {}, goals: saved.goals || {}, seen: saved.seen ?? null, role: saved.role || null, reports: saved.reports || {}, habitLog: saved.habitLog || {} });
+  Object.assign(C2, { account: { riotId, platform }, profile: null, profileAt: 0, reviews: {}, history: saved.history || {}, goals: saved.goals || {}, seen: saved.seen ?? null, role: saved.role || null, reports: saved.reports || {}, habitLog: saved.habitLog || {}, path: saved.path || null });
   C2.recent = [{ riotId, platform }, ...prev, ...(C2.recent || [])].filter((r, i, all) => all.findIndex(x => key(x.riotId) === key(r.riotId)) === i).slice(0, 5);
   for (const k of Object.keys(C2.accounts)) if (!C2.recent.some(r => key(r.riotId) === k)) delete C2.accounts[k];
   // Changement de compte : tout ce que le coach V1 avait chargé pour l'ancien compte (objectif, progression, fiches champion, bilan)
   // est oublié ; sinon l'objectif de la personne d'avant restait affiché (retour d'Anthony, 01/11)
-  Object.assign(c2ui, { error: null, switching: false, live: null, liveAt: 0, v1: {}, champMe: {}, report: null, tt: {}, tsel: {}, tf: {} });
+  Object.assign(c2ui, { error: null, switching: false, live: null, liveAt: 0, v1: {}, champMe: {}, report: null, tt: {}, tsel: {}, tf: {}, matches: null });
   c2Save();
   c2LoadProfile(true);
 }
@@ -529,7 +529,7 @@ function c2Home() {
   const err = c2ui.error ? `<div class="note warn">${icon("alert")}<span>${esc(c2ui.error)}</span><button class="btn ghost sm" data-action="c2-refresh">Réessayer</button></div>` : "";
   if (C2_EXTRAS) setTimeout(() => c2LoadLive(), 0);
   const recent = p.games.slice(0, 3);
-  return `${c2ui.switching ? c2Connect(true) : ""}${err}${c2ProfileCard(p)}${C2_EXTRAS ? c2Live(p) : ""}${c2V1Card(p)}${c2V1Progress()}${c2Ready(p)}${C2_EXTRAS ? c2Goal(p) : ""}
+  return `${c2ui.switching ? c2Connect(true) : ""}${err}${c2ProfileCard(p)}${C2_EXTRAS ? c2Live(p) : ""}${c2V1Card(p)}${c2V1Progress()}${c2PathLine()}${c2Ready(p)}${C2_EXTRAS ? c2Goal(p) : ""}
     <a class="c2-ready c2-bilan-link" href="${c2Href("bilan")}">${icon("tiers")}<span><b>Mon bilan complet</b><span class="fine">Tes erreurs qui reviennent, tes forces et les adversaires à préparer, sur une vingtaine de tes dernières parties</span></span>${icon("chevron")}</a>
     ${recent.length ? `<section class="sec">${secHead("Dernières parties", seeAll(c2Href("parties"), "Toutes"))}${c2Games({ ...p, games: recent })}</section>` : ""}
     <p class="fine c2-foot">Données officielles de Riot Games${p.benchmark ? ` · référence : ${c2n(p.benchmark.games)} parties ${esc(p.benchmark.level)} (patch ${esc(c2Patch(p.benchmark.patch))})` : ""}</p>`;
@@ -562,6 +562,7 @@ async function c2V1Load(force = false) {
     V.syncing = false;
     const [active, progress, diag] = await Promise.all([c2V1(`/players/${V.pid}/goals/active`), c2V1(`/players/${V.pid}/progress`), c2V1(`/players/${V.pid}/diagnostic`)]);
     Object.assign(V, { goal: active.goal, evaluations: active.evaluations, history: progress.goals, series: progress.series, diagnostic: diag });
+    c2ui.matches = null; // nouvelles parties : l'apprentissage de champion relit la liste
     // Résumé gardé sur l'appareil pour la carte de l'Accueil (sans relancer de synchronisation à chaque ouverture)
     const g = active.goal, evs = (active.evaluations || []).filter(e => e.counted);
     if (c2ui.v1 !== V) return; // compte changé pendant la synchronisation
@@ -681,7 +682,7 @@ function c2V1Card(p) {
   if (V.error && !V.goal) return `<section class="c2-card c2-v1"><p class="label">Mon objectif</p><p class="note warn">${icon("alert")}<span>${esc(V.error)}</span></p><button class="btn ghost sm" data-action="c2-v1-sync">Réessayer</button>${c2V1Erase()}</section>`;
   if (!V.goal && (V.busy || !V.diagnostic)) return `<section class="c2-card c2-v1 c2-loading c2-scan"><span class="c2-scan-beam" aria-hidden="true"></span><span>${V.syncing ? "Lecture de tes dernières ranked" : "Ton objectif"}<span class="c2-wait" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></span></section>`;
   const last = V.history?.[0];
-  const lastTxt = last ? `<p class="c2-v1-last ${last.outcome}">${C2_V1_OUTCOME[last.outcome] || "Objectif précédent sans verdict"} : ${esc(last.label)}, cible ${esc(last.target_text)} (${last.progress?.met ?? "?"}/${last.progress?.counted ?? "?"} parties)${last.progress?.review ? ` ; ${esc(last.progress.review)}` : ""}.</p>${c2V1Feedback(last)}` : "";
+  const lastTxt = last ? `<p class="c2-v1-last ${last.outcome}">${C2_V1_OUTCOME[last.outcome] || "Objectif précédent sans verdict"} : ${esc(last.label)}, cible ${esc(last.target_text)} (${last.progress?.met ?? "?"}/${last.progress?.counted ?? "?"} parties)${last.progress?.review ? ` ; ${esc(last.progress.review)}` : last.outcome === "inconclusive" ? " ; pas assez de parties au même poste" : ""}.</p>${c2V1Feedback(last)}` : "";
   // Objectif tout juste maîtrisé : compte rendu avant de passer au suivant (demande d'Anthony, 31/10)
   if (last?.outcome === "achieved" && !C2.wins?.[last.id]) { setTimeout(() => c2Fx("win", last), 0); return c2V1Win(last, V.history); }
   const g = V.goal;
@@ -817,7 +818,7 @@ const C2_V1_OUTCOME = {
   stable: "Pas encore de progrès net sur l'objectif précédent, on continue",
   needs_review: "Objectif précédent mis en pause pour vérification",
   failed: "Objectif précédent mis de côté après deux séries sans progrès",
-  inconclusive: "Objectif précédent sans verdict (pas assez de parties au même poste)",
+  inconclusive: "Objectif précédent sans verdict",
 };
 // Test privé : avis du testeur sur le cycle terminé (pertinence, effets indésirables), une fois par objectif
 const C2_V1_SIDE = { "jeu-plus-passif": "J'ai joué plus passif", "moins-de-farm": "J'ai moins farmé", "moins-de-kills": "J'ai moins participé aux kills", stress: "Plus de stress", "moins-de-plaisir": "Moins de plaisir", "conseil-inadapte": "Conseils pas adaptés", "objectif-incompris": "Je n'ai pas compris l'objectif" };
@@ -1199,13 +1200,32 @@ function c2Game(id) {
       ${c2GameDraft(r, id)}` : `${c2Brief(r, id)}
       ${r.absent ? `<p class="note">${icon("alert")}<span>Pas de conseil sur cette partie : tu semblais absent (aucun kill ni assist, presque aucun dégât ni sbire). Elle ne compte pas dans tes objectifs ni dans ton bilan.</span></p>` : ""}
       ${r.absent ? "" : `<section class="sec"><div class="sec-head"><h2 class="sec-title">Ce qui a pesé</h2></div>
-        ${r.findings.length ? r.findings.map((f, i) => `<article class="c2-card c2-finding"><p class="label">Constat ${i + 1}</p><h3 class="c2-f-title">${esc(f.title)}</h3>${bullets(f.facts)}
-          ${f.metric || C2_KIND_TIP[f.kind] ? `<details class="more"${i === 0 ? " open" : ""}><summary>Ce qu'il faut faire</summary>${C2_KIND_TIP[f.kind] || !f.metric ? `<p>${esc(c2TipOf(f, s.role))}</p>` : ""}${f.metric ? c2LessonsHtml(f.metric, s.role, s.champion, !C2_KIND_TIP[f.kind], f.kind) : ""}</details>` : ""}</article>`).join("") : `<p class="inline-empty">Aucun écart net avec la référence Diamant+ sur cette partie.</p>`}
+        ${r.findings.length ? r.findings.map((f, i) => `${i === 1 ? `<details class="more c2-card c2-more-f"><summary>Autres constats (${r.findings.length - 1})</summary>` : ""}<article class="c2-card c2-finding"><p class="label">Constat ${i + 1}</p><h3 class="c2-f-title">${esc(f.title)}</h3>${bullets(f.facts)}
+          ${f.metric || C2_KIND_TIP[f.kind] ? `<details class="more"${i === 0 ? " open" : ""}><summary>Ce qu'il faut faire</summary>${C2_KIND_TIP[f.kind] || !f.metric ? `<p>${esc(c2TipOf(f, s.role))}</p>` : ""}${f.metric ? c2LessonsHtml(f.metric, s.role, s.champion, !C2_KIND_TIP[f.kind], f.kind) : ""}</details>` : ""}</article>${i && i === r.findings.length - 1 ? "</details>" : ""}`).join("") : `<p class="inline-empty">Aucun écart net avec la référence Diamant+ sur cette partie.</p>`}
       </section>`}
-      ${r.tactics?.lessons?.length ? `<button class="c2-ready" data-action="c2-gview" data-id="carte">${icon("compass")}<span><b>${r.tactics.lessons.length} moment${r.tactics.lessons.length > 1 ? "s" : ""} clé${r.tactics.lessons.length > 1 ? "s" : ""} à revoir en replay</b><span class="fine">La partie rejouée sur la minimap, avec ce qui aurait été mieux</span></span>${icon("chevron")}</button>` : ""}`}
+      ${c2Moment(r, id) || (r.tactics?.lessons?.length ? `<button class="c2-ready" data-action="c2-gview" data-id="carte">${icon("compass")}<span><b>${r.tactics.lessons.length} moment${r.tactics.lessons.length > 1 ? "s" : ""} clé${r.tactics.lessons.length > 1 ? "s" : ""} à revoir en replay</b><span class="fine">La partie rejouée sur la minimap, avec ce qui aurait été mieux</span></span>${icon("chevron")}</button>` : "")}`}
     <p class="fine c2-foot">${esc(r.note)}${r.benchmark ? ` Référence : ${c2n(r.benchmark.games)} parties ${esc(r.benchmark.level)}, patch ${esc(c2Patch(r.benchmark.patch))}.` : ""}</p>`;
 }
 
+// Moment à revoir (tour 4 du brainstorm GPT-6, 01/11) : « après ta mort » et « où la partie a basculé » réunis en UNE carte dans
+// L'essentiel. Priorité : ta mort ou ton erreur suivie de la plus grosse perte (or d'équipe, objectifs, 2 min), sinon une erreur relevée,
+// sinon la bascule d'or la plus forte contre ton équipe. Ce qui suit est montré comme une suite, jamais comme une cause certaine.
+function c2Moment(r, id) {
+  const T = r.tactics;
+  if (!T?.map?.length || r.absent) return "";
+  const errs = (T.lessons || []).filter(l => !l.review);
+  const hit = errs.filter(l => l.effect).sort((a, b) => a.effect.gold - b.effect.gold || b.effect.lost.length - a.effect.lost.length)[0];
+  const turn = [...(T.turns || [])].filter(x => x.gold < 0).sort((a, b) => a.gold - b.gold)[0];
+  let m = null;
+  if (hit || errs[0]) { const l = hit || errs[0]; m = { t: l.t, at: l.at, title: l.title, then: l.effect ? `Dans les 2 minutes qui ont suivi : ${l.effect.text}.` : "", better: l.better }; }
+  else if (turn) m = { t: turn.t, at: turn.at, title: `La partie a basculé entre ${turn.at} et ${turn.to} : ${c2n(Math.abs(Math.round(turn.gold / 100) * 100))} golds d'écart perdus`, then: turn.what.length ? `Pendant ce temps : ${turn.what.join(" ; ")}.` : "", better: "" };
+  if (!m) return "";
+  const more = (T.lessons || []).length - (hit || errs[0] ? 1 : 0);
+  return `<section class="c2-card c2-moment"><p class="label">Moment à revoir · ${esc(m.at)}</p><h3 class="c2-f-title">${esc(m.title)}</h3>
+    ${m.then ? `<p>${esc(m.then)}</p>` : ""}${m.better ? `<p class="c2-better"><b>À retenir</b> ${esc(m.better)}</p>` : ""}
+    <button class="btn sm" data-action="c2-moment" data-id="${esc(id)}" data-t="${m.t}">${icon("compass")} Revoir sur la minimap</button>
+    <p class="fine">Ce qui suit un moment n'en est pas forcément la conséquence : le coach ne voit ni les décisions de ton équipe ni la carte entre deux relevés.${more > 0 ? ` ${more} autre${more > 1 ? "s" : ""} moment${more > 1 ? "s" : ""} dans le Replay.` : ""}</p></section>`;
+}
 // L'essentiel de la partie en quatre lignes : phase de lane, point clé, point fort, objectif
 function c2Brief(r, id) {
   const s = r.summary, a = r.lane.at10, rows = [];
@@ -1645,23 +1665,82 @@ function c2ChampMe(id) {
   const wr = Math.round(100 * pick.wins / pick.games);
   return `<section class="c2-card c2-cme"><p class="label">Toi sur ${name} ${c2AsRole(pick.role)}</p>${tabs}
     <div class="c2-cme-head"><div><b>${pick.games}</b><span class="fine">partie${pick.games > 1 ? "s" : ""} classée${pick.games > 1 ? "s" : ""} récente${pick.games > 1 ? "s" : ""}</span></div><div><b>${wr} %</b><span class="fine">de victoires (${pick.wins})</span></div>${pick.ref ? `<div><b>${c2n(pick.ref.winrate)} %</b><span class="fine">chez les ${esc(pick.ref.level)}</span></div>` : ""}</div>
+    ${c2Path(id, { ...pick, rows })}
     ${pick.ref ? `<p class="label">Comparé aux joueurs ${esc(pick.ref.level)} sur ${name}</p>
     <ul class="c2-cme-rows">${rows.map(x => { const p = place(x); return `<li class="${p ? p[0] : ""}"><span class="c2-cme-k">${esc(x.label)}</span><span class="c2-cme-v"><b>${esc(x.me_text)}</b>${x.ref ? `<span class="fine">vs ${esc(x.ref.p50_text)}</span>` : ""}</span>${p ? `<span class="c2-cme-p">${p[1]}</span>` : ""}</li>`; }).join("")}</ul>
     <p class="fine">Toi : la médiane de tes ${pick.games} partie${pick.games > 1 ? "s" : ""} sur ${name} à ce poste. Eux : la médiane de ${c2n(pick.ref.n)} parties ${esc(pick.ref.level)} sur ${name} au même poste (EUW, Corée, Amérique du Nord). Les points les plus éloignés sont en haut.${few ? " Avec moins de 5 parties, c'est encore une indication, pas un verdict." : ""}</p>`
     : `<p class="fine">Pas encore assez de parties ${esc("Diamant+")} sur ${name} à ce poste pour un repère fiable (il en faut 200).</p>`}
   </section>`;
 }
+// Apprendre un champion sur 10 parties (tour 4 du brainstorm GPT-6, 01/11) : un cadre autour du coach, pas un deuxième objectif.
+// Parties 1 à 5 sur ce champion à ce poste = ton point de départ (aucun jugement) ; 6 à 10 = ce qui a bougé, comparé à ce départ.
+// Un seul apprentissage à la fois, gardé sur l'appareil par compte. Parties lues dans /matches (déjà servi par le Worker).
+const C2_PATH_N = 10, C2_PATH_BASE = 5;
+function c2PathGames() {
+  const P = C2.path, V = c2ui.v1 || {};
+  if (!P || !V.pid) return null;
+  if (!c2ui.matches) { c2ui.matches = "busy"; c2V1(`/players/${V.pid}/matches`).then(r => { c2ui.matches = r.matches || []; render(false); }).catch(() => { c2ui.matches = []; }); }
+  if (!Array.isArray(c2ui.matches)) return null;
+  return c2ui.matches.filter(m => m.valid && m.champion === P.champ && m.role === P.role && m.start_ms > P.at).sort((a, b) => a.start_ms - b.start_ms).slice(0, C2_PATH_N);
+}
+function c2Path(id, pick) {
+  const P = C2.path, name = esc(c2Name(id)), role = C2_V1_ROLE[pick.role] || pick.role;
+  if (!P || P.champ !== id || P.role !== pick.role) {
+    const other = P ? ` Remplace ton apprentissage de ${esc(c2Name(P.champ))}.` : "";
+    return `<div class="c2-path"><button class="btn ghost sm" data-action="c2-v1-path-start" data-id="${esc(id)}" data-role="${esc(pick.role)}">Apprendre ${name} en ${esc(role)} sur 10 parties</button><p class="fine">Tes 5 premières parties fixent ton point de départ, les 5 suivantes montrent ce qui bouge. Ton objectif en cours ne change pas.${other}</p></div>`;
+  }
+  const games = c2PathGames();
+  if (!games) return `<div class="c2-path c2-loading"><span>Ton apprentissage de ${name}…</span></div>`;
+  const n = games.length;
+  const dots = `<div class="c2-path-dots" role="img" aria-label="${n} parties sur ${C2_PATH_N}">${Array.from({ length: C2_PATH_N }, (_, i) => `<i class="${i < n ? "on" : ""}${i === C2_PATH_BASE ? " cut" : ""}"></i>`).join("")}</div>`;
+  const head = `<p class="label">Apprentissage · partie ${Math.min(n, C2_PATH_N)}/${C2_PATH_N}</p>${dots}`;
+  const stop = `<button class="linkish" data-action="c2-v1-path-stop">Arrêter l'apprentissage</button>`;
+  if (n < C2_PATH_BASE) return `<div class="c2-path">${head}<p>${n ? `Encore ${C2_PATH_BASE - n} partie${C2_PATH_BASE - n > 1 ? "s" : ""} en ${esc(role)} sur ${name} pour fixer ton point de départ.` : `Joue ${name} en ${esc(role)} en ranked : chaque partie compte ici.`} Pas de jugement pendant cette phase.</p>${stop}</div>`;
+  // Trois gestes au plus, un par famille (pas trois mesures du farm) : celui de ton objectif s'il s'applique ici, puis les plus
+  // éloignés des Diamant+ sur ce champion (ordre de la fiche)
+  const goal = c2ui.v1?.goal, rowsBy = Object.fromEntries(pick.rows.map(r => [r.metric, r]));
+  // Famille donnée par le Worker (champ family) ; avant son redéploiement, déduite du nom de la mesure
+  const fam = k => rowsBy[k]?.family || (/^cs_|farm/.test(k) || /^(Sbires|Farm)/.test(rowsBy[k]?.label || "") ? "farm" : k), seen = new Set();
+  const keys = [...(goal && goal.role === P.role && rowsBy[goal.metric] ? [goal.metric] : []), ...pick.rows.map(r => r.metric)]
+    .filter(k => !seen.has(fam(k)) && seen.add(fam(k))).slice(0, 3);
+  const med = a => { const s = a.filter(v => v != null).sort((x, y) => x - y), m = s.length >> 1; return s.length ? (s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2) : null; };
+  const fmt = (r, v) => (v == null ? "—" : `${c2V1Fmt(r, v)}${r.unit && r.unit !== "%" ? ` ${r.unit === "/min" ? "/ min" : r.unit}` : ""}`);
+  const done = n >= C2_PATH_N;
+  const rows = keys.map(k => {
+    const r = rowsBy[k], vals = games.map(g => g.metrics?.[k] ?? null), base = med(vals.slice(0, C2_PATH_BASE)), now = med(vals.slice(C2_PATH_BASE));
+    // Écart lu sur la dispersion de tes 10 parties : 5 contre 5, c'est peu, donc seuil large (0,5) et toujours « à confirmer »
+    const all = vals.filter(v => v != null), mid = med(all), sd = all.length >= 6 ? 1.4826 * med(all.map(v => Math.abs(v - mid))) : 0;
+    const z = !done || base == null || now == null ? null : sd > 0 ? (r.direction === "lower" ? -1 : 1) * (now - base) / sd : now === base ? 0 : null;
+    const [cls, word] = z == null ? ["", ""] : z >= 0.5 ? ["up", "mieux"] : z <= -0.5 ? ["down", "moins bien"] : ["", "pareil"];
+    return `<li class="${cls}"><span class="c2-cme-k">${esc(r.label)}${k === goal?.metric ? ` <span class="fine">(ton objectif)</span>` : ""}</span><span class="c2-cme-v"><b>${esc(fmt(r, done ? now : base))}</b><span class="fine">${done ? `départ ${esc(fmt(r, base))}` : "ton départ"}</span></span>${word ? `<span class="c2-cme-p">${word}</span>` : ""}</li>`;
+  });
+  const txt = done ? `Tes parties 6 à 10 comparées à tes 5 premières sur ${name}. Sur 5 parties, un écart peut encore venir du hasard : c'est une tendance à confirmer.`
+    : `Ton point de départ sur ${name} (médiane de tes 5 premières parties). Encore ${C2_PATH_N - n} partie${C2_PATH_N - n > 1 ? "s" : ""} pour voir ce qui bouge.`;
+  return `<div class="c2-path">${head}<ul class="c2-cme-rows">${rows.join("")}</ul><p class="fine">${txt}</p>${done ? `<button class="btn ghost sm" data-action="c2-v1-path-stop">Terminer</button>` : stop}</div>`;
+}
+// Rappel dans Mon suivi : une ligne, pas une carte de plus
+function c2PathLine() {
+  const P = C2.path;
+  if (!P) return "";
+  const games = c2PathGames(), n = games ? games.length : null;
+  return `<a class="c2-ready" href="${c2Href("champions", P.champ)}">${c2Img(P.champ, "c2-av xs")}<span><b>Apprentissage de ${esc(c2Name(P.champ))} en ${esc(C2_V1_ROLE[P.role] || P.role)}</b><span class="fine">${n == null ? "…" : n >= C2_PATH_N ? "Terminé : vois ce qui a bougé" : `Partie ${n}/${C2_PATH_N}${n < C2_PATH_BASE ? " · point de départ en cours" : ""}`}</span></span>${icon("chevron")}</a>`;
+}
 function c2Champion(id) {
   const name = c2Name(id);
   const t = c2TipsFor(name, true);
   const coaching = t.play.filter(u => u.nature !== "officiel");
+  const official = t.play.filter(u => u.nature === "officiel");
   const vids = c2VideosFor(name);
   setTimeout(() => c2LoadChamp(id), 0);
+  // Trois cartes visibles au plus (tour 4 : lisibilité) : toi sur ce champion, son build, puis les conseils repliés par thème
+  const fold = (title, n, body, open = false) => `<details class="more"${open ? " open" : ""}><summary>${title}${n ? ` (${n})` : ""}</summary>${body}</details>`;
   return `<div class="c2-duel">${c2Img(id, "c2-av xl")}</div>${c2ChampMe(id)}${c2Builds(id)}
-    ${coaching.length ? `<section class="c2-card"><p class="label">Astuces de Riot et des coachs</p><ul class="c2-tiplist">${coaching.map(c2Tip).join("")}</ul></section>` : ""}
-    <section class="c2-card"><p class="label">Le jouer</p>${t.play.filter(u => u.nature === "officiel").length ? `<ul class="c2-tiplist">${t.play.filter(u => u.nature === "officiel").map(c2Tip).join("")}</ul>` : `<p class="fine">Riot ne publie pas de conseils officiels pour ${esc(name)}. Des pages officielles sont en cours d'analyse.</p>`}</section>
-    <section class="c2-card"><p class="label">L'affronter</p>${t.against.length ? `<ul class="c2-tiplist">${t.against.map(c2Tip).join("")}</ul>` : `<p class="fine">Pas encore de conseil vérifié.</p>`}</section>
-    ${vids.length ? `<section class="sec"><div class="sec-head"><h2 class="sec-title">Vidéos</h2></div>${c2VideoList(vids)}</section>` : ""}
+    <section class="c2-card c2-learn"><p class="label">Apprendre ${esc(name)}</p>
+      ${coaching.length ? fold("Astuces de Riot et des coachs", coaching.length, `<ul class="c2-tiplist">${coaching.map(c2Tip).join("")}</ul>`, true) : ""}
+      ${fold("Le jouer", official.length, official.length ? `<ul class="c2-tiplist">${official.map(c2Tip).join("")}</ul>` : `<p class="fine">Riot ne publie pas de conseils officiels pour ${esc(name)}. Des pages officielles sont en cours d'analyse.</p>`)}
+      ${fold("L'affronter", t.against.length, t.against.length ? `<ul class="c2-tiplist">${t.against.map(c2Tip).join("")}</ul>` : `<p class="fine">Pas encore de conseil vérifié.</p>`)}
+      ${vids.length ? fold("Vidéos", vids.length, c2VideoList(vids)) : ""}
+    </section>
     <div class="sheet-actions"><a class="btn" href="${c2Href("face")}" data-action="c2-face-with" data-champ="${esc(name)}">Préparer un face-à-face</a></div>`;
 }
 
@@ -2006,6 +2085,7 @@ document.addEventListener("click", e => {
   if (!a || !a.dataset.action.startsWith("c2-")) return;
   const D = C2.draft, act = a.dataset.action;
   // Filtres en pastilles (même composant que le reste de l'application : data-id porte la valeur)
+  if (act === "c2-moment") { const mid = a.dataset.id; (c2ui.tt ||= {})[mid] = Math.max(0, Number(a.dataset.t) - 8000); c2ui.gview = "carte"; c2ui.gviewFor = mid; render(false); requestAnimationFrame(() => document.getElementById(`c2-rp-${mid}`)?.scrollIntoView({ block: "start" })); }
   if (act === "c2-gview") { c2ui.gview = a.dataset.id; c2ui.gviewFor = decodeURIComponent(location.hash.split("/").pop()); render(false); window.scrollTo({ top: 0 }); }
   if (act === "c2-game-role") { c2ui.gameRole = a.dataset.id; render(false); }
   if (act === "c2-prep") { c2ui.prep = a.dataset.id; render(false); }
@@ -2057,6 +2137,8 @@ document.addEventListener("click", async e => {
     render(false);
   }
   if (a.dataset.action === "c2-v1-restart") { c2ui.v1 = {}; c2V1Load(true); }
+  if (a.dataset.action === "c2-v1-path-start") { C2.path = { champ: a.dataset.id, role: a.dataset.role, at: Date.now() }; c2ui.matches = null; c2Save(); render(false); }
+  if (a.dataset.action === "c2-v1-path-stop") { C2.path = null; c2Save(); render(false); }
   if (a.dataset.action === "c2-cme-role") { (c2ui.champMe ||= {})[`${a.dataset.id}:role`] = a.dataset.role; render(false); }
   if (a.dataset.action === "c2-v1-win-ok") { (C2.wins ||= {})[a.dataset.id] = Date.now(); c2Save(); render(false); }
   if (a.dataset.action === "c2-v1-start" && V.pid) {

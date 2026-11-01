@@ -1719,6 +1719,13 @@ html.ptr-on, html.ptr-on body { overscroll-behavior-y: none; }
 
 /* Fiche champion : toi sur ce champion, comparé aux Diamant+ du même champion (31/10) */
 .c2-cme { gap: var(--s3); }
+.c2-moment { display: grid; gap: var(--s2); border-left: 3px solid var(--accent); } .c2-moment > .btn { justify-self: start; display: inline-flex; gap: 6px; align-items: center; }
+.c2-more-f > summary { font-weight: 600; } .c2-more-f > .c2-finding { margin-top: var(--s3); }
+.c2-path { display: grid; gap: var(--s2); padding-top: var(--s3); border-top: 1px solid var(--line); }
+.c2-path > .btn { justify-self: start; } .c2-path > .linkish { justify-self: start; }
+.c2-path-dots { display: flex; gap: 4px; } .c2-path-dots i { flex: 1; height: 6px; border-radius: 3px; background: var(--surface-3); }
+.c2-path-dots i.on { background: var(--accent); } .c2-path-dots i.cut { margin-left: 6px; }
+.c2-learn details + details { border-top: 1px solid var(--line); }
 .c2-cme-roles { display: flex; flex-wrap: wrap; gap: var(--s2); }
 .c2-cme-roles .pill-btn.on { background: var(--accent); color: #fff; }
 .c2-cme-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: var(--s2); }

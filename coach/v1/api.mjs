@@ -89,7 +89,7 @@ export async function handleV1({ method, path, query = {}, body = null }, ctx) {
           const vals = games.map(g => g.metrics[k]?.value).filter(v => v != null);
           if (!vals.length) return null;
           const r = ref?.metrics?.[k];
-          return { metric: k, label: labelOf(k, role), unit: unitOf(k, role), direction: CATALOG[k].direction, n: vals.length, me: median(vals), me_text: formatMetric(k, median(vals)),
+          return { metric: k, label: labelOf(k, role), unit: unitOf(k, role), direction: CATALOG[k].direction, family: CATALOG[k].family || k, n: vals.length, me: median(vals), me_text: formatMetric(k, median(vals)),
             ref: r ? { n: r.n, p25: r.p25, p50: r.p50, p75: r.p75, p50_text: formatMetric(k, r.p50) } : null };
         }).filter(Boolean);
         return { role, games: games.length, wins: games.filter(g => g.won).length, last_ms: games[0]?.start_ms ?? null, ref: ref ? { n: ref.n, winrate: ref.winrate, level: champRefs.level } : null, rows };

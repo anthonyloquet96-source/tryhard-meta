@@ -2,6 +2,26 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — tour 4 du brainstorm : patch, apprentissage d'un champion, moment à revoir
+- **Tour 4 avec GPT-6** (même conversation) : garder le patch et le parcours champion, fusionner « après ta mort » et « bascule » en une carte, reporter le résumé du lundi (redondant avec « Ta progression »). Règle retenue : une compétence à travailler, une preuve de progrès, une situation à revoir ; trois cartes principales au plus par écran.
+- **Constat** : « après ta mort » (`effect`, 2 min) et les tournants (`turns`) existaient déjà dans `tactics.mjs`, mais enfouis dans le Replay. Rien de neuf côté calcul.
+- **Patch** (`PATCH_BREAKS` dans `metrics.mjs`, vide, à remplir à la main à la lecture des notes de patch) : la fenêtre de départ garde son patch ; une partie d'évaluation sur un patch qui casse la mesure clôt le cycle « sans verdict », cible inchangée, avec la raison. Le verdict « sans verdict » donne désormais sa raison. Test COACH-008 étendu. **Effet en ligne après redéploiement du Worker.**
+- **Apprendre un champion** (fiche champion, dans la carte « Toi sur ce champion ») : bouton « Apprendre X en <poste> sur 10 parties » ; parties 1 à 5 = point de départ sans jugement, 6 à 10 comparées au départ (médianes, écart lu sur la dispersion des 10 parties, seuil 0,5, « à confirmer »). Trois gestes au plus, un par famille, celui de l'objectif en premier. Un seul apprentissage à la fois, gardé par compte sur l'appareil ; parties lues dans `/matches`. Rappel d'une ligne dans Mon suivi. Le Worker renvoie maintenant `family` par ligne (sinon déduite du nom).
+- **Fiche champion allégée** : astuces, « Le jouer », « L'affronter » et vidéos regroupés dans une carte « Apprendre X », repliés (astuces ouvertes).
+- **Moment à revoir** (L'essentiel d'une partie) : une seule carte remplace le bouton du replay. Priorité : ton erreur suivie de la plus grosse perte dans les 2 minutes, sinon une erreur relevée, sinon la plus forte bascule d'or contre ton équipe. Phrase de prudence, bouton « Revoir sur la minimap » qui ouvre le Replay au bon moment. Constats 2 et suivants repliés sous « Autres constats ».
+- Vérifié en démo (parcours 0 → 7 → 10/10, ligne Mon suivi) et sur une vraie partie du banc (mort à 36:36, 2 tourelles et un inhibiteur perdus ensuite, replay ouvert à 36:28). Tests 59/60.
+
+## 2026-11-01 — à faire : secrets Cloudflare, et ce qui reste du brainstorm GPT-6
+- **Plus tard, Anthony** : créer le jeton Cloudflare (modèle « Edit Cloudflare Workers », limité à son compte) et les secrets `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` dans GitHub. Ensuite, Claude lance `deploy-worker.yml` à la main pour vérifier. Sans risque même avec un dépôt public : les secrets sont chiffrés, masqués dans les journaux et jamais donnés aux propositions extérieures.
+- **Relecture des tours 1 à 3** (conversation « Brainstorm Mindiff ») : déjà faits ou en todo : objectifs, rotation, garde-fous, KP retirée, docs canoniques, statisticien-validateur, données hors du Worker, tests en CI, progression, replay filtré, habitudes. Pistes **pas encore notées** :
+  - « Après ta mort » : écart d'or de l'équipe et objectifs perdus dans les 90 s, constat vérifiable, sans « ça t'a coûté X % » ;
+  - « Où la partie a basculé » : retournement de l'écart d'or et événements autour, sans causalité ;
+  - objectif en cours pendant un patch : garder la cible figée, et rendre le cycle « non concluant » plutôt qu'un échec si le patch casse la mesure ;
+  - fiche champion : aucun chiffre sous 50 parties de référence, et pour un champion neuf, 5 premières parties pour établir la base ;
+  - résumé hebdomadaire au joueur (forces, faiblesses, moments marquants) ;
+  - plus tard, des paris : carnet partagé avec un coach humain (partage révocable), revue duo.
+  - À écarter : probabilité de victoire en production, score global, vidéo.
+
 ## 2026-11-01 — Riot ID en trois cases, objectif de l’ancien compte qui restait
 - Demande d’Anthony : trois cases au lieu d’un « Pseudo#TAG » : Pseudo, Tag (avec le # affiché devant), Serveur. Coller « Pseudo#TAG » dans la case pseudo envoie le tag dans sa case ; un # tapé dans le tag est ignoré. Messages d’erreur séparés pour le pseudo et le tag. Sur téléphone : pseudo sur toute la largeur, tag et serveur côte à côte.
 - Bug signalé par Anthony : après un changement de compte, l’objectif de la personne d’avant restait affiché. Cause : l’état du coach V1 (objectif, progression, diagnostic) n’était pas remis à zéro, et le chargement ne relisait l’objectif que s’il n’y en avait pas déjà un. Correction : tout l’état V1 (objectif, fiches champion, bilan, replay) est oublié au changement ; une synchronisation encore en cours pour l’ancien compte n’écrit plus le résumé ; les rappels de notification vérifient que le résumé est celui du compte affiché.
