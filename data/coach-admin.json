@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T19:42:11.148Z",
+ "generatedAt": "2026-11-01T19:54:17.426Z",
  "rulesLock": {
   "ok": true,
   "changed": [],
@@ -554,7 +554,7 @@
    "lastCount": 15
   }
  },
- "lastDiscovery": "2026-11-01T19:35:20.609Z",
+ "lastDiscovery": "2026-11-01T19:51:13.123Z",
  "failures": [],
  "quarantine": [
   {
@@ -3013,9 +3013,12 @@
   "c-yt-S3F9CpeiSNE",
   "c-riot-champion-insights-zeri",
   "c-yt-hXYwDd0rMFY",
+  "c-yt--V4SmNK_tjU",
   "c-yt-C9mbXu7HgEA",
   "c-inven-board-baron",
-  "c-wtl-4072"
+  "c-wtl-4072",
+  "c-yt-mS9pvlvJvco",
+  "c-yt-La2O9Zjk414"
  ],
  "review": [
   "u-lucian-2620-ad",

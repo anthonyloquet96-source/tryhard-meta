@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T19:42:11.148Z",
+ "generatedAt": "2026-11-01T19:54:17.426Z",
  "rules": {
   "version": "v1",
   "prompts": {
@@ -15380,12 +15380,12 @@
    "lang": "fr",
    "published": "2026-02-01",
    "retrievedAt": "2026-10-21",
-   "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "patch": "saison 16",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
    "descriptionExcerpt": "Hop hop hop si vous aimez, likez, mettez un commentaire et rejoignez le patreon ! https://bit.ly/Chreak-Patreon\n\n📢 Participez aux prochains Chreact !\n►  Vous voulez voir vos clips dans la prochaine vidéo Chreact ? Envoyez-les ici : [e-mail] !\n\n-\n\n🌟 Rejoignez la communauté et progress",
    "backfill": true,
-   "note": "Ancien guide ajouté à la demande (recherche dans la chaîne) : à lire par Gemini.",
+   "note": "Lue par gemini-3.5-flash-lite : transcription et 14 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "triage": {
     "score": 12,
     "matched": [
@@ -15396,6 +15396,19 @@
     ],
     "patchMentioned": null,
     "basis": "ancien guide de Chreak ciblé à la demande ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.5-flash-lite",
+    "fps": 1,
+    "at": "2026-11-01",
+    "sha256": "e56b51e46b10634ae02d10f58c259e2b7fc0a23b9c4083a557ba76cceb984198",
+    "segments": 167,
+    "observations": 14,
+    "duration": "41:19",
+    "videoKind": "guide",
+    "gameplayShown": true,
+    "tokens": 242699
    }
   },
   {
@@ -24817,12 +24830,12 @@
    "published": "2026-05-30",
    "retrievedAt": "2026-10-29",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "inaccessible",
+   "analysis": "inaccessible",
    "descriptionExcerpt": "Ayudo a adultos +25 a subir a Diamante con 1-3 rankeds al día\nSistema diseñado para subir CON POCO TIEMPO y disfrutando el juego (más de 7000 casos de éxito)\n\nEscribime \"ACADEMIA\" por privado en instagram y armamos un plan personalizado para que subas consistentemente.\nhttps://ww",
    "backfill": true,
    "queueRank": 31,
-   "note": "File de lecture (rang 31) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Google refuse la lecture de cette vidéo par Gemini (HTTP 403 : réglage de la vidéo ou de son auteur). Aucun contournement : pas de transcription, pas de conseil tiré de cette vidéo.",
    "triage": {
     "score": 18,
     "matched": [],
@@ -25112,12 +25125,12 @@
    "published": "2026-05-26",
    "retrievedAt": "2026-10-31",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "inaccessible",
+   "analysis": "inaccessible",
    "descriptionExcerpt": "Ayudo a adultos +25 a subir a Diamante con 1-3 rankeds al día\nSistema diseñado para subir CON POCO TIEMPO y disfrutando el juego (más de 7000 casos de éxito)\n\nEscribime \"ACADEMIA\" por privado en instagram y armamos un plan personalizado para que subas consistentemente.\nhttps://ww",
    "backfill": true,
    "queueRank": 37,
-   "note": "File de lecture (rang 37) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Google refuse la lecture de cette vidéo par Gemini (HTTP 403 : réglage de la vidéo ou de son auteur). Aucun contournement : pas de transcription, pas de conseil tiré de cette vidéo.",
    "triage": {
     "score": 18,
     "matched": [],
@@ -26338,11 +26351,11 @@
    "published": null,
    "ageMonths": 5,
    "retrievedAt": "2026-11-01",
-   "patch": null,
+   "patch": "null",
    "views": 7900,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
-   "note": "Transcription inaccessible par une voie autorisée : l'API YouTube ne permet de télécharger les sous-titres que pour ses propres vidéos ou avec l'autorisation du propriétaire. Import administrateur possible (coach/import-transcript.mjs).",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
+   "note": "Lue par gemini-3.5-flash-lite : transcription et 17 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "triage": {
     "score": 4,
     "matched": [
@@ -26353,7 +26366,20 @@
     "patchMentioned": null,
     "basis": "métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
    },
-   "queueRank": 45
+   "queueRank": 45,
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.5-flash-lite",
+    "fps": 1,
+    "at": "2026-11-01",
+    "sha256": "276c3adf699a6d6d677b657db1dece814109aeb67fec074b82da2b7fe0a76d46",
+    "segments": 161,
+    "observations": 17,
+    "duration": "10:16",
+    "videoKind": "guide",
+    "gameplayShown": true,
+    "tokens": 64651
+   }
   },
   {
    "id": "c-yt-zqjnvs4HZnw",
@@ -27031,12 +27057,12 @@
    "published": "2026-05-26",
    "retrievedAt": "2026-11-01",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "inaccessible",
+   "analysis": "inaccessible",
    "descriptionExcerpt": "Ayudo a adultos +25 a subir a Diamante con 1-3 rankeds al día\nSistema diseñado para subir CON POCO TIEMPO y disfrutando el juego (más de 7000 casos de éxito)\n\nEscribime \"ACADEMIA\" por privado en instagram y armamos un plan personalizado para que subas consistentemente.\nhttps://ww",
    "backfill": true,
    "queueRank": 44,
-   "note": "File de lecture (rang 44) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Google refuse la lecture de cette vidéo par Gemini (HTTP 403 : réglage de la vidéo ou de son auteur). Aucun contournement : pas de transcription, pas de conseil tiré de cette vidéo.",
    "triage": {
     "score": 18,
     "matched": [
@@ -27045,7 +27071,9 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
-   }
+   },
+   "videoAttempts": 3,
+   "videoError": "gemini-3.6-flash HTTP 403 : The caller does not have permission (2026-11-01)"
   },
   {
    "id": "c-yt-La2O9Zjk414",
@@ -27057,13 +27085,13 @@
    "lang": "fr",
    "published": null,
    "retrievedAt": "2026-11-01",
-   "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "patch": "null",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 46,
-   "note": "File de lecture (rang 46) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.5-flash-lite : transcription et 15 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "triage": {
     "score": 16,
     "matched": [
@@ -27073,6 +27101,19 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.5-flash-lite",
+    "fps": 1,
+    "at": "2026-11-01",
+    "sha256": "fc337c51f94218874e63b10d53883491a5b6ff6e48a44137adcedb277c56322c",
+    "segments": 101,
+    "observations": 15,
+    "duration": "15:10",
+    "videoKind": "guide",
+    "gameplayShown": true,
+    "tokens": 90448
    }
   },
   {
@@ -27267,6 +27308,96 @@
     "score": 17,
     "matched": [
      "jungle"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-BZFfUsIphDw",
+   "sourceId": "yt-coach-leo",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=BZFfUsIphDw",
+   "title": "Jungle Pathing Fundamentals EXPLAINED | How To Structure Your Full Clears",
+   "author": "Coach Leo (JungleGap)",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 53,
+   "note": "File de lecture (rang 53) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 19,
+    "matched": [
+     "jungle",
+     "how to",
+     "fundamentals",
+     "explained",
+     "jungle path",
+     "clear"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-atqdaqIRMBI",
+   "sourceId": "yt-bizyze-coaching-league-of-le",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=atqdaqIRMBI",
+   "title": "The Wave Management Guide That Actually Makes You Climb",
+   "author": "BIZYZE Coaching | League of Legends",
+   "lang": "fr",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 54,
+   "note": "File de lecture (rang 54) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 16,
+    "matched": [
+     "guide",
+     "wave",
+     "climb"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-dhkAnHQgrn0",
+   "sourceId": "yt-coach-k",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=dhkAnHQgrn0",
+   "title": "How to ABUSE Weak botlaners as a ROAMING SUPPORT | Game Breakdown",
+   "author": "Coach K",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 55,
+   "note": "File de lecture (rang 55) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 16,
+    "matched": [
+     "support",
+     "how to",
+     "breakdown"
     ],
     "entertainment": [],
     "patchMentioned": null,
