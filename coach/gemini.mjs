@@ -37,7 +37,7 @@ export async function gemini({ models, parts, system, schema, maxOutputTokens = 
         const text = (c.content?.parts || []).filter(p => !p.thought).map(p => p.text || "").join("");
         return { json: JSON.parse(text), model, usage: j.usageMetadata || {} };
       }
-      last = new Error(`${model} HTTP ${r.status} : ${j.error?.message || ""}`);
+      last = Object.assign(new Error(`${model} HTTP ${r.status} : ${j.error?.message || ""}`), { status: r.status });
       if (r.status === 404) break;                       // modèle retiré : suivant
       // Quota journalier épuisé : inutile de réessayer ce modèle aujourd'hui, on passe au suivant
       if (r.status === 429 && /quota|billing|free_tier/i.test(j.error?.message || "")) { quotaHit.add(model, j.error?.message); break; }

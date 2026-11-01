@@ -2,6 +2,10 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — vidéo refusée par Gemini (HTTP 403)
+- **Cas** : « El manejo de oleadas… Curso BOT EP 7 » (Dishake, `c-yt-eSiqAlivejM`), publique (oEmbed 200), mais Google refuse sa lecture par Gemini (403, « pas la permission ») : réglage de la vidéo ou de son auteur. Rien à contourner. Elle était réessayée à chaque passage, car les passages en échec n'enregistraient pas le compteur d'essais.
+- **Règle** (`video.mjs`, `gemini.mjs` transmet le code HTTP) : sur un 403, une petite requête texte vérifie la clé ; si la clé marche, la vidéo est classée « inaccessible » avec une note claire, sans nouvel essai ni échec ; si la clé ne marche pas, la lecture des vidéos s'arrête pour le passage, sans rien classer. Les vidéos déjà refusées 3 fois en 403 sont classées de même au prochain passage. Requête de contrôle testée (clé OK).
+
 ## 2026-11-01 — veille du soir en échec : citation introuvable
 - **Cause** (passage de 18 h 50, comme celui du 31/10) : le test « Vidéos réellement lues » échoue, car une citation tirée par Gemini d'une vidéo (`u-ai-yt-C9mbXu7HgEA-3`) n'est pas dans la transcription. Le modèle a reformulé. Le test a bloqué l'enregistrement : rien de faux n'est entré dans la base, mais tout le passage est perdu.
 - **Correction** (`analyze.mjs`) : au moment de l'analyse, chaque citation doit se retrouver mot pour mot dans le texte lu (« … » sépare deux morceaux, même règle que `critic.mjs`) ; sinon elle est écartée, et un conseil sans citation retrouvée n'est pas créé. Le journal du passage le signale. Le test applique la même règle des « … ».
