@@ -2,6 +2,17 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — replay filtré « Mon objectif » et onglet Champions trié
+- Demande d’Anthony : le filtre par objectif est une option du replay ; l’onglet Champions propose d’abord les champions joués.
+- Replay : 5e bouton « Mon objectif » (affiché seulement s’il y a quelque chose à montrer). Ne garde que les moments liés à l’objectif en cours, et la lecture s’arrête dessus.
+  - Farm (sbires à 10/15 min, par minute, 15-25 min) : minutes creuses (moins de la moitié du rythme de la cible, à partir de 2:00), tes morts dans la fenêtre, point d’étape (« À 10:00 : 75 sbires, ta cible : 59 »).
+  - Control wards / vision : chaque ward posée ou détruite, sur la frise seulement (Riot donne l’heure, pas l’endroit) ; bilan à 20:00 ou en fin de partie.
+  - Participation aux objectifs : chaque objectif, « tu étais là / loin ». XP à 10 min : morts avant 10:00 et point d’étape.
+  - Si l’objectif concerne un autre poste que celui de la partie, c’est dit.
+  - Données : `tactics.mine` (sbires et XP par minute, wards) ; `textVersion` 4, les bilans gardés sont relus une fois.
+- Champions : « Tes champions » en tête (du plus joué au moins joué sur les ranked récentes du profil, parties et % de victoires), puis « Tous les champions ».
+- Vérifié : démo pour l’onglet Champions (Ahri 4, Orianna 3, Syndra 3) ; replay sur une partie du cache local (Yasuo mid) avec trois objectifs simulés. Tests 59/60.
+
 ## 2026-11-01 — bloc D commencé : « Ta progression »
 - **Worker déployé** (version 01fb0f37) avec le feu vert d'Anthony : control wards, catégories, rotation, garde-fous par poste, données lues dans `coach-data`.
 - **Carte « Ta progression »** (`c2V1Progress`, Mon suivi, sous l'objectif) : pour chaque geste travaillé (métrique + poste), niveau de départ du premier objectif, médiane des 5 dernières parties au poste, lecture en écart-type personnel (≥ 0,5 σ net progrès, ≥ 0,25 léger, > −0,25 pas de changement net, sinon en baisse), courbe des 30 dernières parties avec niveau de départ et dernière cible, phrase d'honnêteté (5 parties = encore du hasard possible). Aucune route serveur ajoutée : `/progress` donnait déjà `series` et l'historique. Vérifié en démo (58 → 63 sbires, net progrès).

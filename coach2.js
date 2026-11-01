@@ -333,7 +333,7 @@ async function c2LoadChamp(id) {
   render(false);
 }
 async function c2LoadReview(id) {
-  if ((C2.reviews[id]?.tactics?.kills && C2.reviews[id]?.textVersion >= 3) || c2ui.loading) return; // bilans plus anciens (sans relecture tactique ou sans les kills du replay) : relus
+  if ((C2.reviews[id]?.tactics?.kills && C2.reviews[id]?.textVersion >= 4) || c2ui.loading) return; // bilans plus anciens (sans relecture tactique ou sans les kills du replay) : relus
   c2ui.loading = id; c2ui.error = null; render(false);
   try { C2.reviews[id] = await c2Fetch("review", { match: id, puuid: C2.account.puuid, platform: C2.account.platform }); c2MarkSeen(id); c2Save(); } catch (e) { c2ui.error = e.message; }
   c2ui.loading = null; render(false);
@@ -1171,7 +1171,7 @@ function c2Game(id) {
   if (!C2.account) return empty("Compte non connecté", "", `<a class="btn" href="${c2Href()}">Connecter mon compte</a>`);
   const r = C2.reviews[id]?.tactics ? C2.reviews[id] : null;
   // Bilan déjà lu avant le replay (sans les kills) : relu une fois en arrière-plan
-  if (r && (!r.tactics.kills || !(r.textVersion >= 3)) && C2_API != null && !(c2ui.refreshed ||= new Set()).has(id)) { c2ui.refreshed.add(id); setTimeout(() => c2LoadReview(id), 0); }
+  if (r && (!r.tactics.kills || !(r.textVersion >= 4)) && C2_API != null && !(c2ui.refreshed ||= new Set()).has(id)) { c2ui.refreshed.add(id); setTimeout(() => c2LoadReview(id), 0); }
   if (!r && !C2.account.puuid) { setTimeout(() => c2LoadProfile(), 0); return `<div class="c2-card c2-loading">Lecture de la partie…</div>`; }
   if (!r) {
     if (C2_API != null && !c2ui.error) setTimeout(() => c2LoadReview(id), 0);
@@ -1269,10 +1269,52 @@ function c2Moments(T) {
   for (const d of T.deaths || []) L.push({ t: d.t, type: "death", key: true, mine: true, x: d.x, y: d.y, text: `Tu meurs (${d.zone}) : tué par ${c2Name(d.killer)}${d.attackers?.length > 1 ? `, ${d.attackers.length} adversaires sur toi` : ""}${d.alliesNear?.length ? "" : ", aucun allié autour"}` });
   for (const o of T.objectives) L.push({ t: o.t, type: "obj", key: true, good: o.ours, x: o.x, y: o.y, letter: (o.kind || "?")[0], text: `${o.kind} ${/^Larves/.test(o.kind) ? (o.ours ? "prises" : "perdues") : o.ours ? "pris" : "perdu"} : ${o.allies} contre ${o.enemies} autour${o.myDist > 6000 ? ", tu étais loin" : ""}` });
   for (const f of T.fights) L.push({ t: f.t, type: "fight", mine: f.me, good: f.won, x: f.x, y: f.y, text: `Combat ${f.zone} : ${f.allies} contre ${f.enemies}${f.won === true ? ", gagné" : f.won === false ? ", perdu" : ""}${f.me ? " (avec toi)" : ""}` });
-  return L.sort((a, b) => a.t - b.t);
+  return [...L, ...c2GoalMoments(T)].sort((a, b) => a.t - b.t);
+}
+// Filtre « Mon objectif » (bloc D, 01/11) : seulement ce qui touche à l'objectif en cours, et la lecture s'arrête sur ces moments.
+// Faits Riot uniquement : sbires et XP relevés chaque minute, heure et type de chaque ward (pas leur position : frise seulement).
+const C2_FARM_WIN = { cs_at_10: [0, 10], cs_at_15: [0, 15], farm_15_25: [15, 25], cs_per_min: [0, 99] };
+const C2_WARD_NAME = { CONTROL_WARD: "control ward", YELLOW_TRINKET: "ward (totem)", SIGHT_WARD: "ward", BLUE_TRINKET: "ward (lentille bleue)" };
+function c2GoalMoments(T) {
+  const g = c2ui.v1?.goal, M = T.mine;
+  if (!g || !M) return [];
+  const L = [], n = M.cs.length - 1, fmt = v => c2V1Fmt(g, v), unitCs = g.role === "JUNGLE" ? "sbires et monstres" : "sbires";
+  const deaths = (a, b, why) => (T.deaths || []).filter(d => d.t >= a * 60000 && d.t < b * 60000).forEach(d => L.push({ t: d.t, type: "death", key: true, mine: true, goal: true, x: d.x, y: d.y, text: `Tu meurs (${d.zone}) : ${why}` }));
+  const win = C2_FARM_WIN[g.metric];
+  if (win) {
+    const a = win[0], b = Math.min(win[1], n);
+    const pace = g.metric === "cs_at_10" ? g.target / 10 : g.metric === "cs_at_15" ? g.target / 15 : g.target;
+    // Minutes creuses : moins de la moitié du rythme de ta cible (les 2 premières minutes, sans sbires, ne comptent pas)
+    for (let m = Math.max(a + 1, 3); m <= b; m++) {
+      const got = M.cs[m] != null && M.cs[m - 1] != null ? M.cs[m] - M.cs[m - 1] : null;
+      if (got != null && got < pace * 0.5) L.push({ t: m * 60000 - 30000, type: "cs", key: true, goal: true, text: `De ${m - 1}:00 à ${m}:00 : ${got} ${unitCs} (ta cible demande environ ${fmt(pace)} par minute)` });
+    }
+    deaths(a, b, "pas de farm jusqu'à ta réapparition");
+    if (b === win[1] && M.cs[b] != null) L.push({ t: b * 60000, type: "check", key: true, goal: true, text: g.metric === "farm_15_25" ? `De 15:00 à 25:00 : ${fmt((M.cs[25] - M.cs[15]) / 10)} ${unitCs} par minute (ta cible : ${fmt(g.target)})` : `À ${b}:00 : ${M.cs[b]} ${unitCs} (ta cible : ${fmt(g.target)})` });
+  } else if (g.metric === "xp_at_10") {
+    deaths(0, 10, "pas d'expérience jusqu'à ta réapparition");
+    if (n >= 10 && M.xp[10] != null) L.push({ t: 600000, type: "check", key: true, goal: true, text: `À 10:00 : ${M.xp[10]} XP (ta cible : ${fmt(g.target)})` });
+  } else if (g.metric === "control_wards_20" || g.metric === "vision_per_min") {
+    const ctrlOnly = g.metric === "control_wards_20", end = ctrlOnly ? 20 * 60000 : Infinity;
+    const W = M.wards.filter(w => w.t < end && (!ctrlOnly || w.type === "CONTROL_WARD"));
+    for (const w of W) L.push({ t: w.t, type: "ward", ctrl: w.type === "CONTROL_WARD", key: w.type === "CONTROL_WARD" || w.kill, goal: true, text: w.kill ? `Tu détruis une ${C2_WARD_NAME[w.type] || "ward"} adverse` : `Tu poses une ${C2_WARD_NAME[w.type] || "ward"}` });
+    const placed = W.filter(w => !w.kill);
+    if (ctrlOnly && n >= 20) L.push({ t: 20 * 60000, type: "check", key: true, goal: true, text: `À 20:00 : ${placed.length} control ward${placed.length > 1 ? "s" : ""} posée${placed.length > 1 ? "s" : ""} (ta cible : ${fmt(g.target)})` });
+    if (!ctrlOnly) L.push({ t: n * 60000, type: "check", key: true, goal: true, text: `Fin de partie : ${placed.length} ward${placed.length > 1 ? "s" : ""} posée${placed.length > 1 ? "s" : ""}, ${W.length - placed.length} détruite${W.length - placed.length > 1 ? "s" : ""}` });
+  } else if (g.metric === "objective_participation") {
+    for (const o of T.objectives) L.push({ t: o.t, type: "obj", key: true, goal: true, good: o.ours, x: o.x, y: o.y, letter: (o.kind || "?")[0], text: `${o.kind} ${o.ours ? "pris" : "perdu"} : ${o.myDist < 4500 ? "tu étais là" : "tu étais loin"}` });
+  }
+  return L;
 }
 const C2_TF = [["all", "Tout"], ["me", "Mes moments"], ["fight", "Combats"], ["obj", "Objectifs"]];
-const c2Keep = (m, f) => f === "all" || (f === "me" ? m.mine || m.type === "lesson" : m.type === f);
+const c2Keep = (m, f) => (f === "goal" ? !!m.goal : !m.goal && (f === "all" || (f === "me" ? m.mine || m.type === "lesson" : m.type === f)));
+// Résumé affiché sous les filtres quand « Mon objectif » est choisi
+function c2GoalNote(T) {
+  const g = c2ui.v1?.goal, myRole = { top: "TOP", jungle: "JUNGLE", mid: "MIDDLE", bottom: "BOTTOM", support: "UTILITY" }[T.players.find(p => p.me)?.role];
+  if (!g) return "";
+  const wards = g.metric === "control_wards_20" || g.metric === "vision_per_min";
+  return `<p class="fine c2-goalnote">Ton objectif : <b>${esc(g.label)}</b>, cible ${esc(c2V1Fmt(g, g.target))}.${myRole && myRole !== g.role ? ` Il concerne ton poste principal (${esc(C2_V1_ROLE[g.role] || g.role)}), pas celui de cette partie.` : ""} Seuls les moments qui le concernent sont affichés, et la lecture s'arrête dessus.${wards ? " Riot donne l'heure de chaque ward, pas l'endroit : elles sont sur la frise, pas sur la carte." : ""}</p>`;
+}
 // Contenu de la carte qui change avec le temps : pions, trajet suivi, marqueurs d'événements, horloge
 function c2MapState(T, id, t) {
   const sel = c2ui.tsel?.[id] ?? T.players.findIndex(p => p.me);
@@ -1296,11 +1338,11 @@ function c2MarkHtml(m) {
 // Panneau « en ce moment » : l'erreur relevée à cet instant (avec ce qui aurait été mieux), sinon ce qui se passe
 function c2NowHtml(T, id, t) {
   const L = c2Moments(T), f = c2ui.tf?.[id] || "all";
-  const lesson = L.find(m => m.type === "lesson" && t >= m.t - 40000 && t <= m.t + 20000);
+  const lesson = f !== "goal" && L.find(m => m.type === "lesson" && t >= m.t - 40000 && t <= m.t + 20000);
   if (lesson) return `<div class="c2-now-lesson"><p class="label">${lesson.review ? "Situation à revoir" : "Moment clé"} · ${esc(lesson.at)}</p><p class="c2-now-title">${esc(lesson.title)}</p>${bullets(lesson.facts.slice(0, 2))}<p class="c2-better"><b>${lesson.review ? "La question à te poser" : "Ce qui aurait été mieux"}</b> ${esc(lesson.text)}</p></div>`;
   const near = L.filter(m => m.type !== "lesson" && c2Keep(m, f) && Math.abs(m.t - t) <= 30000);
-  if (near.length) return `<ul class="c2-now-list">${near.map(m => `<li class="${m.type}${m.good === true ? " won" : m.good === false ? " lost" : ""}"><b>${c2Clock(m.t)}</b> ${esc(m.text)}</li>`).join("")}</ul>`;
-  return `<p class="fine">Rien de marquant à cet instant. Lance la lecture ou saute au moment clé suivant.</p>`;
+  if (near.length) return `<ul class="c2-now-list">${near.map(m => `<li class="${m.type}${m.goal ? " goal" : ""}${m.good === true ? " won" : m.good === false ? " lost" : ""}"><b>${c2Clock(m.t)}</b> ${esc(m.text)}</li>`).join("")}</ul>`;
+  return `<p class="fine">${f === "goal" ? "Rien sur ton objectif à cet instant. Lance la lecture ou saute au moment suivant." : "Rien de marquant à cet instant. Lance la lecture ou saute au moment clé suivant."}</p>`;
 }
 function c2Replay(T, id) {
   const t = c2TimeOf(T, id), dur = c2Dur(T), S = c2MapState(T, id, t), f = c2ui.tf?.[id] || "all", ID = esc(id);
@@ -1311,6 +1353,7 @@ function c2Replay(T, id) {
   const gx = i => ((i / Math.max(1, g.length - 1)) * 100).toFixed(2), gy = v => (20 - (v / max) * 18).toFixed(2);
   const area = g.length > 1 ? `M0,20 ${g.map((v, i) => `L${gx(i)},${gy(v)}`).join(" ")} L100,20 Z` : "";
   const marks = c2Moments(T).filter(m => c2Keep(m, f) && (m.key || f !== "all"));
+  const tf = c2GoalMoments(T).length ? [...C2_TF, ["goal", "Mon objectif"]] : C2_TF;
   return `<div class="c2-card c2-replay" id="c2-rp-${ID}">
     <div class="c2-map" id="c2-map-${ID}" style="background-image:url(https://ddragon.leagueoflegends.com/cdn/${esc(COACH?.ddragonVersion || "16.21.1")}/img/map/map11.png)">
       <svg class="c2-trail" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${S.trail}" vector-effect="non-scaling-stroke"/></svg>
@@ -1327,7 +1370,7 @@ function c2Replay(T, id) {
       </svg>
       <input class="c2-tl-range" type="range" min="0" max="${dur}" step="1000" value="${Math.round(t)}" data-c2-tt="${ID}" aria-label="Moment de la partie" aria-valuetext="${c2Clock(t)}">
       <span class="c2-tl-head" style="left:${((t / dur) * 100).toFixed(2)}%"></span>
-      ${marks.map(m => `<button class="c2-tl-m ${m.type}${m.good === true ? " won" : m.good === false ? " lost" : ""}" style="left:${((m.t / dur) * 100).toFixed(2)}%" data-action="c2-tgo" data-id="${ID}" data-t="${m.t}" aria-label="${esc(c2Clock(m.t))} : ${esc(m.title || m.text)}" title="${esc(c2Clock(m.t))} · ${esc(m.title || m.text)}"></button>`).join("")}
+      ${marks.map(m => `<button class="c2-tl-m ${m.type}${m.good === true ? " won" : m.good === false ? " lost" : ""}${m.ctrl ? " ctrl" : ""}" style="left:${((m.t / dur) * 100).toFixed(2)}%" data-action="c2-tgo" data-id="${ID}" data-t="${m.t}" aria-label="${esc(c2Clock(m.t))} : ${esc(m.title || m.text)}" title="${esc(c2Clock(m.t))} · ${esc(m.title || m.text)}"></button>`).join("")}
     </div>
     <div class="c2-tl-axis fine"><span>0:00</span><span class="up">écart d'or : ton équipe devant ▲</span><span class="down">▼ derrière</span><span>${c2Clock(dur)}</span></div>
     <div class="c2-mctl">
@@ -1336,7 +1379,8 @@ function c2Replay(T, id) {
       <button class="btn ghost sm icon-only" data-action="c2-tstep" data-id="${ID}" data-d="1" aria-label="Moment clé suivant">${C2_SVG.next}</button>
       <button class="btn ghost sm c2-tspeed" data-action="c2-tspeed" aria-label="Vitesse de lecture">×${speed}</button>
     </div>
-    <div class="seg small" role="group" aria-label="Moments affichés">${C2_TF.map(([k, l]) => `<button class="seg-btn" data-action="c2-tf" data-id="${ID}" data-f="${k}" aria-pressed="${f === k}">${l}</button>`).join("")}</div>
+    <div class="seg small" role="group" aria-label="Moments affichés">${tf.map(([k, l]) => `<button class="seg-btn" data-action="c2-tf" data-id="${ID}" data-f="${k}" aria-pressed="${f === k}">${l}</button>`).join("")}</div>
+    ${f === "goal" ? c2GoalNote(T) : ""}
     <div class="c2-now" aria-live="polite">${c2NowHtml(T, id, t)}</div>
     <p class="c2-legend fine"><span><i class="lg base"></i>ton équipe</span><span><i class="lg theirs"></i>adversaires</span><span><i class="lg lessonm"></i>erreur relevée</span><span><i class="lg deathm"></i>ta mort</span><span><i class="lg objd"></i>objectif</span><span><i class="lg fight"></i>combat</span></p>
   </div>`;
@@ -1381,7 +1425,7 @@ function c2Play(id) {
   c2Stop();
   let t = c2TimeOf(T, id);
   if (t >= c2Dur(T) - 1000) t = 0;
-  const stops = c2Moments(T).filter(m => m.type === "lesson" || m.type === "death").map(m => m.t);
+  const stops = c2Moments(T).filter(c2ui.tf?.[id] === "goal" ? m => m.goal && m.key : m => !m.goal && (m.type === "lesson" || m.type === "death")).map(m => m.t);
   const P = c2ui.tplay = { id, last: performance.now(), raf: 0 };
   c2PlayBtn(id, true);
   const step = now => {
@@ -1554,8 +1598,15 @@ function c2Face() {
 function c2Champions() {
   const q = c2ui.q.toLowerCase();
   const list = c2ChampList().filter(c => !q || c.name.toLowerCase().includes(q));
+  // Tes champions d'abord, du plus joué au moins joué (ranked récentes du profil), puis tous les autres (demande d'Anthony, 01/11)
+  const played = new Map();
+  for (const g of C2.profile?.games || []) { const id = c2Id(g.champion) || g.champion, s = played.get(id) || { n: 0, w: 0 }; s.n++; s.w += g.win ? 1 : 0; played.set(id, s); }
+  const mine = list.filter(c => played.has(c.id)).sort((a, b) => played.get(b.id).n - played.get(a.id).n || played.get(b.id).w - played.get(a.id).w);
+  const cell = c => { const s = played.get(c.id); return `<a class="c2-champ" href="${c2Href("champions", c.id)}">${c2Img(c.id)}<span>${esc(c.name)}</span>${s ? `<span class="c2-champ-n">${s.n} partie${s.n > 1 ? "s" : ""} · ${Math.round(100 * s.w / s.n)} %</span>` : ""}</a>`; };
+  const rest = list.filter(c => !played.has(c.id));
   return `<label class="field"><span class="sr">Rechercher un champion</span><input id="c2-search" class="search" type="search" placeholder="Rechercher un champion" value="${esc(c2ui.q)}" autocomplete="off"></label>
-    <div class="c2-grid">${list.map(c => `<a class="c2-champ" href="${c2Href("champions", c.id)}">${c2Img(c.id)}<span>${esc(c.name)}</span></a>`).join("") || `<p class="fine">Aucun champion trouvé.</p>`}</div>`;
+    ${mine.length ? `<p class="label">Tes champions</p><p class="fine">Du plus joué au moins joué sur tes ${C2.profile.games.length} dernières ranked, avec ton taux de victoires.</p><div class="c2-grid">${mine.map(cell).join("")}</div>${rest.length ? `<p class="label">Tous les champions</p>` : ""}` : ""}
+    <div class="c2-grid">${rest.map(cell).join("") || (mine.length ? "" : `<p class="fine">Aucun champion trouvé.</p>`)}</div>`;
 }
 // Toi sur ce champion (test privé, coach V1) : tes ranked récentes sur ce champion, poste par poste, comparées aux joueurs Diamant+
 // qui jouent le même champion au même poste (demande d'Anthony, 31/10 : « expliquer comment toi, tu joues ce champion »)

@@ -240,7 +240,7 @@ export async function review(riot, { matchId, puuid, region, benchmarks, champst
   if (lane.platesTaken >= 3) strengths.push(`${lane.platesTaken} plaques de tourelle prises sur ta lane`);
 
   return {
-    textVersion: 3, // 2 : textes revus après la relecture « joueur Argent » du 23/10/2026 ; 3 : règles revues au banc d'essai du 31/10 (les bilans gardés sur le téléphone sont relus)
+    textVersion: 4, // 2 : textes revus après la relecture « joueur Argent » du 23/10/2026 ; 3 : règles revues au banc d'essai du 31/10 ; 4 : données du filtre « Mon objectif » du replay (les bilans gardés sur le téléphone sont relus)
     // Partie où le joueur était absent : faits gardés, aucun conseil (ils n'auraient pas de sens)
     absent: s.absent, summary: { ...s, deadSeconds: me.totalTimeSpentDead ?? null }, lane, deaths, bases, objectives,
     comparisons: s.absent ? [] : comparisons, findings: s.absent ? [] : findings.slice(0, 3), findingsAll: s.absent ? [] : findings.map(f => f.kind), habits, strengths: s.absent ? [] : strengths,

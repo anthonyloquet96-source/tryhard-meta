@@ -186,6 +186,9 @@ export function tactics(match, timeline, puuid) {
   return {
     players: players.map(p => ({ champion: p.champion, role: p.role, team: p.team === myTeam ? "ally" : "enemy", me: p.me })),
     map, fights: fightView, objectives, deaths, interactions,
+    // Pour le filtre « Mon objectif » du replay : tes sbires et ton XP à chaque minute, tes wards (Riot donne l'heure et le type, pas l'endroit)
+    mine: { cs: frames.map(f => { const pf = f.participantFrames?.[mine.id]; return pf ? (pf.minionsKilled || 0) + (pf.jungleMinionsKilled || 0) : null; }), xp: frames.map(f => f.participantFrames?.[mine.id]?.xp ?? null),
+      wards: events.filter(e => (e.type === "WARD_PLACED" && e.creatorId === mine.id || e.type === "WARD_KILL" && e.killerId === mine.id) && e.wardType !== "UNDEFINED").map(e => ({ t: e.timestamp, type: e.wardType, kill: e.type === "WARD_KILL" })) },
     kills: kills.map(k => ({ t: k.t, v: players.findIndex(p => p.id === k.victim), k: players.findIndex(p => p.id === k.killer) })), presence, lessons, turns: keyTurns, goldDiff: teamGold.map(g => Math.round(g / 100) * 100),
     summary: { fights: fightView.length, fightsWithMe: fightView.filter(f => f.me).length, objectivesLost: objectives.filter(o => !o.ours).length, objectivesTaken: objectives.filter(o => o.ours).length, objectivesPresent: objectives.filter(o => o.myDist < R_OBJ).length,
       deathsIsolated: deaths.filter(d => !d.alliesNear.length && d.attackers.length >= 2 && d.t >= 14 * 60000).length, deathsGank: deaths.filter(d => d.gank).length, deaths: deaths.length,

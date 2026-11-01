@@ -841,6 +841,7 @@ a.sb-team:hover .sb-name { text-decoration: underline; text-underline-offset: 3p
 .c2-champ { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: var(--s2) 4px; border-radius: var(--r-sm); font-size: 12px; text-align: center; color: var(--text-2); transition: background .15s; }
 .c2-champ:hover { background: var(--surface); color: var(--text); }
 .c2-champ .c2-av { width: 52px; height: 52px; border-radius: 14px; }
+.c2-champ-n { font-size: 11px; color: var(--text-3); font-variant-numeric: tabular-nums; }
 .c2-foot { text-align: center; }
 .linkish { background: none; border: 0; padding: 0; color: var(--text-2); text-decoration: underline; cursor: pointer; font-size: inherit; }
 .c2-livebar { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); padding: var(--s2) var(--s2) var(--s2) var(--s4); background: var(--surface); border-radius: var(--r); min-height: 52px; }
@@ -1156,6 +1157,10 @@ button.c2-mp { border: 0; padding: 0; background: none; cursor: pointer; transit
 .c2-tl-m.death { top: calc(50% - 7px); width: 14px; height: 14px; border-radius: 50%; background: var(--bad); box-shadow: 0 0 0 2px var(--surface-2); }
 .c2-tl-m.obj { bottom: 5px; width: 10px; height: 10px; border-radius: 2px; transform: translateX(-50%) rotate(45deg); background: var(--text-3); }
 .c2-tl-m.obj.won { background: var(--ok); } .c2-tl-m.obj.lost { background: var(--bad); }
+.c2-tl-m.ward { top: 4px; width: 6px; height: 12px; border-radius: 2px; background: #e6c84f; } .c2-tl-m.ward.ctrl { background: #ff5fa2; }
+.c2-tl-m.cs { bottom: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--warn); }
+.c2-tl-m.check { top: -8px; width: 4px; height: 20px; border-radius: 2px; background: var(--text-2); box-shadow: 0 0 0 2px var(--surface); }
+.c2-goalnote { margin: 0; }
 .c2-tl-m.fight { top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); }
 .c2-tl-m.fight.won { background: var(--ok); } .c2-tl-m.fight.lost { background: var(--bad); }
 .c2-tl-axis { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; margin-top: -4px; }
