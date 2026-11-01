@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T07:46:28.401Z",
+ "generatedAt": "2026-11-01T13:31:48.543Z",
  "rulesLock": {
   "ok": true,
   "changed": [],
@@ -9,552 +9,552 @@
  "discovery": {
   "wtl-blog": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:55.010Z",
+   "lastOk": "2026-11-01T12:55:08.059Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 3
   },
   "yt-skill-capped": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:55.260Z",
+   "lastOk": "2026-11-01T12:55:08.360Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-curtis": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:55.515Z",
+   "lastOk": "2026-11-01T12:55:08.698Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-doublelift": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:55.764Z",
+   "lastOk": "2026-11-01T12:55:09.022Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-veigar-v2": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:56.021Z",
+   "lastOk": "2026-11-01T12:55:09.307Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-pekinwoof": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:56.302Z",
+   "lastOk": "2026-11-01T12:55:09.593Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-aloisnl": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:56.534Z",
+   "lastOk": "2026-11-01T12:55:09.897Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-chreak": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:56.811Z",
+   "lastOk": "2026-11-01T12:55:10.202Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-sixen": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:57.067Z",
+   "lastOk": "2026-11-01T12:55:10.545Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-perryjg": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:57.384Z",
+   "lastOk": "2026-11-01T12:55:10.825Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-leo": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:57.688Z",
+   "lastOk": "2026-11-01T12:55:11.152Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-kirei": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:58.203Z",
+   "lastOk": "2026-11-01T12:55:11.488Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-wtl": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:58.488Z",
+   "lastOk": "2026-11-01T12:55:11.792Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-ls": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:58.749Z",
+   "lastOk": "2026-11-01T12:55:12.114Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-dishake": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:59.049Z",
+   "lastOk": "2026-11-01T12:55:12.467Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-gameleap-lol-challenger-guid": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:59.363Z",
+   "lastOk": "2026-11-01T12:55:12.802Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-mysterias": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:59.574Z",
+   "lastOk": "2026-11-01T12:55:13.134Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-hybradge": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:13:59.868Z",
+   "lastOk": "2026-11-01T12:55:13.450Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-ramyaura": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:00.138Z",
+   "lastOk": "2026-11-01T12:55:13.740Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-violet": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:00.396Z",
+   "lastOk": "2026-11-01T12:55:14.068Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-mysteriaslol": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:00.605Z",
+   "lastOk": "2026-11-01T12:55:14.409Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-sinerias": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:00.884Z",
+   "lastOk": "2026-11-01T12:55:14.698Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-chippys": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:01.098Z",
+   "lastOk": "2026-11-01T12:55:15.004Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-makkro": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:01.358Z",
+   "lastOk": "2026-11-01T12:55:15.346Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-k": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:01.634Z",
+   "lastOk": "2026-11-01T12:55:15.712Z",
    "lastError": null,
    "nextTry": null,
-   "lastCount": 15
+   "lastCount": 0
   },
   "yt-shok": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:01.869Z",
+   "lastOk": "2026-11-01T12:55:16.003Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-rebrrt": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:02.148Z",
+   "lastOk": "2026-11-01T12:55:16.314Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-scrubnoob": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:02.413Z",
+   "lastOk": "2026-11-01T12:55:16.613Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-broxah": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:02.654Z",
+   "lastOk": "2026-11-01T12:55:16.952Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-zen-coaching": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:02.935Z",
+   "lastOk": "2026-11-01T12:55:17.241Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-gaethan-league-of-legends": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:03.226Z",
+   "lastOk": "2026-11-01T12:55:17.548Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-misanthiel-coach-toplane": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:03.451Z",
+   "lastOk": "2026-11-01T12:55:17.849Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-kyan": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:03.719Z",
+   "lastOk": "2026-11-01T12:55:18.180Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-potent": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:03.958Z",
+   "lastOk": "2026-11-01T12:55:18.465Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-bardinette": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:04.189Z",
+   "lastOk": "2026-11-01T12:55:18.746Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-trayton": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:04.503Z",
+   "lastOk": "2026-11-01T12:55:19.113Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-bizyze-coaching-league-of-le": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:04.745Z",
+   "lastOk": "2026-11-01T12:55:19.436Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-sol1xd": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:04.958Z",
+   "lastOk": "2026-11-01T12:55:19.712Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-titans-coaching": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:05.244Z",
+   "lastOk": "2026-11-01T12:55:20.007Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-el-blu-lol": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:05.558Z",
+   "lastOk": "2026-11-01T12:55:20.324Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-shintalx-coach-de-lol": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:05.815Z",
+   "lastOk": "2026-11-01T12:55:20.661Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-raiko-league-of-legends": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:06.169Z",
+   "lastOk": "2026-11-01T12:55:20.963Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-maurogarih": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:06.421Z",
+   "lastOk": "2026-11-01T12:55:21.234Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-odysseus": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:06.695Z",
+   "lastOk": "2026-11-01T12:55:21.515Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-dovahndo": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:07.104Z",
+   "lastOk": "2026-11-01T12:55:21.812Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-husumlol": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:07.369Z",
+   "lastOk": "2026-11-01T12:55:22.164Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-que-aula": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:07.597Z",
+   "lastOk": "2026-11-01T12:55:22.450Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-asteek": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:07.911Z",
+   "lastOk": "2026-11-01T12:55:22.776Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-keshaeuw": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:08.147Z",
+   "lastOk": "2026-11-01T12:55:23.099Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-phantasm": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:08.406Z",
+   "lastOk": "2026-11-01T12:55:23.390Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-powerofevil": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:08.661Z",
+   "lastOk": "2026-11-01T12:55:23.650Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-fl7vob_qbs": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:09.046Z",
+   "lastOk": "2026-11-01T12:55:23.977Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-japs-99jh_": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:09.351Z",
+   "lastOk": "2026-11-01T12:55:24.293Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-mzthr5qzga": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:09.662Z",
+   "lastOk": "2026-11-01T12:55:24.600Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-cq2-jrbuz4": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:09.910Z",
+   "lastOk": "2026-11-01T12:55:24.966Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-erhqgfd8dn": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:10.202Z",
+   "lastOk": "2026-11-01T12:55:25.264Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-ga52d8qlv3": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:10.481Z",
+   "lastOk": "2026-11-01T12:55:25.583Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-6izv_x6edr": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:10.744Z",
+   "lastOk": "2026-11-01T12:55:25.871Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-fmmwh9er3z": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:11.073Z",
+   "lastOk": "2026-11-01T12:55:26.173Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-dmevbthdzh": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:11.353Z",
+   "lastOk": "2026-11-01T12:55:26.444Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-o8todsm2gv": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:11.645Z",
+   "lastOk": "2026-11-01T12:55:26.748Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-2-8sga9qex": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:11.868Z",
+   "lastOk": "2026-11-01T12:55:27.059Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-6-vilhl-lv": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:12.207Z",
+   "lastOk": "2026-11-01T12:55:27.373Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-9fhrv-_tww": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:12.438Z",
+   "lastOk": "2026-11-01T12:55:27.713Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-guy1cnuajr": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:12.718Z",
+   "lastOk": "2026-11-01T12:55:28.051Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-japanesekoreanug": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:12.971Z",
+   "lastOk": "2026-11-01T12:55:28.386Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-02kyy9q5fy": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:13.352Z",
+   "lastOk": "2026-11-01T12:55:28.716Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-mjdqfb68q1": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:13.635Z",
+   "lastOk": "2026-11-01T12:55:29.058Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-yamato-natsuna-lol-katarina": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:13.889Z",
+   "lastOk": "2026-11-01T12:55:29.364Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-wcnac9zs-i": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:14.199Z",
+   "lastOk": "2026-11-01T12:55:29.677Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-iqjmsczied": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:14.422Z",
+   "lastOk": "2026-11-01T12:55:29.958Z",
    "lastError": null,
    "nextTry": null,
-   "lastCount": 15
+   "lastCount": 0
   },
   "yt-zwyro": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:14.675Z",
+   "lastOk": "2026-11-01T12:55:30.263Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-jankos": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:14.976Z",
+   "lastOk": "2026-11-01T12:55:30.586Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-krugz": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:15.276Z",
+   "lastOk": "2026-11-01T12:55:30.933Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-turkish-taliyah": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:15.644Z",
+   "lastOk": "2026-11-01T12:55:31.261Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-taowb": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:15.905Z",
+   "lastOk": "2026-11-01T12:55:31.619Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-hansuo": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:16.234Z",
+   "lastOk": "2026-11-01T12:55:31.938Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-proguides-challenger-league": {
    "attempts": 0,
-   "lastOk": "2026-11-01T01:14:16.459Z",
+   "lastOk": "2026-11-01T12:55:32.321Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   }
  },
- "lastDiscovery": "2026-11-01T07:03:25.731Z",
+ "lastDiscovery": "2026-11-01T12:55:32.351Z",
  "failures": [],
  "quarantine": [
   {
@@ -566,71 +566,6 @@
   }
  ],
  "rejected": [
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-2",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « League definitely has a lot of strategy elements to it, but … »"
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Veigar."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Tahm Kench."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Corki."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau bronze : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-3",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Thresh."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Jhin."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Jinx."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau argent : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-4",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « He's completely ignoring the fact that mid lane has priority… »"
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Pantheon."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
   {
    "id": "u-ai-yt-eceSyaVnz3M-5",
    "reasons": [
@@ -3029,6 +2964,47 @@
    ],
    "at": "2026-11-01",
    "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-e8mDDPj4DjQ-1",
+   "reasons": [
+    {
+     "code": "citation-trop-longue",
+     "why": "Passage de plus de 320 caractères : résumer plutôt que republier."
+    },
+    {
+     "code": "mention",
+     "why": "Lillia n'est cité qu'en exemple : ce n'est pas un conseil sur Lillia."
+    },
+    {
+     "code": "mention",
+     "why": "Graves n'est cité qu'en exemple : ce n'est pas un conseil sur Graves."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-e8mDDPj4DjQ-3",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-e8mDDPj4DjQ : « I'm losing stacks now, which makes me not want to fight, rig… »"
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-e8mDDPj4DjQ-4",
+   "reasons": [
+    {
+     "code": "citation-trop-longue",
+     "why": "Passage de plus de 320 caractères : résumer plutôt que republier."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
   }
  ],
  "pending": [
@@ -3067,10 +3043,12 @@
   "c-riot-dev-yuumi-s-rework",
   "c-yt-S3F9CpeiSNE",
   "c-riot-champion-insights-zeri",
+  "c-yt-C9mbXu7HgEA",
   "c-yt-hADG2i46dEQ",
   "c-yt-_rORbB3xpYo",
   "c-inven-board-baron",
-  "c-wtl-4072"
+  "c-wtl-4072",
+  "c-yt-PDRr_YJlDP8"
  ],
  "review": [
   "u-lucian-2620-ad",
@@ -4166,7 +4144,8 @@
   "u-ai-yt--J8fOgYCRbI-3",
   "u-ai-yt--J8fOgYCRbI-4",
   "u-ai-yt--J8fOgYCRbI-5",
-  "u-ai-yt--J8fOgYCRbI-6"
+  "u-ai-yt--J8fOgYCRbI-6",
+  "u-ai-yt-e8mDDPj4DjQ-2"
  ],
  "contested": [],
  "retired": [
@@ -5567,57 +5546,6 @@
   "month": 0,
   "calls": [
    {
-    "at": "2026-11-01T01:19:02.689Z",
-    "content": "c-yt-uB3DBca5uEw",
-    "model": "gemini-3.5-flash-lite",
-    "input": 19168,
-    "output": 1927,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:19:10.743Z",
-    "content": "c-yt-uB3DBca5uEw",
-    "model": "gemini-3.5-flash-lite",
-    "input": 6653,
-    "output": 241,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:19:20.279Z",
-    "content": "c-yt-uB3DBca5uEw",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5850,
-    "output": 80,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:19:29.322Z",
-    "content": "c-yt-uB3DBca5uEw",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5870,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:19:38.276Z",
-    "content": "c-yt-uB3DBca5uEw",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5840,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:20:00.935Z",
-    "content": "c-yt-v6dgAHQHx78",
-    "model": "gemini-3.5-flash-lite",
-    "input": 12107,
-    "output": 6727,
-    "usd": 0
-   },
-   {
     "at": "2026-11-01T01:20:10.210Z",
     "content": "c-yt-v6dgAHQHx78",
     "model": "gemini-3.5-flash-lite",
@@ -6001,6 +5929,58 @@
     "model": "gemini-3-flash-preview",
     "input": 5864,
     "output": 30,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T13:17:15.544Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 14071,
+    "output": 4287,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T13:19:42.252Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 7878,
+    "output": 2533,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T13:22:25.698Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 5971,
+    "output": 92,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T13:29:26.383Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 5929,
+    "output": 104,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T13:30:47.217Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 5937,
+    "output": 92,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T13:31:41.437Z",
+    "content": "c-yt-e8mDDPj4DjQ",
+    "model": "gemini-3.8-flash",
+    "input": 5936,
+    "output": 73,
     "usd": 0,
     "kind": "verification-extrait"
    }

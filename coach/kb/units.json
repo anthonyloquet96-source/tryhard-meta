@@ -70883,7 +70883,96 @@
    },
    "version": 1,
    "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-e8mDDPj4DjQ-2",
+   "claim": "Selon Coach Leo : en sortant de base avec un jungler à vidage rapide, prends en priorité le camp neutre (Carapateur) avant tes propres monstres pour maximiser le nombre total de camps disponibles.",
+   "champions": [],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "jungle",
+    "methode"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "diamant",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "Sortir de la fontaine après une mort ou un rappel alors qu'un camp neutre (Carapateur) est présent."
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "diamant",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-e8mDDPj4DjQ",
+     "locator": "[10:32]",
+     "lang": "en",
+     "passage": "So what's next is I always want to take the neutral camp first here. Okay, so you see I'm running past my Gromp, because I want to take the neutral camp, okay? You always want to look to take the neutral camp, this is just obviously a jungle thing, but especially when you're playing fast-clearing junglers",
+     "autoChecked": {
+      "by": "gemini-3.8-flash",
+      "at": "2026-11-01",
+      "window": "612-672s",
+      "said": true,
+      "supported": true,
+      "gap": "L'auteur justifie son choix en indiquant seulement qu'il veut un maximum de camps disponibles (« an abundance of camps, more than less »), sans mentionner le fait que ses camps sont couverts ou que l'adversaire risque de contester le carapateur à tout moment."
+     }
+    },
+    {
+     "content": "c-yt-e8mDDPj4DjQ",
+     "locator": "[10:32]",
+     "lang": "en",
+     "passage": "you really want an abundance of camps, right? You want more than less."
+    }
+   ],
+   "mentions": [],
+   "action": "Passe devant tes camps de jungle encore en vie sans les toucher pour aller sécuriser le Carapateur contestable avant de revenir nettoyer tes propres monstres.",
+   "observe": "Contrôle des Carapateurs et conservation des camps personnels sans les faire voler par l'ennemi.",
+   "use": {
+    "when": "Tu sors de ta base alors qu'un Carapateur de rivière est disponible et que tes propres camps sont également apparus.",
+    "why": "",
+    "who": "Junglers à vidage rapide.",
+    "how": [
+     "Ignore temporairement ton camp intérieur (comme le Gromp).",
+     "Dirige-toi directement dans la rivière pour abattre le Carapateur.",
+     "Reviens ensuite sécuriser tes camps intérieurs."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": ""
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.7-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
   }
  ],
- "updatedAt": "2026-11-01T07:46:27.354Z"
+ "updatedAt": "2026-11-01T13:31:47.608Z"
 }
