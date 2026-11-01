@@ -703,7 +703,7 @@ await t("COACH-006 Catalogue de métriques : formules, null, adversaire, validit
   const { computeMetrics, CATALOG } = await import("../metrics.mjs");
   const g = v1Game({ cs10: 72, deaths: 2, kills: 4, assists: 3, teamKills: 14 });
   const m = computeMetrics(g.match, g.timeline, "p1");
-  assert(m.valid && m.role === "MIDDLE" && m.metric_version === "metrics-1", "partie valide mal reconnue");
+  assert(m.valid && m.role === "MIDDLE" && m.metric_version === "metrics-2", "partie valide mal reconnue");
   assert(m.metrics.cs_at_10.value === 72 && m.metrics.cs_at_10.precision_ms === 200, "sbires à 10 min mal lus");
   assert(m.metrics.early_deaths.value === 2, "morts avant 14 min");
   assert(m.metrics.kill_participation.value === 0.5, "participation aux kills");
@@ -731,7 +731,7 @@ await t("COACH-007 Choix de l'objectif (goals-2) : reproductible, sans LLM, scor
   const games = Array.from({ length: 20 }, (_, i) => { const g = v1Game({ id: `EUW1_${i}`, start: 1e6 - i, cs10: 58 + (i % 7), deaths: 3, kills: 6, assists: 4, teamKills: 16 }); return computeMetrics(g.match, g.timeline, "p1"); });
   const a = proposeGoal(games, "MIDDLE", { now: 5 }), b = proposeGoal(games, "MIDDLE", { now: 5 });
   assert(JSON.stringify(a) === JSON.stringify(b), "deux diagnostics différents sur les mêmes parties");
-  assert(a.goal.metric === "cs_at_10" && a.goal.status === "proposed" && a.goal.version === "goals-2" && a.goal.cycle === 1, `objectif inattendu : ${a.goal?.metric}`);
+  assert(a.goal.metric === "cs_at_10" && a.goal.status === "proposed" && a.goal.version === "goals-3" && a.goal.cycle === 1, `objectif inattendu : ${a.goal?.metric}`);
   // Cible : 55e centile personnel, au moins une unité de mieux que la médiane, jamais au-delà de la référence
   const vals = games.map(g => g.metrics.cs_at_10.value).sort((x, y) => x - y), p55 = vals[Math.floor(0.55 * 19)];
   assert(a.goal.target === Math.max(p55, a.goal.baseline + 1) && a.goal.target_quantile === 0.55 && a.goal.target <= 70, `cible ${a.goal.target}, attendu ${Math.max(p55, a.goal.baseline + 1)}`);
@@ -766,6 +766,18 @@ await t("COACH-007 Choix de l'objectif (goals-2) : reproductible, sans LLM, scor
   const refCap = { MIDDLE: { cs_at_10: { n: 8000, p25: 50, p50: a.goal.target + 0.5, p75: 70, level: "Diamant et plus" } } };
   const nextCapped = proposeGoal(games, "MIDDLE", { references: refCap, pastGoals: [mastered] }).goal;
   assert(!nextCapped || nextCapped.metric !== "cs_at_10" || nextCapped.target <= a.goal.target + 0.5, `cible au-delà de la référence après maîtrise : ${nextCapped?.target}`);
+  // Rotation anti-monotonie (01/11) : après un cycle de farm, une autre catégorie passe devant dès qu'elle vaut 70 % du meilleur score,
+  // avec un bonus pour une catégorie jamais travaillée ; sinon on reste sur le farm ; jamais un candidat inéligible
+  const { rotate } = await import("../goals.mjs");
+  const cand = (metric, category, score, eligible = true) => ({ metric, category, score, eligible });
+  const farmDone = [{ metric: "cs_at_10", role: "MIDDLE", outcome: "achieved", created_at: 2 }];
+  const r1 = rotate([cand("cs_at_15", "lane", 60), cand("ward_kills_20", "vision", 45), cand("early_deaths", "survie", 90, false)], farmDone);
+  assert(r1.best.metric === "ward_kills_20" && r1.rotation.excluded?.category === "lane" && r1.best.rotation_bonus === RULES.rotationNewCategory, `rotation : ${r1.best.metric}`);
+  const r2 = rotate([cand("cs_at_15", "lane", 60), cand("ward_kills_20", "vision", 30)], farmDone);
+  assert(r2.best.metric === "cs_at_15" && !r2.rotation.excluded?.category, `rotation sous 70 % : ${r2.best.metric}`);
+  const r3 = rotate([cand("cs_at_15", "lane", 60), cand("xp_at_10", "lane", 50)], farmDone);
+  assert(r3.best.metric === "xp_at_10" && r3.rotation.excluded?.family === "farm", `rotation de famille : ${r3.best.metric}`);
+  assert(rotate([cand("cs_at_15", "lane", 60)], []).best.metric === "cs_at_15" && rotate([cand("x", "lane", 1, false)], []).best === null, "rotation sans historique");
   return `sbires à 10 min ${a.goal.baseline} → ${a.goal.target} (55e centile) ; après maîtrise : 60e centile et au moins ${a.goal.target} + 0,25·s (→ ${next.target}), plafond à la référence ; morts au diagnostic seulement ; pas d'objectif sous 15 parties.`;
 });
 

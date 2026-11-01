@@ -568,6 +568,8 @@ async function c2V1Load(force = false) {
   V.busy = false; render(false);
 }
 const C2_V1_ROLE = { TOP: "top", JUNGLE: "jungle", MIDDLE: "mid", BOTTOM: "ADC", UTILITY: "support" };
+// Catégories de compétences des objectifs (coach/metrics.mjs, CATEGORIES) : affichées sur la carte, un objectif = une compétence
+const C2_V1_CATEGORY = { lane: "Lane & ressources", survie: "Survie & combats", vision: "Vision & information", tempo: "Tempo & économie", carte: "Carte & objectifs", poste: "Maîtrise du poste" };
 // « en tant que top », « en tant qu'ADC » : l'objectif est toujours donné pour un poste précis (retour d'Anthony, 29/10)
 // Site anglais : « as <b>mid</b> », le texte qui précède est traduit par i18n.js (« Ton objectif » → « Your goal »)
 const c2AsRole = r => { const n = C2_V1_ROLE[r] || r || "ce poste"; if (window.LANG === "en") return `<span>as <b>${esc(C2_V1_ROLE[r] || r || "this role")}</b></span>`; return `en tant ${/^[aeiouy]/i.test(n) ? "qu'" : "que "}<b>${esc(n)}</b>`; };
@@ -707,7 +709,7 @@ function c2V1Card(p) {
   if (enter) { c2Seen.add(seenKey); setTimeout(c2CountUp, 0); }
   const tier = c2V1Won(V.history).filter(x => x.metric === g.metric && x.role === g.role).length + 1;
   if (g.status === "proposed") setTimeout(() => c2Fx("new", g, { tier }), 0);
-  const head = `<p class="label">${g.status === "proposed" ? "Ton prochain objectif" : "Ton objectif en cours"} ${c2AsRole(g.role)}${tier > 1 ? ` · palier ${tier}` : ""}</p>
+  const head = `<p class="label">${g.status === "proposed" ? "Ton prochain objectif" : "Ton objectif en cours"} ${c2AsRole(g.role)}${tier > 1 ? ` · palier ${tier}` : ""}</p>${C2_V1_CATEGORY[g.category] ? `<p class="c2-v1-cat">${esc(C2_V1_CATEGORY[g.category])}</p>` : ""}
     <h3 class="c2-v1-title">${esc(g.label)}</h3>
     <div class="c2-v1-nums"><div><span class="fine">Toi aujourd'hui</span><b><span data-count>${esc(g.baseline_text)}</span>${unit}</b></div><span class="c2-v1-arrow" aria-hidden="true">→</span><div class="goal"><span class="fine">${g.direction === "lower" ? "Au plus" : "Ta cible"}</span><b><span data-count data-delay="250">${esc(g.target_text)}</span>${unit}</b></div></div>`;
   // Conseils sourcés rédigés en français (non traduits) : en anglais, le bloc entier reste en français, annoncé comme tel,
@@ -798,6 +800,11 @@ const C2_V1_TIPS = {
   kill_participation: { themes: ["teamfight", "macro"], match: /roam|rejoin|escarmouche|skirmish|combat|teamfight|gank|\baide|\bkills?\b|minimap/i, avoid: C2_V1_LATE },
   vision_per_min: { themes: ["vision", "methode"], match: /\bwards?\b|vision|balise|trinket|contr[ôo]le|sweep|oracle|lentille/i },
   farm_15_25: { themes: ["vagues", "macro", "lane"], themesRole: { JUNGLE: ["jungle", "macro", "vagues"] }, match: /^(?=.*\b(farm\w*|sbires?|cs|vagues?|camps?)\b)(?=.*(phase de lane|milieu de partie|mid[- ]?game|side ?lanes?|lanes? de côté|lanes? latérales?|voies latérales|vagues latérales|dead time|temps mort))/i, matchRole: { JUNGLE: /^(?=.*\b(camps?|clear\w*|farm\w*)\b)(?=.*(dead time|temps mort|refais|après avoir fini|milieu de partie|lanes? de côté|vagues? latérales?))/i }, avoid: /baron|nashor|inhib|atakhan|ancien|elder|\bwards?\b|balise|jungler adverse|half roam|demi-décalage|rage split\w*/i },
+  // Nouveaux objectifs du 01/11 (catalogue metrics-2), mêmes motifs que coach/metrics.mjs
+  ward_kills_20: { themes: ["vision", "methode"], match: /\bwards?\b|vision|balise|trinket|oracle|lentille|sweep|contr[ôo]le/i },
+  control_wards_20: { themes: ["vision", "methode"], match: /control ward|pink|balise de contr[ôo]le|\bwards?\b|vision/i },
+  first_item_min: { themes: ["lane", "vagues", "build"], match: /\bback\b|retour|recall|objet|item|achat|tempo|\bor\b|gold/i, avoid: C2_V1_LATE },
+  gold_idle_share: { themes: ["lane", "vagues", "macro"], match: /\bback\b|retour|recall|achat|tempo|\bor\b|gold/i, avoid: C2_V1_LATE },
   xp_at_10: { themes: ["lane", "vagues", "macro"], themesRole: { JUNGLE: ["jungle", "lane"] }, match: /\b(xp|exp[ée]rience)\b/i, matchRole: { JUNGLE: /\b(xp|exp[ée]rience|niveaux?|levels?|camps?|clear\w*|full ?clear|pathing|chemin)\b/i }, avoid: /baron|nashor|inhib|atakhan|ancien|elder|teamfight|siège|\bwards?\b|balise|jungler adverse|saute|skip|freez\w*|congel\w*|pings?\b/i },
 };
 // Résultat d'un cycle de 5 parties (moteur goals-2) : un cycle sans maîtrise n'est pas un échec

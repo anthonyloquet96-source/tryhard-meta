@@ -15,7 +15,7 @@
 
 import { handleV1, syncWorker } from "../coach/v1/api.mjs";
 import { createRiotV1 } from "../coach/v1/riot.mjs";
-import { METRIC_VERSION } from "../coach/metrics.mjs";
+import { METRIC_VERSION, REFERENCE_VERSIONS } from "../coach/metrics.mjs";
 import { createSupabaseRest, createSupabaseStore } from "../coach/v1/store-supabase.mjs";
 
 export const ORIGINS = ["https://anthonyloquet96-source.github.io", "http://localhost:3000"];
@@ -103,7 +103,8 @@ export function createV1Worker({ fetchImpl = fetch, now = () => Date.now(), sb =
       return store.upsertPlayer({ ...p, user_id: uid });
     } } : store;
     // Repères par rang (test privé, décision d'Anthony du 27/10) : { MASTER: { BOTTOM: { cs_at_10: {…} } } } ; le joueur vise le rang au-dessus du sien
-    if (!refsCache) refsCache = await rest.rest("GET", `metric_references?metric_version=eq.${METRIC_VERSION}&select=*`).then(rows => rows.filter(r => TIER_LABEL[r.level]).reduce((m, r) => ((((m[r.level] ||= {})[r.role] ||= {})[r.metric] = { n: r.n, p25: Number(r.p25), p50: Number(r.p50), p75: Number(r.p75), level: TIER_LABEL[r.level] }), m), {})).catch(() => null);
+    // Toutes les versions de métriques compatibles ; les plus anciennes d'abord, pour qu'une ligne plus récente l'emporte
+    if (!refsCache) refsCache = await rest.rest("GET", `metric_references?metric_version=in.(${REFERENCE_VERSIONS.join(",")})&select=*`).then(rows => rows.sort((a, b) => REFERENCE_VERSIONS.indexOf(b.metric_version) - REFERENCE_VERSIONS.indexOf(a.metric_version))).then(rows => rows.filter(r => TIER_LABEL[r.level]).reduce((m, r) => ((((m[r.level] ||= {})[r.role] ||= {})[r.metric] = { n: r.n, p25: Number(r.p25), p50: Number(r.p50), p75: Number(r.p75), level: TIER_LABEL[r.level] }), m), {})).catch(() => null);
     const riot = env.RIOT_API_KEY ? createRiotV1(env.RIOT_API_KEY, { fetchImpl }) : null;
     // 3 parties par requête : environ 25 appels sortants, sous la limite de 50 du Worker gratuit
     const v1ctx = { store: linkStore, riot, references: refsCache, champRefs, syncBudget: 3 };

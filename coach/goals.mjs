@@ -22,7 +22,7 @@
 
 import { CATALOG, GUARDRAILS } from "./metrics.mjs";
 
-export const GOAL_VERSION = "goals-2";
+export const GOAL_VERSION = "goals-3";
 export const RULES = {
   minGames: 15, baselineGames: 20, minValidShare: 0.7, historyMax: 50, minRefSample: 200,
   evaluationGames: 5, minimumValid: 4, successRequired: 3,
@@ -31,8 +31,14 @@ export const RULES = {
   // Après une maîtrise, le départ du palier suivant = médiane des parties jouées depuis le début de l'objectif maîtrisé (au moins
   // evaluationGames), si elle est meilleure que la médiane des 20 dernières (démo du 31/10 : 63 de moyenne, « Toi aujourd'hui 58 »)
   freshAfterMastery: true, freshWeight: 0.5,
+  // Rotation anti-monotonie (brainstorm du 01/11/2026 avec GPT-6) : bonus de score pour une catégorie jamais travaillée, pour une
+  // catégorie absente des 3 derniers cycles ; la catégorie (sinon la famille) du dernier cycle est écartée dès qu'un autre candidat
+  // atteint 70 % du meilleur score de base. Sous ce seuil on consolide : jamais un objectif secondaire juste pour varier.
+  rotationNewCategory: 0.25, rotationRestedCategory: 0.15, rotationFloor: 0.7,
 };
-const FLOOR = { cs_at_10: 4, cs_at_15: 6, cs_per_min: 0.4, early_deaths: 0.75, kill_participation: 0.05, vision_per_min: 0.1, xp_at_10: 150, objective_participation: 0.1 };
+const FLOOR = { cs_at_10: 4, cs_at_15: 6, cs_per_min: 0.4, early_deaths: 0.75, kill_participation: 0.05, vision_per_min: 0.1, xp_at_10: 150, objective_participation: 0.1,
+  ward_kills_20: 0.75, control_wards_20: 0.5, first_item_min: 0.5, gold_idle_share: 0.03, dead_share: 0.02 };
+const categoryOf = k => CATALOG[k]?.category || "poste";
 // Résultats d'un cycle d'évaluation
 export const OUTCOMES = ["achieved", "improving", "stable", "needs_review", "failed", "inconclusive"];
 
@@ -91,7 +97,7 @@ export function prioritize(games, role, { references = null, exclude = [], quant
     const obs = comparable.map(g => g.metrics[key]?.value ?? null);
     const valid = obs.filter(v => v != null);
     const share = comparable.length ? valid.length / comparable.length : 0;
-    const row = { metric: key, label: c.labelRole?.[role] || c.label, games: comparable.length, valid: valid.length, eligible: false, reason: null };
+    const row = { metric: key, label: c.labelRole?.[role] || c.label, category: c.category, games: comparable.length, valid: valid.length, eligible: false, reason: null };
     if (comparable.length < RULES.minGames) { out.push({ ...row, reason: `moins de ${RULES.minGames} parties comparables` }); continue; }
     if (share < RULES.minValidShare) { out.push({ ...row, reason: `moins de ${Math.round(RULES.minValidShare * 100)} % d'observations valides` }); continue; }
     if (exclude.includes(key)) { out.push({ ...row, reason: "mise de côté après un échec ou une alerte, jusqu'au prochain diagnostic" }); continue; }
@@ -120,14 +126,15 @@ export function prioritize(games, role, { references = null, exclude = [], quant
     // sur 82 demandaient moins, « 62 → 63 sbires », et la cible était déjà atteinte dans 45 % des parties de départ)
     const minStep = Math.max(unit, RULES.progressSd * s);
     let target = dir > 0 ? Math.min(ref.value, Math.max(personal, baseline + minStep)) : Math.max(ref.value, Math.min(personal, baseline - minStep));
-    target = c.direction === "lower" ? Math.floor(target + 1e-9) : round(target, dec);
+    // Métrique « moins c'est mieux » en entiers (morts) : arrondi vers le bas ; avec décimales ou en pourcentage, arrondi normal
+    target = c.direction === "lower" && dec === 0 && !c.percent ? Math.floor(target + 1e-9) : round(target, dec);
     if (dir * (target - baseline) <= 0) target = round(baseline + dir * unit, dec);
     // Après une maîtrise : la cible suivante dépasse l'ancienne d'au moins 0,25·s (une unité au minimum). Sinon, 5 bonnes
     // parties sur 20 ne déplacent presque pas la médiane et le même objectif revient avec la même cible.
     const prev = masteredTarget(key);
     if (prev != null) {
       const step = Math.max(unit, RULES.progressSd * s);
-      const floor = c.direction === "lower" ? Math.floor(prev - step + 1e-9) : Math.ceil((prev + step) * 10 ** dec - 1e-9) / 10 ** dec;
+      const floor = c.direction === "lower" ? Math.floor((prev - step) * 10 ** dec + 1e-9) / 10 ** dec : Math.ceil((prev + step) * 10 ** dec - 1e-9) / 10 ** dec;
       if (dir * (floor - target) > 0) target = floor;
     }
     // L'arrondi ne doit pas faire passer la cible au-delà de la référence (0,5187 arrondi à 0,52)
@@ -141,31 +148,39 @@ export function prioritize(games, role, { references = null, exclude = [], quant
     // Proposition automatique suspendue (catalogue : autoPropose false) : la métrique reste au diagnostic
     const auto = c.autoPropose !== false;
     const eligible = gap > 0 && auto && visible;
-    out.push({ ...row, eligible, reason: gap <= 0 ? "déjà au niveau de la référence" : !visible ? "à moins d'un point de la référence" : auto ? null : "objectif automatique suspendu (risque de jeu passif)", baseline: round(baseline, 3), ...(baseline !== windowBaseline ? { window_baseline: round(windowBaseline, 3) } : {}), spread: round(s, 3), reference: ref, target, target_quantile: q,
+    out.push({ ...row, eligible, reason: gap <= 0 ? "déjà au niveau de la référence" : !visible ? "à moins d'un point de la référence" : auto ? null : c.autoReason || "objectif automatique suspendu (risque de jeu passif)", baseline: round(baseline, 3), ...(baseline !== windowBaseline ? { window_baseline: round(windowBaseline, 3) } : {}), spread: round(s, 3), reference: ref, target, target_quantile: q,
       factors: { G: round(G, 3), I: c.impact, F: round(F, 3), A: c.actionability, C: round(C, 3) }, score: round(score, 2) });
   }
   return out.sort((a, b) => (b.eligible - a.eligible) || ((b.score ?? -1) - (a.score ?? -1)) || a.metric.localeCompare(b.metric));
 }
 
-// Contrat d'objectif. Après un cycle « improving » ou « stable », le même objectif repart pour un nouveau cycle (même cible,
-// même départ) ; après une maîtrise, la métrique repart au 60e centile ; après un échec ou une alerte, sa famille est mise de côté.
+// Contrat d'objectif. Après un cycle « improving », le même objectif repart pour un nouveau cycle (même cible, même départ) ;
+// après un cycle « stable », il repart aussi, sauf si une autre catégorie (ou famille) vaut la rotation (RULES.rotationFloor) :
+// on ne fait pas tourner un joueur en rond sur le même geste (01/11). Après une maîtrise, la métrique repart au 60e centile ;
+// après un échec ou une alerte, sa famille est mise de côté.
 export function proposeGoal(games, role, { references = null, pastGoals = [], now = Date.now() } = {}) {
   const closed = pastGoals.filter(g => g.role === role && g.outcome).sort((a, b) => b.created_at - a.created_at);
   const last = closed[0];
-  if (last && ["improving", "stable"].includes(last.outcome)) {
+  const repeat = () => {
     const c = CATALOG[last.metric];
     return {
       diagnostic: prioritize(games, role, { references }),
       goal: { ...pick(last), id: `${role}-${last.metric}-${now}`, cycle: (last.cycle || 1) + 1, chain_id: last.chain_id || last.id, previous_outcome: last.outcome,
         status: "proposed", created_at: now, exercise: c.exercise ? c.exercise(last.target, last.role) : null },
     };
+  };
+  if (last?.outcome === "improving") return repeat();
+  if (last?.outcome === "stable") {
+    const rows = prioritize(games, role, { references, exclude: [] });
+    const { rotation } = rotate(rows, closed);
+    if (!rotation?.excluded) return repeat();
   }
   const exclude = last && ["failed", "needs_review"].includes(last.outcome) ? Object.keys(CATALOG).filter(k => fam(k) === fam(last.metric)) : [];
   const mastered = new Set(closed.filter(g => g.outcome === "achieved").map(g => g.metric));
   const lastMastered = k => closed.find(g => g.outcome === "achieved" && g.metric === k)?.target ?? null;
   const lastMasteredAt = k => closed.find(g => g.outcome === "achieved" && g.metric === k)?.active_at ?? null;
   const rows = prioritize(games, role, { references, exclude, quantileFor: k => (mastered.has(k) ? RULES.targetQuantileAfterMastery : RULES.targetQuantile), masteredTarget: lastMastered, masteredSince: lastMasteredAt });
-  const best = rows.find(r => r.eligible);
+  const { best, rotation } = rotate(rows, closed);
   if (!best) return { goal: null, diagnostic: rows };
   const c = CATALOG[best.metric];
   const win = baselineWindow(games, role);
@@ -179,11 +194,35 @@ export function proposeGoal(games, role, { references = null, pastGoals = [], no
       evaluation_games: RULES.evaluationGames, minimum_valid_games: RULES.minimumValid, success_required: RULES.successRequired,
       version: GOAL_VERSION, engine_version: GOAL_VERSION, status: "proposed", created_at: now, score: best.score, factors: best.factors,
       exercise: c.exercise ? c.exercise(best.target, role) : null,
-      kbThemes: c.kbThemes || [],
+      kbThemes: c.kbThemes || [], category: c.category, rotation,
     },
   };
 }
-const pick = g => Object.fromEntries(["metric", "role", "direction", "baseline", "regress_baseline", "target", "target_quantile", "personal_sd", "reference", "baseline_window", "guardrails",
+
+// Rotation anti-monotonie sur les candidats éligibles (RULES.rotation*). Les lignes reçoivent adjusted_score et rotation_bonus
+// pour le diagnostic. Renvoie le candidat retenu et la trace de la décision (catégorie écartée, bonus).
+export function rotate(rows, closed = []) {
+  const eligible = rows.filter(r => r.eligible);
+  if (!eligible.length) return { best: null, rotation: null };
+  const last = closed[0] || null;
+  const lastCat = last ? categoryOf(last.metric) : null, lastFam = last ? fam(last.metric) : null;
+  const worked = new Set(closed.map(g => categoryOf(g.metric))), recent = new Set(closed.slice(0, 3).map(g => categoryOf(g.metric)));
+  for (const r of eligible) {
+    r.rotation_bonus = !worked.has(r.category) ? RULES.rotationNewCategory : !recent.has(r.category) ? RULES.rotationRestedCategory : 0;
+    r.adjusted_score = round(r.score * (1 + r.rotation_bonus), 2);
+  }
+  const bestBase = Math.max(...eligible.map(r => r.score));
+  let pool = eligible, excluded = null;
+  if (lastCat) {
+    const otherCat = eligible.filter(r => r.category !== lastCat && r.score >= RULES.rotationFloor * bestBase);
+    const otherFam = eligible.filter(r => fam(r.metric) !== lastFam && r.score >= RULES.rotationFloor * bestBase);
+    if (otherCat.length) { pool = otherCat; excluded = { category: lastCat }; }
+    else if (otherFam.length) { pool = otherFam; excluded = { family: lastFam }; }
+  }
+  const best = [...pool].sort((a, b) => b.adjusted_score - a.adjusted_score || b.score - a.score || a.metric.localeCompare(b.metric))[0];
+  return { best, rotation: { bonus: best.rotation_bonus, excluded, worked: [...worked] } };
+}
+const pick = g => Object.fromEntries(["metric", "role", "direction", "baseline", "regress_baseline", "target", "category", "target_quantile", "personal_sd", "reference", "baseline_window", "guardrails",
   "evaluation_games", "minimum_valid_games", "success_required", "version", "engine_version", "score", "factors", "kbThemes"].filter(k => k in g).map(k => [k, g[k]]));
 
 // Transitions autorisées

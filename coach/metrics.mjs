@@ -4,8 +4,20 @@
 // Seules les métriques « trainable » (un exercice mesurable associé) peuvent devenir un objectif.
 
 import { normalizeMatch, participantAt, laneOpponent, eventsOf, ratio, num } from "./normalize.mjs";
+import { FINAL_ITEMS } from "./final-items.mjs";
 
-export const METRIC_VERSION = "metrics-1";
+// metrics-2 (01/11/2026) : wards détruites et control wards avant 20 min, premier grand objet, or qui dort, temps mort.
+// Les repères mesurés (metric_references) des métriques inchangées restent valables : le Worker lit toutes ces versions.
+export const METRIC_VERSION = "metrics-2";
+export const REFERENCE_VERSIONS = ["metrics-2", "metrics-1"];
+
+// Catégories de compétences (brainstorm du 01/11/2026 avec GPT-6) : un objectif entraîne une compétence, pas une statistique.
+// Sert à la rotation anti-monotonie (coach/goals.mjs) et à l'affichage.
+export const CATEGORIES = { lane: "Lane & ressources", survie: "Survie & combats", vision: "Vision & information", tempo: "Tempo & économie", carte: "Carte & objectifs", poste: "Maîtrise du poste" };
+const CATEGORY_OF = { cs_at_10: "lane", cs_at_15: "lane", cs_per_min: "lane", farm_15_25: "lane", gold_at_10: "lane", xp_at_10: "lane", gold_diff_at_15: "lane", xp_diff_at_15: "lane",
+  early_deaths: "survie", dead_share: "survie", vision_per_min: "vision", wards_per_min: "vision", ward_kills_20: "vision", control_wards_20: "vision",
+  first_item_min: "tempo", gold_idle_share: "tempo", kill_participation: "carte", objective_participation: "carte", damage_per_gold: "poste", damage_per_min: "poste" };
+const mmss = t => `${Math.floor(t)}:${String(Math.round((t % 1) * 60)).padStart(2, "0")}`;
 const MIN = 60000;
 
 // Conseils de la base montrés avec un objectif (kbMatch, kbMatchRole pour un poste, kbAvoid) : le conseil doit parler du
@@ -84,6 +96,9 @@ export const CATALOG = {
   },
   kill_participation: {
     label: "Participation aux kills", unit: "%", direction: "higher", roles: ["MIDDLE", "JUNGLE", "UTILITY"], trainable: true, impact: 0.6, actionability: 0.6, percent: true,
+    // Retirée des objectifs automatiques (01/11/2026) : fiabilité intra-joueur de 0,00 à 0,14 selon le poste sur 87 joueurs réels,
+    // c'est la partie qui décide, pas le joueur. Reste au diagnostic et comme garde-fou.
+    autoPropose: false, autoReason: "objectif automatique suspendu (dépend trop de la partie, pas du joueur)",
     pedagogical: { MIDDLE: 0.5, JUNGLE: 0.55, UTILITY: 0.55 }, decimals: 0, kbThemes: ["teamfight", "macro"],
     kbMatch: /roam|rejoin|escarmouche|skirmish|combat|teamfight|gank|\baide|\bkills?\b|minimap/i, kbAvoid: LATE,
     // Geste par poste : un support ne pousse pas sa wave, un jungler n'en a pas (audit du 29/10)
@@ -98,6 +113,38 @@ export const CATALOG = {
     exercise: (t, role) => `Vise un score de vision de ${String(t).replace(".", ",")} par minute : ${role === "UTILITY" ? "pose les wards de ton item de support dès qu'elles sont disponibles et achète une control ward à chaque back." : "une control ward à chaque back et ton trinket dès qu'il est rechargé."}`,
   },
   wards_per_min: { label: "Wards posées par minute", unit: "/min", direction: "higher", roles: ["JUNGLE", "UTILITY"], trainable: false, impact: 0.4, actionability: 0.7, decimals: 2 },
+  // Nouveaux candidats du 01/11/2026 (brainstorm avec GPT-6, banc de 1 600 parties) ; autoPropose fixé par la mesure de stabilité
+  // intra-joueur (coach/stability.mjs, 70 joueurs) et de réussite par hasard (coach/stability-chance.mjs). Restent au diagnostic :
+  // wards détruites (fiabilité 0,13-0,28), premier grand objet (0,09-0,27), or qui dort (0,03-0,19) : sur 5 parties, le hasard décide. Repères pédagogiques = médianes Diamant+ (38 181 parties, coach/references.mjs du 01/11).
+  ward_kills_20: {
+    label: "Wards adverses détruites avant 20 min", family: "vision-adverse", unit: "wards", direction: "higher", roles: ["UTILITY", "JUNGLE", "MIDDLE", "BOTTOM"], trainable: true, impact: 0.5, actionability: 0.8,
+    autoPropose: false, autoReason: "nouvel objectif en attente de validation", pedagogical: { UTILITY: 5, JUNGLE: 2, MIDDLE: 1, BOTTOM: 2 }, decimals: 0, kbThemes: ["vision", "methode"],
+    kbMatch: /\bwards?\b|vision|balise|trinket|oracle|lentille|sweep|contr[ôo]le/i,
+    exercise: (t, role) => `Vise ${t} ward${t > 1 ? "s" : ""} adverse${t > 1 ? "s" : ""} détruite${t > 1 ? "s" : ""} avant 20:00 : ${role === "UTILITY" ? "passe ta lentille (trinket rouge) dans les buissons de la rivière et le tri-bush à chaque passage avec ton ADC, et casse les wards que tu vois poser."
+      : role === "JUNGLE" ? "prends la lentille dès ton premier back et balaie les entrées de ta jungle et les buissons de rivière sur ton chemin."
+      : "quand tu vas vers la rivière avec ta lentille, balaie le buisson avant d'y poser ta ward."}`,
+  },
+  control_wards_20: {
+    label: "Control wards posées avant 20 min", family: "vision-controle", unit: "control wards", direction: "higher", roles: ["UTILITY", "JUNGLE"], trainable: true, impact: 0.5, actionability: 0.9,
+    // Validé le 01/11/2026 sur 70 joueurs réels (coach/stability.mjs) : fiabilité intra-joueur 0,67 en support et 0,60 en jungle (le farm est
+    // à 0,3-0,5), réussite par hasard 19 % sur 5 parties, médianes Diamant+ 3 et 1, de 1 à 5 par rang chez les supports
+    pedagogical: { UTILITY: 3, JUNGLE: 1 }, decimals: 0, kbThemes: ["vision", "methode"],
+    kbMatch: /control ward|pink|balise de contr[ôo]le|\bwards?\b|vision/i,
+    exercise: (t, role) => `Vise ${t} control ward${t > 1 ? "s" : ""} posée${t > 1 ? "s" : ""} avant 20:00 : achètes-en une à chaque back (75 or) et pose-la ${role === "UTILITY" ? "dans le buisson de rivière côté dragon, ou dans le tri-bush quand tu pousses." : "à l'entrée de ta jungle, du côté du prochain objectif."}`,
+  },
+  first_item_min: {
+    label: "Premier grand objet", family: "tempo", unit: "min", direction: "lower", roles: ["MIDDLE", "TOP", "BOTTOM", "JUNGLE"], trainable: true, impact: 0.6, actionability: 0.6,
+    autoPropose: false, autoReason: "nouvel objectif en attente de validation", pedagogical: { MIDDLE: 11.4, TOP: 12.3, BOTTOM: 11.1, JUNGLE: 10.1 }, decimals: 1, kbThemes: ["lane", "vagues", "build"],
+    kbMatch: /\bback\b|retour|recall|objet|item|achat|tempo|\bor\b|gold/i, kbAvoid: LATE,
+    exercise: t => `Termine ton premier grand objet avant ${mmss(t)} : prévois ton back quand tu as l'or d'un gros composant et que ta wave vient d'être poussée, plutôt que de rester en lane avec l'or qui dort.`,
+  },
+  gold_idle_share: {
+    label: "Or qui dort entre 10 et 25 min", family: "tempo", unit: "%", direction: "lower", roles: ["MIDDLE", "TOP", "BOTTOM", "JUNGLE"], trainable: true, impact: 0.5, actionability: 0.6, percent: true,
+    autoPropose: false, autoReason: "nouvel objectif en attente de validation", pedagogical: { MIDDLE: 0.07, TOP: 0.06, BOTTOM: 0.13, JUNGLE: 0.17 }, decimals: 0, kbThemes: ["lane", "vagues", "macro"],
+    kbMatch: /\bback\b|retour|recall|achat|tempo|\bor\b|gold/i, kbAvoid: LATE,
+    exercise: t => `Au plus ${Math.round(t * 100)} % du temps avec plus de 1 300 or en poche entre 10 et 25 min : dès que tu peux acheter un gros composant, cherche le prochain moment sûr pour rentrer.`,
+  },
+  dead_share: { label: "Part de la partie passée mort", unit: "%", direction: "lower", roles: ["MIDDLE", "JUNGLE", "TOP", "BOTTOM", "UTILITY"], trainable: false, impact: 0.8, actionability: 0.5, percent: true, decimals: 0 },
   // Diagnostic seulement (brief) : dépendent trop du champion et de l'issue de la partie pour devenir un objectif
   damage_per_gold: { label: "Dégâts aux champions par or", unit: "", direction: "higher", roles: ["MIDDLE", "TOP", "BOTTOM"], trainable: false, impact: 0.4, actionability: 0.2, decimals: 2, diagnosticOnly: true },
   damage_per_min: { label: "Dégâts aux champions par minute", unit: "/min", direction: "higher", roles: ["MIDDLE", "TOP", "BOTTOM"], trainable: false, impact: 0.4, actionability: 0.2, decimals: 0, diagnosticOnly: true },
@@ -105,6 +152,7 @@ export const CATALOG = {
   // Prudence : être là ne veut pas dire que l'objectif était un bon choix
   objective_participation: { label: "Participation aux objectifs de ton équipe", unit: "%", direction: "higher", roles: ["JUNGLE"], trainable: false, impact: 0.6, actionability: 0.5, percent: true, decimals: 0 },
 };
+for (const [k, c] of Object.entries(CATALOG)) c.category = CATEGORY_OF[k] || "poste";
 
 // Garde-fous anti-passivité (coach/goals.mjs, checkGuardrails) : surveillés pendant tout objectif ; une dégradation nette
 // refuse la validation. Sbires et XP à 10 min pour la phase de lane, activité selon le poste (validés par Anthony, 26/10).
@@ -149,6 +197,10 @@ export function computeMetrics(match, timeline, puuid) {
   const teamElite = elite.filter(e => (e.killerTeamId ?? n.participants.find(p => p.participant_id === e.killerId)?.team_id) === me.team_id);
   const took = e => e.killerId === me.participant_id || (e.assistingParticipantIds || []).includes(me.participant_id);
   const enoughTime = T => n.duration_s != null && n.duration_s * 1000 >= T;
+  const wardKills = tlOk ? eventsOf(timeline, "WARD_KILL") : [], wardsPlaced = tlOk ? eventsOf(timeline, "WARD_PLACED") : [], bought = tlOk ? eventsOf(timeline, "ITEM_PURCHASED") : [];
+  const firstItem = bought.find(e => e.participantId === me.participant_id && FINAL_ITEMS.has(e.itemId));
+  // Or qui dort : part des minutes 10 à 25 (ou jusqu'à la fin) où le joueur garde au moins 1 300 or non dépensé
+  const idle = []; if (tlOk && n.duration_s != null) for (let t = 10; t <= Math.min(25, Math.floor(n.duration_s / 60)); t++) { const g = at(t * MIN)?.current_gold; if (g != null) idle.push(g); }
   const metrics = {
     cs_per_min: q(ratio(cs, minutes)),
     cs_at_10: q(m10?.cs, m10),
@@ -165,6 +217,11 @@ export function computeMetrics(match, timeline, puuid) {
     damage_per_gold: q(ratio(me.damage_to_champions, me.gold_earned)),
     damage_per_min: q(ratio(me.damage_to_champions, minutes)),
     objective_participation: q(tlOk && teamElite.length ? teamElite.filter(took).length / teamElite.length : null, null, { objectives: tlOk ? teamElite.length : null }),
+    ward_kills_20: q(tlOk && enoughTime(20 * MIN) ? wardKills.filter(e => e.killerId === me.participant_id && e.timestamp < 20 * MIN).length : null),
+    control_wards_20: q(tlOk && enoughTime(20 * MIN) ? wardsPlaced.filter(e => e.creatorId === me.participant_id && e.wardType === "CONTROL_WARD" && e.timestamp < 20 * MIN).length : null),
+    first_item_min: q(firstItem ? Math.round(firstItem.timestamp / MIN * 10) / 10 : null, null, { item_id: firstItem?.itemId ?? null }),
+    gold_idle_share: q(idle.length >= 5 ? idle.filter(g => g >= 1300).length / idle.length : null, null, { frames: idle.length }),
+    dead_share: q(ratio(me.time_dead_s, n.duration_s)),
   };
   return { match_id: n.match_id, patch: n.patch, start_ms: n.start_ms, role: me.role, champion: me.champion, won: me.won, metric_version: METRIC_VERSION, valid: !invalid, invalid_reason: invalid, timeline_status: n.timeline_status, opponent_confidence: opp.confidence, metrics };
 }
