@@ -2026,7 +2026,9 @@ const goalText = s => (window.LANG === "en" && window.i18nTr && s ? window.i18nT
 function pushBody(sub, extra = {}) {
   const S = prefs.notif.coach && typeof C2 !== "undefined" && C2.account && C2.v1Snap?.for === C2.account.riotId && C2.v1Snap;
   return { sub: sub.toJSON(), matches: prefs.notif.matches, detail: prefs.notif.detail, fav: prefs.favTeams, coach: prefs.notif.coach, lang: window.LANG === "en" ? "en" : "fr",
-    goal: S ? { label: goalText(S.label), role: S.role, target: S.target, unit: S.unit && S.unit !== "%" && S.unit !== "/min" ? goalText(S.unit) : S.unit, status: S.status, counted: S.counted, of: S.of } : null, ...extra };
+    goal: S ? { label: goalText(S.label), role: S.role, target: S.target, unit: S.unit && S.unit !== "%" && S.unit !== "/min" ? goalText(S.unit) : S.unit, status: S.status, counted: S.counted, of: S.of,
+      // Résumé des 7 derniers jours (notification du lundi) : intitulés et chiffres seulement
+      week: S.week ? { at: S.week.at, games: S.week.games, up: goalText(S.week.up), work: goalText(S.week.work), best: S.week.best && window.LANG === "en" ? S.week.best.replace(",", ".") : S.week.best, bestLabel: goalText(S.week.bestLabel) } : null } : null, ...extra };
 }
 const pushPost = (path, body) => fetch(`${PUSH_API}/api/push/${path}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
 function notifSheetRefresh() { if (route.sheet === "__notif") syncSheet(); }

@@ -278,6 +278,8 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
   };
   // Motifs : durées, compteurs et dates composées
   const R = [
+    [/^(\d+) parties? en 7 jours$/, (m, n) => `${n} game${n === "1" ? "" : "s"} in 7 days`],
+    [/^Meilleure partie, (.+)$/, (m, x) => `Best game, ${window.i18nTr ? window.i18nTr(x) : x}`],
     [/^(\d+) parties? : pas assez$/, (m, n) => `${n} game${n === "1" ? "" : "s"}: not enough`],
     [/^(.+) dans cette partie$/, "$1 in this game"],
     // Tour de l'app du 24/10 : phrases complètes restées en français
@@ -567,7 +569,7 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
     "Arrêter l'apprentissage": "Stop learning", "Terminer": "Finish", "Pas de jugement pendant cette phase.": "No judgement during this phase.", "ton départ": "your start", "(ton objectif)": "(your goal)",
     "mieux": "better", "moins bien": "worse", "pareil": "same", "Revoir sur la minimap": "Review on the minimap", "À retenir": "Takeaway", "Terminé : vois ce qui a bougé": "Done: see what changed",
     "Le jouer": "Playing it", "L'affronter": "Playing against it", "Vidéos": "Videos", "Astuces de Riot et des coachs": "Tips from Riot and coaches",
-    "Tes 5 dernières": "Your last 5", "net progrès": "clear progress", "léger progrès": "slight progress", "pas de changement net": "no clear change", "en baisse": "going down", "pas encore assez de parties récentes à ce poste": "not enough recent games in this role yet",
+    "Ta semaine": "Your week", "En progrès": "Improving", "Ce qui coince encore": "Still stuck", "Tes 5 dernières": "Your last 5", "net progrès": "clear progress", "léger progrès": "slight progress", "pas de changement net": "no clear change", "en baisse": "going down", "pas encore assez de parties récentes à ce poste": "not enough recent games in this role yet",
     "Courbe : tes 30 dernières parties ; ligne grise, ton niveau de départ ; ligne orange, ta dernière cible. Sur 5 parties, un changement peut encore venir du hasard : c'est la tendance sur plusieurs cycles qui compte.": "Chart: your last 30 games; grey line, your starting level; orange line, your latest target. Over 5 games a change can still be chance: the trend over several cycles is what counts.",
     "nouvel objectif en attente de validation": "new goal awaiting validation", "objectif automatique suspendu (dépend trop de la partie, pas du joueur)": "automatic goal suspended (depends on the game more than on the player)",
     "control wards": "control wards", "wards": "wards",

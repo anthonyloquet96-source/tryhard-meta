@@ -120,6 +120,17 @@ export function followed(mode, leagueSlug, teamNames, favTeams = []) {
 // Rappels du coach (notification site fermé, et bandeau à l'ouverture du site) : à partir du résumé de l'objectif,
 // sans chiffre inventé ; goal.left = parties restantes dans le cycle de l'objectif (null : compteurs inconnus).
 // Objectif fini (ni proposé, ni en cours) : annoncé une fois, puis plus rien (status « notified », null renvoyé).
+// Résumé de la semaine (notification du lundi), calculé par le site à la dernière visite (coach2.js, c2Week).
+// Visite de plus de 3 jours : le résumé ne couvrirait pas la semaine, on garde le rappel habituel.
+export function weekMessage(w, now = Date.now(), lang = "fr") {
+  if (!w || !(w.games > 0) || !(now - w.at <= 3 * 864e5)) return null;
+  const en = lang === "en", n = w.games;
+  const parts = [en ? `${n} game${n > 1 ? "s" : ""} in 7 days.` : `${n} partie${n > 1 ? "s" : ""} en 7 jours.`];
+  if (w.up) parts.push(en ? `Improving: ${w.up}.` : `En progrès : ${w.up}.`);
+  if (w.best) parts.push(en ? `Best game${w.bestLabel ? ` (${w.bestLabel})` : ""}: ${w.best}.` : `Meilleure partie${w.bestLabel ? ` (${w.bestLabel})` : ""} : ${w.best}.`);
+  if (w.work) parts.push(en ? `Still stuck: ${w.work}.` : `Ce qui coince encore : ${w.work}.`);
+  return parts.join(" ");
+}
 export const goalDone = g => !!g && g.status !== "proposed" && g.status !== "notified" && (!["active", "evaluating", ""].includes(g.status || "") || g.left === 0);
 const ROLE = { TOP: "top", JUNGLE: "jungle", MIDDLE: "mid", BOTTOM: "ADC", UTILITY: "support" };
 export function coachMessage(goal, day, lang = "fr") {

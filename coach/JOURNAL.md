@@ -2,6 +2,12 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — résumé du lundi (« Ta semaine »)
+- **Demande d'Anthony** : passer au résumé du lundi, reporté au tour 4 car il risquait de doubler « Ta progression ». Pour l'éviter : aucune carte en plus, rien de nouveau mesuré. Une ligne « Ta semaine » en tête de « Ta progression », calculée à partir des mêmes données (`c2V1Skills`, extrait de `c2V1Progress`).
+- **Contenu** (`c2Week`, 7 derniers jours) : le nombre de parties ; le geste qui progresse le plus (≥ 0,25 écart-type perso) ; ce qui coince encore (un geste en baisse ≤ −0,25, sinon l'objectif en cours s'il ne progresse pas déjà) ; la meilleure partie de la semaine sur le geste en cours, à partir de 2 parties à ce poste.
+- **Notification du lundi** (`worker/push.mjs`, déclencheur de 17 h UTC) : le lundi, `weekMessage` (`notif-events.mjs`) remplace le rappel habituel, même si un rappel est parti la veille. Le résumé est envoyé par le site avec le résumé d'objectif (`goal.week` : des intitulés et des chiffres, pas de Riot ID), et il est mis à jour après chaque synchronisation. Si la dernière visite date de plus de 3 jours, ou s'il n'y a eu aucune partie, le rappel habituel est gardé. Aucune migration : le résumé est rangé dans la colonne `goal`.
+- **Tests** : messages du lundi (texte, visite trop ancienne, semaine vide, anglais). 59/60 en local. La ligne a été vérifiée dans l'appli en démo.
+
 ## 2026-11-01 — vidéo refusée par Gemini (HTTP 403)
 - **Cas** : « El manejo de oleadas… Curso BOT EP 7 » (Dishake, `c-yt-eSiqAlivejM`), publique (oEmbed 200), mais Google refuse sa lecture par Gemini (403, « pas la permission ») : réglage de la vidéo ou de son auteur. Rien à contourner. Elle était réessayée à chaque passage, car les passages en échec n'enregistraient pas le compteur d'essais.
 - **Règle** (`video.mjs`, `gemini.mjs` transmet le code HTTP) : sur un 403, une petite requête texte vérifie la clé ; si la clé marche, la vidéo est classée « inaccessible » avec une note claire, sans nouvel essai ni échec ; si la clé ne marche pas, la lecture des vidéos s'arrête pour le passage, sans rien classer. Les vidéos déjà refusées 3 fois en 403 sont classées de même au prochain passage. Requête de contrôle testée (clé OK).

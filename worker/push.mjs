@@ -9,7 +9,7 @@
 // Limite de l'offre gratuite : 50 appels sortants par passage ; suffisant pour le test (quelques dizaines d'appareils).
 
 import { createSupabaseRest } from "../coach/v1/store-supabase.mjs";
-import { gameSnapshot, gameEvents, matchState, matchEvents, followed, detailed, coachMessage, goalDone } from "../notif-events.mjs";
+import { gameSnapshot, gameEvents, matchState, matchEvents, followed, detailed, coachMessage, goalDone, weekMessage } from "../notif-events.mjs";
 import { sendPush } from "./webpush.mjs";
 
 const LOLE_KEY = "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z"; // clé publique du site LoL Esports (déjà utilisée par le site)
@@ -35,7 +35,8 @@ export async function pushApi(request, env, cors) {
   if (url.pathname === "/api/push/unsubscribe") { await sb.rest("DELETE", key); return json(200, { ok: true }); }
   if (url.pathname === "/api/push/subscribe") {
     if (!sub.keys?.p256dh || !sub.keys?.auth) return json(400, { error: "clés manquantes" });
-    const g = b.goal && typeof b.goal === "object" ? b.goal : null;
+    const g = b.goal && typeof b.goal === "object" ? b.goal : null, w = g?.week && typeof g.week === "object" ? g.week : null;
+    const txt = (x, n) => (x == null ? null : String(x).slice(0, n));
     const row = {
       endpoint: sub.endpoint, p256dh: String(sub.keys.p256dh).slice(0, 200), auth: String(sub.keys.auth).slice(0, 100),
       matches: ["big", "fav", "off"].includes(b.matches) ? b.matches : "big",
@@ -43,7 +44,8 @@ export async function pushApi(request, env, cors) {
       detail: b.detail === "detaille" ? "detaille" : "essentiel",
       coach: b.coach !== false, lang: b.lang === "en" ? "en" : "fr", seen_at: new Date().toISOString(),
       // Résumé de l'objectif seulement : pas d'identifiant Riot
-      goal: g ? { label: String(g.label || "").slice(0, 120), role: String(g.role || "").slice(0, 12), target: String(g.target ?? "").slice(0, 20), unit: String(g.unit || "").slice(0, 12), status: String(g.status || "").slice(0, 12), left: g.of != null && Number.isFinite(Number(g.of)) ? Math.max(0, Math.min(20, Number(g.of) - (Number(g.counted) || 0))) : null } : null,
+      goal: g ? { label: String(g.label || "").slice(0, 120), role: String(g.role || "").slice(0, 12), target: String(g.target ?? "").slice(0, 20), unit: String(g.unit || "").slice(0, 12), status: String(g.status || "").slice(0, 12), left: g.of != null && Number.isFinite(Number(g.of)) ? Math.max(0, Math.min(20, Number(g.of) - (Number(g.counted) || 0))) : null,
+        week: w && Number.isFinite(Number(w.at)) ? { at: Number(w.at), games: Math.max(0, Math.min(200, Number(w.games) || 0)), up: txt(w.up, 120), work: txt(w.work, 120), best: txt(w.best, 30), bestLabel: txt(w.bestLabel, 120) } : null } : null,
     };
     await sb.rest("POST", "push_subs", { body: row, prefer: "resolution=merge-duplicates,return=minimal" });
     if (b.test) {
@@ -150,16 +152,19 @@ export async function pushLive(env) {
 export async function pushCoach(env, now = Date.now()) {
   if (!env.VAPID_PRIVATE_KEY || !env.SUPABASE_URL) return { skipped: true };
   const sb = createSupabaseRest({ url: env.SUPABASE_URL, serviceKey: env.SUPABASE_SERVICE_KEY });
-  const before = new Date(now - 2 * 864e5 + 3600e3).toISOString();
-  // Appareils vus dans les 14 derniers jours : pas de rappel à quelqu'un qui n'utilise plus le site
-  const subs = await sb.rest("GET", `push_subs?coach=eq.true&seen_at=gt.${new Date(now - 14 * 864e5).toISOString()}&or=(coach_at.is.null,coach_at.lt.${before})&select=endpoint,p256dh,auth,goal,lang&limit=40`);
+  const before = new Date(now - 2 * 864e5 + 3600e3).toISOString(), monday = new Date(now).getUTCDay() === 1;
+  // Appareils vus dans les 14 derniers jours : pas de rappel à quelqu'un qui n'utilise plus le site.
+  // Le lundi, le résumé de la semaine passe même si un rappel est parti la veille.
+  const subs = await sb.rest("GET", `push_subs?coach=eq.true&seen_at=gt.${new Date(now - 14 * 864e5).toISOString()}${monday ? "" : `&or=(coach_at.is.null,coach_at.lt.${before})`}&select=endpoint,p256dh,auth,goal,lang,coach_at&limit=40`);
   if (!subs?.length) return { sent: 0 };
   const day = Math.floor(now / 864e5);
-  const who = subs.filter(s => coachMessage(s.goal, day, s.lang));
-  const sent = await fanout(sb, env, who, s => ({ title: "MINDIFF · Coach", body: coachMessage(s.goal, day, s.lang), url: `${SITE}#/lol/coach`, tag: "coach" }));
+  const week = s => (monday ? weekMessage(s.goal?.week, now, s.lang) : null);
+  const text = s => week(s) || (!s.coach_at || Date.parse(s.coach_at) < Date.parse(before) ? coachMessage(s.goal, day, s.lang) : null);
+  const who = subs.filter(text);
+  const sent = await fanout(sb, env, who, s => ({ title: week(s) ? (s.lang === "en" ? "MINDIFF · Your week" : "MINDIFF · Ta semaine") : "MINDIFF · Coach", body: text(s), url: `${SITE}#/lol/coach`, tag: "coach" }));
   if (who.length) await sb.rest("PATCH", `push_subs?endpoint=in.(${who.map(s => `"${encodeURIComponent(s.endpoint)}"`).join(",")})`, { body: { coach_at: new Date(now).toISOString() }, prefer: "return=minimal" }).catch(() => null);
-  // Objectif fini : annoncé une seule fois ; le site renverra le nouvel objectif à la prochaine visite
-  for (const s of who.filter(s => goalDone(s.goal)))
+  // Objectif fini : annoncé une seule fois (pas le lundi si le résumé de la semaine a pris sa place) ; le site renverra le nouvel objectif à la prochaine visite
+  for (const s of who.filter(s => !week(s) && goalDone(s.goal)))
     await sb.rest("PATCH", `push_subs?endpoint=eq.${encodeURIComponent(s.endpoint)}`, { body: { goal: { ...s.goal, status: "notified" } }, prefer: "return=minimal" }).catch(() => null);
   return { sent };
 }
