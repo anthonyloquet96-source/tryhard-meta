@@ -33,12 +33,19 @@ const SCHEMA = {
 const TEACHING = /guide|tuto|coaching|case study|vod review|how to|comment (jouer|carry|monter)|dans la t[eê]te d'un|fundamentals|explained|breakdown|masterclass/i;
 export const isTeaching = c => Boolean(c.backfill || c.sourceId?.startsWith("riot-") || (TEACHING.test(c.title || "") && !(c.triage?.entertainment || []).length));
 
+// Vidéo publique que Gemini n'a pas le droit de lire (réglage de son auteur ou de YouTube, HTTP 403) : définitif, aucun contournement
+const REFUSED = () => ({ access: "inaccessible", analysis: "inaccessible", note: "Google refuse la lecture de cette vidéo par Gemini (HTTP 403 : réglage de la vidéo ou de son auteur). Aucun contournement : pas de transcription, pas de conseil tiré de cette vidéo." });
+// Un 403 peut aussi venir de notre clé : une petite requête texte le vérifie avant de classer la vidéo
+const keyWorks = models => gemini({ models, parts: [{ text: "Réponds {\"ok\": true}." }], maxOutputTokens: 2000 }).then(() => true, () => false);
+
 export async function run() {
   const [config, contents, state] = await Promise.all([readJson(P.config), readJson(P.contents), readJson(P.state, {})]);
   const V = config.video;
   const log = [];
   if (!hasGeminiKey()) return ["· GEMINI_API_KEY absente : vidéos laissées en métadonnées seules."];
   const usedToday = state.videoSecondsByDay?.[today()] || 0;
+  // Vidéos refusées par Gemini avant cette règle (403 après 3 essais) : classées comme les nouvelles, sans nouvel essai
+  for (const c of contents.contents) if (c.type === "video" && c.access === "metadonnees" && /HTTP 403/.test(c.videoError || "") && (c.videoAttempts || 0) >= V.maxAttempts) Object.assign(c, REFUSED());
   const only = arg("only");
   // File de lecture (coach/queue.mjs) : les prochaines vidéos classées entrent au registre juste avant d'être lues
   if (!only) log.push(...await refill(contents, (await readJson(P.sources)).sources).catch(e => [`· File de lecture non rechargée : ${e.message}`]));
@@ -98,6 +105,12 @@ export async function run() {
       log.push(`✔ ${c.id} : ${v.duration}, ${v.kind}, ${v.segments.length} segments, ${v.observations.length} observations (${res.model})`);
     } catch (e) {
       if (e.quota) { log.push(`· ${e.message}`); break; } // pas un échec de la vidéo : aucun essai consommé
+      if (e.status === 403) {
+        if (!(await keyWorks(V.models))) { log.push(`✘ Gemini refuse aussi une requête simple (HTTP 403) : clé à vérifier, lecture des vidéos arrêtée pour ce passage.`); break; }
+        Object.assign(c, REFUSED(), { videoAttempts: V.maxAttempts, videoError: `${e.message} (${today()})` });
+        log.push(`· ${c.id} : lecture refusée par Google pour cette vidéo, classée inaccessible (aucun contournement)`);
+        continue;
+      }
       c.videoAttempts = (c.videoAttempts || 0) + 1;
       c.videoError = `${e.message} (${today()})`;
       log.push(`✘ ${c.id} : ${e.message} (essai ${c.videoAttempts}/${V.maxAttempts})`);
