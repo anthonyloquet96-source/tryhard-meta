@@ -17367,7 +17367,7 @@
    "patch": null,
    "views": 12000,
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "note": "Lue par gemini-3.6-flash le 2026-10-30 : transcription réutilisée depuis le cache de cet ordinateur.",
    "descriptionExcerpt": "➡️Coaching and everything you need to climb - https://wtl.lol/violet (USE CODE:VIOLET10)\n➡️Join the Community - https://discord.gg/zVvGUPxYGw\n\nIn this video im explaining the core fundamentals on adc in league of legends. I hope you can learn a lot of new things!\n\nCheers !\n\n00:00",
    "triage": {
@@ -17393,6 +17393,16 @@
     "at": "2026-10-30",
     "duration": "33:45",
     "reused": true
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 5,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Ce contenu enseigne le choix des runes et l'exécution des combos de Caitlyn, la gestion du passif en buisson ainsi que l'anticipation du trajet du jungler ennemi après son début de partie.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu propose des explications théoriques claires dans l'outil d'entraînement (runes, mécanique du passif, combos) suivies d'une application pratique en partie commentée à haut niveau par un ancien joueur professionnel Challenger."
    }
   },
   {
@@ -19909,11 +19919,11 @@
    "lang": "en",
    "published": "2026-10-12",
    "retrievedAt": "2026-10-21",
-   "patch": null,
+   "patch": "14.20",
    "views": 18000,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
-   "note": "Transcription inaccessible par une voie autorisée : l'API YouTube ne permet de télécharger les sous-titres que pour ses propres vidéos ou avec l'autorisation du propriétaire. Import administrateur possible (coach/import-transcript.mjs).",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
+   "note": "Lue par gemini-3-flash-preview : transcription et 19 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "descriptionExcerpt": "http://twitch.tv/shoklol\nMLA Coaching: https://wtl.lol/shok\nSecond Channel: https://www.youtube.com/@shokTTV\nDiscord: https://discord.gg/EvZjQjbsWr\nThumbnails: https://twitter.com/Jakvtt\n\n0:00 Intro\n0:26 Identity\n2:48 Playstyle and team comps\n4:00 Items\n11:30 Runes\n16:35 Matchup ",
    "triage": {
     "score": 12,
@@ -19928,6 +19938,19 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3-flash-preview",
+    "fps": 1,
+    "at": "2026-11-01",
+    "sha256": "5d4e59b724f1c3e37b0a5c8448b94cee92bb3bdffd9abeae8ce5e4dcc7b5589f",
+    "segments": 7,
+    "observations": 19,
+    "duration": "06:06",
+    "videoKind": "guide",
+    "gameplayShown": true,
+    "tokens": 312111
    }
   },
   {
@@ -58409,7 +58432,9 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
-   }
+   },
+   "videoAttempts": 1,
+   "videoError": "gemini-3.8-flash HTTP 403 : The caller does not have permission (2026-11-01)"
   },
   {
    "id": "c-yt-wJ9HxFdoY_g",
@@ -58421,13 +58446,13 @@
    "lang": "en",
    "published": null,
    "retrievedAt": "2026-10-31",
-   "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "patch": "aucun",
+   "access": "transcription+visuel",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 38,
-   "note": "File de lecture (rang 38) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.8-flash : transcription et 34 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "triage": {
     "score": 18,
     "matched": [
@@ -58437,6 +58462,29 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.8-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "sha256": "83956cf6ff7dece7d41c052183ac39b1fe8f2d7c8e70c53e3154d7790a8cbace",
+    "segments": 38,
+    "observations": 34,
+    "duration": "24:05",
+    "videoKind": "guide",
+    "gameplayShown": true,
+    "tokens": 135909
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 5,
+   "unitsRejected": 0,
+   "alertes": [],
+   "learn": "Optimiser le premier clear de Rengar en évitant le blocage des Corbins et en exploitant le timing de vision à 1:25, tout en utilisant le split-push pour punir les sièges ennemis.",
+   "quality": {
+    "level": "élevée",
+    "why": "Guide technique précis présentant des mécaniques de micro-clearing détaillées (body-block, gestion du burn d'objet jungle) et des principes macro clairs avec démonstration vidéo."
    }
   },
   {
@@ -68432,6 +68480,92 @@
     "score": 18,
     "matched": [
      "top"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-La2O9Zjk414",
+   "sourceId": "yt-bizyze-coaching-league-of-le",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=La2O9Zjk414",
+   "title": "ADC Wave Management: Push Like a Pro - Master Tower Plates & Rotations",
+   "author": "BIZYZE Coaching | League of Legends",
+   "lang": "fr",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 46,
+   "note": "File de lecture (rang 46) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 16,
+    "matched": [
+     "adc",
+     "wave"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-7INR8Gl5Fvw",
+   "sourceId": "yt-coach-leo",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=7INR8Gl5Fvw",
+   "title": "FULL CLEAR FUNDAMENTALS | How To PUNISH The Enemy Jungler",
+   "author": "Coach Leo (JungleGap)",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 47,
+   "note": "File de lecture (rang 47) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 19,
+    "matched": [
+     "jungle",
+     "jungler",
+     "how to",
+     "fundamentals",
+     "clear"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-sY2TNSo3FqQ",
+   "sourceId": "yt-coach-k",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=sY2TNSo3FqQ",
+   "title": "How to Become EFFICIENT on EVERY Roam! - Play like a pro",
+   "author": "Coach K",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 48,
+   "note": "File de lecture (rang 48) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 16,
+    "matched": [
+     "how to"
     ],
     "entertainment": [],
     "patchMentioned": null,

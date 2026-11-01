@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T01:25:57.204Z",
+ "generatedAt": "2026-11-01T07:46:28.401Z",
  "rulesLock": {
   "ok": true,
   "changed": [],
@@ -554,7 +554,7 @@
    "lastCount": 15
   }
  },
- "lastDiscovery": "2026-11-01T01:14:16.492Z",
+ "lastDiscovery": "2026-11-01T07:03:25.731Z",
  "failures": [],
  "quarantine": [
   {
@@ -566,17 +566,6 @@
   }
  ],
  "rejected": [
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-1",
-   "reasons": [
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau fer : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
   {
    "id": "u-ai-yt-eceSyaVnz3M-2",
    "reasons": [
@@ -3029,6 +3018,17 @@
    ],
    "at": "2026-11-01",
    "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-2",
+   "reasons": [
+    {
+     "code": "citation-non-entendue",
+     "why": "c-yt--J8fOgYCRbI : passage absent de l'extrait 129-189s relu par gemini-3.6-flash."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
   }
  ],
  "pending": [
@@ -3067,8 +3067,8 @@
   "c-riot-dev-yuumi-s-rework",
   "c-yt-S3F9CpeiSNE",
   "c-riot-champion-insights-zeri",
-  "c-yt--J8fOgYCRbI",
   "c-yt-hADG2i46dEQ",
+  "c-yt-_rORbB3xpYo",
   "c-inven-board-baron",
   "c-wtl-4072"
  ],
@@ -4156,7 +4156,17 @@
   "u-ai-yt-LUllgzA2Q80-4",
   "u-ai-yt-LUllgzA2Q80-5",
   "u-ai-yt-LUllgzA2Q80-6",
-  "u-ai-yt-LUllgzA2Q80-7"
+  "u-ai-yt-LUllgzA2Q80-7",
+  "u-ai-yt-wJ9HxFdoY_g-1",
+  "u-ai-yt-wJ9HxFdoY_g-2",
+  "u-ai-yt-wJ9HxFdoY_g-3",
+  "u-ai-yt-wJ9HxFdoY_g-4",
+  "u-ai-yt-wJ9HxFdoY_g-5",
+  "u-ai-yt--J8fOgYCRbI-1",
+  "u-ai-yt--J8fOgYCRbI-3",
+  "u-ai-yt--J8fOgYCRbI-4",
+  "u-ai-yt--J8fOgYCRbI-5",
+  "u-ai-yt--J8fOgYCRbI-6"
  ],
  "contested": [],
  "retired": [
@@ -5557,135 +5567,6 @@
   "month": 0,
   "calls": [
    {
-    "at": "2026-10-31T19:13:52.691Z",
-    "content": "c-yt-IG5H_Zm8_k8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5832,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T19:14:02.434Z",
-    "content": "c-yt-IG5H_Zm8_k8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5907,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T19:14:14.596Z",
-    "content": "c-yt-LUllgzA2Q80",
-    "model": "gemini-3.5-flash-lite",
-    "input": 16096,
-    "output": 1794,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T19:14:22.055Z",
-    "content": "c-yt-LUllgzA2Q80",
-    "model": "gemini-3.5-flash-lite",
-    "input": 6231,
-    "output": 252,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T19:14:33.475Z",
-    "content": "c-yt-LUllgzA2Q80",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5904,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T19:15:28.630Z",
-    "content": "c-yt-LUllgzA2Q80",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5856,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T19:15:38.483Z",
-    "content": "c-yt-LUllgzA2Q80",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5883,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:17:00.396Z",
-    "content": "c-yt-BeS1VgKiBoY",
-    "model": "gemini-3.8-flash",
-    "input": 9417,
-    "output": 5376,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:17:20.478Z",
-    "content": "c-yt-BeS1VgKiBoY",
-    "model": "gemini-3.6-flash",
-    "input": 6236,
-    "output": 2919,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:17:33.811Z",
-    "content": "c-yt-BeS1VgKiBoY",
-    "model": "gemini-3.5-flash",
-    "input": 5853,
-    "output": 68,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:17:48.615Z",
-    "content": "c-yt-BeS1VgKiBoY",
-    "model": "gemini-3.5-flash",
-    "input": 5881,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:18:23.663Z",
-    "content": "c-yt-gsdYLoWGc20",
-    "model": "gemini-3.5-flash-lite",
-    "input": 8302,
-    "output": 1348,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:18:31.224Z",
-    "content": "c-yt-gsdYLoWGc20",
-    "model": "gemini-3.5-flash-lite",
-    "input": 6092,
-    "output": 186,
-    "usd": 0
-   },
-   {
-    "at": "2026-11-01T01:18:40.432Z",
-    "content": "c-yt-gsdYLoWGc20",
-    "model": "gemini-3.5-flash-lite",
-    "input": 4027,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-11-01T01:18:49.365Z",
-    "content": "c-yt-gsdYLoWGc20",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5869,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
     "at": "2026-11-01T01:19:02.689Z",
     "content": "c-yt-uB3DBca5uEw",
     "model": "gemini-3.5-flash-lite",
@@ -5989,6 +5870,137 @@
     "model": "gemini-3.5-flash-lite",
     "input": 5868,
     "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:31:27.005Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.7-flash",
+    "input": 7167,
+    "output": 7466,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T07:35:36.977Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.8-flash",
+    "input": 8109,
+    "output": 7718,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T07:36:08.706Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.8-flash",
+    "input": 4605,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:40:44.011Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.7-flash",
+    "input": 5882,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:40:59.986Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.6-flash",
+    "input": 5916,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:41:14.352Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.6-flash",
+    "input": 5854,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:41:26.885Z",
+    "content": "c-yt-wJ9HxFdoY_g",
+    "model": "gemini-3.6-flash",
+    "input": 5938,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:42:18.359Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.6-flash",
+    "input": 12589,
+    "output": 9639,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T07:44:49.945Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.5-flash",
+    "input": 7954,
+    "output": 3580,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T07:45:03.252Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.6-flash",
+    "input": 5833,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:45:17.181Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.6-flash",
+    "input": 5828,
+    "output": 60,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:45:30.431Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.6-flash",
+    "input": 5809,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:45:43.255Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3.6-flash",
+    "input": 5858,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:46:02.345Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3-flash-preview",
+    "input": 5879,
+    "output": 30,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T07:46:21.138Z",
+    "content": "c-yt--J8fOgYCRbI",
+    "model": "gemini-3-flash-preview",
+    "input": 5864,
+    "output": 30,
     "usd": 0,
     "kind": "verification-extrait"
    }

@@ -69997,7 +69997,893 @@
    },
    "version": 1,
    "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-wJ9HxFdoY_g-1",
+   "claim": "Selon ScrubNoob : fais poser une balise sur les Corbins ennemis par ton midlaner précisément à 1:25. Posée plus tôt, elle disparaîtra avant de donner des informations utiles sur le jungler adverse.",
+   "champions": [],
+   "roles": [
+    "jungle",
+    "mid"
+   ],
+   "themes": [
+    "vision",
+    "jungle"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "system:vision"
+   ],
+   "conditions": [
+    "En début de partie avant le spawn des camps de jungle"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[00:06]",
+     "lang": "en",
+     "passage": "Then you want to tell your mid laner to ward their Raptors at 1:25. And the reason why 1:25 is because if you do it before 1:25,",
+     "autoChecked": {
+      "by": "gemini-3.8-flash",
+      "at": "2026-11-01",
+      "window": "0-46s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[00:14]",
+     "lang": "en",
+     "passage": "the ward is going to die before you can actually get any meaningful information."
+    }
+   ],
+   "mentions": [],
+   "action": "Demander à son midlaner de baliser les Corbins adverses à 1:25 pile",
+   "observe": "La balise reste active assez longtemps pour révéler le passage ou le départ du jungler ennemi.",
+   "use": {
+    "when": "Avant l'apparition des monstres de jungle en début de partie.",
+    "why": "Si la balise est posée avant 1:25, sa durée expire avant de pouvoir collecter des informations exploitables sur le parcours du jungler.",
+    "who": "Junglers et midlaners coordonnant la vision de début de partie.",
+    "how": [
+     "Communiquer à son midlaner de surveiller l'enclos des Corbins adverses",
+     "Lui faire poser la balise précisément à 1:25"
+    ],
+    "notWhen": "Si la balise doit être posée avant 1:25."
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Timing de balise intemporel et précis, parfaitement fidèle aux explications de ScrubNoob."
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-wJ9HxFdoY_g-2",
+   "claim": "Selon ScrubNoob : lors du saut de Rengar sur les Corbins, fais un court pas vers la gauche avant de kiter vers la droite dans le buisson. Cela évite que le grand Corbin ne soit bloqué par les petits, ce qui fait perdre du temps et des points de vie.",
+   "champions": [
+    "Rengar"
+   ],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "jungle",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Rengar/passive"
+   ],
+   "conditions": [
+    "Premier clear de jungle sur le camp des Corbins"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[01:08]",
+     "lang": "en",
+     "passage": "you need to walk left. You need to walk like up here for a millisecond. And the reason why you do that is to pull the Raptors far enough",
+     "autoChecked": {
+      "by": "gemini-3.7-flash",
+      "at": "2026-11-01",
+      "window": "48-108s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[01:25]",
+     "lang": "en",
+     "passage": "If the big Raptor gets body-blocked, you're going to lose a lot of time and HP doing the clear."
+    }
+   ],
+   "mentions": [],
+   "action": "Effectuer un court pas vers la gauche après le saut initial sur les Corbins avant de kiter vers le buisson droit",
+   "observe": "Le grand Corbin contourne librement la meute sans rester bloqué derrière les petits.",
+   "use": {
+    "when": "Au moment d'engager le camp des Corbins en sautant depuis le buisson.",
+    "why": "Si tu fonces immédiatement vers le buisson après le saut, le grand Corbin se fait bloquer par les petits, entraînant une perte de temps et de points de vie.",
+    "who": "Joueurs de Rengar jungle optimisant leur premier clear.",
+    "how": [
+     "Sauter sur les Corbins depuis le buisson",
+     "Marcher brièvement vers la gauche pendant une fraction de seconde pour attirer le camp",
+     "Kiter ensuite le grand Corbin vers la droite en direction du buisson"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [
+     "meme-origine"
+    ],
+    "why": "Conseil d'optimisation mécanique fidèle et précis, qui reprend la même consigne donnée par ScrubNoob dans une autre vidéo (u-ai-yt-035a4GhaLOE-2)."
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-wJ9HxFdoY_g-3",
+   "claim": "Selon ScrubNoob : l'objet de jungle ne peut pas achever les Larves du Néant car ce sont des monstres épiques. Lorsqu'une Larve atteint environ 150 PV, change de cible pour laisser le familier la descendre jusqu'au seuil où une seule attaque de base suffira.",
+   "champions": [],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "jungle"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "system:larves-du-neant",
+    "system:familier-jungle"
+   ],
+   "conditions": [
+    "Combat contre les Larves du Néant"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[04:34]",
+     "lang": "en",
+     "passage": "Sometimes it's good to swap off a grub because your jungle item can't actually last-hit the grubs. It can't kill epic monsters.",
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "254-314s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[04:49]",
+     "lang": "en",
+     "passage": "So like if a monster has 150 HP, which would normally take two auto attacks to kill, in that situation, you would just swap to a different target, wait until the grub is low enough to die to one auto attack."
+    }
+   ],
+   "mentions": [],
+   "action": "Changer de cible sur les Larves du Néant autour de 150 PV au lieu de gaspiller deux attaques consécutives",
+   "observe": "Une attaque de base est économisée grâce au passif de brûlure du familier qui descend le monstre au seuil d'exécution en un coup.",
+   "use": {
+    "when": "Lors du combat contre les Larves du Néant lorsqu'une Larve tombe aux alentours de 150 PV.",
+    "why": "L'objet de jungle ne peut pas achever un monstre épique, mais continuer de l'attaquer nécessite deux coups ; changer de cible permet au familier de réduire ses PV pour qu'une seule attaque suffise ensuite.",
+    "who": "Tout jungler faisant les Larves du Néant.",
+    "how": [
+     "Frapper une Larve jusqu'à environ 150 PV",
+     "Changer immédiatement de cible pour attaquer une autre Larve",
+     "Achever la première Larve d'une seule attaque de base une fois affaiblie par le familier"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Mécanique générale de jungle sur les Larves du Néant exacte, intemporelle et directement exploitable."
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-wJ9HxFdoY_g-4",
+   "claim": "Selon ScrubNoob : en tant que jungler, surveille constamment au minimum les deux voies adjacentes au côté de jungle où tu te trouves (par exemple top et mid côté nord) pour anticiper les rotations.",
+   "champions": [],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "macro",
+    "jungle"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "Pendant le clear ou les déplacements en jungle"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[03:15]",
+     "lang": "en",
+     "passage": "Also, like a general rule is you at least want to be paying attention to the two lanes you're adjacent to. So right now, that's top and mid.",
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "175-235s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[03:26]",
+     "lang": "en",
+     "passage": "So you want to be paying attention to what's happening there, see if we need to rotate or do anything. Because I want to be able to mess him up here."
+    }
+   ],
+   "mentions": [],
+   "action": "Vérifier régulièrement l'état des vagues et positions des deux voies les plus proches de son quart de jungle",
+   "observe": "Capacité à réagir instantanément à un trade ou une escarmouche sur les voies voisines.",
+   "use": {
+    "when": "Pendant le farm ou les déplacements dans sa jungle.",
+    "why": "Cela permet de savoir s'il faut tourner pour aider, punir l'adversaire ou intervenir avant qu'une action ne soit terminée.",
+    "who": "Tout joueur en jungle.",
+    "how": [
+     "Identifier les deux voies les plus proches de sa position",
+     "Déplacer sa caméra dessus pour vérifier la vie, le mana et l'état des vagues",
+     "Décider d'interrompre son parcours si une rotation urgente est requise"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Règle générale de prise d'information sur les voies adjacentes en jungle, fidèle à la source et claire."
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-wJ9HxFdoY_g-5",
+   "claim": "Selon ScrubNoob : les joueurs de Rengar (notamment sous le rang Diamant) ont tendance à sous-exploiter le split-push ; lorsqu'un regroupement ennemi ne peut pas être défendu en 5v5, pousser une voie latérale permet de créer une contre-pression efficace.",
+   "champions": [
+    "Rengar"
+   ],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "macro",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "L'équipe ennemie groupe et met la pression sur une tourelle",
+    "L'équipe alliée ne peut pas stopper l'ennemi en combat groupé"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[09:50]",
+     "lang": "en",
+     "passage": "Because Fiora is mid, and so I want to kind of try and abuse that as much as possible by pushing this lane, try and apply some counter-pressure because they're pressuring our mid tower, and we can't stop them by grouping. So we want to try pulling them towards us by splitting.",
+     "mentionOnly": true,
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "570-630s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-wJ9HxFdoY_g",
+     "locator": "[10:09]",
+     "lang": "en",
+     "passage": "Split-pushing is probably one of the ways that you guys can most improve on, because I think a lot of Rengar players, especially below Diamond, just don't split-push enough, if at all."
+    }
+   ],
+   "mentions": [
+    "Fiora (exemple)"
+   ],
+   "action": "Pousser une voie latérale seul avec Rengar au lieu de rejoindre un regroupement défavorable au mid",
+   "observe": "Un ou plusieurs adversaires se détachent du siège mid pour venir défendre leur tourelle latérale.",
+   "use": {
+    "when": "Quand l'équipe ennemie assiège une tour en groupe et que le combat direct à 5 contre 5 est impossible à défendre.",
+    "why": "Split-pusher attire des adversaires vers soi et soulage la pression sur les tours principales tout en punissant les regroupements ennemis.",
+    "who": "Joueurs de Rengar jungle, en particulier sous le rang Diamant où cette stratégie est sous-exploitée.",
+    "how": [
+     "Constater que le 5v5 groupé sous la tourelle est intenable",
+     "Partir pousser une voie latérale opposée pour attaquer les structures ennemies",
+     "Forcer l'adversaire à scinder son groupe pour venir défendre"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "corriger",
+    "flags": [
+     "une-partie",
+     "sur-generalisation"
+    ],
+    "why": "La situation s'appuie sur une action issue d'une seule partie (Fiora au mid), alors que le propos général de ScrubNoob cible spécifiquement la tendance des joueurs de Rengar sous Diamant à négliger le split-push."
+   },
+   "published": null,
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-1",
+   "claim": "Selon Coach Violet : pour Caitlyn, la rune Tempo mortel est l'option par défaut recommandée pour optimiser les échanges prolongés et maximiser les dégâts en combat à 6 charges.",
+   "champions": [
+    "Caitlyn"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "dependsOn": [
+    "rune:Tempo mortel"
+   ],
+   "conditions": [],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt--J8fOgYCRbI",
+     "locator": "[00:31]",
+     "lang": "en",
+     "passage": "You want to be running Lethal Tempo as your default rune, right? It just helps you for the long extended trades and just gives you more damage in fights, right, as you ramp up to 6 stacks.",
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "11-71s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Sélectionner Tempo mortel comme rune fondamentale principale sur Caitlyn.",
+   "observe": "L'augmentation progressive des dégâts et de la vitesse d'attaque lors des combats prolongés.",
+   "use": {
+    "when": "Lors de la configuration des runes avant la partie.",
+    "why": "Elle aide dans les échanges prolongés et augmente les dégâts au fur et à mesure du cumul des 6 charges.",
+    "who": "Joueur d'ADC jouant Caitlyn.",
+    "how": [
+     "Sélectionner Tempo mortel comme rune principale par défaut."
+    ],
+    "notWhen": "Envisager plutôt Fleet Footwork face à des matchups très difficiles à forte portée ou à fort poke."
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'unité est fidèle à la citation du coach mais reste provisoire du fait de l'accès par lecture IA de vidéo."
+   },
+   "published": "2026-07-19",
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.6-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-3",
+   "claim": "Selon Coach Violet : la compétence A de Caitlyn perd des dégâts pour chaque cible supplémentaire qu'elle traverse ; il faut viser directement le champion sans traverser la vague pour maximiser le poke.",
+   "champions": [
+    "Caitlyn"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "lane"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Caitlyn/Q"
+   ],
+   "conditions": [],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt--J8fOgYCRbI",
+     "locator": "[03:19]",
+     "lang": "en",
+     "passage": "But just be careful, this does less damage the more minions that it goes through, right?",
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "179-239s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Ajuster l'angle du A de Caitlyn pour toucher le champion adverse sans traverser la vague de sbires.",
+   "observe": "L'impact des dégâts complets sur le champion adverse.",
+   "use": {
+    "when": "Lorsqu'on cherche à pocker un champion adverse avec le A de Caitlyn sur la voie.",
+    "why": "Le projectile subit une réduction de dégâts à chaque sbire ou cible traversée avant d'atteindre le champion.",
+    "who": "Joueur de Caitlyn.",
+    "how": [
+     "Se décaler sur le côté de la vague pour dégager la trajectoire.",
+     "Viser directement le champion ennemi."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Le conseil déduit directement et fidèlement la trajectoire du A de la mécanique de réduction de dégâts citée dans le passage."
+   },
+   "published": "2026-07-19",
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.6-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-4",
+   "claim": "Selon Coach Violet : l'enchaînement E-A sur Caitlyn permet de ralentir un ennemi qui fonce sur soi tout en garantissant l'impact du A et en préparant une auto-attaque Tir de tête.",
+   "champions": [
+    "Caitlyn"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "lane"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Caitlyn/E",
+    "Caitlyn/Q",
+    "Caitlyn/passive"
+   ],
+   "conditions": [],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt--J8fOgYCRbI",
+     "locator": "[04:47]",
+     "lang": "en",
+     "passage": "So one of the basic bread and butter combos is the EQ, right? If someone's running at you, you can EQ and secure like a slow for a much more guaranteed Q hit, right? And then you can also get a Headshot proc on the back end.",
+     "autoChecked": {
+      "by": "gemini-3.6-flash",
+      "at": "2026-11-01",
+      "window": "267-327s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Exécuter la séquence E puis A rapidement lorsqu'un ennemi s'approche.",
+   "observe": "Le ralentissement qui assure de toucher le A suivi du Tir de tête à longue portée.",
+   "use": {
+    "when": "Lorsqu'un ennemi fonce sur Caitlyn.",
+    "why": "Le ralentissement du E sécurise l'impact du A et donne un accès immédiat à un Tir de tête renforcé.",
+    "who": "Joueur de Caitlyn.",
+    "how": [
+     "Lancer le E sur la cible en approche.",
+     "Lancer immédiatement le A pendant le recul de Caitlyn.",
+     "Placer l'auto-attaque Tir de tête."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'unité retranscrit fidèlement le combo E-A décrit par l'auteur pour ralentir la cible et garantir l'impact du A."
+   },
+   "published": "2026-07-19",
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.6-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-5",
+   "claim": "Selon Coach Violet : face à un support adverse disposant d'un grappin agressif, l'ADC doit s'abriter derrière sa vague de sbires ou utiliser son support comme bouclier corporel pour éviter de se faire attraper.",
+   "champions": [],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "lane",
+    "matchup"
+   ],
+   "matchup": {
+    "vs": "Pyke"
+   },
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "Adversaire jouant un support à grappin"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt--J8fOgYCRbI",
+     "locator": "[05:26]",
+     "lang": "en",
+     "passage": "So I got to make sure I avoid the Pyke hook as much as possible, right? His Hail of Blades, if I get hit by that Pyke hook, I'm going to get cooked. So I'm going to try to play, you know, using my Camille or the minions as a bodyguard so I don't get hooked.",
+     "mentionOnly": true,
+     "autoChecked": {
+      "by": "gemini-3-flash-preview",
+      "at": "2026-11-01",
+      "window": "306-366s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [
+    "Pyke (exemple)",
+    "Camille (exemple)"
+   ],
+   "action": "Adapter sa position en maintenant constamment un sbire ou un support allié entre soi et le support ennemi.",
+   "observe": "L'impossibilité pour le support ennemi de trouver une ligne directe pour son grappin.",
+   "use": {
+    "when": "Sur la voie du bas face à un support doté d'un grappin (comme Pyke).",
+    "why": "Un grappin réussi par ce type de support déclenche un burst et un all-in mortel.",
+    "who": "Joueurs d'ADC sur la voie du bas.",
+    "how": [
+     "Rester aligné derrière la ligne de sbires alliés.",
+     "Utiliser le support allié comme écran protecteur si les sbires manquent."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Conseil macro/lane fidèle à la citation, la liste des champions concernés étant correctement laissée vide pour un principe général."
+   },
+   "published": "2026-07-19",
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.6-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt--J8fOgYCRbI-6",
+   "claim": "Selon Coach Violet : si le jungler ennemi effectue un 3-camp du côté bot en début de partie, signaler à ses coéquipiers qu'il se dirige vraisemblablement vers le haut de la carte.",
+   "champions": [],
+   "roles": [
+    "bottom",
+    "all"
+   ],
+   "themes": [
+    "jungle",
+    "macro"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "Jungler ennemi ayant fait un départ 3-camp au bot"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt--J8fOgYCRbI",
+     "locator": "[07:43]",
+     "lang": "en",
+     "passage": "you know, the enemy Lee Sin 3-camped bot, so he's most likely pathing top. I'm going to ping, let my teammates know, right, in this situation, that the enemy jungler is most likely pathing top side since he 3-camped bot.",
+     "mentionOnly": true,
+     "autoChecked": {
+      "by": "gemini-3-flash-preview",
+      "at": "2026-11-01",
+      "window": "443-503s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [
+    "Lee Sin (exemple)"
+   ],
+   "action": "Avertir par des pings les coéquipiers des voies solo que le jungler ennemi se dirige vers le haut.",
+   "observe": "Le mouvement du jungler ennemi qui quitte le bas de la carte après son 3-camp.",
+   "use": {
+    "when": "En début de partie après avoir repéré l'intervention initiale du jungler au bot.",
+    "why": "Après avoir vidé ses camps du bas, la suite logique de sa rotation de jungle se situe sur ses camps du haut.",
+    "who": "Tous les joueurs de la partie.",
+    "how": [
+     "Identifier que le jungler ennemi a fait 3 camps au bot.",
+     "Transmettre l'information de sa trajectoire vers la partie supérieure de la carte."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "corriger",
+    "flags": [
+     "une-partie",
+     "sur-generalisation"
+    ],
+    "why": "L'auteur commente une action ponctuelle de sa partie avec Lee Sin, transformer cette lecture de jeu instantanée en règle absolue est une sur-généralisation."
+   },
+   "published": "2026-07-19",
+   "proposedStatus": "provisoire",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.6-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
   }
  ],
- "updatedAt": "2026-11-01T01:25:56.043Z"
+ "updatedAt": "2026-11-01T07:46:27.354Z"
 }
