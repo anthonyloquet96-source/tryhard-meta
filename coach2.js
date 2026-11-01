@@ -566,8 +566,9 @@ async function c2V1Load(force = false) {
     // Résumé gardé sur l'appareil pour la carte de l'Accueil (sans relancer de synchronisation à chaque ouverture)
     const g = active.goal, evs = (active.evaluations || []).filter(e => e.counted);
     if (c2ui.v1 !== V) return; // compte changé pendant la synchronisation
-    C2.v1Snap = g ? { for: C2.account.riotId, label: g.label, role: g.role, target: g.target_text, unit: g.unit, status: g.status, met: evs.filter(e => e.met).length, counted: evs.length, need: g.success_required, of: g.evaluation_games } : null;
+    C2.v1Snap = g ? { for: C2.account.riotId, label: g.label, role: g.role, target: g.target_text, unit: g.unit, status: g.status, met: evs.filter(e => e.met).length, counted: evs.length, need: g.success_required, of: g.evaluation_games, week: c2Week(V) } : null;
     c2Save();
+    if (typeof pushSync === "function") pushSync(true); // résumé de la semaine à jour pour la notification du lundi
   } catch (e) { V.error = e.message; V.syncing = false; }
   V.busy = false; render(false);
 }
@@ -843,14 +844,11 @@ function c2V1Tips(g) {
     .map(u => ({ u, score: 2 + (u.roles?.includes(role) ? 1 : 0) }))
     .sort((a, b) => b.score - a.score || (a.u.status !== "exploitable") - (b.u.status !== "exploitable") || a.u.id.localeCompare(b.u.id)).slice(0, 2).map(x => x.u);
 }
-// Ta progression (bloc D de la todo du 01/11 : « prouver la progression ») : pour chaque geste déjà travaillé (métrique + poste),
-// ton niveau avant le premier objectif, ton niveau sur tes 5 dernières parties à ce poste, l'écart lu en écart-type personnel
-// (même seuils que le moteur : 0,25 σ = progrès), et tes 30 dernières parties en courbe. Données : /progress (series, goals).
-// Honnête : 5 parties restent peu, et la mesure ne dit pas pourquoi ça a bougé.
-function c2V1Progress() {
-  const V = c2ui.v1 || {};
+// Gestes travaillés (métrique + poste) : niveau de départ, niveau récent et écart en écart-type personnel ;
+// partagé par « Ta progression » et « Ta semaine »
+function c2V1Skills(V) {
   const hist = (V.history || []).filter(h => h.metric && h.baseline != null);
-  if (!hist.length || !V.series) return "";
+  if (!hist.length || !V.series) return [];
   const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length ? (s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2) : null; };
   const skills = new Map();
   for (const h of [...hist].sort((a, b) => (a.created_at || 0) - (b.created_at || 0))) {
@@ -858,12 +856,49 @@ function c2V1Progress() {
     const s = skills.get(k) || { first: h, last: h, cycles: 0, mastered: 0 };
     s.cycles++; if (h.outcome === "achieved") s.mastered++; s.last = h; skills.set(k, s);
   }
-  const rows = [...skills.values()].sort((a, b) => (b.last.created_at || 0) - (a.last.created_at || 0)).map(s => {
+  return [...skills.values()].sort((a, b) => (b.last.created_at || 0) - (a.last.created_at || 0)).map(s => {
     const g = s.first, pts = (V.series[g.metric] || []).filter(x => x.role === g.role), recent = pts.slice(-5).map(x => x.value);
     const now = recent.length >= 3 ? median(recent) : null, sd = g.personal_sd || null, dir = g.direction === "lower" ? -1 : 1;
-    const z = now != null && sd ? dir * (now - g.baseline) / sd : null;
+    return { ...s, g, pts, now, z: now != null && sd ? dir * (now - g.baseline) / sd : null };
+  });
+}
+const c2V1Unit = g => (g.unit && g.unit !== "%" ? ` ${g.unit === "/min" ? "/ min" : g.unit}` : "");
+// Ta semaine (résumé du lundi, reporté au tour 4 du brainstorm, demandé par Anthony le 01/11) : les 7 derniers jours, tirés
+// des mêmes données que « Ta progression », rien de nouveau n'est mesuré. Un geste en progrès, un à travailler, la meilleure
+// partie sur le geste en cours. Une ligne en tête de « Ta progression » (pas de carte en plus) et la notification du lundi.
+function c2Week(V, now = Date.now()) {
+  const since = now - 7 * 864e5, S = V.series || {};
+  const games = new Set(Object.values(S).flat().filter(x => x.start_ms >= since).map(x => x.start_ms)).size;
+  if (!games) return null;
+  const skills = c2V1Skills(V), live = V.goal && ["active", "evaluating", "proposed"].includes(V.goal.status) ? V.goal : null;
+  const up = skills.filter(s => s.z >= 0.25).sort((a, b) => b.z - a.z)[0];
+  const down = skills.filter(s => s.z != null && s.z <= -0.25).sort((a, b) => a.z - b.z)[0];
+  // Ce qui coince encore : un geste en baisse, sinon l'objectif en cours s'il ne progresse pas déjà
+  const work = down?.g || (live && live.label !== up?.g.label ? live : null);
+  // Meilleure partie de la semaine sur le geste travaillé : au moins 2 parties à ce poste pour que « meilleure » ait un sens
+  const ref = live || up?.g || null, dir = ref?.direction === "lower" ? -1 : 1;
+  const week = ref ? (S[ref.metric] || []).filter(x => x.start_ms >= since && x.role === ref.role) : [];
+  const best = week.length >= 2 ? week.reduce((a, b) => (dir * (b.value - a.value) > 0 ? b : a)) : null;
+  return { at: now, games, up: up ? up.g.label : null, work: work ? work.label : null,
+    best: best ? `${c2V1Fmt(ref, best.value)}${c2V1Unit(ref)}` : null, bestLabel: best ? ref.label : null };
+}
+function c2WeekLine(W) {
+  if (!W) return "";
+  const item = (k, v) => `<span><span class="fine">${k}</span> <b>${esc(v)}</b></span>`;
+  return `<div class="c2-week"><span class="label">Ta semaine</span><span>${W.games} partie${W.games > 1 ? "s" : ""} en 7 jours</span>${W.up ? item("En progrès", W.up) : ""}${W.work ? item("Ce qui coince encore", W.work) : ""}${W.best ? item(`Meilleure partie, ${esc(W.bestLabel)}`, W.best) : ""}</div>`;
+}
+// Ta progression (bloc D de la todo du 01/11 : « prouver la progression ») : pour chaque geste déjà travaillé (métrique + poste),
+// ton niveau avant le premier objectif, ton niveau sur tes 5 dernières parties à ce poste, l'écart lu en écart-type personnel
+// (même seuils que le moteur : 0,25 σ = progrès), et tes 30 dernières parties en courbe. Données : /progress (series, goals).
+// Honnête : 5 parties restent peu, et la mesure ne dit pas pourquoi ça a bougé.
+function c2V1Progress() {
+  const V = c2ui.v1 || {};
+  const skills = c2V1Skills(V);
+  if (!skills.length) return "";
+  const rows = skills.map(s => {
+    const { g, pts, now, z } = s;
     const [cls, word] = z == null ? ["", "pas encore assez de parties récentes à ce poste"] : z >= 0.5 ? ["up", "net progrès"] : z >= 0.25 ? ["up", "léger progrès"] : z > -0.25 ? ["", "pas de changement net"] : ["down", "en baisse"];
-    const unit = g.unit && g.unit !== "%" ? ` ${g.unit === "/min" ? "/ min" : g.unit}` : "";
+    const unit = c2V1Unit(g);
     // Courbe : 30 dernières parties, ligne du niveau de départ et de la dernière cible
     const vals = pts.map(x => x.value), W = 240, H = 44;
     let spark = "";
@@ -876,7 +911,7 @@ function c2V1Progress() {
       <div class="c2-prog-nums"><div><span class="fine">Avant</span><b>${esc(c2V1Fmt(g, g.baseline))}${esc(unit)}</b></div><span aria-hidden="true">→</span><div><span class="fine">Tes 5 dernières</span><b>${esc(c2V1Fmt(g, now))}${now != null ? esc(unit) : ""}</b></div></div>
       <p class="c2-prog-verdict">${word}</p>${spark}</li>`;
   });
-  return `<section class="c2-card c2-prog"><p class="label">Ta progression</p><p class="fine">Pour chaque point travaillé : ton niveau avant de commencer, et ton niveau sur tes 5 dernières parties au même poste.</p>
+  return `<section class="c2-card c2-prog"><p class="label">Ta progression</p>${c2WeekLine(c2Week(V))}<p class="fine">Pour chaque point travaillé : ton niveau avant de commencer, et ton niveau sur tes 5 dernières parties au même poste.</p>
     <ul class="c2-prog-list">${rows.join("")}</ul>
     <p class="fine">Courbe : tes 30 dernières parties ; ligne grise, ton niveau de départ ; ligne orange, ta dernière cible. Sur 5 parties, un changement peut encore venir du hasard : c'est la tendance sur plusieurs cycles qui compte.</p></section>`;
 }

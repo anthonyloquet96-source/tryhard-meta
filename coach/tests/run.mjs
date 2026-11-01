@@ -1406,7 +1406,11 @@ await t("Notifications : chiffrement Web Push (vecteur RFC 8291), signature VAPI
   const g = { label: "CS à 10 min", role: "JUNGLE", target: "62", unit: "CS", status: "active", left: 2 };
   assert(N.coachMessage(g, 0) === "Encore 2 games pour ton objectif : CS à 10 min, vise 62 CS.", N.coachMessage(g, 0));
   assert(/jungle/.test(N.coachMessage(g, 1)) && /prêt/.test(N.coachMessage({ ...g, status: "proposed" }, 0)) && /t'attend/.test(N.coachMessage(null, 0)), "messages du coach");
-  return "chiffrement identique à la RFC 8291 ; VAPID vérifié ; début, games, match, first blood, tour, dragon, Baron, ace sans doublon ; niveau détaillé (tours, combats) ; rappels du coach.";
+  // Résumé du lundi : seulement si la dernière visite date de 3 jours au plus et qu'au moins une partie a été jouée
+  const w = { at: 1000, games: 6, up: "Farm", work: "Vision", best: "8,1 / min", bestLabel: "Farm" };
+  assert(N.weekMessage(w, 1000 + 864e5) === "6 parties en 7 jours. En progrès : Farm. Meilleure partie (Farm) : 8,1 / min. Ce qui coince encore : Vision.", N.weekMessage(w, 1000 + 864e5));
+  assert(!N.weekMessage(w, 1000 + 4 * 864e5) && !N.weekMessage({ ...w, games: 0 }, 1000) && !N.weekMessage(null) && N.weekMessage({ at: 0, games: 1 }, 0, "en") === "1 game in 7 days.", "résumé de la semaine");
+  return "chiffrement identique à la RFC 8291 ; VAPID vérifié ; début, games, match, first blood, tour, dragon, Baron, ace sans doublon ; niveau détaillé (tours, combats) ; rappels du coach ; résumé du lundi.";
 });
 
 await t("Worker : données privées lues dans Supabase Storage (cache, rafraîchissement, panne)", "fixture", async () => {

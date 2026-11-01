@@ -1365,6 +1365,8 @@ button.pick { background: none; border: 0; padding: 0; font: inherit; color: inh
 .c2-htrend-list li { display: grid; gap: 2px; padding: var(--s2) var(--s3); border-radius: var(--r-sm); background: var(--surface-2); border-left: 3px solid var(--surface-3); }
 .c2-htrend-list li.h-down, .c2-htrend-list li.h-gone { border-left-color: var(--ok); } .c2-htrend-list li.h-up, .c2-htrend-list li.h-new { border-left-color: var(--bad); }
 .c2-prog-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.c2-week { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px var(--s3); margin: 0 0 var(--s3); padding: var(--s3); border-radius: var(--r-sm); background: var(--surface-2); font-size: var(--fs-sm); }
+.c2-week .label { margin: 0; flex-basis: 100%; }
 .c2-prog-row { display: grid; gap: 6px; padding: var(--s3); border-radius: var(--r-sm); background: var(--surface-2); border-left: 3px solid var(--surface-3); }
 .c2-prog-row.up { border-left-color: var(--ok); } .c2-prog-row.down { border-left-color: var(--bad); }
 .c2-prog-head { display: grid; gap: 2px; }
