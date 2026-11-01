@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-31T13:31:40.726Z",
+ "generatedAt": "2026-11-01T01:25:57.204Z",
  "rulesLock": {
   "ok": true,
   "changed": [],
@@ -9,552 +9,552 @@
  "discovery": {
   "wtl-blog": {
    "attempts": 0,
-   "lastOk": "2026-10-31T12:54:52.692Z",
+   "lastOk": "2026-11-01T01:13:55.010Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 3
   },
   "yt-skill-capped": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:53.281Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:03.778Z)",
-   "nextTry": "2026-10-31T12:57:03.778Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:55.260Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-curtis": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:53.468Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:03.878Z)",
-   "nextTry": "2026-10-31T12:57:03.878Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:55.515Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-doublelift": {
    "attempts": 0,
-   "lastOk": "2026-10-31T12:54:53.140Z",
+   "lastOk": "2026-11-01T01:13:55.764Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-veigar-v2": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:53.827Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.073Z)",
-   "nextTry": "2026-10-31T12:57:04.073Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:56.021Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-pekinwoof": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.031Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.142Z)",
-   "nextTry": "2026-10-31T12:57:04.142Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:56.302Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-aloisnl": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.184Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.252Z)",
-   "nextTry": "2026-10-31T12:57:04.252Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:56.534Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-chreak": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.396Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.447Z)",
-   "nextTry": "2026-10-31T12:57:04.447Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:56.811Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-sixen": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.608Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.525Z)",
-   "nextTry": "2026-10-31T12:57:04.525Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:57.067Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-perryjg": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.824Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.623Z)",
-   "nextTry": "2026-10-31T12:57:04.623Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:57.384Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-leo": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:54.944Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.756Z)",
-   "nextTry": "2026-10-31T12:57:04.756Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:57.688Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-kirei": {
    "attempts": 0,
-   "lastOk": "2026-10-31T12:54:53.274Z",
+   "lastOk": "2026-11-01T01:13:58.203Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-wtl": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:55.368Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.899Z)",
-   "nextTry": "2026-10-31T12:57:04.899Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:58.488Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-ls": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:55.624Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:04.971Z)",
-   "nextTry": "2026-10-31T12:57:04.971Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:58.749Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-dishake": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:55.774Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.109Z)",
-   "nextTry": "2026-10-31T12:57:05.109Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:59.049Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-gameleap-lol-challenger-guid": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.023Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.241Z)",
-   "nextTry": "2026-10-31T12:57:05.241Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:59.363Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-mysterias": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.171Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.317Z)",
-   "nextTry": "2026-10-31T12:57:05.317Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:59.574Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-hybradge": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.338Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.387Z)",
-   "nextTry": "2026-10-31T12:57:05.387Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:13:59.868Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-ramyaura": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.473Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.524Z)",
-   "nextTry": "2026-10-31T12:57:05.524Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:00.138Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-violet": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.695Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.599Z)",
-   "nextTry": "2026-10-31T12:57:05.599Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:00.396Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-mysteriaslol": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:56.828Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.679Z)",
-   "nextTry": "2026-10-31T12:57:05.679Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:00.605Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-sinerias": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.053Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:05.751Z)",
-   "nextTry": "2026-10-31T12:57:05.751Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:00.884Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-chippys": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.179Z",
-   "lastError": "HTTP 500 (2026-10-31T06:57:05.889Z)",
-   "nextTry": "2026-10-31T12:57:05.889Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:01.098Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-makkro": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.317Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.007Z)",
-   "nextTry": "2026-10-31T12:57:06.007Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:01.358Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-coach-k": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.541Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.081Z)",
-   "nextTry": "2026-10-31T12:57:06.081Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:01.634Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-shok": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.682Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.214Z)",
-   "nextTry": "2026-10-31T12:57:06.214Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:01.869Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-rebrrt": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.810Z",
-   "lastError": "HTTP 500 (2026-10-31T06:57:06.352Z)",
-   "nextTry": "2026-10-31T12:57:06.352Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:02.148Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-scrubnoob": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:57.959Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.428Z)",
-   "nextTry": "2026-10-31T12:57:06.428Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:02.413Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-broxah": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:58.151Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.555Z)",
-   "nextTry": "2026-10-31T12:57:06.555Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:02.654Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-zen-coaching": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:58.308Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.680Z)",
-   "nextTry": "2026-10-31T12:57:06.680Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:02.935Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-gaethan-league-of-legends": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:58.508Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.748Z)",
-   "nextTry": "2026-10-31T12:57:06.748Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:03.226Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-misanthiel-coach-toplane": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:58.664Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.825Z)",
-   "nextTry": "2026-10-31T12:57:06.825Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:03.451Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-kyan": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:58.793Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.894Z)",
-   "nextTry": "2026-10-31T12:57:06.894Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:03.719Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-potent": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.017Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:06.967Z)",
-   "nextTry": "2026-10-31T12:57:06.967Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:03.958Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-bardinette": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.215Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.042Z)",
-   "nextTry": "2026-10-31T12:57:07.042Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:04.189Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-trayton": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.361Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.175Z)",
-   "nextTry": "2026-10-31T12:57:07.175Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:04.503Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-bizyze-coaching-league-of-le": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.512Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.245Z)",
-   "nextTry": "2026-10-31T12:57:07.245Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:04.745Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-sol1xd": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.638Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.320Z)",
-   "nextTry": "2026-10-31T12:57:07.320Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:04.958Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-titans-coaching": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.867Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.451Z)",
-   "nextTry": "2026-10-31T12:57:07.451Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:05.244Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-el-blu-lol": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:52:59.995Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.577Z)",
-   "nextTry": "2026-10-31T12:57:07.577Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:05.558Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-shintalx-coach-de-lol": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.147Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.656Z)",
-   "nextTry": "2026-10-31T12:57:07.656Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:05.815Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-raiko-league-of-legends": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T13:00:26.955Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.791Z)",
-   "nextTry": "2026-10-31T12:57:07.791Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:06.169Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-maurogarih": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.279Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:07.958Z)",
-   "nextTry": "2026-10-31T12:57:07.958Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:06.421Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-odysseus": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.450Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.037Z)",
-   "nextTry": "2026-10-31T12:57:08.037Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:06.695Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-dovahndo": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.571Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.207Z)",
-   "nextTry": "2026-10-31T12:57:08.207Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:07.104Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-husumlol": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.753Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.283Z)",
-   "nextTry": "2026-10-31T12:57:08.283Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:07.369Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-que-aula": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:00.897Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.356Z)",
-   "nextTry": "2026-10-31T12:57:08.356Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:07.597Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-asteek": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.029Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.430Z)",
-   "nextTry": "2026-10-31T12:57:08.430Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:07.911Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-keshaeuw": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.161Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.512Z)",
-   "nextTry": "2026-10-31T12:57:08.512Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:08.147Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-phantasm": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.282Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.644Z)",
-   "nextTry": "2026-10-31T12:57:08.644Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:08.406Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-powerofevil": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.433Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.774Z)",
-   "nextTry": "2026-10-31T12:57:08.774Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:08.661Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-fl7vob_qbs": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T13:00:27.121Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:08.850Z)",
-   "nextTry": "2026-10-31T12:57:08.850Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:09.046Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-japs-99jh_": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.680Z",
-   "lastError": "HTTP 500 (2026-10-31T06:57:09.040Z)",
-   "nextTry": "2026-10-31T12:57:09.040Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:09.351Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-mzthr5qzga": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.841Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.110Z)",
-   "nextTry": "2026-10-31T12:57:09.110Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:09.662Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-cq2-jrbuz4": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:01.985Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.184Z)",
-   "nextTry": "2026-10-31T12:57:09.184Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:09.910Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-erhqgfd8dn": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:02.146Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.257Z)",
-   "nextTry": "2026-10-31T12:57:09.257Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:10.202Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-ga52d8qlv3": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:02.319Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.332Z)",
-   "nextTry": "2026-10-31T12:57:09.332Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:10.481Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-6izv_x6edr": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:02.524Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.459Z)",
-   "nextTry": "2026-10-31T12:57:09.459Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:10.744Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-fmmwh9er3z": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:02.687Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.530Z)",
-   "nextTry": "2026-10-31T12:57:09.530Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:11.073Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-dmevbthdzh": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:02.862Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.603Z)",
-   "nextTry": "2026-10-31T12:57:09.603Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:11.353Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-o8todsm2gv": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.003Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.677Z)",
-   "nextTry": "2026-10-31T12:57:09.677Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:11.645Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-2-8sga9qex": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.144Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.747Z)",
-   "nextTry": "2026-10-31T12:57:09.747Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:11.868Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-6-vilhl-lv": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.363Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.824Z)",
-   "nextTry": "2026-10-31T12:57:09.824Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:12.207Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-9fhrv-_tww": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.501Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.900Z)",
-   "nextTry": "2026-10-31T12:57:09.900Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:12.438Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-guy1cnuajr": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T13:00:27.294Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:09.974Z)",
-   "nextTry": "2026-10-31T12:57:09.974Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:12.718Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-japanesekoreanug": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.674Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.041Z)",
-   "nextTry": "2026-10-31T12:57:10.041Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:12.971Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-02kyy9q5fy": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:03.799Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.170Z)",
-   "nextTry": "2026-10-31T12:57:10.170Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:13.352Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-mjdqfb68q1": {
    "attempts": 0,
-   "lastOk": "2026-10-31T12:54:53.543Z",
+   "lastOk": "2026-11-01T01:14:13.635Z",
    "lastError": null,
    "nextTry": null,
    "lastCount": 15
   },
   "yt-yamato-natsuna-lol-katarina": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.162Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.301Z)",
-   "nextTry": "2026-10-31T12:57:10.301Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:13.889Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-wcnac9zs-i": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.284Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.375Z)",
-   "nextTry": "2026-10-31T12:57:10.375Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:14.199Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-iqjmsczied": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.444Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.449Z)",
-   "nextTry": "2026-10-31T12:57:10.449Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:14.422Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-zwyro": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.583Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.521Z)",
-   "nextTry": "2026-10-31T12:57:10.521Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:14.675Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-jankos": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.727Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.596Z)",
-   "nextTry": "2026-10-31T12:57:10.596Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:14.976Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-krugz": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:04.958Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.676Z)",
-   "nextTry": "2026-10-31T12:57:10.676Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:15.276Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-turkish-taliyah": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:05.113Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.800Z)",
-   "nextTry": "2026-10-31T12:57:10.800Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:15.644Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-taowb": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:05.260Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.919Z)",
-   "nextTry": "2026-10-31T12:57:10.919Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:15.905Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-hansuo": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:05.448Z",
-   "lastError": "HTTP 404 (2026-10-31T06:57:10.999Z)",
-   "nextTry": "2026-10-31T12:57:10.999Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:16.234Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   },
   "yt-proguides-challenger-league": {
-   "attempts": 2,
-   "lastOk": "2026-10-30T18:53:05.602Z",
-   "lastError": "HTTP 500 (2026-10-31T06:57:11.142Z)",
-   "nextTry": "2026-10-31T12:57:11.142Z",
+   "attempts": 0,
+   "lastOk": "2026-11-01T01:14:16.459Z",
+   "lastError": null,
+   "nextTry": null,
    "lastCount": 15
   }
  },
- "lastDiscovery": "2026-10-31T12:54:53.566Z",
+ "lastDiscovery": "2026-11-01T01:14:16.492Z",
  "failures": [],
  "quarantine": [
   {
@@ -566,249 +566,6 @@
   }
  ],
  "rejected": [
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-5",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « When you keep multiple options in fights or even in macro op… »"
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau emeraude : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-7a5EBaZ-ems-2",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-7a5EBaZ-ems : « Is that also because of runes though? It's also because of r… »"
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-RIro7KcXJP8-1",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Hecarim."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-1",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « First, unlock your camera. If you haven't yet, just do it. A… »"
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau fer : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-2",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « Basically, you always want to be input buffering movement co… »"
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau fer : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-3",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Tahm Kench."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Corki."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Veigar."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau bronze : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-4",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « In bot lane, you will hit level 2 on the second wave after t… »"
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Thresh."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau argent : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-5",
-   "reasons": [
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau argent : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-6",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « All you're doing is pushing a minion wave as deep into the e… »"
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Wukong."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau argent : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-7",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Pantheon."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-8",
-   "reasons": [
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau platine : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-9",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-eceSyaVnz3M : « When you keep multiple options in fights or even in macro op… »"
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Rell."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Jax."
-    },
-    {
-     "code": "rang-sous-reference",
-     "why": "Contenu tiré de parties de niveau emeraude : utilisable seulement comme erreur à corriger, pas comme référence."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-eceSyaVnz3M-10",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur LeBlanc."
-    },
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Ashe."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-ZzKpPJ_BNHM-1",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-ZzKpPJ_BNHM : « One minion wave is worth 125 gold on average. That is until … »"
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-ZzKpPJ_BNHM-2",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Statistique sans chiffre dans les passages cités."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-7a5EBaZ-ems-2",
-   "reasons": [
-    {
-     "code": "citation-introuvable",
-     "why": "Passage introuvable dans c-yt-7a5EBaZ-ems : « 850 gold is the sweet spot. If you don't get it, you might a… »"
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
-  {
-   "id": "u-ai-yt-RIro7KcXJP8-1",
-   "reasons": [
-    {
-     "code": "citation-insuffisante",
-     "why": "Aucun passage ne porte sur Hecarim."
-    }
-   ],
-   "at": "2026-10-25",
-   "origin": "analyse-automatique"
-  },
   {
    "id": "u-ai-yt-eceSyaVnz3M-1",
    "reasons": [
@@ -3037,6 +2794,241 @@
    ],
    "at": "2026-10-31",
    "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-gsdYLoWGc20-1",
+   "reasons": [
+    {
+     "code": "citation-insuffisante",
+     "why": "Aucun passage ne porte sur Briar."
+    },
+    {
+     "code": "rang-sous-reference",
+     "why": "Contenu tiré de parties de niveau emeraude : utilisable seulement comme erreur à corriger, pas comme référence."
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-8",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « So what his passive does is essentially on every single crit… »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-9",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « So the way it works is that it's just going bounce, right? I… »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-12",
+   "reasons": [
+    {
+     "code": "citation-non-entendue",
+     "why": "c-yt-uB3DBca5uEw : passage absent de l'extrait 204-264s relu par gemini-3.5-flash-lite."
+    },
+    {
+     "code": "citation-trop-longue",
+     "why": "Passage de plus de 320 caractères : résumer plutôt que republier."
+    },
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « So this is your utility spell. You want to be spamming this … »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-13",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « Another thing as well is that your E will proc your W tag, r… »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-15",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « Now this match-up we're playing Jhin Senna into Ezreal Bard.… »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-19",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « I don't want to side lane, you know, as an AD carry playing … »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-20",
+   "reasons": [
+    {
+     "code": "citation-insuffisante",
+     "why": "Aucun passage ne porte sur Rengar."
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-21",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-uB3DBca5uEw : « We maybe do Nash, by the way. Going to ping Nash for my team… »"
+    }
+   ],
+   "at": "2026-10-31",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-gsdYLoWGc20-1",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-gsdYLoWGc20 : « Bim karakterimiz farm yapmak değil de böyle gank spamlamak k… »"
+    },
+    {
+     "code": "citation-insuffisante",
+     "why": "Aucun passage ne porte sur Briar."
+    },
+    {
+     "code": "rang-sous-reference",
+     "why": "Contenu tiré de parties de niveau emeraude : utilisable seulement comme erreur à corriger, pas comme référence."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-gsdYLoWGc20-2",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-gsdYLoWGc20 : « Dostlarım şu an Emerald'da değil kendi elomda oynasaydı Ulti… »"
+    },
+    {
+     "code": "rang-sous-reference",
+     "why": "Contenu tiré de parties de niveau emeraude : utilisable seulement comme erreur à corriger, pas comme référence."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-1",
+   "reasons": [
+    {
+     "code": "citation-non-entendue",
+     "why": "c-yt-uB3DBca5uEw : passage absent de l'extrait 10-70s relu par gemini-3.5-flash-lite."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-3",
+   "reasons": [
+    {
+     "code": "citation-non-entendue",
+     "why": "c-yt-uB3DBca5uEw : passage absent de l'extrait 204-264s relu par gemini-3.5-flash-lite."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-10",
+   "reasons": [
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-v6dgAHQHx78 : « So this is great for, you know, dodging jungle ganks, right?… »"
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-12",
+   "reasons": [
+    {
+     "code": "mention",
+     "why": "Karma n'est cité qu'en exemple : ce n'est pas un conseil sur Karma."
+    },
+    {
+     "code": "mention",
+     "why": "Ezreal n'est cité qu'en exemple : ce n'est pas un conseil sur Ezreal."
+    },
+    {
+     "code": "mention",
+     "why": "Sona n'est cité qu'en exemple : ce n'est pas un conseil sur Sona."
+    },
+    {
+     "code": "mention",
+     "why": "Ezreal (exemple) : mention, pas conseil."
+    },
+    {
+     "code": "mention",
+     "why": "Sona (exemple) : mention, pas conseil."
+    },
+    {
+     "code": "mention",
+     "why": "Karma (exemple) : mention, pas conseil."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-IG5H_Zm8_k8-1",
+   "reasons": [
+    {
+     "code": "citation-trop-longue",
+     "why": "Passage de plus de 320 caractères : résumer plutôt que republier."
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-2",
+   "reasons": [
+    {
+     "code": "citation-trop-longue",
+     "why": "Passage de plus de 320 caractères : résumer plutôt que republier."
+    },
+    {
+     "code": "citation-introuvable",
+     "why": "Passage introuvable dans c-yt-LUllgzA2Q80 : « essentially what it does is you deal bonus physical damage w… »"
+    }
+   ],
+   "at": "2026-11-01",
+   "origin": "analyse-automatique"
   }
  ],
  "pending": [
@@ -3075,10 +3067,6 @@
   "c-riot-dev-yuumi-s-rework",
   "c-yt-S3F9CpeiSNE",
   "c-riot-champion-insights-zeri",
-  "c-yt-uB3DBca5uEw",
-  "c-yt-v6dgAHQHx78",
-  "c-yt-IG5H_Zm8_k8",
-  "c-yt-LUllgzA2Q80",
   "c-yt--J8fOgYCRbI",
   "c-yt-hADG2i46dEQ",
   "c-inven-board-baron",
@@ -4145,7 +4133,30 @@
   "u-ai-yt-cRoLLHb0bro-2",
   "u-ai-yt-cRoLLHb0bro-4",
   "u-ai-yt-cRoLLHb0bro-6",
-  "u-ai-yt-7upo6KzBnbs-3"
+  "u-ai-yt-7upo6KzBnbs-3",
+  "u-ai-yt-BeS1VgKiBoY-1",
+  "u-ai-yt-BeS1VgKiBoY-2",
+  "u-ai-yt-uB3DBca5uEw-2",
+  "u-ai-yt-v6dgAHQHx78-1",
+  "u-ai-yt-v6dgAHQHx78-2",
+  "u-ai-yt-v6dgAHQHx78-3",
+  "u-ai-yt-v6dgAHQHx78-4",
+  "u-ai-yt-v6dgAHQHx78-5",
+  "u-ai-yt-v6dgAHQHx78-6",
+  "u-ai-yt-v6dgAHQHx78-7",
+  "u-ai-yt-v6dgAHQHx78-8",
+  "u-ai-yt-v6dgAHQHx78-9",
+  "u-ai-yt-v6dgAHQHx78-11",
+  "u-ai-yt-IG5H_Zm8_k8-2",
+  "u-ai-yt-IG5H_Zm8_k8-3",
+  "u-ai-yt-IG5H_Zm8_k8-4",
+  "u-ai-yt-IG5H_Zm8_k8-5",
+  "u-ai-yt-LUllgzA2Q80-1",
+  "u-ai-yt-LUllgzA2Q80-3",
+  "u-ai-yt-LUllgzA2Q80-4",
+  "u-ai-yt-LUllgzA2Q80-5",
+  "u-ai-yt-LUllgzA2Q80-6",
+  "u-ai-yt-LUllgzA2Q80-7"
  ],
  "contested": [],
  "retired": [
@@ -4318,6 +4329,525 @@
    "unit": "u-dd-milio-e2",
    "by": "Claude Code (tour du coach demandé par Anthony le 24/10)",
    "reason": "Erreur des données officielles de Riot (Data Dragon) : ce conseil est une copie de celui de Rakan, il ne décrit pas le kit de Milio."
+  },
+  {
+   "at": "2026-10-31T13:34:15.470Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-r10CTY-1VR4-2",
+   "field": "claim",
+   "before": "Selon Dishake : avant de placer de la vision en profondeur dans la tu jungle ennemie, tu dois t'assurer d'avoir les lignes poussées pour utiliser les sbires alliés comme source principale de information et de sécurité.",
+   "after": "Selon Dishake : avoir tes lanes poussées t'aide énormément à poser de la vision sans être vu, car la principale source de vision du jeu, ce sont tes sbires alliés. Pousse donc tes vagues avant d'aller poser des balises en profondeur dans la jungle ennemie.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Traduction corrigée sur le passage espagnol (« la fuente principal de visión en el juego son los súbditos aliados ») : fautes (« la tu jungle », « de information ») et sens déformé (« information et sécurité », « tu dois »). https://www.youtube.com/watch?v=r10CTY-1VR4 [02:02]"
+  },
+  {
+   "at": "2026-10-31T13:34:15.554Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-r10CTY-1VR4-2",
+   "field": "use",
+   "before": {
+    "when": "tes vagues de sbires sont proches de la base ennemie et tu veux placer des balises",
+    "why": "car les sbires alliés t'informent des mouvements ennemis lorsqu'ils sortent de leur base",
+    "who": "tous les rôles",
+    "how": [
+     "Pousse la vague de sbires le plus loin possible de ta base",
+     "Va placer ta vision dans la jungle ennemie pendant que les ennemis gèrent la vague"
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "tes vagues de sbires sont poussées vers la base ennemie et tu veux poser des balises",
+    "why": "tes sbires alliés sont ta principale source de vision : avec des vagues poussées, tu peux aller poser tes balises sans être vu",
+    "who": "tous les rôles",
+    "how": [
+     "Pousse ta vague de sbires le plus loin possible de ta base",
+     "Va poser ta vision dans la jungle ennemie pendant que les ennemis gèrent la vague"
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Raison corrigée selon le passage : les sbires alliés donnent la vision et permettent de poser des balises sans être vu (et non « t'informent des mouvements ennemis »). https://www.youtube.com/watch?v=r10CTY-1VR4 [02:02]"
+  },
+  {
+   "at": "2026-10-31T13:34:15.644Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-YJtOWRVdwyc-1",
+   "field": "claim",
+   "before": "Selon DovahNDo : pour anticiper quelle vague va pousser naturellement sans intervention, observe la première vague dont le sbire canon meurt. Si le sbire canon rouge meurt en premier, la vague rouge va pousser car les sbires mages ont plus de dégâts que les sbires corps-à-corps.",
+   "after": "Selon DovahNDo : pour anticiper quelle vague va pousser naturellement sans intervention, observe quel sbire canon meurt en premier : la vague qui perd son canon la première est battue. Si le canon rouge survit et que les sbires rouges tuent le canon bleu, c'est la vague rouge qui va pousser.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Sens inversé dans la traduction : le passage dit que la vague dont le canon meurt en premier est battue (« si el lado rojo sobrevive su minion cannon y pueden matar al minion cannon azul … el lado rojo va a pushear »). Raison sur les sbires mages retirée : absente du passage cité. https://www.youtube.com/watch?v=YJtOWRVdwyc [02:00]"
+  },
+  {
+   "at": "2026-10-31T13:34:15.736Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-YJtOWRVdwyc-1",
+   "field": "use",
+   "before": {
+    "when": "en début de partie lorsque les premières vagues de sbires arrivent sur la lane sans que personne ne les touche",
+    "why": "les sbires mages disposent de beaucoup plus de dégâts que les sbires corps-à-corps, et la vague qui garde ses mages en vie ou dont le canon survit finit par l'emporter et repousser",
+    "who": "tous les rôles",
+    "how": [
+     "Regarde les deux vagues arriver au milieu de la lane",
+     "Identifie quel sbire canon meurt le premier entre les deux camps"
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "en début de partie lorsque les premières vagues de sbires arrivent sur la lane sans que personne ne les touche",
+    "why": "la vague qui perd son sbire canon la première est la première battue : l'autre vague prend l'avantage et pousse",
+    "who": "tous les rôles",
+    "how": [
+     "Regarde les deux vagues arriver au milieu de la lane",
+     "Identifie quel sbire canon meurt le premier entre les deux camps"
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Raison alignée sur le passage cité (la précédente reprenait le sens inversé). https://www.youtube.com/watch?v=YJtOWRVdwyc [02:00]"
+  },
+  {
+   "at": "2026-10-31T13:34:15.822Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-YJtOWRVdwyc-3",
+   "field": "claim",
+   "before": "Selon DovahNDo : pour créer une macro-vague (grosse vague de sbires) idéale pour pousser les tours ou faire du split push, tues uniquement les sbires mages de chaque vague en laissant les sbires corps-à-corps en vie.",
+   "after": "Selon DovahNDo : pour créer une macro-vague (grosse vague de sbires) idéale pour pousser les tours ou faire du split push, tue uniquement les sbires mages de chaque vague en laissant les sbires corps-à-corps en vie.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Faute de conjugaison (« tues » → « tue »)."
+  },
+  {
+   "at": "2026-10-31T13:34:15.905Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-YJtOWRVdwyc-3",
+   "field": "action",
+   "before": "Elimine seulement les sbires mages (casters) et garde en vie les sbires corps-à-corps pour accumuler une énorme vague.",
+   "after": "Élimine seulement les sbires mages (casters) et garde en vie les sbires corps-à-corps pour accumuler une énorme vague.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Accent manquant (« Elimine »)."
+  },
+  {
+   "at": "2026-10-31T13:34:15.990Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-IaWNQu9peB8-1",
+   "field": "claim",
+   "before": "Selon Veigar v2 : en début de partie sur un champion de mêlée faible au niveau 1, laisse le champion à distance adverse t'attaquer une fois pour attirer l'agressivité des sbires ennemis et forcer la vague à avancer rapidement vers toi.",
+   "after": "Selon Veigar v2 : au niveau 1, sur un champion de mêlée faible à ce niveau (comme Ekko) et si tu veux que la vague pousse vers toi, fais prendre à l'adversaire l'aggro de tes sbires quand ça ne l'arrange pas. À éviter si son champion est très fort au niveau 1 (par exemple Lucian avec Attaque soutenue).",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Contresens corrigé : le passage parle de faire prendre à l'adversaire l'aggro de TES sbires (« make her tank creep aggro »), pas d'attirer les sbires ennemis. Limite du passage suivant ajoutée (Lucian Attaque soutenue, nom Data Dragon). https://www.youtube.com/watch?v=IaWNQu9peB8 [01:39] et [02:18]"
+  },
+  {
+   "at": "2026-10-31T13:34:16.078Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-IaWNQu9peB8-1",
+   "field": "observe",
+   "before": "Vérifie si les sbires ennemis cessent d'attaquer tes sbires pour cibler l'adversaire, accélérant le push vers ta tour.",
+   "after": "Vérifie si tes sbires cessent de frapper les sbires ennemis pour cibler l'adversaire : la vague ennemie est préservée et pousse vers toi.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Contresens corrigé (ce sont tes sbires qui changent de cible, pas les sbires ennemis)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.166Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-IaWNQu9peB8-1",
+   "field": "use",
+   "before": {
+    "when": "Au niveau 1 sur la voie du milieu, dès que les deux premières vagues de sbires se rencontrent et commencent à s'attaquer mutuellement.",
+    "why": "L'attaque ennemie redirige l'agressivité de tes sbires sur l'adversaire, ce qui préserve les sbires ennemis et fait avancer rapidement la vague vers ta tourelle pour farmer en sécurité.",
+    "who": "Midlaner de mêlée faible au niveau 1 jouant contre un champion à distance aux dégâts modérés.",
+    "how": [
+     "Attends que les sbires des deux vagues entrent en contact au centre de la voie.",
+     "Avance et reste immobile à portée d'attaque de l'adversaire pour encaisser une attaque de base et un sort léger.",
+     "Recule immédiatement après l'attaque pour laisser les sbires ennemis avancer vers ton camp."
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "Au niveau 1 sur la voie du milieu, dès que les deux premières vagues de sbires se rencontrent.",
+    "why": "Quand l'adversaire prend l'aggro de tes sbires, ils le frappent au lieu de tuer les sbires ennemis : la vague ennemie est préservée et pousse vers toi.",
+    "who": "Midlaner de mêlée faible au niveau 1 face à un adversaire qui n'est pas très fort au niveau 1.",
+    "how": [
+     "Attends que les sbires des deux vagues entrent en contact.",
+     "Incite l'adversaire à t'attaquer près de tes sbires pour qu'il prenne leur aggro.",
+     "Recule ensuite et laisse la vague pousser vers toi."
+    ],
+    "notWhen": "L'adversaire est très fort au niveau 1 (exemple cité : Lucian avec Attaque soutenue)."
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Étape inventée retirée (« encaisser une attaque de base et un sort léger », absente du passage) ; limite du passage [02:18] reportée dans notWhen. https://www.youtube.com/watch?v=IaWNQu9peB8"
+  },
+  {
+   "at": "2026-10-31T13:34:16.245Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-5",
+   "field": "claim",
+   "before": "Selon Coach Violet : prendre Savoir-faire et Transmutation cosmique en runes secondaires sur Kai'Sa pour accélérer l'obtention des objets.",
+   "after": "Selon Coach Violet : sur Kai'Sa, prends l'arbre Inspiration en secondaire avec Remise immédiate et Savoir cosmique.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Noms faux (« Savoir-faire », « Transmutation cosmique ») : Cashback = Remise immédiate, Cosmic Insight = Savoir cosmique (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026). Raison « accélérer l'obtention des objets » retirée : absente du passage."
+  },
+  {
+   "at": "2026-10-31T13:34:16.334Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-5",
+   "field": "action",
+   "before": "Prends l'arbre Inspiration en secondaire avec Savoir-faire et Transmutation cosmique sur Kai'Sa.",
+   "after": "Prends l'arbre Inspiration en secondaire avec Remise immédiate et Savoir cosmique sur Kai'Sa.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Noms de runes corrigés (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.421Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-5",
+   "field": "use",
+   "before": {
+    "when": "Tu configures tes runes secondaires pour Kai'Sa.",
+    "why": "Savoir-faire aide essentiellement à obtenir tes objets plus rapidement.",
+    "who": "Kai'Sa",
+    "how": [
+     "Sélectionne Inspiration comme arbre secondaire.",
+     "Prends Savoir-faire et Transmutation cosmique."
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "Tu configures tes runes secondaires pour Kai'Sa.",
+    "why": "Choix de runes secondaires recommandé par la coach ; la vidéo ne donne pas de raison dans le passage cité.",
+    "who": "Kai'Sa",
+    "how": [
+     "Sélectionne Inspiration comme arbre secondaire.",
+     "Prends Remise immédiate et Savoir cosmique."
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Raison inventée retirée, noms corrigés (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.505Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-5",
+   "field": "dependsOn",
+   "before": [
+    "Kai'Sa",
+    "rune:Savoir-faire",
+    "rune:Transmutation-cosmique"
+   ],
+   "after": [
+    "Kai'Sa",
+    "rune:Remise immédiate",
+    "rune:Savoir cosmique"
+   ],
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Noms de runes corrigés (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.587Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-3",
+   "field": "claim",
+   "before": "Selon Coach Violet : préférer Légende : Lignée pour le vol de vie général et constant sur Kai'Sa, ou Légende : Alacrité face à de nombreux tanks.",
+   "after": "Selon Coach Violet : préférer Légende : sangsue pour le vol de vie, choix plus sûr et constant sur Kai'Sa, ou Légende : alacrité face à de nombreux tanks.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom faux (« Légende : Lignée ») : Bloodline = Légende : sangsue (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.672Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-3",
+   "field": "action",
+   "before": "Choisis Légende : Lignée par défaut sur Kai'Sa, ou Légende : Alacrité contre les compositions pleines de tanks.",
+   "after": "Choisis Légende : sangsue par défaut sur Kai'Sa, ou Légende : alacrité contre les compositions pleines de tanks.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.760Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-3",
+   "field": "use",
+   "before": {
+    "when": "Tu choisis tes runes de légende selon la composition ennemie.",
+    "why": "Lignée offre une option de vol de vie plus sûre et constante, tandis qu'Alacrité maximise la vitesse d'attaque contre les tanks.",
+    "who": "Kai'Sa",
+    "how": [
+     "Sélectionne Légende : Lignée par défaut, ou bascule sur Légende : Alacrité si l'ennemi a beaucoup de tanks."
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "Tu choisis ta rune de légende selon la composition ennemie.",
+    "why": "Légende : sangsue offre un vol de vie plus sûr et constant, tandis que Légende : alacrité convient quand l'ennemi a beaucoup de tanks et que tu n'as pas besoin du vol de vie.",
+    "who": "Kai'Sa",
+    "how": [
+     "Sélectionne Légende : sangsue par défaut, ou bascule sur Légende : alacrité si l'ennemi a beaucoup de tanks."
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.843Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-3",
+   "field": "dependsOn",
+   "before": [
+    "Kai'Sa",
+    "rune:Legende-Lignee"
+   ],
+   "after": [
+    "Kai'Sa",
+    "rune:Légende : sangsue"
+   ],
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:16.926Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-11",
+   "field": "claim",
+   "before": "Selon Coach Violet : le E de Kai'Sa (Surcapacité) est un sort utilitaire de mobilité qui ne doit pas être utilisé uniquement de manière offensive ou défensive.",
+   "after": "Selon Coach Violet : le E de Kai'Sa (Surpresseur) est un sort utilitaire de mobilité qui ne doit pas être utilisé uniquement de manière offensive ou défensive.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom du sort faux (« Surcapacité ») : E = Surpresseur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.006Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-11",
+   "field": "action",
+   "before": "Adapte l'utilisation de ton E (Surcapacité) pour fuir, esquiver ou te positionner agressivement selon la situation.",
+   "after": "Adapte l'utilisation de ton E (Surpresseur) pour fuir, esquiver ou te positionner agressivement selon la situation.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom du sort corrigé (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.101Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-6DYcD-pcMdA-11",
+   "field": "use",
+   "before": {
+    "when": "Tu dois t'engager dans un combat ou t'extraire d'une mauvaise position.",
+    "why": "Le sort offre des usages multiples de mobilité et ne doit pas être gaspillé bêtement.",
+    "who": "Kai'Sa",
+    "how": [
+     "Évalue si tu as besoin de fuir ou de rattraper une cible.",
+     "Active ton E (Surcapacité) pour ajuster ton positionnement en conséquence."
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "Tu dois t'engager dans un combat ou t'extraire d'une mauvaise position.",
+    "why": "Le sort offre des usages multiples de mobilité et ne doit pas être gaspillé bêtement.",
+    "who": "Kai'Sa",
+    "how": [
+     "Évalue si tu as besoin de fuir ou de rattraper une cible.",
+     "Active ton E (Surpresseur) pour ajuster ton positionnement en conséquence."
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom du sort corrigé (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.186Z",
+   "action": "corrige",
+   "unit": "u-ai-yt--I7iBIabOok-1",
+   "field": "claim",
+   "before": "Selon Kyan : pour Vladimir, Phrasé Rassasié (Phase Rush) est la rune clé standard et la plus optimale car le champion manque cruellement de mobilité, ce qui permet d'échapper aux ralentissements et de coller aux adversaires dans les escarmouches en side lane et les teamfights.",
+   "after": "Selon Kyan : pour Vladimir, Assaut du maraudeur (Phase Rush) est la rune clé standard et la plus optimale car le champion manque cruellement de mobilité, ce qui permet d'échapper aux ralentissements et de coller aux adversaires dans les escarmouches en side lane et les teamfights.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom inexistant (« Phrasé Rassasié ») : Phase Rush = Assaut du maraudeur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.267Z",
+   "action": "corrige",
+   "unit": "u-ai-yt--I7iBIabOok-1",
+   "field": "action",
+   "before": "Joue Phrasé Rassasié comme rune principale sur Vladimir pour compenser son manque de mobilité dans les échanges en side lane.",
+   "after": "Joue Assaut du maraudeur comme rune principale sur Vladimir pour compenser son manque de mobilité dans les échanges en side lane.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé : Phase Rush = Assaut du maraudeur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.349Z",
+   "action": "corrige",
+   "unit": "u-ai-yt--I7iBIabOok-1",
+   "field": "observe",
+   "before": "Observe si tu parviens à t'enfuir ou à coller l'adversaire après avoir déclenché Phrasé Rassasié.",
+   "after": "Observe si tu parviens à t'enfuir ou à coller l'adversaire après avoir déclenché Assaut du maraudeur.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé : Phase Rush = Assaut du maraudeur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.435Z",
+   "action": "corrige",
+   "unit": "u-ai-yt--I7iBIabOok-1",
+   "field": "use",
+   "before": {
+    "when": "tu subis des ralentissements ou un champion adverse essaie de te courir après dans une longue lane ou en teamfight",
+    "why": "Vladimir manque intrinsèquement de vitesse de déplacement et Phrasé Rassasié offre de la résistance aux ralentissements ainsi qu'un boost de vitesse pour s'enfuir ou coller la cible.",
+    "who": "Vladimir",
+    "how": [
+     "touche l'adversaire avec trois attaques ou compétences distinctes",
+     "bénéficie du bonus de vitesse de déplacement et de la résistance aux ralentissements pour fuir ou poursuivre"
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "tu subis des ralentissements ou un champion adverse essaie de te courir après dans une longue lane ou en teamfight",
+    "why": "Vladimir manque intrinsèquement de vitesse de déplacement et Assaut du maraudeur offre de la résistance aux ralentissements ainsi qu'un bonus de vitesse pour s'enfuir ou coller la cible.",
+    "who": "Vladimir",
+    "how": [
+     "touche l'adversaire avec trois attaques ou compétences distinctes",
+     "profite du bonus de vitesse de déplacement et de la résistance aux ralentissements pour fuir ou poursuivre"
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé : Phase Rush = Assaut du maraudeur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.518Z",
+   "action": "corrige",
+   "unit": "u-ai-yt--I7iBIabOok-1",
+   "field": "dependsOn",
+   "before": [
+    "rune:Phase Rush"
+   ],
+   "after": [
+    "rune:Assaut du maraudeur"
+   ],
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Nom de rune corrigé : Phase Rush = Assaut du maraudeur (noms français vérifiés dans Data Dragon 16.21.1 fr_FR (runesReforged.json, Kaisa.json) le 31/10/2026)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.602Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-035a4GhaLOE-1",
+   "field": "action",
+   "before": "En outil d'entraînement, frappe la plante de jungle avec Rengar précisément à 1:22 (8 secondes avant le spawn à 1:30) pour aborder le buff Rouge avec une charge et ton A prêt.",
+   "after": "Avant l'apparition de ton premier camp avec Rengar, frappe la plante de jungle quand il reste entre 10 et 6 secondes avant l'apparition du camp, pour arriver sur le camp avec une charge de férocité et ton A de nouveau disponible.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Timing inventé retiré (« 1:22 », « 8 secondes », « spawn à 1:30 », « buff Rouge » absents du passage) : seule la fenêtre de 10 à 6 secondes est dite. https://www.youtube.com/watch?v=035a4GhaLOE [00:16]-[00:22]"
+  },
+  {
+   "at": "2026-10-31T13:34:17.686Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-035a4GhaLOE-1",
+   "field": "use",
+   "before": {
+    "when": "Au début de la partie, avant l'apparition de ton premier camp de jungle (buff Rouge).",
+    "why": "Le délai de récupération du A est de 6 secondes ; frapper la plante entre 6 et 10 secondes avant l'apparition permet d'entrer en combat, de générer une charge de férocité et d'avoir le A de nouveau disponible dès l'apparition du monstre.",
+    "who": "Joueur de Rengar jungle.",
+    "how": [
+     "Attends qu'il reste entre 6 et 10 secondes avant l'apparition du camp.",
+     "Saute sur la plante de jungle avec ton A.",
+     "Reste en position pour attaquer le camp dès qu'il apparaît avec le A disponible."
+    ],
+    "notWhen": ""
+   },
+   "after": {
+    "when": "Au début de la partie, avant l'apparition de ton premier camp de jungle.",
+    "why": "Le délai de récupération du A est de 6 secondes ; frapper entre 10 et 6 secondes avant l'apparition permet de générer une charge de férocité et d'avoir le A de nouveau disponible dès l'apparition du monstre.",
+    "who": "Joueur de Rengar jungle.",
+    "how": [
+     "Attends qu'il reste entre 10 et 6 secondes avant l'apparition du camp.",
+     "Saute sur la plante de jungle avec ton A.",
+     "Reste en position pour attaquer le camp dès qu'il apparaît avec le A disponible."
+    ],
+    "notWhen": ""
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Camp précis (« buff Rouge ») retiré : absent du passage. https://www.youtube.com/watch?v=035a4GhaLOE"
+  },
+  {
+   "at": "2026-10-31T13:34:17.779Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-Zu_X0KkI41c-2",
+   "field": "action",
+   "before": "Rappelle-te à temps pour acheter tes objets et synchroniser ton tempo avec le jungler adverse au lieu de courir à l'aveugle vers le premier camp disponible.",
+   "after": "Rentre à la base à temps pour acheter tes objets et caler ton tempo sur celui du jungler adverse, au lieu de courir à l'aveugle vers le premier camp disponible.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Faute (« Rappelle-te »)."
+  },
+  {
+   "at": "2026-10-31T13:34:17.879Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-Zu_X0KkI41c-4",
+   "field": "claim",
+   "before": "Selon Coach Kirei : league of Legends est un jeu au tour par tour : céder un objectif neutre (comme les larves du néant) te permet de gagner du tempo pour faire une action ailleurs sur la carte.",
+   "after": "Selon Coach Kirei : League of Legends est un jeu au tour par tour : céder un objectif neutre (comme les larves du néant) te permet de gagner du tempo pour faire une action ailleurs sur la carte.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Majuscule manquante (« league of Legends »)."
+  },
+  {
+   "at": "2026-10-31T13:34:18.002Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-BnwE5CD1-qA-1",
+   "field": "action",
+   "before": "Attends que ton adversaire rate un sort ou commets une erreur de placement pour utiliser ton Z et Électrocution.",
+   "after": "Attends que ton adversaire rate un sort ou commette une erreur de placement pour forcer un échange autour de tes temps de recharge et d'Électrocution.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Faute (« commets ») et sort inventé (« ton Z ») : le passage dit « force a trade around your cooldowns and Electrocute ». https://www.youtube.com/watch?v=BnwE5CD1-qA [00:54]"
+  },
+  {
+   "at": "2026-10-31T13:34:18.114Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-2pC3FmEJAkU-1",
+   "field": "claim",
+   "before": "Selon Skill Capped : sur le patch 26.21, Darius est replacé en palier S sur la top lane grâce à un buff de son Q réduisant son délai de récupération de 1 seconde au niveau 9 une fois le sort maxé, ce qui augmente sa force de escarmouche en milieu de partie.",
+   "after": "Selon Skill Capped : sur le patch 26.21, Darius est replacé en palier S sur la top lane grâce à un buff de son Q réduisant son délai de récupération de 1 seconde au niveau 9 une fois le sort maxé, ce qui augmente sa force d'escarmouche en milieu de partie.",
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Faute (« de escarmouche »). Valeur vérifiée dans les notes officielles 26.21 (Q, délai 9/8/7/6/5 s → 9/8/7/6/4 s) : https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-21-notes/"
+  },
+  {
+   "at": "2026-10-31T13:34:18.206Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-0wsrN1DFtt8-1",
+   "field": "patch",
+   "before": {
+    "known": true,
+    "value": "14.20"
+   },
+   "after": {
+    "known": false
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Patch « 14.20 » impossible pour une vidéo publiée le 14/10/2026 (patch en cours : 26.20) : lecture erronée, patch inconnu. https://www.youtube.com/watch?v=0wsrN1DFtt8"
+  },
+  {
+   "at": "2026-10-31T13:34:18.303Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-0wsrN1DFtt8-2",
+   "field": "patch",
+   "before": {
+    "known": true,
+    "value": "14.20"
+   },
+   "after": {
+    "known": false
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Patch « 14.20 » impossible pour une vidéo publiée le 14/10/2026 (patch en cours : 26.20) : lecture erronée, patch inconnu. https://www.youtube.com/watch?v=0wsrN1DFtt8"
+  },
+  {
+   "at": "2026-10-31T13:34:18.390Z",
+   "action": "corrige",
+   "unit": "u-ai-yt-0wsrN1DFtt8-3",
+   "field": "patch",
+   "before": {
+    "known": true,
+    "value": "14.20"
+   },
+   "after": {
+    "known": false
+   },
+   "by": "Claude Code (analyste LoL, récolte du 31/10)",
+   "reason": "Patch « 14.20 » impossible pour une vidéo publiée le 14/10/2026 (patch en cours : 26.20) : lecture erronée, patch inconnu. https://www.youtube.com/watch?v=0wsrN1DFtt8"
   }
  ],
  "statusLog": [
@@ -5027,208 +5557,8 @@
   "month": 0,
   "calls": [
    {
-    "at": "2026-10-31T01:06:49.554Z",
-    "content": "c-yt-X-D04vxrk7c",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5912,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:07:00.079Z",
-    "content": "c-yt-X-D04vxrk7c",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5922,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:07:14.834Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 15018,
-    "output": 3111,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:07:22.457Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 7768,
-    "output": 398,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:07:31.844Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5903,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:07:40.272Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5916,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:07:50.460Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5887,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:08:00.357Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5886,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:08:10.914Z",
-    "content": "c-yt-YJtOWRVdwyc",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5925,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:08:22.055Z",
-    "content": "c-yt-0wsrN1DFtt8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 12588,
-    "output": 1765,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:08:29.913Z",
-    "content": "c-yt-0wsrN1DFtt8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 6456,
-    "output": 406,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:08:39.811Z",
-    "content": "c-yt-0wsrN1DFtt8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5889,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:08:49.897Z",
-    "content": "c-yt-0wsrN1DFtt8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5878,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:08:58.343Z",
-    "content": "c-yt-0wsrN1DFtt8",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5862,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:09:05.858Z",
-    "content": "c-yt-WO5Vc9BCNZU",
-    "model": "gemini-3.5-flash-lite",
-    "input": 13802,
-    "output": 128,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:09:27.142Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 15385,
-    "output": 6759,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:09:36.039Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 12168,
-    "output": 1043,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T01:09:46.648Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5816,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:09:54.663Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5802,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:10:08.241Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5847,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:10:16.540Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5772,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:10:24.683Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5775,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:10:33.050Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5798,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T01:10:42.588Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-10-31T19:13:52.691Z",
+    "content": "c-yt-IG5H_Zm8_k8",
     "model": "gemini-3.5-flash-lite",
     "input": 5832,
     "output": 46,
@@ -5236,8 +5566,51 @@
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:10:51.767Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-10-31T19:14:02.434Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5907,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-10-31T19:14:14.596Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 16096,
+    "output": 1794,
+    "usd": 0
+   },
+   {
+    "at": "2026-10-31T19:14:22.055Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 6231,
+    "output": 252,
+    "usd": 0
+   },
+   {
+    "at": "2026-10-31T19:14:33.475Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5904,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-10-31T19:15:28.630Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5856,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-10-31T19:15:38.483Z",
+    "content": "c-yt-LUllgzA2Q80",
     "model": "gemini-3.5-flash-lite",
     "input": 5883,
     "output": 46,
@@ -5245,35 +5618,110 @@
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:11:00.691Z",
-    "content": "c-yt-6DYcD-pcMdA",
-    "model": "gemini-3.5-flash-lite",
-    "input": 5860,
+    "at": "2026-11-01T01:17:00.396Z",
+    "content": "c-yt-BeS1VgKiBoY",
+    "model": "gemini-3.8-flash",
+    "input": 9417,
+    "output": 5376,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:17:20.478Z",
+    "content": "c-yt-BeS1VgKiBoY",
+    "model": "gemini-3.6-flash",
+    "input": 6236,
+    "output": 2919,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:17:33.811Z",
+    "content": "c-yt-BeS1VgKiBoY",
+    "model": "gemini-3.5-flash",
+    "input": 5853,
+    "output": 68,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:17:48.615Z",
+    "content": "c-yt-BeS1VgKiBoY",
+    "model": "gemini-3.5-flash",
+    "input": 5881,
     "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:11:09.610Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-11-01T01:18:23.663Z",
+    "content": "c-yt-gsdYLoWGc20",
     "model": "gemini-3.5-flash-lite",
-    "input": 5852,
+    "input": 8302,
+    "output": 1348,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:18:31.224Z",
+    "content": "c-yt-gsdYLoWGc20",
+    "model": "gemini-3.5-flash-lite",
+    "input": 6092,
+    "output": 186,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:18:40.432Z",
+    "content": "c-yt-gsdYLoWGc20",
+    "model": "gemini-3.5-flash-lite",
+    "input": 4027,
     "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:11:18.096Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-11-01T01:18:49.365Z",
+    "content": "c-yt-gsdYLoWGc20",
     "model": "gemini-3.5-flash-lite",
-    "input": 5839,
+    "input": 5869,
     "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:11:28.245Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-11-01T01:19:02.689Z",
+    "content": "c-yt-uB3DBca5uEw",
+    "model": "gemini-3.5-flash-lite",
+    "input": 19168,
+    "output": 1927,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:19:10.743Z",
+    "content": "c-yt-uB3DBca5uEw",
+    "model": "gemini-3.5-flash-lite",
+    "input": 6653,
+    "output": 241,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:19:20.279Z",
+    "content": "c-yt-uB3DBca5uEw",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5850,
+    "output": 80,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:19:29.322Z",
+    "content": "c-yt-uB3DBca5uEw",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5870,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:19:38.276Z",
+    "content": "c-yt-uB3DBca5uEw",
     "model": "gemini-3.5-flash-lite",
     "input": 5840,
     "output": 46,
@@ -5281,186 +5729,268 @@
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T01:11:36.938Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-11-01T01:20:00.935Z",
+    "content": "c-yt-v6dgAHQHx78",
     "model": "gemini-3.5-flash-lite",
-    "input": 5842,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
+    "input": 12107,
+    "output": 6727,
+    "usd": 0
    },
    {
-    "at": "2026-10-31T01:11:46.175Z",
-    "content": "c-yt-6DYcD-pcMdA",
+    "at": "2026-11-01T01:20:10.210Z",
+    "content": "c-yt-v6dgAHQHx78",
     "model": "gemini-3.5-flash-lite",
-    "input": 5862,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T07:18:30.079Z",
-    "content": "c-yt-035a4GhaLOE",
-    "model": "gemini-3.8-flash",
-    "input": 9213,
-    "output": 4381,
+    "input": 11383,
+    "output": 932,
     "usd": 0
    },
    {
-    "at": "2026-10-31T07:21:46.083Z",
-    "content": "c-yt-035a4GhaLOE",
-    "model": "gemini-3.8-flash",
-    "input": 6706,
-    "output": 2347,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T07:23:44.145Z",
-    "content": "c-yt-035a4GhaLOE",
-    "model": "gemini-3.8-flash",
-    "input": 5540,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T07:25:05.437Z",
-    "content": "c-yt-035a4GhaLOE",
-    "model": "gemini-3.8-flash",
-    "input": 5915,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T07:27:18.526Z",
-    "content": "c-yt-035a4GhaLOE",
-    "model": "gemini-3.8-flash",
-    "input": 5867,
-    "output": 82,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:16:26.149Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 13395,
-    "output": 6664,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T13:20:11.948Z",
-    "content": "c-yt-cRoLLHb0bro",
+    "at": "2026-11-01T01:20:19.734Z",
+    "content": "c-yt-v6dgAHQHx78",
     "model": "gemini-3.5-flash-lite",
-    "input": 8228,
-    "output": 488,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T13:20:30.940Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 5861,
-    "output": 56,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:22:09.940Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 5880,
-    "output": 57,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:23:04.454Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 5913,
+    "input": 5823,
     "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T13:23:18.141Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 5872,
-    "output": 46,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:23:54.763Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3.6-flash",
-    "input": 5916,
-    "output": 72,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:24:12.028Z",
-    "content": "c-yt-cRoLLHb0bro",
-    "model": "gemini-3-flash-preview",
-    "input": 5942,
-    "output": 30,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:24:38.728Z",
-    "content": "c-yt-7upo6KzBnbs",
-    "model": "gemini-3-flash-preview",
-    "input": 10573,
-    "output": 4383,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T13:26:11.700Z",
-    "content": "c-yt-7upo6KzBnbs",
+    "at": "2026-11-01T01:20:43.005Z",
+    "content": "c-yt-v6dgAHQHx78",
     "model": "gemini-3.5-flash-lite",
-    "input": 7550,
-    "output": 380,
-    "usd": 0
-   },
-   {
-    "at": "2026-10-31T13:26:29.165Z",
-    "content": "c-yt-7upo6KzBnbs",
-    "model": "gemini-3-flash-preview",
-    "input": 4076,
-    "output": 67,
-    "usd": 0,
-    "kind": "verification-extrait"
-   },
-   {
-    "at": "2026-10-31T13:27:10.766Z",
-    "content": "c-yt-7upo6KzBnbs",
-    "model": "gemini-3-flash-preview",
-    "input": 5863,
+    "input": 5802,
     "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T13:27:33.874Z",
-    "content": "c-yt-7upo6KzBnbs",
-    "model": "gemini-3-flash-preview",
+    "at": "2026-11-01T01:20:52.242Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5830,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:01.399Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5772,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:10.013Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5858,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:18.383Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5833,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:27.047Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5823,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:35.938Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5871,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:45.738Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5868,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:21:54.623Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5882,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:22:03.167Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5896,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:22:12.207Z",
+    "content": "c-yt-v6dgAHQHx78",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5900,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:22:26.097Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 15864,
+    "output": 2861,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:22:33.750Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 7670,
+    "output": 412,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:22:43.460Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
     "input": 5864,
-    "output": 71,
+    "output": 46,
     "usd": 0,
     "kind": "verification-extrait"
    },
    {
-    "at": "2026-10-31T13:29:27.295Z",
-    "content": "c-yt-WcQWPUme4VQ",
+    "at": "2026-11-01T01:22:52.177Z",
+    "content": "c-yt-IG5H_Zm8_k8",
     "model": "gemini-3.5-flash-lite",
-    "input": 9109,
-    "output": 183,
+    "input": 5812,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:23:01.164Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5910,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:23:10.940Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5868,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:23:19.711Z",
+    "content": "c-yt-IG5H_Zm8_k8",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5891,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:23:36.894Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 16096,
+    "output": 4249,
     "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:23:44.770Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 8598,
+    "output": 539,
+    "usd": 0
+   },
+   {
+    "at": "2026-11-01T01:23:55.667Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5880,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:24:09.599Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5884,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:24:45.289Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5919,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:25:05.311Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5812,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:25:21.697Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5829,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:25:40.181Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5847,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
+   },
+   {
+    "at": "2026-11-01T01:25:49.818Z",
+    "content": "c-yt-LUllgzA2Q80",
+    "model": "gemini-3.5-flash-lite",
+    "input": 5868,
+    "output": 46,
+    "usd": 0,
+    "kind": "verification-extrait"
    }
   ],
   "budget": {

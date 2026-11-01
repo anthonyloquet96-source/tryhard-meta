@@ -67974,7 +67974,2030 @@
    },
    "version": 1,
    "firstSeen": "2026-10-31"
+  },
+  {
+   "id": "u-ai-yt-BeS1VgKiBoY-1",
+   "claim": "Selon Raiko - League of Legends : pour esquiver plus facilement le rayon de Viktor au mid, positionne-toi à l'écart de ta vague et surveille la vie de tes propres sbires afin d'anticiper s'il va viser pour farmer ou pour push.",
+   "champions": [],
+   "roles": [
+    "mid"
+   ],
+   "themes": [
+    "lane",
+    "matchup"
+   ],
+   "matchup": {
+    "vs": "Viktor"
+   },
+   "context": {
+    "queue": "solo",
+    "rank": "GrandMaster / Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": true,
+    "value": "14.1"
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "En phase de lane au mid contre Viktor"
+   ],
+   "limits": [
+    "Gameplay issu d'une partie de stream"
+   ],
+   "nature": "opinion",
+   "levelContext": "grand-maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[01:45]",
+     "lang": "es",
+     "passage": "Comment tu dodge Viktor ?",
+     "autoChecked": {
+      "by": "gemini-3.5-flash",
+      "at": "2026-11-01",
+      "window": "85-145s",
+      "said": true,
+      "supported": false,
+      "gap": "L'auteur demande seulement comment esquiver Viktor dans la vidéo, sans donner aucune explication ni aucun conseil."
+     }
+    },
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[07:26]",
+     "lang": "es",
+     "passage": "je trouve que c'est pas super dur de prévoir où est-ce qu'il va laser."
+    },
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[07:31]",
+     "lang": "es",
+     "passage": "S'il va laser pour farmer, s'il va laser pour push les waves, du coup si je me mets à l'écart ou si je regarde les HP de mes sbires, ça peut m'aider."
+    }
+   ],
+   "mentions": [],
+   "action": "Décale-toi latéralement par rapport à ta ligne de sbires dès qu'un sbire passe low HP pour forcer Viktor à choisir entre te toucher et push la vague.",
+   "observe": "Le positionnement de Viktor et la trajectoire de son laser par rapport à tes sbires fragilisés.",
+   "use": {
+    "when": "Sur la midlane en phase de lane face à Viktor, lorsque tes sbires commencent à descendre en points de vie.",
+    "why": "",
+    "who": "Tout midlaner affrontant Viktor.",
+    "how": [
+     "Surveille les points de vie de tes propres sbires.",
+     "Écarte-toi de l'axe reliant Viktor et ta vague de sbires."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'unité décrit fidèlement le principe d'anticipation du laser de Viktor basé sur le positionnement et les PV des sbires, et ce principe macro/lane ne dépend pas de la méta."
+   },
+   "published": null,
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.7-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-BeS1VgKiBoY-2",
+   "claim": "Selon l'auteur, privilégier des dégâts bruts directs (Baguettes trop grosses vers Coiffe de Rabadon) sur Katarina AP peut être nécessaire par rapport au Voleur d'âmes de Méjai pour garantir le burst suffisant au déclenchement des resets.",
+   "champions": [
+    "Katarina"
+   ],
+   "roles": [
+    "mid"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "GrandMaster / Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": true,
+    "value": "14.1"
+   },
+   "metaDependent": true,
+   "dependsOn": [
+    "item:Coiffe de Rabadon",
+    "item:Voleur d'âmes de Mejai",
+    "item:Baguette trop grosse"
+   ],
+   "conditions": [
+    "Build AP sur Katarina"
+   ],
+   "limits": [
+    "Avis basé sur un ressenti d'escarmouche en direct"
+   ],
+   "nature": "opinion",
+   "levelContext": "grand-maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[24:00]",
+     "lang": "es",
+     "passage": "Là, je peux pas tuer parce que je n'ai pas les baguettes et j'avais ce putain de Mejai ! Bah voilà.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash",
+      "at": "2026-11-01",
+      "window": "1420-1480s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[24:09]",
+     "lang": "es",
+     "passage": "Tu peux pas t'amuser gros sur Kata, t'es obligé de full tryhard build. Si là j'avais eu cette deuxième grosse baguette, le Wukong il serait mort et les trois étaient morts, et c'était la game.",
+     "mentionOnly": true
+    },
+    {
+     "content": "c-yt-BeS1VgKiBoY",
+     "locator": "[24:46]",
+     "lang": "es",
+     "passage": "Par contre une fois que j'ai Rabadon, là je suis Thanos. Mais tant que j'ai pas Rabadon..."
+    }
+   ],
+   "mentions": [
+    "Wukong (exemple)"
+   ],
+   "action": "Acheter en priorité des Baguettes trop grosses pour accélérer le pic de puissance de la Coiffe de Rabadon au lieu d'investir dans un Voleur d'âmes de Mejai incertain.",
+   "observe": "Le seuil de burst instantané lors des escarmouches pour déclencher le reset de compétences.",
+   "use": {
+    "when": "En milieu de partie sur Katarina AP au moment de choisir tes achats d'objets.",
+    "why": "Sans puissance brute immédiate, le burst peut échouer de peu à éliminer une cible, empêchant le déclenchement des resets indispensables pour enchaîner les cibles.",
+    "who": "Katarina avec un build AP classique.",
+    "how": [
+     "Économise pour acheter des Baguettes trop grosses.",
+     "Complète la Coiffe de Rabadon pour maximiser le burst nécessaire aux resets."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "corriger",
+    "flags": [
+     "patch-incompatible",
+     "une-partie",
+     "sur-generalisation"
+    ],
+    "why": "Le conseil transforme une remarque faite à chaud lors d'un escarmouche dans une seule partie en règle générale rigide. De plus, le build dépend fortement de l'équilibrage du patch 14.1."
+   },
+   "published": null,
+   "proposedStatus": "a-revalider",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.7-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-uB3DBca5uEw-2",
+   "claim": "Selon Coach Violet : utilise le sort Z (Floraison mortelle) de Jhin en suivant le contrôle de tes coéquipiers ou après avoir infligé des dégâts avec une attaque automatique pour réussir à enraciner la cible.",
+   "champions": [
+    "Jhin"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "lane",
+    "teamfight"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "Non précisée"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Jhin/W"
+   ],
+   "conditions": [
+    "La cible doit avoir subi des dégâts de tes coéquipiers ou de toi-même pour afficher le marquage"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-uB3DBca5uEw",
+     "locator": "[03:23]",
+     "lang": "en",
+     "passage": "So essentially this is just your follow-up CC tool, right? Um, if I auto attack, right, if it gets damaged by anyone, my teammates or myself, I W, it's going to root.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "183-243s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Place ton Z (Floraison mortelle) uniquement lorsqu'un ennemi est marqué par tes coéquipiers ou après l'avoir touché avec une attaque de base.",
+   "observe": "Vérifie la présence de la marque visuelle sur l'adversaire avant de lancer ton Z.",
+   "use": {
+    "when": "Tu engages un échange ou un combat d'équipe et tu veux appliquer l'enracinement du Z de Jhin.",
+    "why": "Le sort ne s'enracine pas si la cible n'a pas été préalablement touchée par toi ou un allié.",
+    "who": "Jhin",
+    "how": [
+     "Touche la cible avec une attaque automatique ou attends qu'un allié lui inflige des dégâts.",
+     "Lance ton Z (Floraison mortelle) sur l'indicateur pour déclencher l'enracinement."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La description du sort et de son utilisation correspond parfaitement à la transcription fournie."
+   },
+   "published": "2026-08-06",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-1",
+   "claim": "Selon Coach Violet : sur Ashe, utilise Tempo Mortel comme rune clé pour accentuer ton identité de champion qui court après les cibles et inflige des dégâts sur la durée lors des longs échanges, particulièrement autour de ton A en milieu et fin de partie.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "dependsOn": [
+    "Ashe/P",
+    "Ashe/Q"
+   ],
+   "conditions": [
+    "En jouant Ashe en bas de carte"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[00:26]",
+     "lang": "en",
+     "passage": "You want to be running Lethal Tempo because this allows Ashe to really get in her identity of really running people down and taking these long extended trades, especially around her Q in the mid-late game.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "6-66s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Choisis Tempo Mortel comme rune principale sur Ashe pour profiter des échanges prolongés.",
+   "observe": "Le choix des runes dans l'interface avant la partie.",
+   "use": {
+    "when": "dans le client du jeu au moment de composer tes runes avant une partie avec Ashe",
+    "why": "cela permet à Ashe de correspondre à son identité de championne qui court après les ennemis sur la durée",
+    "who": "Ashe",
+    "how": [
+     "Sélectionne l'arbre Précision",
+     "Choisis Tempo Mortel comme rune clé"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Le conseil correspond exactement aux passages cités et fournit un contexte d'usage complet et fidèle."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-2",
+   "claim": "Selon Coach Violet : prends Présence d'esprit sur Ashe pour pallier ses problèmes de mana lors des phases de poke matinales avec le Z dans la phase de laning.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/W"
+   ],
+   "conditions": [
+    "En jouant Ashe avec une utilisation fréquente du Z"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[00:40]",
+     "lang": "en",
+     "passage": "Next up we have Presence of Mind. She does have a bit of mana issues, especially when you're playing around your W poke in the early lane phase.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "20-80s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Sélectionne la rune Présence d'esprit dans tes choix de runes pour Ashe.",
+   "observe": "La gestion de la ressource de mana en phase de laning.",
+   "use": {
+    "when": "lors de la sélection des runes pour Ashe avant le début de la partie",
+    "why": "la championne rencontre des difficultés de gestion de mana lors de l'utilisation répétée du Z pour harceler",
+    "who": "Ashe",
+    "how": [
+     "Sélectionne Présence d'esprit dans le premier palier de l'arbre secondaire/primaire selon ton choix"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La source appuie directement la nécessité de prendre Présence d'esprit pour gérer les coûts en mana du Z."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-3",
+   "claim": "Selon Coach Violet : utilise Légende : Lignée sur Ashe pour obtenir du vol de vie en milieu et fin de partie puisque tu n'achètes pas d'objets de vol de vie immédiatement.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "Face à des compositions infligeant du poke"
+   ],
+   "limits": [
+    "À reconsidérer si l'adversaire a une composition full tank, auquel cas Alacrité peut être envisagée"
+   ],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[00:49]",
+     "lang": "en",
+     "passage": "Next up, we want to be running Bloodline. This is just life steal for the mid-later stage of the game because you're not going to be buying life steal until much, much later on.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "29-89s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Sélectionne Légende : Lignée sur Ashe pour maintenir tes PV face au poke.",
+   "observe": "Le niveau de vie du champion après des phases de harcèlement adverse en milieu de partie.",
+   "use": {
+    "when": "dans l'écran de sélection des runes avant le lancement de la partie avec Ashe",
+    "why": "le vol de vie obtenu permet de compenser l'achat tardif d'objets de régénération",
+    "who": "Ashe",
+    "how": [
+     "Sélectionne Légende : Lignée dans la ligne des runes Légende"
+    ],
+    "notWhen": "Si tu joues contre une composition entièrement composée de tanks (où Alacrité peut être préférée)"
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'explication textuelle sur Légende : Lignée pour compenser l'achat tardif de vol de vie est fidèle à l'extrait."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-4",
+   "claim": "Selon Coach Violet : prends Abattage sur Ashe car cette rune s'active immédiatement au début de la partie.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [],
+   "conditions": [
+    "En configurant les runes d'Ashe"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[01:11]",
+     "lang": "en",
+     "passage": "And finally, we want to be running Cut Down. This just activates immediately at the start of the game, so this is just, you know, one of the best runes to have on Ashe.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "51-111s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Sélectionne Abattage dans les choix de runes d'Ashe.",
+   "observe": "Les dégâts infligés aux cibles dès le début de la partie.",
+   "use": {
+    "when": "lors de la configuration des runes de Ashe",
+    "why": "la rune est immédiatement active dès le lancement de la partie",
+    "who": "Ashe",
+    "how": [
+     "Choisis Abattage dans la dernière ligne de l'arbre Précision"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'unité retranscrit fidèlement le choix d'Abattage et sa justification immédiate selon l'auteur."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-5",
+   "claim": "Selon Coach Violet : prends Savoir-faire du cashback dans l'arbre Inspiration sur Ashe et évite Bottes de magique, car tu as besoin de te ruer sur des bottes de palier 2 pour kiter, spacer et abuser de ta portée et de ton ralentissement.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/P"
+   ],
+   "conditions": [
+    "En choisissant les runes secondaires d'Ashe"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[01:18]",
+     "lang": "en",
+     "passage": "Next up, in the inspiration tree, we want to be running Cash Back, right? You don't really want to be running free boots because Ashe, a lot of the times you're going to be rushing tier 2 boots to really just kite and space people right, abuse your range and your slow.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "58-118s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Choisis Cashback au lieu de Des bottes un peu magiques dans l'arbre Inspiration sur Ashe.",
+   "observe": "Le timing d'achat des bottes de palier 2 en jeu.",
+   "use": {
+    "when": "lors de la sélection de l'arbre secondaire d'Inspiration pour Ashe",
+    "why": "le kit d'Ashe nécessite un achat anticipé de bottes de palier 2 pour appliquer le spacing, le kiting et exploiter le ralentissement",
+    "who": "Ashe",
+    "how": [
+     "Sélectionne l'arbre Inspiration",
+     "Prends Cashback"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La préférence pour Cashback au détriment des bottes gratuites est parfaitement sourcée."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-6",
+   "claim": "Selon Coach Violet : utilise Vitesse d'approche sur Ashe car elle procure de la vitesse de déplacement lorsque les mouvements d'une cible sont altérés, ce qui se synergise parfaitement avec le ralentissement permanent du passif et des compétences d'Ashe pour coller aux cibles.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/P"
+   ],
+   "conditions": [
+    "En configurant les runes secondaires d'Ashe"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[01:28]",
+     "lang": "en",
+     "passage": "And next up, we have Approach Velocity. What this does is basically, it gives you movement speed when the guy is CC'd right, if their movements are impaired, this is insanely op for Ashe because she has a permanent slow on her on her passive, on her abilities.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "68-128s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Sélectionne Vitesse d'approche dans l'arbre Inspiration pour Ashe.",
+   "observe": "L'augmentation de la vitesse de déplacement en direction d'un ennemi ralenti.",
+   "use": {
+    "when": "lors du choix des runes secondaires avec Ashe",
+    "why": "le passif d'Ashe applique un ralentissement permanent qui active l'effet de la rune de manière continue",
+    "who": "Ashe",
+    "how": [
+     "Sélectionne Vitesse d'approche dans l'arbre Inspiration"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Vitesse d'approche est directement justifiée par le ralentissement permanent du kit d'Ashe."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-7",
+   "claim": "Le passif d'Ashe applique un ralentissement sur les champions ennemis via ses attaques de base et ses compétences, et l'efficacité de ce ralentissement augmente à mesure qu'elle obtient des statistiques de coup critico-critique.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/P"
+   ],
+   "conditions": [
+    "En touchant un ennemi avec une attaque de base ou une compétence d'Ashe"
+   ],
+   "limits": [],
+   "nature": "officiel",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[01:51]",
+     "lang": "en",
+     "passage": "So Ashe's passive, first and foremost, is a slow, you know, her autos auto attacks and abilities slow the enemy champion, as you guys can see right, there's this sign under them, which means they're slowed.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "91-151s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[02:18]",
+     "lang": "en",
+     "passage": "So it's a pretty big slow, and the more crit that Ashe has, the larger the slow is."
+    }
+   ],
+   "mentions": [],
+   "action": "Observe la diminution de la vitesse de déplacement d'une cible touchée par les attaques d'Ashe.",
+   "observe": "La valeur de la vitesse de déplacement de la cible affectée par les attaques de base.",
+   "use": {
+    "when": "lorsque tu attaques un champion ennemi avec Ashe en ayant de l'équipement de critique",
+    "why": "le passif applique un ralentissement proportionnel au taux de coup critique",
+    "who": "Ashe",
+    "how": [
+     "Attaque un ennemi avec une attaque de base ou utilise une compétence pour appliquer le ralentissement"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Description officielle du passif et de son interaction avec les critiques, fidèle aux passages cités."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-8",
+   "claim": "La compétence A d'Ashe (Concentration du ranger) nécessite 4 attaques de base pour se charger, compte comme une réinitialisation d'attaque de base, et confère de la vitesse d'attaque bonus ainsi que des dégâts magiques ou physiques bonus pendant six secondes.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/Q"
+   ],
+   "conditions": [
+    "Après avoir accumulé 4 charges d'attaques de base"
+   ],
+   "limits": [],
+   "nature": "officiel",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[02:29]",
+     "lang": "en",
+     "passage": "You need four auto attacks to stack it, and it counts as an auto attack reset. So one, two, three, four, and then now I can use the ability right, and then your attacks will get bonus attack speed and deal bonus damage as well for six seconds.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "129-189s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Utilise l'A d'Ashe immédiatement après une attaque de base pour profiter de la réinitialisation.",
+   "observe": "L'enchaînement d'une attaque de base suivi instantanément de l'activation du A.",
+   "use": {
+    "when": "lorsque tu as accumulé 4 charges de ton A et que tu souhaites engager un échange ou un all-in",
+    "why": "la compétence fait office de réinitialisation d'attaque de base et confère des bonus d'attaque et de dégâts",
+    "who": "Ashe",
+    "how": [
+     "Place 4 attaques de base pour charger le A",
+     "Exécute une attaque de base puis active le A instantanément pour réinitialiser l'animation"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Les détails sur la charge du A, la réinitialisation d'attaque et les bonus correspondants sont exacts."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-9",
+   "claim": "Selon Coach Violet : utilise le Z d'Ashe (Salve) pour pousser la vague de sbires dans de rares situations, toucher deux personnes en même temps dans la voie, ou comme outil principal d'échange pour appliquer le ralentissement avant de courir après une cible.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "lane"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/W"
+   ],
+   "conditions": [
+    "En phase de laning avec Ashe"
+   ],
+   "limits": [
+    "Le coût en mana est élevé, il faut maximiser sa valeur en touchant deux cibles si possible."
+   ],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[03:11]",
+     "lang": "en",
+     "passage": "Most of the time, you're going to be using this to try and like either push the wave in very rare situations or try to hit two people in lane, right? It's one of your main trade tools in lane as well to really catch up to someone.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "171-231s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Lance ton Z sur les champions adverses pour les ralentir ou touche deux cibles simultanément pour optimiser ton mana.",
+   "observe": "Le nombre de champions touchés et l'application du ralentissement.",
+   "use": {
+    "when": "en phase de laning lorsque tu cherches à engager un échange ou à toucher simultanément le support et l'adc ennemis",
+    "why": "la portée est importante et le ralentissement permet de combler l'écart avec la cible",
+    "who": "Ashe",
+    "how": [
+     "Vise la trajectoire optimale pour inclure un maximum de cibles (champions ou vagues)",
+     "Utilise le ralentissement appliqué pour enchaîner avec des attaques de base"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'utilisation du Z pour push ou toucher deux cibles en phase de laning est conforme au passage."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-v6dgAHQHx78-11",
+   "claim": "L'ultime d'Ashe (Flèche de cristal enchantée) est une compétence globale qui étourdit la cible touchée (avec une durée d'étourdissement augmentant avec la distance parcourue) et inflige des dégâts, servant à la fois d'outil d'engagement et de moyen d'esquiver des ganks.",
+   "champions": [
+    "Ashe"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/Korea"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Ashe/R"
+   ],
+   "conditions": [
+    "Lorsque tu as une ligne de vue libre vers une cible éloignée ou que tu subis une agression"
+   ],
+   "limits": [],
+   "nature": "officiel",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-v6dgAHQHx78",
+     "locator": "[04:33]",
+     "lang": "en",
+     "passage": "And finally, we have Ashe's ult. This is like global ultimate, right? Um, it can go as far as it can, right? It can go across the entire map and if it connects with something, it's going to stun them. And the further they are, the longer the stun is and it also deals damage, right?",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "253-313s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Lance ta flèche à travers la carte pour engager un combat ou étourdir un adversaire lointain.",
+   "observe": "La trajectoire de la flèche et la durée de l'étourdissement sur le champion touché.",
+   "use": {
+    "when": "lorsque tu vois une opportunité d'engagement à longue distance pour tes coéquipiers ou pour te défendre contre un gank",
+    "why": "la portée est globale et la durée de l'étourdissement est proportionnelle à la distance parcourue par le projectile",
+    "who": "Ashe",
+    "how": [
+     "Vise la position prévisible de la cible en tenant compte de la distance",
+     "Active ton ultime pour déclencher le tir"
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La description de l'ultime et de l'augmentation de l'étourdissement en fonction de la distance est fidèle."
+   },
+   "published": "2026-08-04",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-IG5H_Zm8_k8-2",
+   "claim": "Selon Coach Violet : jinx choisit Presence of Mind pour pouvoir constamment harceler et utiliser ses roquettes pendant la phase de laning.",
+   "champions": [
+    "Jinx"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "lane",
+    "build"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Master/Grandmaster",
+    "region": ""
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "dependsOn": [
+    "Jinx/Q",
+    "rune:Presence d'esprit"
+   ],
+   "conditions": [
+    "Joue Jinx en phase de laning"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-IG5H_Zm8_k8",
+     "locator": "00:51",
+     "lang": "en",
+     "passage": "Next up, we have Presence of Mind. The reason we run this is Jinx is all about, you know, poking, playing her range with the rockets, especially that's how she wants to trade, so this just allows us to do that constantly throughout the laning phase.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "31-91s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Prends Presence of Mind sur Jinx pour gérer ton mana lors des tirs de roquettes.",
+   "observe": "La régénération de mana après avoir touché l'adversaire.",
+   "use": {
+    "when": "Pendant la phase de laning lorsque tu utilises tes roquettes pour harceler.",
+    "why": "Jinx a besoin de spammer ses roquettes pour le poke et les échanges.",
+    "who": "Jinx en botlane.",
+    "how": [
+     "Sélectionne Presence d'esprit dans l'arbre Précision."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Le conseil sur Presence of Mind pour le poke aux roquettes est parfaitement soutenu par la transcription."
+   },
+   "published": "2026-07-27",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-IG5H_Zm8_k8-3",
+   "claim": "Selon Coach Violet : jinx utilise son sort Q (Flip-Flop!) pour alterner entre la minigun pour la vitesse d'attaque à courte portée et les roquettes pour la portée et les dégâts de zone.",
+   "champions": [
+    "Jinx"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "lane",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Master/Grandmaster",
+    "region": ""
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Jinx/Q"
+   ],
+   "conditions": [
+    "En combat ou en phase de laning avec Jinx"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-IG5H_Zm8_k8",
+     "locator": "04:20",
+     "lang": "en",
+     "passage": "So how do we want to, you know, use her kit wisely? Is mostly her Q, right? Her Q is super important. You want to be making sure to use rockets when they're out of range and to poke, or minigun if they're very close, you know, and you want to be using it in short-range situations. That's the general rule of thumb.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "240-300s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Utilise les roquettes pour le poke à distance et la minigun quand l'ennemi est proche.",
+   "observe": "L'augmentation de portée ou de vitesse d'attaque selon l'arme active.",
+   "use": {
+    "when": "Quand un adversaire se trouve hors de portée de base ou au contraire très proche de toi.",
+    "why": "Les roquettes permettent de toucher de loin et de nettoyer les vagues, la minigun offre de la vitesse d'attaque en combat rapproché.",
+    "who": "Jinx en botlane.",
+    "how": [
+     "Appuie sur A (ou ton bind de sort Q) pour passer aux roquettes lorsque l'ennemi est loin.",
+     "Repasse à la minigun pour stacker la vitesse d'attaque si l'ennemi s'approche."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'utilisation du sort Q (alternance roquettes/minigun) est fidèle à la source et s'aligne bien avec les unités existantes sans contradiction."
+   },
+   "published": "2026-07-27",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-IG5H_Zm8_k8-4",
+   "claim": "Le passif de Jinx (Get Excited!) s'active lorsqu'un champion, un monstre épique ou une structure meurt dans les 3 secondes suivant des dégâts infligés, octroyant un grand bonus de vitesse d'attaque et de déplacement.",
+   "champions": [
+    "Jinx"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "teamfight"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Master/Grandmaster",
+    "region": ""
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Jinx/passive"
+   ],
+   "conditions": [
+    "Obtenir une élimination ou une destruction d'objectif/structure avec Jinx"
+   ],
+   "limits": [],
+   "nature": "officiel",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-IG5H_Zm8_k8",
+     "locator": "02:27",
+     "lang": "en",
+     "passage": "So this happens whenever you kill, you know, a large monster, epic monster, so stuff like dragons, Barons, you know, towers, inhibs, or champion kills within 3 seconds. If they drop or die within 3 seconds, you get the bonus attack speed and move speed.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "127-187s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Observe l'activation du passif après chaque élimination ou destruction pour repositionner ton Jinx.",
+   "observe": "L'explosion de vitesse de déplacement et d'attaque sur Jinx.",
+   "use": {
+    "when": "Juste après la mort d'un ennemi, d'un monstre épique ou d'une structure touchée par Jinx.",
+    "why": "Le passif donne un avantage décisif pour enchaîner les kills ou fuir.",
+    "who": "Jinx en partie.",
+    "how": [
+     "Frappe les objectifs ou les ennemis pour t'assurer de déclencher l'aide du passif lors de leur mort."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La description du passif de Jinx correspond exactement au passage cité et aux mécaniques du jeu."
+   },
+   "published": "2026-07-27",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-IG5H_Zm8_k8-5",
+   "claim": "Selon Coach Violet : jinx peut utiliser son sort E (Flame Chompers!) pour la gestion de zone, couper les voies de retraite des ennemis ou assurer un enracinement en suivant le contrôle de foule d'un allié.",
+   "champions": [
+    "Jinx"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "lane",
+    "teamfight"
+   ],
+   "synergy": {
+    "with": [
+     "Lulu"
+    ],
+    "kind": "theorique"
+   },
+   "context": {
+    "queue": "solo",
+    "rank": "Master/Grandmaster",
+    "region": ""
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Jinx/E"
+   ],
+   "conditions": [
+    "Un allié applique un contrôle de foule ou un ennemi tente de s'enfuir"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-IG5H_Zm8_k8",
+     "locator": "03:39",
+     "lang": "en",
+     "passage": "And next up, you know, we have Jinx's traps, which is her E, right? So this is great for, you know, zone control, right? So blocking off entrances or blocking off, cutting off the enemy's exit, right, when they're trying to run away. We can place trap, or we can use it to follow up on our teammate's CC",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "199-259s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Place tes pièges sur la trajectoire de fuite ennemie ou directement sous la cible contrôlée par ton support.",
+   "observe": "L'immobilisation de l'adversaire dans les pièges.",
+   "use": {
+    "when": "Quand ton support touche un ennemi avec un contrôle de foule ou qu'un adversaire fonce sur toi.",
+    "why": "Cela garantit l'enracinement et empêche l'adversaire de s'échapper ou d'avancer.",
+    "who": "Jinx en botlane.",
+    "how": [
+     "Attends le contrôle de foule allié ou anticipe le déplacement adverse.",
+     "Lance le sort E (Flame Chompers!) sur le chemin ou sous la cible."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'utilisation des pièges (E) pour le contrôle de zone ou le suivi de CC allié est pleinement justifiée par la transcription."
+   },
+   "published": "2026-07-27",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.8-flash",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-1",
+   "claim": "Selon Coach Violet : sur Miss Fortune, utilise l'arbre de runes Press the Attack avec Presence of Mind, Legend: Bloodline et Cut Down, combiné avec Cash Back et Cosmic Insight en secondaire.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "build",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "dependsOn": [
+    "rune:Press the Attack",
+    "rune:Presence of Mind",
+    "rune:Légende : Sang-froid",
+    "rune:Abattage",
+    "rune:Argent de poche",
+    "rune:Savoir cosmique"
+   ],
+   "conditions": [
+    "Jouer Miss Fortune en ADC"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[00:28]",
+     "lang": "en",
+     "passage": "So here we have misfortune's rune page and what you should be looking to run in your games. We want to be running with PTA, Press of Mind, Bloodline, and Cut Down for the first, you know, tree that we're going to be running.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "8-68s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[01:06]",
+     "lang": "en",
+     "passage": "For the secondary tree, you want to be running Cash Back and Cosmic Insight."
+    }
+   ],
+   "mentions": [],
+   "action": "Équipe tes pages de runes avec Press the Attack, Presence of Mind, Legend: Bloodline, Cut Down, Cash Back et Cosmic Insight sur Miss Fortune.",
+   "observe": "La sélection des runes dans le client avant la partie.",
+   "use": {
+    "when": "Dans le client du jeu avant le lancement d'une partie avec Miss Fortune.",
+    "why": "Miss Fortune synergise très bien avec PTA grâce à son pattern auto-Q-auto, a besoin de mana pour ses Q, profite du vol de vie et du Cut Down, tandis que Cash Back accélère les items et Cosmic Insight donne de l'invocateur.",
+    "who": "Miss Fortune ADC",
+    "how": [
+     "Sélectionne Press the Attack, Presence of Mind, Legend: Bloodline et Cut Down dans l'arbre principal.",
+     "Sélectionne Cash Back et Cosmic Insight dans l'arbre secondaire."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'unité cite fidèlement les passages sur les runes et l'arbre choisi par le coach."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-3",
+   "claim": "Selon Coach Violet : utilise le sort A de Miss Fortune pour faire rebondir un tir sur un sbire mourant afin de mettre un coup critique garanti sur la cible située derrière.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "lane"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Miss Fortune/Q"
+   ],
+   "conditions": [
+    "Avoir le sort A (Doublé) disponible",
+    "Avoir une cible alignée derrière un sbire ou un champion"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[02:11]",
+     "lang": "en",
+     "passage": "So if I aim at this guy, it's going to bounce behind, right, and this deals bonus damage. It crits when you execute a target with it, right? So if I kill this minion here, you know, it's going to crit on this guy here, but if I don't, it's not going to crit, right?",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "111-171s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Tire ton A sur un sbire faible pour que le rebond critique le champion adverse placé derrière.",
+   "observe": "Les PV du sbire cible et la trajectoire du rebond du A.",
+   "use": {
+    "when": "Pendant la phase de lane, lorsqu'un sbire ennemi est bas en PV et qu'un champion adverse est positionné directement dans son alignement.",
+    "why": "Le rebond du A inflige un coup critique s'il achète/exécute la première cible touchée.",
+    "who": "Miss Fortune",
+    "how": [
+     "Repère un sbire ennemi proche de mourir aligné avec le champion adverse.",
+     "Lance ton sort A sur ce sbire pour l'exécuter.",
+     "Laisse le rebond toucher le champion adverse avec un critique."
+    ],
+    "notWhen": "Ne fais pas de fixation uniquement sur le rebond critique au détriment du reste de la phase de lane."
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "Le passage montre bien le mécanisme du critique sur le sort A via l'exécution d'une cible."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-4",
+   "claim": "Selon Coach Violet : activer le Z de Miss Fortune octroie immédiatement la vitesse de déplacement maximale ainsi que de la vitesse d'attaque, sans avoir à attendre l'accumulation passive.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "all"
+   ],
+   "themes": [
+    "champion",
+    "survie",
+    "teamfight"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Miss Fortune/W"
+   ],
+   "conditions": [
+    "Avoir le sort Z (Aurore) débloqué"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[02:42]",
+     "lang": "en",
+     "passage": "once you proc it as well, when you activate it, you get the bonus movement speed and attack speed immediately.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "142-202s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[03:21]",
+     "lang": "en",
+     "passage": "If I activate it right here, it's going to give me the full movement speed immediately as well, and the bonus attack speed as well."
+    }
+   ],
+   "mentions": [],
+   "action": "Appuie sur Z pour obtenir instantanément le bonus de vitesse de déplacement et d'attaque lors d'un combat ou d'une fuite.",
+   "observe": "La valeur de vitesse de déplacement dans l'interface du joueur.",
+   "use": {
+    "when": "Lorsque tu subis un engagement ennemi, que tu dois fuir, ou que tu t'engages dans un échange prolongé.",
+    "why": "L'activation manuelle contourne le temps de recharge passif nécessaire pour accumuler la vitesse de déplacement maximale hors combat.",
+    "who": "Miss Fortune",
+    "how": [
+     "Appuie sur la touche Z (Aurore) au moment d'engager un combat ou de fuir."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'activation immédiate des bonus de vitesse de déplacement et d'attaque du Z est conforme à la source."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-5",
+   "claim": "Selon Coach Violet : activer le passif Love Tap de Miss Fortune réduit le temps de recharge de son sort Z de 2 secondes.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "all"
+   ],
+   "themes": [
+    "champion"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Miss Fortune/Passive",
+    "Miss Fortune/W"
+   ],
+   "conditions": [
+    "Avoir le sort Z débloqué et alterner ses cibles pour activer le passif"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[03:21]",
+     "lang": "en",
+     "passage": "It's also important to note that whenever you proc your love tap passive, it reduces the cooldown of your W by 2 seconds, right? So if I use it here and I'm procking my love tap, reduces it by 2 seconds.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "181-241s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Change de cible lors de tes attaques pour faire descendre plus vite le délai de récupération de ton Z.",
+   "observe": "Le temps de recharge du sort Z dans l'interface des sorts.",
+   "use": {
+    "when": "Pendant un combat prolongé ou un siège où tu enchaînes les attaques automatiques sur différentes cibles.",
+    "why": "Chaque déclenchement du passif Love Tap réduit explicitement le cooldown de l'Aurore (Z).",
+    "who": "Miss Fortune",
+    "how": [
+     "Attaque une nouvelle cible pour déclencher Love Tap.",
+     "Observe la réduction de 2 secondes sur le délai de récupération du Z."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La réduction du délai de récupération du Z via le passif Love Tap est explicitement mentionnée dans le passage."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-6",
+   "claim": "Selon Coach Violet : en combat d'équipe avec Miss Fortune, utilise la séquence d'échange rapide auto-Q-auto pour proc Press the Attack rapidement.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "teamfight",
+    "lane"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "rune:Press the Attack",
+    "Miss Fortune/Q"
+   ],
+   "conditions": [
+    "Avoir la rune Press the Attack équipée"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[04:29]",
+     "lang": "en",
+     "passage": "ideally the one to be trading with PTA, use auto-q auto, right? Is the main brand of butter. Or you can even just Q auto. It basically shoots out like pretty quickly together, right? You Q auto, Q auto attack, and it's a very nice quick little trade.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "249-309s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Exécute un combo attaque automatique, sort A, puis attaque automatique pour infliger un échange court et efficace.",
+   "observe": "Les charges de Press the Attack sur le champion adverse.",
+   "use": {
+    "when": "Lors d'un échange court contre l'adversaire en phase de lane ou en escarmouche.",
+    "why": "Cela permet de proc rapidement les dégâts de Press the Attack tout en maximisant les dégâts du kit de Miss Fortune.",
+    "who": "Miss Fortune",
+    "how": [
+     "Lance une attaque automatique sur l'ennemi.",
+     "Enchaîne immédiatement avec ton sort A.",
+     "Place une seconde attaque automatique pour finir le combo."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "La séquence d'échange rapide auto-Q-auto pour Press the Attack est bien décrite dans la transcription."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
+  },
+  {
+   "id": "u-ai-yt-LUllgzA2Q80-7",
+   "claim": "Selon Coach Violet : pour placer un bon ultime avec Miss Fortune, utilise d'abord son E (Pluie de balles) pour ralentir les ennemis ou combine-le avec le contrôle de foule d'un allié.",
+   "champions": [
+    "Miss Fortune"
+   ],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "champion",
+    "teamfight",
+    "synergie"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "Challenger",
+    "region": "NA/KR/OCN"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "dependsOn": [
+    "Miss Fortune/E",
+    "Miss Fortune/R"
+   ],
+   "conditions": [
+    "Avoir son ultime et son E disponibles"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "challenger",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-LUllgzA2Q80",
+     "locator": "[04:57]",
+     "lang": "en",
+     "passage": "ideally you want to be using E to set up your teammate CC, or you want to be using it with your ult, right? So a very normal combo for MF is really just pressing E out while they're sitting in the slow, you can get a nice out of.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "277-337s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Lance ton E sur les ennemis pour les ralentir avant de canaliser ton ultime (R) dans la zone.",
+   "observe": "La zone de ralentissement du E et la position des adversaires.",
+   "use": {
+    "when": "Lors d'un combat d'équipe ou d'une tentative de pick où tu souhaites maximiser les dégâts de ta canonnade (R).",
+    "why": "Le ralentissement empêche les ennemis de sortir facilement de la zone d'effet de l'ultime.",
+    "who": "Miss Fortune",
+    "how": [
+     "Lance ton E (Pluie de balles) sur la position des ennemis regroupés.",
+     "Canalise immédiatement ton ultime (R) à travers la zone ralentie."
+    ],
+    "notWhen": ""
+   },
+   "aiReview": {
+    "verdict": "garder",
+    "flags": [],
+    "why": "L'utilisation du E pour placer l'ultime ou initier est fidèle aux explications du coach."
+   },
+   "published": "2026-07-24",
+   "proposedStatus": "exploitable",
+   "analyst": "gemini-3.8-flash (extraction v3 + critique v3) · vidéo lue par gemini-3.5-flash-lite",
+   "origin": "analyse-automatique",
+   "promptVersions": {
+    "extraction": "v3",
+    "critique": "v3"
+   },
+   "analyzedAt": "2026-11-01",
+   "validity": {
+    "checkedAt": "2026-11-01",
+    "checkedPatch": "26.21"
+   },
+   "verified": {
+    "at": "2026-11-01",
+    "passages": true
+   },
+   "version": 1,
+   "firstSeen": "2026-11-01"
   }
  ],
- "updatedAt": "2026-10-31T13:27:56.175Z"
+ "updatedAt": "2026-11-01T01:25:56.043Z"
 }
