@@ -58,3 +58,14 @@ Site fermé : Web Push (`worker/push.mjs`, `worker/webpush.mjs`, `sw.js`), momen
 1. Supabase → SQL Editor : coller et exécuter `supabase/migrations/20261029000000_push.sql`.
 2. `node worker/put-secrets.mjs` (ajoute `VAPID_PUBLIC_KEY` et `VAPID_PRIVATE_KEY`, sans les afficher).
 3. `cd worker && npx wrangler deploy`.
+
+## Données privées et déploiement automatique (01/11/2026)
+
+Le Worker n'embarque plus `benchmarks.json`, `champstats.json`, `builds.json` ni `champrefs.json` : il les lit dans le bucket privé
+**coach-data** de Supabase Storage (`worker/data.mjs`, cache 15 min par instance, ancienne version gardée en cas de panne). Après un recalcul
+des repères : `node --env-file=.env worker/put-data.mjs` (les fichiers restent dans `worker/`, ignorés par git) ; le Worker les relit seul,
+sans redéploiement. Le manifeste porte `published: false` : données de la clé de développement, test privé seulement.
+
+Déploiement : `.github/workflows/deploy-worker.yml` déploie à chaque publication sur `main` qui touche `worker/` ou `coach/`, après les
+tests. Il faut une fois, dans GitHub → Settings → Secrets and variables → Actions : `CLOUDFLARE_API_TOKEN` (jeton « Workers Scripts : Edit »)
+et `CLOUDFLARE_ACCOUNT_ID`. Sans ces secrets, le workflow ne fait rien et `cd worker && npx wrangler deploy` reste la voie manuelle.

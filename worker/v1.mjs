@@ -42,8 +42,8 @@ export async function isTester(request, env, { fetchImpl = fetch, sb = null } = 
   return !!t && !t.revoked_at;
 }
 
-// champRefs : repères Diamant+ par champion (coach/champ-references.mjs, clé de développement), passés par index.mjs ;
-// servis aux seuls testeurs (toutes les routes sauf /health passent par le mode test privé)
+// champRefs : repères Diamant+ par champion (coach/champ-references.mjs, clé de développement) ; valeur, ou fonction (env) → promesse
+// (index.mjs les lit dans le stockage privé). Servis aux seuls testeurs (toutes les routes sauf /health passent par le mode test privé)
 export function createV1Worker({ fetchImpl = fetch, now = () => Date.now(), sb = null, log = console.log, champRefs = null } = {}) {
   const counters = new Map();
   const hit = (key, limit, windowMs) => {
@@ -107,7 +107,8 @@ export function createV1Worker({ fetchImpl = fetch, now = () => Date.now(), sb =
     if (!refsCache) refsCache = await rest.rest("GET", `metric_references?metric_version=in.(${REFERENCE_VERSIONS.join(",")})&select=*`).then(rows => rows.sort((a, b) => REFERENCE_VERSIONS.indexOf(b.metric_version) - REFERENCE_VERSIONS.indexOf(a.metric_version))).then(rows => rows.filter(r => TIER_LABEL[r.level]).reduce((m, r) => ((((m[r.level] ||= {})[r.role] ||= {})[r.metric] = { n: r.n, p25: Number(r.p25), p50: Number(r.p50), p75: Number(r.p75), level: TIER_LABEL[r.level] }), m), {})).catch(() => null);
     const riot = env.RIOT_API_KEY ? createRiotV1(env.RIOT_API_KEY, { fetchImpl }) : null;
     // 3 parties par requête : environ 25 appels sortants, sous la limite de 50 du Worker gratuit
-    const v1ctx = { store: linkStore, riot, references: refsCache, champRefs, syncBudget: 3 };
+    const refsChamp = typeof champRefs === "function" ? await champRefs(env).catch(() => null) : champRefs;
+    const v1ctx = { store: linkStore, riot, references: refsCache, champRefs: refsChamp, syncBudget: 3 };
     // Synchronisation après la réponse (202), sans bloquer le joueur
     v1ctx.queue = { push: job => ctx.waitUntil(syncWorker(v1ctx)(job)) };
     const r = await handleV1({ method: request.method, path: url.pathname, query: Object.fromEntries(url.searchParams), body }, v1ctx);
