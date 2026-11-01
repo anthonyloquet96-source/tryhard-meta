@@ -285,10 +285,10 @@ function c2Remember(p) {
 function c2SwitchTo(riotId, platform) {
   const key = id => id.toLowerCase();
   C2.accounts ||= {};
-  if (C2.account?.riotId) C2.accounts[key(C2.account.riotId)] = { history: C2.history, goals: C2.goals, seen: C2.seen, role: C2.role, reports: C2.reports };
+  if (C2.account?.riotId) C2.accounts[key(C2.account.riotId)] = { history: C2.history, goals: C2.goals, seen: C2.seen, role: C2.role, reports: C2.reports, habitLog: C2.habitLog };
   const saved = C2.accounts[key(riotId)] || {};
   const prev = C2.account?.riotId && C2.profile ? [{ riotId: C2.account.riotId, platform: C2.account.platform }] : [];
-  Object.assign(C2, { account: { riotId, platform }, profile: null, profileAt: 0, reviews: {}, history: saved.history || {}, goals: saved.goals || {}, seen: saved.seen ?? null, role: saved.role || null, reports: saved.reports || {} });
+  Object.assign(C2, { account: { riotId, platform }, profile: null, profileAt: 0, reviews: {}, history: saved.history || {}, goals: saved.goals || {}, seen: saved.seen ?? null, role: saved.role || null, reports: saved.reports || {}, habitLog: saved.habitLog || {} });
   C2.recent = [{ riotId, platform }, ...prev, ...(C2.recent || [])].filter((r, i, all) => all.findIndex(x => key(x.riotId) === key(r.riotId)) === i).slice(0, 5);
   for (const k of Object.keys(C2.accounts)) if (!C2.recent.some(r => key(r.riotId) === k)) delete C2.accounts[k];
   Object.assign(c2ui, { error: null, switching: false, live: null, liveAt: 0 });
@@ -1760,12 +1760,53 @@ async function c2LoadReport(key, params) {
   c2ui.report = { key, loading: true };
   try { c2ui.report = { key, data: await c2Fetch("report", { puuid: C2.account.puuid, platform: C2.account.platform, ...params }) }; } catch (e) { c2ui.report = { key, error: e.message }; }
   const d = c2ui.report.data;
+  if (d?.games >= 3) c2ui.report.savedAt = c2HabitSave(params.champion ? `champ:${params.champion}` : params.role, d);
   if (d?.games >= 3 && params.role) {
     const m = d.minus[0];
     (C2.reports ||= {})[params.role] = { at: Date.now(), games: d.games, top: m ? { title: m.title, kind: m.kind, metric: m.metric, detail: m.detail } : null, more: d.minus.length - 1 };
     c2Save();
   }
   render(false);
+}
+// Évolution des habitudes (bloc D, 01/11 : « prouver la progression ») : chaque bilan est gardé sur l'appareil (6 derniers par sujet)
+// et comparé à un bilan précédent qui porte sur au moins 5 parties différentes. Les nombres viennent des titres du bilan
+// (« dans X parties sur Y », « N % de la partie ») ; un point qui disparaît est seulement passé sous le seuil d'affichage.
+const c2HabitNums = t => { const m = /(\d+) parties sur (\d+)/.exec(t); if (m) return { hits: +m[1], pool: +m[2] }; const p = /^(\d+) %/.exec(t); return p ? { pct: +p[1] } : {}; };
+const c2HabitTitle = t => (/^\d+ % de la partie passés mort/.test(t) ? "Temps passé mort (part de la partie)" : t.replace(/ dans \d+ parties sur \d+$/, ""));
+const c2HabitIds = d => [...new Set([...(d.matchups || []).map(m => m.id), ...d.minus.flatMap(m => m.games || [])])];
+function c2HabitSave(key, d) {
+  const L = ((C2.habitLog ||= {})[key] ||= []), ids = c2HabitIds(d);
+  const items = d.minus.map(m => ({ kind: m.kind, title: c2HabitTitle(m.title), family: m.family || "decision", ...c2HabitNums(m.title) }));
+  const last = L[L.length - 1];
+  // Même bilan rechargé (mêmes parties) : on remplace au lieu d'empiler
+  if (last && last.ids.length === ids.length && ids.every(id => last.ids.includes(id))) { Object.assign(last, { items }); c2Save(); return last.at; }
+  L.push({ at: Date.now(), games: d.games, ids, items }); L.splice(0, Math.max(0, L.length - 6)); c2Save();
+  return L[L.length - 1].at;
+}
+function c2HabitTrend(key, d, savedAt) {
+  const L = (C2.habitLog?.[key] || []).filter(x => x.at !== savedAt);
+  if (!L.length) return "";
+  const ids = c2HabitIds(d), fresh = x => ids.filter(id => !x.ids.includes(id)).length;
+  const prev = [...L].reverse().find(x => fresh(x) >= 5);
+  const date = x => new Date(x.at).toLocaleDateString(window.LANG === "en" ? "en-GB" : "fr-FR", { day: "numeric", month: "long" });
+  if (!prev) return `<p class="note">${icon("info")}<span>Ton bilan précédent (${date(L[L.length - 1])}) portait presque sur les mêmes parties. Joue au moins 5 nouvelles parties pour voir comment tes habitudes évoluent.</span></p>`;
+  const now = d.minus.map(m => ({ kind: m.kind, title: c2HabitTitle(m.title), ...c2HabitNums(m.title) }));
+  const share = x => (x.pool ? x.hits / x.pool : x.pct != null ? x.pct / 100 : null);
+  const rows = [];
+  for (const x of now) {
+    const p = prev.items.find(y => y.kind === x.kind);
+    if (!p) { rows.push(["new", x.title, "nouveau : n'apparaissait pas dans ton bilan précédent"]); continue; }
+    const a = share(p), b = share(x), txt = v => (v.pool ? `${v.hits} parties sur ${v.pool}` : `${v.pct} %`);
+    // Seuil : 15 points d'écart (et 2 parties de plus ou de moins), sinon c'est « à peu près pareil » (20 parties, c'est peu)
+    const moved = a != null && b != null && Math.abs(b - a) >= 0.15 && (!x.pool || Math.abs(x.hits - p.hits) >= 2);
+    rows.push([moved ? (b < a ? "down" : "up") : "same", x.title, `${txt(p)} → ${txt(x)} : ${moved ? (b < a ? "en baisse" : "en hausse") : "à peu près pareil"}`]);
+  }
+  for (const p of prev.items) if (!now.some(x => x.kind === p.kind)) rows.push(["gone", p.title, "n'apparaît plus : il revient dans moins de parties qu'avant"]);
+  if (!rows.length) return "";
+  const n = fresh(prev);
+  return `<section class="c2-card c2-htrend"><p class="label">Tes habitudes depuis le ${date(prev)}</p>
+    <ul class="c2-htrend-list">${rows.map(([c, t, v]) => `<li class="h-${c}"><b>${esc(t)}</b><span class="fine">${esc(v)}</span></li>`).join("")}</ul>
+    <p class="fine">Comparé à ton bilan du ${date(prev)} : ${n} partie${n > 1 ? "s" : ""} nouvelle${n > 1 ? "s" : ""} depuis. Sur une vingtaine de parties, un petit écart peut venir du hasard : seuls les écarts nets sont marqués en hausse ou en baisse.</p></section>`;
 }
 // Sujet du bilan : un rôle (jusqu'à 20 parties relues parmi les 40 dernières) ou un champion (parmi les 60 dernières)
 // Sujet du bilan : un rôle ou un champion (pastilles, comme les filtres du reste de l'application)
@@ -1840,6 +1881,7 @@ function c2Report() {
       }).join("") : `<p class="inline-empty">Aucun point faible qui revient dans plusieurs parties.</p>`);
   return `${pick}
     ${c2Synthesis(d, { role, champ })}
+    ${c2HabitTrend(champ ? `champ:${champ}` : role, d, R.savedAt)}
     <div class="filters">${seg("c2-bview", [["travailler", "À travailler", d.minus.length || null], ["forces", "Forces", d.plus.length || null], ["profil", "Profil"], ["champions", "Champions"]], view, "Vue")}</div>
     ${body}
     <p class="fine c2-foot">${esc(d.note)}</p>`;
