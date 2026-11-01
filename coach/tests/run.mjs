@@ -252,15 +252,20 @@ await t("Partie en cours : rôles estimés, fiches Diamant+ par champion", "fixt
   assert(c1.rolesAll.jungle === 1 && !JSON.stringify(champstats).includes("puuid"), "rôles tous patchs ou identifiant de joueur");
   return "Châtiment → jungle malgré des fréquences « top » ; fiches limitées au patch le plus joué, parties de plus de 30 jours écartées, aucun identifiant de joueur. Mesure réelle (coach/eval-roles.mjs, 40 parties hors échantillon) : 95 % des rôles justes, 98 % quand « sûr », adversaire direct juste à 90 %.";
 });
+// Champion couvert seulement par les conseils officiels de Riot : Lee Sin jusqu'au 01/11 (la veille lui a alors trouvé des conseils
+// de coachs) ; on prend désormais le premier de la base dans ce cas, Lee Sin en priorité
+const officialOnly = () => ["Lee Sin", ...Object.keys(KB.coverage.champions).sort()].find(n => KB.coverage.champions[n]?.officialOnly);
 await t("Tout le jeu : socle officiel pour chaque champion", "réel", () => {
   const dd = KB.units.filter(u => u.id.startsWith("u-dd-"));
   const champs = new Set(dd.flatMap(u => [...u.champions, u.matchup?.vs].filter(Boolean)));
   assert(champs.size > 140, `${champs.size} champions`);
-  const r = CS.prepare(KB, { role: "jungle", rank: "or", champions: ["Lee Sin"], mode: "solo", goal: "lane", time: 30 });
-  assert(r.plan.some(x => x.unit.champions.includes("Lee Sin")) && /conseils officiels/.test(r.coverage.note), "Lee Sin sans conseil officiel ou sans mention de couverture");
-  const opts = CS.options(KB, "Lee Sin", "jungle");
+  const LS = officialOnly();
+  if (!LS) throw Object.assign(new Error("ignoré : plus aucun champion couvert par les seuls conseils officiels"), { skip: true });
+  const r = CS.prepare(KB, { role: "jungle", rank: "or", champions: [LS], mode: "solo", goal: "lane", time: 30 });
+  assert(r.plan.some(x => x.unit.champions.includes(LS)) && /conseils officiels/.test(r.coverage.note), `${LS} sans conseil officiel ou sans mention de couverture`);
+  const opts = CS.options(KB, LS, "jungle");
   assert(opts.opponents.length > 100, "adversaires");
-  return `${dd.length} conseils officiels, ${champs.size} champions ; Lee Sin (jungle) reçoit ses conseils officiels avec la mention de couverture ; ${opts.opponents.length} adversaires proposables.`;
+  return `${dd.length} conseils officiels, ${champs.size} champions ; ${LS} (jungle) reçoit ses conseils officiels avec la mention de couverture ; ${opts.opponents.length} adversaires proposables.`;
 });
 await t("4b. Deux créateurs qui se contredisent", "fixture", () => {
   const [a, b] = fx.contradiction.map(u => ev(u, fxCtx));
@@ -295,11 +300,13 @@ await t("7. Champion ou rôle non couvert", "réel", async () => {
   const r = CS.prepare(KB, { role: "bottom", rank: "or", champions: [none], mode: "solo", goal: "jungle", time: 15 });
   assert(/pas encore couvert/.test(r.coverage.note), "pas d'avertissement");
   assert(r.plan.every(x => !x.unit.champions.length) && r.goal.unit.roles.includes("all"), "conseil d'un autre champion proposé");
-  const r2 = CS.prepare(KB, { role: "jungle", rank: "or", champions: ["Lee Sin"], mode: "solo", goal: "jungle", time: 15 });
+  const LS = officialOnly();
+  if (!LS) return `${none} (aucun conseil) : avertissement, méthode seulement ; plus aucun champion à conseils officiels seuls.`;
+  const r2 = CS.prepare(KB, { role: "jungle", rank: "or", champions: [LS], mode: "solo", goal: "jungle", time: 15 });
   // Objectif jungle : un conseil analysé sur la jungle (vidéos de coachs) est proposé ; sans lui, le manque est annoncé
   const jungleGoal = r2.goal?.unit.themes.includes("jungle");
-  assert(/conseils officiels/.test(r2.coverage.note) && (jungleGoal ? !r2.goalNote : /aucun conseil analysé/i.test(r2.goalNote || "")), "couverture de Lee Sin mal annoncée");
-  return `${none} (aucun conseil) : avertissement, méthode seulement. Lee Sin : « conseils officiels seulement » ; objectif jungle ${jungleGoal ? "tiré d'un conseil analysé" : "déclaré non couvert"}.`;
+  assert(/conseils officiels/.test(r2.coverage.note) && (jungleGoal ? !r2.goalNote : /aucun conseil analysé/i.test(r2.goalNote || "")), `couverture de ${LS} mal annoncée`);
+  return `${none} (aucun conseil) : avertissement, méthode seulement. ${LS} : « conseils officiels seulement » ; objectif jungle ${jungleGoal ? "tiré d'un conseil analysé" : "déclaré non couvert"}.`;
 });
 await t("8a. Source indisponible (accès refusé)", "réel", async () => {
   const got = await acquireText({ id: "test-mobalytics", type: "article", url: "https://mobalytics.gg/blog/lol-essential-skills-to-master-for-adcs/", access: "texte-integral" });
