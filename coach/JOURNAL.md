@@ -2,6 +2,11 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — bloc D commencé : « Ta progression »
+- **Worker déployé** (version 01fb0f37) avec le feu vert d'Anthony : control wards, catégories, rotation, garde-fous par poste, données lues dans `coach-data`.
+- **Carte « Ta progression »** (`c2V1Progress`, Mon suivi, sous l'objectif) : pour chaque geste travaillé (métrique + poste), niveau de départ du premier objectif, médiane des 5 dernières parties au poste, lecture en écart-type personnel (≥ 0,5 σ net progrès, ≥ 0,25 léger, > −0,25 pas de changement net, sinon en baisse), courbe des 30 dernières parties avec niveau de départ et dernière cible, phrase d'honnêteté (5 parties = encore du hasard possible). Aucune route serveur ajoutée : `/progress` donnait déjà `series` et l'historique. Vérifié en démo (58 → 63 sbires, net progrès).
+- **Reste du bloc D** : minimap filtrée par l'objectif en cours, détecteur d'habitudes sur 10-20 parties, parcours champion de 10 parties.
+
 ## 2026-11-01 — bloc A et début du bloc B (todo du 01/11)
 - **Esport, vainqueur d'une partie** (capture d'Anthony : BLG–HLE 2-0, résumé « HLE l'emporte ») : la déduction prenait inhibiteurs puis **tours** puis kills ; le flux s'arrête avant les derniers coups, le perdant avait 8 tours contre 7. Nouvelle règle (`guessSide`) : inhibiteurs, puis écart d'or, puis tours ; inhibiteur et or en désaccord = déduction fragile. `assignWinners` confronte au score officiel : une série sans appel (2-0, 3-0) tranche toutes les parties ; sinon seules les déductions fragiles (moins de 3 000 or, sans inhibiteur décisif) sont retournées ; si rien ne colle, « non vérifié » et aucun vainqueur affiché. Les matchs en cache sont re-vérifiés à chaque collecte sans requête. `story.mjs` suit la même règle ; l'appli affiche le vainqueur vérifié dans le résumé.
 - **Garde-fous** (metrics-2) : `vision_per_ward` (score de vision par ward posée, au moins 3 wards) comme garde-fou anti-spam des objectifs de vision ; `dead_share` contre le jeu égoïste ; `kill_participation` n'est plus un veto. GUARDRAILS par poste revus. Test COACH-007 mis à jour.
