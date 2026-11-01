@@ -1350,6 +1350,7 @@ button.pick { background: none; border: 0; padding: 0; font: inherit; color: inh
 /* Coach V1 : objectif en cours */
 .c2-v1 { gap: var(--s3); }
 .c2-v1-title { margin: 0; font-size: var(--fs-lg); line-height: 1.3; }
+.c2-v1-cat { margin: -6px 0 0; font-size: var(--fs-sm); font-weight: 600; color: var(--accent-text); }
 .c2-v1-title b { color: var(--accent-text); }
 .c2-v1-ex { margin: 0; background: var(--surface-2); border-radius: var(--r-sm); padding: var(--s3); line-height: 1.45; }
 .c2-v1-dots { display: flex; gap: var(--s2); }

@@ -558,6 +558,11 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
     "Farm entre 15 et 25 min": "Farm between 15 and 25 min", "Or à 10 min": "Gold at 10 min", "Expérience à 10 min": "XP at 10 min",
     "Écart d'or à 15 min face à ton adversaire": "Gold difference at 15 min vs your opponent", "Écart d'XP à 15 min face à ton adversaire": "XP difference at 15 min vs your opponent",
     "Morts avant 14 min": "Deaths before 14 min", "Participation aux kills": "Kill participation", "Score de vision par minute": "Vision score per minute",
+    "Wards adverses détruites avant 20 min": "Enemy wards destroyed before 20 min", "Control wards posées avant 20 min": "Control wards placed before 20 min",
+    "Premier grand objet": "First major item", "Or qui dort entre 10 et 25 min": "Idle gold between 10 and 25 min", "Part de la partie passée mort": "Share of the game spent dead",
+    "Lane & ressources": "Lane & resources", "Survie & combats": "Survival & fights", "Vision & information": "Vision & information", "Tempo & économie": "Tempo & economy", "Carte & objectifs": "Map & objectives", "Maîtrise du poste": "Role mastery",
+    "nouvel objectif en attente de validation": "new goal awaiting validation", "objectif automatique suspendu (dépend trop de la partie, pas du joueur)": "automatic goal suspended (depends on the game more than on the player)",
+    "control wards": "control wards", "wards": "wards",
     "Wards posées par minute": "Wards placed per minute", "Dégâts aux champions par or": "Damage to champions per gold", "Dégâts aux champions par minute": "Damage to champions per minute",
     "Participation aux objectifs de ton équipe": "Participation in your team's objectives",
   };
@@ -578,6 +583,14 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
   // Exercices des objectifs (coach/metrics.mjs, champ exercise), traduits morceau par morceau ; la phrase n'est traduite que si
   // tous ses morceaux sont reconnus (jamais de phrase mi-française, mi-anglaise)
   const EX = [
+    // Objectifs du 01/11 (vision, tempo)
+    [/^Vise (\d+) wards? adverses? détruites? avant 20:00 : passe ta lentille \(trinket rouge\) dans les buissons de la rivière et le tri-bush à chaque passage avec ton ADC, et casse les wards que tu vois poser\.$/, (m, n) => `Aim for ${n} enemy ward${n === "1" ? "" : "s"} destroyed before 20:00: sweep the river bushes and the tri-bush with your Oracle Lens every time you pass with your ADC, and break the wards you see placed.`],
+    [/^Vise (\d+) wards? adverses? détruites? avant 20:00 : prends la lentille dès ton premier back et balaie les entrées de ta jungle et les buissons de rivière sur ton chemin\.$/, (m, n) => `Aim for ${n} enemy ward${n === "1" ? "" : "s"} destroyed before 20:00: take the Oracle Lens on your first back and sweep your jungle entrances and the river bushes on your path.`],
+    [/^Vise (\d+) wards? adverses? détruites? avant 20:00 : quand tu vas vers la rivière avec ta lentille, balaie le buisson avant d'y poser ta ward\.$/, (m, n) => `Aim for ${n} enemy ward${n === "1" ? "" : "s"} destroyed before 20:00: when you head to the river with your lens, sweep the bush before placing your ward there.`],
+    [/^Vise (\d+) control wards? posées? avant 20:00 : achètes-en une à chaque back \(75 or\) et pose-la dans le buisson de rivière côté dragon, ou dans le tri-bush quand tu pousses\.$/, (m, n) => `Aim for ${n} control ward${n === "1" ? "" : "s"} placed before 20:00: buy one on every back (75 gold) and place it in the river bush on the dragon side, or in the tri-bush when you push.`],
+    [/^Vise (\d+) control wards? posées? avant 20:00 : achètes-en une à chaque back \(75 or\) et pose-la à l'entrée de ta jungle, du côté du prochain objectif\.$/, (m, n) => `Aim for ${n} control ward${n === "1" ? "" : "s"} placed before 20:00: buy one on every back (75 gold) and place it at your jungle entrance, on the side of the next objective.`],
+    [/^Termine ton premier grand objet avant (\d+:\d\d) : prévois ton back quand tu as l'or d'un gros composant et que ta wave vient d'être poussée, plutôt que de rester en lane avec l'or qui dort\.$/, (m, t) => `Finish your first major item before ${t}: plan your back when you have the gold for a big component and your wave has just been pushed, instead of staying in lane with idle gold.`],
+    [/^Au plus (\d+) % du temps avec plus de 1 300 or en poche entre 10 et 25 min : dès que tu peux acheter un gros composant, cherche le prochain moment sûr pour rentrer\.$/, (m, p) => `At most ${p}% of the time holding more than 1,300 gold between 10 and 25 min: as soon as you can buy a big component, look for the next safe moment to back.`],
     [/Vise ([\d.,]+) CS à (10|15):00, sbires et monstres ?([.:])/, (m, n, t, p) => `Aim for ${n} CS at ${t}:00, minions and monsters${p}`],
     [/Vise ([\d.,]+) sbires à (10|15):00 ?([.:])/, "Aim for $1 CS at $2:00$3"],
     [/Repère intermédiaire : environ (\d+) (?:CS|sbires) à 5:00 ;/, "Checkpoint: about $1 CS at 5:00;"],

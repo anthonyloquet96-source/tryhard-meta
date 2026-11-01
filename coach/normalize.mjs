@@ -41,6 +41,7 @@ export function normalizeMatch(match, timeline = null) {
     gold_earned: num(p.goldEarned),
     damage_to_champions: num(p.totalDamageDealtToChampions),
     vision_score: num(p.visionScore), wards_placed: num(p.wardsPlaced), wards_killed: num(p.wardsKilled),
+    time_dead_s: num(p.totalTimeSpentDead),
     early_surrender: typeof p.gameEndedInEarlySurrender === "boolean" ? p.gameEndedInEarlySurrender : null,
   }));
   const teams = (info.teams || []).map(t => ({
