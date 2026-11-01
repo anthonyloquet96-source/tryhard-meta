@@ -559,7 +559,7 @@ if (typeof document !== "undefined") { try{var t=JSON.parse(localStorage.getItem
     "Écart d'or à 15 min face à ton adversaire": "Gold difference at 15 min vs your opponent", "Écart d'XP à 15 min face à ton adversaire": "XP difference at 15 min vs your opponent",
     "Morts avant 14 min": "Deaths before 14 min", "Participation aux kills": "Kill participation", "Score de vision par minute": "Vision score per minute",
     "Wards adverses détruites avant 20 min": "Enemy wards destroyed before 20 min", "Control wards posées avant 20 min": "Control wards placed before 20 min",
-    "Premier grand objet": "First major item", "Or qui dort entre 10 et 25 min": "Idle gold between 10 and 25 min", "Part de la partie passée mort": "Share of the game spent dead",
+    "Premier grand objet": "First major item", "Or qui dort entre 10 et 25 min": "Idle gold between 10 and 25 min", "Part de la partie passée mort": "Share of the game spent dead", "Score de vision par ward posée": "Vision score per ward placed",
     "Lane & ressources": "Lane & resources", "Survie & combats": "Survival & fights", "Vision & information": "Vision & information", "Tempo & économie": "Tempo & economy", "Carte & objectifs": "Map & objectives", "Maîtrise du poste": "Role mastery",
     "nouvel objectif en attente de validation": "new goal awaiting validation", "objectif automatique suspendu (dépend trop de la partie, pas du joueur)": "automatic goal suspended (depends on the game more than on the player)",
     "control wards": "control wards", "wards": "wards",

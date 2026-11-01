@@ -736,7 +736,7 @@ await t("COACH-007 Choix de l'objectif (goals-2) : reproductible, sans LLM, scor
   const vals = games.map(g => g.metrics.cs_at_10.value).sort((x, y) => x - y), p55 = vals[Math.floor(0.55 * 19)];
   assert(a.goal.target === Math.max(p55, a.goal.baseline + 1) && a.goal.target_quantile === 0.55 && a.goal.target <= 70, `cible ${a.goal.target}, attendu ${Math.max(p55, a.goal.baseline + 1)}`);
   // Fenêtre de départ datée et garde-fous du poste (sans la métrique visée)
-  assert(a.goal.baseline_window.games === 20 && a.goal.baseline_window.to_ms === 1e6 && Object.keys(a.goal.guardrails).join() === "xp_at_10,kill_participation", `fenêtre ou garde-fous : ${Object.keys(a.goal.guardrails)}`);
+  assert(a.goal.baseline_window.games === 20 && a.goal.baseline_window.to_ms === 1e6 && Object.keys(a.goal.guardrails).join() === "xp_at_10,vision_per_ward", `fenêtre ou garde-fous : ${Object.keys(a.goal.guardrails)}`);
   const row = a.diagnostic.find(r => r.metric === "cs_at_10"), f = row.factors;
   assert(Math.abs(row.score - 100 * f.G * f.I * f.F * f.A * f.C) < 0.05, "score différent de 100·G·I·F·A·C");
   // Morts avant 14 min : au diagnostic, jamais proposées automatiquement (même seules en cause)

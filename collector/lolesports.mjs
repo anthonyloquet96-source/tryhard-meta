@@ -54,17 +54,11 @@ async function gameDetail(game) {
     if (f) last = f;
     if (f?.gameState === "finished") break;
   }
-  let guess = null;
-  if (last?.gameState === "finished") {
-    const b = last.blueTeam, r = last.redTeam;
-    const score = x => x.inhibitors * 100 + x.towers * 10 + x.totalKills / 100;
-    guess = score(b) > score(r) ? "blue" : score(r) > score(b) ? "red" : null;
-  }
+  // Vainqueur déduit de l'image finale par guessSide (voir plus bas), puis confronté au score officiel dans assignWinners
   const vod = (game.vods || []).find(v => v.locale === "fr-FR") || (game.vods || []).find(v => v.locale === "en-US") || game.vods?.[0];
   return {
     n: game.number, id: game.id, patch: meta.patchVersion?.split(".").slice(0, 2).join("."),
     blue: side(meta.blueTeamMetadata), red: side(meta.redTeamMetadata),
-    winnerSide: guess,
     kills: last ? { blue: last.blueTeam.totalKills, red: last.redTeam.totalKills } : null,
     // Bandeau récapitulatif de fin de partie (comme celui de la diffusion)
     final: last?.gameState === "finished" ? {
@@ -77,6 +71,44 @@ async function gameDetail(game) {
   };
 }
 
+// Vainqueur d'une partie d'après son bandeau final : inhibiteurs détruits, puis ÉCART D'OR (le flux s'arrête souvent avant que
+// les dernières tours du nexus soient comptées : à BLG–HLE, Worlds 2026, le perdant avait 8 tours contre 7 et l'ancienne formule
+// « tours avant or » se trompait de vainqueur), puis tours, puis kills. marge : confiance de la déduction (or, en milliers).
+export function guessSide(final) {
+  if (!final?.blue || !final?.red) return { side: null, margin: 0 };
+  const b = final.blue, r = final.red;
+  const pick = d => (d > 0 ? "blue" : d < 0 ? "red" : null);
+  const inh = pick(b.inhibitors - r.inhibitors);
+  const gold = (b.totalGold ?? 0) - (r.totalGold ?? 0);
+  if (inh) return { side: inh, margin: 100 + Math.abs(gold) / 1000 };
+  const g = pick(gold); if (g) return { side: g, margin: Math.abs(gold) / 1000 };
+  const t = pick(b.towers - r.towers); if (t) return { side: t, margin: 0.5 };
+  return { side: pick(b.totalKills - r.totalKills), margin: 0.1 };
+}
+
+// Vainqueurs d'une série : déduction par partie, puis confrontation au score officiel. Si le décompte ne colle pas, on retourne
+// d'abord les parties déduites avec la plus faible marge (moins de 3 000 or, sans inhibiteur décisif) jusqu'à retrouver le score officiel.
+// Sans partie exploitable ou si aucune correction ne redonne le score, verified = false et aucun vainqueur affiché.
+export function assignWinners(games, officialTeams) {
+  const rows = games.map(g => ({ g, ...guessSide(g.final) }));
+  const target = Object.fromEntries((officialTeams || []).map(t => [t.id, t.score ?? null]));
+  const ids = Object.keys(target);
+  const count = () => { const w = {}; for (const r of rows) if (r.side) { const id = r.g[r.side].teamId; w[id] = (w[id] || 0) + 1; } return w; };
+  const ok = () => { const w = count(); return ids.length > 0 && ids.every(id => target[id] != null && (w[id] || 0) === target[id]); };
+  let corrected = 0;
+  if (rows.length && !ok()) {
+    // Seules les déductions fragiles sont retournées : pas d'inhibiteur décisif et moins de 3 000 or d'écart
+    for (const r of rows.filter(r => r.side && r.margin <= 3).sort((a, b) => a.margin - b.margin)) {
+      const w = count(), from = r.g[r.side].teamId, to = r.g[r.side === "blue" ? "red" : "blue"].teamId;
+      if ((w[from] || 0) > (target[from] ?? 0) && (w[to] || 0) < (target[to] ?? 0)) { r.side = r.side === "blue" ? "red" : "blue"; corrected++; }
+      if (ok()) break;
+    }
+  }
+  const verified = ok();
+  for (const r of rows) { r.g.winnerTeamId = verified && r.side ? r.g[r.side].teamId : null; delete r.g.winnerSide; }
+  return { verified, corrected };
+}
+
 async function matchDetail(matchId, officialTeams) {
   const ev = (await api(`getEventDetails?id=${matchId}`)).data.event;
   const games = [];
@@ -84,17 +116,7 @@ async function matchDetail(matchId, officialTeams) {
     const d = await gameDetail(g).catch(() => null);
     if (d) games.push(d);
   }
-  // Vérification : les vainqueurs déduits doivent redonner le score officiel de la série.
-  const wins = {};
-  for (const g of games) {
-    const id = g.winnerSide ? g[g.winnerSide].teamId : null;
-    if (id) wins[id] = (wins[id] || 0) + 1;
-  }
-  const verified = games.length > 0 && officialTeams.every(t => (wins[t.id] || 0) === (t.score ?? -1));
-  for (const g of games) {
-    g.winnerTeamId = verified && g.winnerSide ? g[g.winnerSide].teamId : null;
-    delete g.winnerSide;
-  }
+  const { verified } = assignWinners(games, officialTeams);
   return { games, verified };
 }
 
@@ -207,6 +229,8 @@ export async function collectLolEsports(state) {
         try { state.lolMatches[m.id] = await matchDetail(m.id, m.teams); } catch { /* réessayé à la prochaine collecte */ }
       }
       Object.assign(m, state.lolMatches[m.id] || {});
+      // Matchs déjà en cache : vainqueurs re-déduits avec la règle courante et le score officiel (aucune requête)
+      if (m.games?.length && m.teams) m.verified = assignWinners(m.games, m.teams).verified;
     }
 
     const starts = allMatches.map(m => m.start).filter(Boolean).sort();

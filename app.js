@@ -502,7 +502,9 @@ try { Object.assign(STORY, JSON.parse(localStorage.getItem(STORY_KEY) || "{}"));
 const storyTeams = (st, m) => Object.fromEntries(["blue", "red"].map(s => { const id = st.players.find(p => p.side === s)?.teamId; const x = m.teams.find(y => y.id === id) || {}; return [s, { name: x.name, code: x.code || x.name }]; }));
 function storyHtml(st, m) {
   if (!window.storyLines) return "";
-  const lines = window.storyLines(st, { teams: storyTeams(st, m), winner: st.winner, lang: window.LANG || "fr", tagsOf: c => rosters.lol?.find(x => x.id === c)?.tags || [], champName: c => entity("lol", c).name });
+  // Vainqueur : celui vérifié par la collecte avec le score officiel quand il existe, sinon celui déduit du flux
+  const g = (m.games || []).find(x => x.id === st.gameId), side = g?.winnerTeamId ? st.players.find(p => p.teamId === g.winnerTeamId)?.side : null;
+  const lines = window.storyLines(st, { teams: storyTeams(st, m), winner: side || st.winner, lang: window.LANG || "fr", tagsOf: c => rosters.lol?.find(x => x.id === c)?.tags || [], champName: c => entity("lol", c).name });
   return `<ul class="story" translate="no">${lines.map(l => `<li class="st-${l.k}">${esc(l.t)}</li>`).join("")}</ul><p class="fine st-note" translate="no">${window.LANG === "en" ? "Facts measured minute by minute in the official LoL Esports feed." : "Faits relevés minute par minute dans le flux officiel de LoL Esports."}</p>`;
 }
 // Relevé le plus complet disponible : celui de la collecte, ou celui calculé sur l'appareil (v2 : kills à la seconde, stats finales)

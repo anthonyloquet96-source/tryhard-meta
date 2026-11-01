@@ -37,7 +37,7 @@ export const RULES = {
   rotationNewCategory: 0.25, rotationRestedCategory: 0.15, rotationFloor: 0.7,
 };
 const FLOOR = { cs_at_10: 4, cs_at_15: 6, cs_per_min: 0.4, early_deaths: 0.75, kill_participation: 0.05, vision_per_min: 0.1, xp_at_10: 150, objective_participation: 0.1,
-  ward_kills_20: 0.75, control_wards_20: 0.5, first_item_min: 0.5, gold_idle_share: 0.03, dead_share: 0.02 };
+  ward_kills_20: 0.75, control_wards_20: 0.5, first_item_min: 0.5, gold_idle_share: 0.03, dead_share: 0.02, vision_per_ward: 0.3 };
 const categoryOf = k => CATALOG[k]?.category || "poste";
 // Résultats d'un cycle d'évaluation
 export const OUTCOMES = ["achieved", "improving", "stable", "needs_review", "failed", "inconclusive"];
