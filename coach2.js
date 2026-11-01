@@ -291,7 +291,9 @@ function c2SwitchTo(riotId, platform) {
   Object.assign(C2, { account: { riotId, platform }, profile: null, profileAt: 0, reviews: {}, history: saved.history || {}, goals: saved.goals || {}, seen: saved.seen ?? null, role: saved.role || null, reports: saved.reports || {}, habitLog: saved.habitLog || {} });
   C2.recent = [{ riotId, platform }, ...prev, ...(C2.recent || [])].filter((r, i, all) => all.findIndex(x => key(x.riotId) === key(r.riotId)) === i).slice(0, 5);
   for (const k of Object.keys(C2.accounts)) if (!C2.recent.some(r => key(r.riotId) === k)) delete C2.accounts[k];
-  Object.assign(c2ui, { error: null, switching: false, live: null, liveAt: 0 });
+  // Changement de compte : tout ce que le coach V1 avait chargé pour l'ancien compte (objectif, progression, fiches champion, bilan)
+  // est oublié ; sinon l'objectif de la personne d'avant restait affiché (retour d'Anthony, 01/11)
+  Object.assign(c2ui, { error: null, switching: false, live: null, liveAt: 0, v1: {}, champMe: {}, report: null, tt: {}, tsel: {}, tf: {} });
   c2Save();
   c2LoadProfile(true);
 }
@@ -562,6 +564,7 @@ async function c2V1Load(force = false) {
     Object.assign(V, { goal: active.goal, evaluations: active.evaluations, history: progress.goals, series: progress.series, diagnostic: diag });
     // Résumé gardé sur l'appareil pour la carte de l'Accueil (sans relancer de synchronisation à chaque ouverture)
     const g = active.goal, evs = (active.evaluations || []).filter(e => e.counted);
+    if (c2ui.v1 !== V) return; // compte changé pendant la synchronisation
     C2.v1Snap = g ? { for: C2.account.riotId, label: g.label, role: g.role, target: g.target_text, unit: g.unit, status: g.status, met: evs.filter(e => e.met).length, counted: evs.length, need: g.success_required, of: g.evaluation_games } : null;
     c2Save();
   } catch (e) { V.error = e.message; V.syncing = false; }
@@ -903,8 +906,9 @@ function c2Connect(switching = false) {
     <p class="label">${switching ? "Changer de Riot ID" : "Ton coach personnel"}</p>
     ${intro}${chips}
     ${off ? c2Showcase() : `<form id="c2-connect" class="c2-form" novalidate>
-      <label class="field"><span>Riot ID</span><input name="riotid" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pseudo#TAG" value="${switching ? "" : esc(C2.account?.riotId || "")}" required></label>
-      <label class="field c2-region"><span>Région</span><select name="platform">${C2_REGIONS.map(([v, l]) => `<option value="${v}" ${v === (C2.account?.platform || "euw1") ? "selected" : ""}>${l}</option>`).join("")}</select></label>
+      ${(() => { const [n, t] = switching ? ["", ""] : String(C2.account?.riotId || "").split("#"); return `<label class="field c2-f-name"><span>Pseudo</span><input name="gamename" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Pseudo" maxlength="40" value="${esc(n || "")}" required></label>
+      <label class="field c2-f-tag"><span>Tag</span><span class="c2-tagbox"><span aria-hidden="true">#</span><input name="tagline" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="EUW" maxlength="5" value="${esc(t || "")}" required></span></label>`; })()}
+      <label class="field c2-region"><span>Serveur</span><select name="platform">${C2_REGIONS.map(([v, l]) => `<option value="${v}" ${v === (C2.account?.platform || "euw1") ? "selected" : ""}>${l}</option>`).join("")}</select></label>
       <button class="btn primary" type="submit">${switching ? "Voir ce compte" : "Analyser mes parties"}</button>
       ${switching ? `<button class="btn ghost" type="button" data-action="c2-switch">Annuler</button>` : ""}
       <p class="form-msg fine" role="status" aria-live="polite">${c2ui.error ? esc(c2ui.error) : ""}</p>
@@ -1456,6 +1460,11 @@ function c2Seek(id, to) {
   };
   requestAnimationFrame(step);
 }
+document.addEventListener("input", e => {
+  if (e.target.name !== "gamename" || !e.target.value.includes("#")) return;
+  const [n, t] = e.target.value.split("#"), tag = e.target.form?.elements.tagline;
+  e.target.value = n; if (tag && t) { tag.value = t.trim().slice(0, 5); tag.focus(); }
+});
 document.addEventListener("input", e => { const id = e.target.dataset?.c2Tt; if (id) { c2Stop(); c2ui.tseek = null; c2RpAt(id, Number(e.target.value)); } });
 document.addEventListener("click", e => {
   const a = e.target.closest("[data-action]");
@@ -1915,8 +1924,13 @@ document.addEventListener("submit", e => {
   if (e.target.id === "c2-connect") {
     e.preventDefault();
     const fd = new FormData(e.target);
-    const id = String(fd.get("riotid") || "").trim();
-    if (!/^.{3,16}#[A-Za-z0-9]{2,5}$/.test(id)) { e.target.querySelector(".form-msg").textContent = "Riot ID attendu sous la forme Pseudo#TAG (le TAG est visible dans le client, sous ton pseudo)."; return; }
+    // Trois cases (demande d'Anthony, 01/11) : pseudo, tag, serveur. Un « Pseudo#TAG » collé dans la case pseudo est aussi accepté.
+    let name = String(fd.get("gamename") || "").trim(), tag = String(fd.get("tagline") || "").trim().replace(/^#/, "");
+    if (name.includes("#")) { const [n, t] = name.split("#"); name = n.trim(); tag ||= t.trim(); }
+    const msg = e.target.querySelector(".form-msg");
+    if (!/^.{3,16}$/.test(name)) { msg.textContent = "Pseudo attendu : de 3 à 16 caractères, tel qu'il apparaît dans le client."; return; }
+    if (!/^[A-Za-z0-9]{2,5}$/.test(tag)) { msg.textContent = "Tag attendu : 2 à 5 lettres ou chiffres, sans le #. Il est visible dans le client, sous ton pseudo (par exemple EUW)."; return; }
+    const id = `${name}#${tag}`;
     c2SwitchTo(id, String(fd.get("platform")));
   }
   if (e.target.id === "c2-face") {
