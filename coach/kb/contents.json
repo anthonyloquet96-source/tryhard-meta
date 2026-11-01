@@ -10118,11 +10118,11 @@
    "published": "2026-03-08",
    "retrievedAt": "2026-10-21",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
    "descriptionExcerpt": "📢 Participez aux prochains Chreact !\n►  Vous voulez voir vos clips dans la prochaine vidéo Chreact ? Envoyez-les ici : [e-mail] !\n\n-\n\n🌟 Rejoignez la communauté et progressez dans League of Legends ! :\n➡️ Retrouvez plus de 5 heures de contenus vidéos exclusives pour tout apprendre sur",
    "backfill": true,
-   "note": "Ancien guide ajouté à la demande (recherche dans la chaîne) : à lire par Gemini.",
+   "note": "Lue par gemini-3.8-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 12,
     "matched": [
@@ -10135,7 +10135,16 @@
     "patchMentioned": null,
     "basis": "ancien guide de Chreak ciblé à la demande ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
    },
-   "views": 14000
+   "views": 14000,
+   "attempts": 0,
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.8-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "34:24",
+    "reused": true
+   }
   },
   {
    "id": "c-yt-uSDzVUF8nvA",
@@ -17497,7 +17506,7 @@
    "patch": null,
    "views": 11000,
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "note": "Lue par gemini-3.7-flash : transcription et 35 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "descriptionExcerpt": "➡️Coaching and everything you need to climb - https://wtl.lol/violet (USE CODE:VIOLET10)\n➡️Join the Community - https://discord.gg/zVvGUPxYGw\n\nIntro 00:00\nExample 1 00:36\nExample 2 11:04\nExample 3 21:38\n\nIn this video im explaining the core fundamentals on adc in league of legend",
    "triage": {
@@ -17527,6 +17536,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 182608
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 2,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à contrer les mages en bot lane en exploitant leur début de partie, en priorisant le contrôle de la vague et en chronométrant tes retours en base sur les vagues de canon.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu propose une analyse détaillée de plusieurs parties professionnelles (Gumayusi, Peyz, Violet) illustrant les principes théoriques et pratiques pour affronter des mages en bot lane."
    }
   },
   {
@@ -19935,7 +19954,7 @@
    "patch": "14.20",
    "views": 18000,
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "note": "Lue par gemini-3-flash-preview : transcription et 19 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "descriptionExcerpt": "http://twitch.tv/shoklol\nMLA Coaching: https://wtl.lol/shok\nSecond Channel: https://www.youtube.com/@shokTTV\nDiscord: https://discord.gg/EvZjQjbsWr\nThumbnails: https://twitter.com/Jakvtt\n\n0:00 Intro\n0:26 Identity\n2:48 Playstyle and team comps\n4:00 Items\n11:30 Runes\n16:35 Matchup ",
    "triage": {
@@ -19964,6 +19983,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 312111
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 2,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à identifier les forces d'Orianna en tant que choix de sécurité flexible et à adapter ton ordre de sorts en début de partie (Q-W-W contre les distances ou Q-E-Q contre les corps-à-corps).",
+   "quality": {
+    "level": "élevée",
+    "why": "L'auteur détaille avec précision les choix stratégiques d'identité de champion, les mécaniques de compétences et l'adaptation des ordres de sorts selon la nature du matchup (distance vs corps-à-corps)."
    }
   },
   {
@@ -58446,8 +58475,8 @@
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
    },
-   "videoAttempts": 2,
-   "videoError": "gemini-3.8-flash HTTP 403 : The caller does not have permission (2026-11-01)"
+   "videoAttempts": 3,
+   "videoError": "gemini-3-flash-preview HTTP 403 : The caller does not have permission (2026-11-01)"
   },
   {
    "id": "c-yt-wJ9HxFdoY_g",
@@ -58566,7 +58595,7 @@
    "retrievedAt": "2026-10-31",
    "patch": "non précisé",
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 41,
@@ -58593,6 +58622,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 162188
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 3,
+   "unitsRejected": 0,
+   "alertes": [],
+   "learn": "Comment optimiser un premier rappel en jungle avec Volibear pour activer rapidement la rune Valet de tous les tours et exploiter les fenêtres de récupération adverses.",
+   "quality": {
+    "level": "élevée",
+    "why": "Démonstration claire et détaillée en partie Master avec explications précises des PO, des composants d'objets, des statistiques et de l'optimisation des runes."
    }
   },
   {
@@ -58632,12 +58671,12 @@
    "published": null,
    "retrievedAt": "2026-10-31",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 42,
-   "note": "File de lecture (rang 42) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.8-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 17,
     "matched": [
@@ -58647,6 +58686,25 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "attempts": 0,
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.8-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "13:03",
+    "reused": true
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 5,
+   "unitsRejected": 0,
+   "alertes": [],
+   "learn": "Apprends à optimiser ton farm en toplane en évitant les pertes de temps post-combat (tempo killing), en réduisant tes morts inutiles et en privilégiant la pression latérale et le vol de camps plutôt que l'obsession de la tourelle du milieu.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu présente une structure claire, des concepts précis appuyés par des exemples concrets de gameplay et une déconstruction logique des erreurs courantes en toplane."
    }
   },
   {
@@ -58660,12 +58718,12 @@
    "published": null,
    "retrievedAt": "2026-10-31",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 43,
-   "note": "File de lecture (rang 43) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.6-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 18,
     "matched": [
@@ -58675,6 +58733,25 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "attempts": 0,
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.6-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "20:12",
+    "reused": true
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 1,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à optimiser la vitesse de ton premier nettoyage de jungle (first clear) en calculant tes dégâts, en utilisant la portée maximale de patience des camps et en considérant ta jungle comme un bloc unique pour gagner un temps précieux.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu détaille des concepts mathématiques et des mécaniques précises (compagnon de jungle, barre de patience, gestion des dégâts) avec des exemples chiffrés et des démonstrations visuelles."
    }
   },
   {
@@ -68949,6 +69026,63 @@
     "matched": [
      "jungle",
      "how to"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-Wt5r9yNEdEs",
+   "sourceId": "yt-dishake",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=Wt5r9yNEdEs",
+   "title": "ADC Coaching: Wave Management, trades, and mistakes by EL PERSA",
+   "author": "Dishake",
+   "lang": "es",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 51,
+   "note": "File de lecture (rang 51) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 18,
+    "matched": [
+     "adc",
+     "coaching",
+     "wave",
+     "mistakes"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-RklElvskomY",
+   "sourceId": "yt-perryjg",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=RklElvskomY",
+   "title": "This Is THE MOST IMPORTANT Jungle Fundamental | Educational Jungle Farming",
+   "author": "perryjg",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 52,
+   "note": "File de lecture (rang 52) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 17,
+    "matched": [
+     "jungle"
     ],
     "entertainment": [],
     "patchMentioned": null,

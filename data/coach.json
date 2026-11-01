@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T13:31:48.543Z",
+ "generatedAt": "2026-11-01T19:42:11.148Z",
  "rules": {
   "version": "v1",
   "prompts": {
@@ -152,7 +152,7 @@
      "Jinx",
      "Smolder"
     ],
-    "units": 82
+    "units": 84
    },
    "support": {
     "champions": [
@@ -1035,15 +1035,15 @@
    },
    "Lee Sin": {
     "role": null,
-    "units": 4,
+    "units": 5,
     "themes": [
      "champion",
-     "matchup"
+     "matchup",
+     "survie"
     ],
-    "actions": 0,
+    "actions": 1,
     "official": 4,
-    "coaching": 0,
-    "officialOnly": true
+    "coaching": 1
    },
    "Leona": {
     "role": null,
@@ -1210,15 +1210,16 @@
    },
    "Neeko": {
     "role": null,
-    "units": 4,
+    "units": 5,
     "themes": [
      "champion",
-     "matchup"
+     "matchup",
+     "lane",
+     "jungle"
     ],
-    "actions": 0,
+    "actions": 1,
     "official": 4,
-    "coaching": 0,
-    "officialOnly": true
+    "coaching": 1
    },
    "Nidalee": {
     "role": null,
@@ -1935,15 +1936,15 @@
    },
    "Ziggs": {
     "role": null,
-    "units": 6,
+    "units": 7,
     "themes": [
      "champion",
-     "matchup"
+     "matchup",
+     "lane"
     ],
-    "actions": 0,
+    "actions": 1,
     "official": 6,
-    "coaching": 0,
-    "officialOnly": true
+    "coaching": 1
    },
    "Zilean": {
     "role": null,
@@ -2062,19 +2063,32 @@
     "actions": 2,
     "official": 0,
     "coaching": 2
+   },
+   "Volibear": {
+    "role": null,
+    "units": 2,
+    "themes": [
+     "jungle",
+     "methode",
+     "champion",
+     "build"
+    ],
+    "actions": 2,
+    "official": 0,
+    "coaching": 2
    }
   },
   "themes": {
-   "lane": 75,
-   "survie": 14,
+   "lane": 82,
+   "survie": 16,
    "teamfight": 11,
    "synergie": 3,
-   "matchup": 10,
-   "methode": 12,
-   "vagues": 40,
+   "matchup": 12,
+   "methode": 15,
+   "vagues": 41,
    "vision": 15,
-   "macro": 70,
-   "jungle": 55
+   "macro": 73,
+   "jungle": 58
   },
   "partial": [
    "Ashe"
@@ -2917,7 +2931,8 @@
    "u-ai-yt-7upo6KzBnbs-3",
    "u-ai-yt-LUllgzA2Q80-4",
    "u-ai-yt-LUllgzA2Q80-5",
-   "u-ai-yt--J8fOgYCRbI-6"
+   "u-ai-yt--J8fOgYCRbI-6",
+   "u-ai-yt-dYxdKho6dHg-5"
   ]
  },
  "sources": [
@@ -14571,11 +14586,11 @@
    "published": "2026-03-08",
    "retrievedAt": "2026-10-21",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "en-attente",
    "descriptionExcerpt": "📢 Participez aux prochains Chreact !\n►  Vous voulez voir vos clips dans la prochaine vidéo Chreact ? Envoyez-les ici : [e-mail] !\n\n-\n\n🌟 Rejoignez la communauté et progressez dans League of Legends ! :\n➡️ Retrouvez plus de 5 heures de contenus vidéos exclusives pour tout apprendre sur",
    "backfill": true,
-   "note": "Ancien guide ajouté à la demande (recherche dans la chaîne) : à lire par Gemini.",
+   "note": "Lue par gemini-3.8-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 12,
     "matched": [
@@ -14588,7 +14603,15 @@
     "patchMentioned": null,
     "basis": "ancien guide de Chreak ciblé à la demande ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
    },
-   "views": 14000
+   "views": 14000,
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.8-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "34:24",
+    "reused": true
+   }
   },
   {
    "id": "c-yt-uSDzVUF8nvA",
@@ -18336,7 +18359,7 @@
    "patch": null,
    "views": 11000,
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "note": "Lue par gemini-3.7-flash : transcription et 35 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "descriptionExcerpt": "➡️Coaching and everything you need to climb - https://wtl.lol/violet (USE CODE:VIOLET10)\n➡️Join the Community - https://discord.gg/zVvGUPxYGw\n\nIntro 00:00\nExample 1 00:36\nExample 2 11:04\nExample 3 21:38\n\nIn this video im explaining the core fundamentals on adc in league of legend",
    "triage": {
@@ -18366,6 +18389,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 182608
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 2,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à contrer les mages en bot lane en exploitant leur début de partie, en priorisant le contrôle de la vague et en chronométrant tes retours en base sur les vagues de canon.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu propose une analyse détaillée de plusieurs parties professionnelles (Gumayusi, Peyz, Violet) illustrant les principes théoriques et pratiques pour affronter des mages en bot lane."
    }
   },
   {
@@ -18947,7 +18980,7 @@
    "patch": "14.20",
    "views": 18000,
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "note": "Lue par gemini-3-flash-preview : transcription et 19 observation(s) d'images à 1 image/s. Lecture par IA, à vérifier sur la vidéo grâce aux horodatages.",
    "descriptionExcerpt": "http://twitch.tv/shoklol\nMLA Coaching: https://wtl.lol/shok\nSecond Channel: https://www.youtube.com/@shokTTV\nDiscord: https://discord.gg/EvZjQjbsWr\nThumbnails: https://twitter.com/Jakvtt\n\n0:00 Intro\n0:26 Identity\n2:48 Playstyle and team comps\n4:00 Items\n11:30 Runes\n16:35 Matchup ",
    "triage": {
@@ -18976,6 +19009,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 312111
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 2,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à identifier les forces d'Orianna en tant que choix de sécurité flexible et à adapter ton ordre de sorts en début de partie (Q-W-W contre les distances ou Q-E-Q contre les corps-à-corps).",
+   "quality": {
+    "level": "élevée",
+    "why": "L'auteur détaille avec précision les choix stratégiques d'identité de champion, les mécaniques de compétences et l'adaptation des ordres de sorts selon la nature du matchup (distance vs corps-à-corps)."
    }
   },
   {
@@ -25082,8 +25125,8 @@
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
    },
-   "videoAttempts": 2,
-   "videoError": "gemini-3.8-flash HTTP 403 : The caller does not have permission (2026-11-01)"
+   "videoAttempts": 3,
+   "videoError": "gemini-3-flash-preview HTTP 403 : The caller does not have permission (2026-11-01)"
   },
   {
    "id": "c-yt-wJ9HxFdoY_g",
@@ -25202,7 +25245,7 @@
    "retrievedAt": "2026-10-31",
    "patch": "non précisé",
    "access": "transcription+visuel",
-   "analysis": "en-attente",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 41,
@@ -25229,6 +25272,16 @@
     "videoKind": "guide",
     "gameplayShown": true,
     "tokens": 162188
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 3,
+   "unitsRejected": 0,
+   "alertes": [],
+   "learn": "Comment optimiser un premier rappel en jungle avec Volibear pour activer rapidement la rune Valet de tous les tours et exploiter les fenêtres de récupération adverses.",
+   "quality": {
+    "level": "élevée",
+    "why": "Démonstration claire et détaillée en partie Master avec explications précises des PO, des composants d'objets, des statistiques et de l'optimisation des runes."
    }
   },
   {
@@ -25242,12 +25295,12 @@
    "published": null,
    "retrievedAt": "2026-10-31",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 42,
-   "note": "File de lecture (rang 42) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.8-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 17,
     "matched": [
@@ -25257,6 +25310,24 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.8-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "13:03",
+    "reused": true
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 5,
+   "unitsRejected": 0,
+   "alertes": [],
+   "learn": "Apprends à optimiser ton farm en toplane en évitant les pertes de temps post-combat (tempo killing), en réduisant tes morts inutiles et en privilégiant la pression latérale et le vol de camps plutôt que l'obsession de la tourelle du milieu.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu présente une structure claire, des concepts précis appuyés par des exemples concrets de gameplay et une déconstruction logique des erreurs courantes en toplane."
    }
   },
   {
@@ -25270,12 +25341,12 @@
    "published": null,
    "retrievedAt": "2026-10-31",
    "patch": null,
-   "access": "metadonnees",
-   "analysis": "non-analysee",
+   "access": "transcription+visuel",
+   "analysis": "analysee",
    "descriptionExcerpt": "",
    "backfill": true,
    "queueRank": 43,
-   "note": "File de lecture (rang 43) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "note": "Lue par gemini-3.6-flash le 2026-11-01 : transcription réutilisée depuis le cache de cet ordinateur.",
    "triage": {
     "score": 18,
     "matched": [
@@ -25285,6 +25356,24 @@
     "entertainment": [],
     "patchMentioned": null,
     "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   },
+   "reader": {
+    "kind": "ia",
+    "tool": "gemini-3.6-flash",
+    "fps": 1,
+    "at": "2026-11-01",
+    "duration": "20:12",
+    "reused": true
+   },
+   "analyzedAt": "2026-11-01",
+   "analyst": "gemini-3.8-flash",
+   "unitsAccepted": 1,
+   "unitsRejected": 1,
+   "alertes": [],
+   "learn": "Apprends à optimiser la vitesse de ton premier nettoyage de jungle (first clear) en calculant tes dégâts, en utilisant la portée maximale de patience des camps et en considérant ta jungle comme un bloc unique pour gagner un temps précieux.",
+   "quality": {
+    "level": "élevée",
+    "why": "Le contenu détaille des concepts mathématiques et des mécaniques précises (compagnon de jungle, barre de patience, gestion des dégâts) avec des exemples chiffrés et des démonstrations visuelles."
    }
   },
   {
@@ -27121,6 +27210,63 @@
     "matched": [
      "jungle",
      "how to"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-Wt5r9yNEdEs",
+   "sourceId": "yt-dishake",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=Wt5r9yNEdEs",
+   "title": "ADC Coaching: Wave Management, trades, and mistakes by EL PERSA",
+   "author": "Dishake",
+   "lang": "es",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 51,
+   "note": "File de lecture (rang 51) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 18,
+    "matched": [
+     "adc",
+     "coaching",
+     "wave",
+     "mistakes"
+    ],
+    "entertainment": [],
+    "patchMentioned": null,
+    "basis": "file de lecture (inventaire du 21/10/2026) ; métadonnées seules (titre et description) : fixe une priorité, ne prouve pas le contenu"
+   }
+  },
+  {
+   "id": "c-yt-RklElvskomY",
+   "sourceId": "yt-perryjg",
+   "type": "video",
+   "url": "https://www.youtube.com/watch?v=RklElvskomY",
+   "title": "This Is THE MOST IMPORTANT Jungle Fundamental | Educational Jungle Farming",
+   "author": "perryjg",
+   "lang": "en",
+   "published": null,
+   "retrievedAt": "2026-11-01",
+   "patch": null,
+   "access": "metadonnees",
+   "analysis": "non-analysee",
+   "descriptionExcerpt": "",
+   "backfill": true,
+   "queueRank": 52,
+   "note": "File de lecture (rang 52) : vidéo pédagogique retenue par l'inventaire des chaînes, à lire par Gemini.",
+   "triage": {
+    "score": 17,
+    "matched": [
+     "jungle"
     ],
     "entertainment": [],
     "patchMentioned": null,
@@ -81308,6 +81454,1116 @@
     {
      "code": "source-unique",
      "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-PDRr_YJlDP8-1",
+   "claim": "Selon hybradge : sur Volibear jungle, démarrer au camp des Corbins pour effectuer un parcours de 9 camps permet d'accumuler 1200 PO avant le premier back afin d'optimiser la rune Valet de tous les tours.",
+   "champions": [
+    "Volibear"
+   ],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "jungle",
+    "methode",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Master",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "conditions": [
+    "Démarrer au camp des Corbins",
+    "Effectuer un parcours complet de 9 camps incluant le Carapateur"
+   ],
+   "limits": [
+    "Parcours complexe nécessitant une bonne gestion du timing et des camps"
+   ],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[00:41] (parole)",
+     "lang": "en",
+     "passage": "The reason why you go raptor start here is so we can get five Jack of All Trades stacks on your first base.",
+     "autoChecked": {
+      "by": "gemini-3-flash-preview",
+      "at": "2026-11-01",
+      "window": "21-81s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[00:53] (parole)",
+     "lang": "en",
+     "passage": "Very very simple. You go for a nine camp clear, okay? So you're going to go full clear top to bot just like usual, right? Instead of starting buff, we'll start raptors here. And then what we're going to do is we're going to take bot Scuttle,"
+    }
+   ],
+   "mentions": [],
+   "action": "Tester le départ aux Corbins et le parcours de 9 camps sur Volibear pour rentrer en base avec 1200 PO.",
+   "observe": "Vérifier que tu obtiens au moins 1200 PO lors du premier rappel.",
+   "use": {
+    "when": "Au tout début de la partie en jungle avec Volibear.",
+    "why": "Obtenir 1200 PO au premier back permet d'acheter 4 items spécifiques offrant 5 statistiques distinctes, déclenchant ainsi immédiatement 5 stacks de la rune Valet de tous les tours.",
+    "who": "Joueur de Volibear jungle utilisant la rune Valet de tous les tours (Jack of All Trades).",
+    "how": [
+     "Démarre sur le camp des Corbins au lieu d'un buff.",
+     "Effectue un vidage complet vers le bas, sécurise le Scuttle de la rivière du bas, puis remonte nettoyer tes deux camps du haut.",
+     "Rentre immédiatement en base une fois les 1200 PO accumulés."
+    ],
+    "notWhen": "Si tu trouves ce parcours trop difficile à naviguer ou à exécuter en début de partie."
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne, sans contexte d'usage complet ou dépendant de la méta."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-PDRr_YJlDP8-2",
+   "claim": "Selon hybradge : lors du premier back à 1200 PO avec la rune Valet de tous les tours, acheter une Dague, un Éclat lumineux, un Sceau noir et des Bottes offre 5 statistiques différentes pour débloquer immédiatement 5 charges de la rune.",
+   "champions": [
+    "Volibear"
+   ],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "build",
+    "methode",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Master",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": true,
+   "conditions": [
+    "Avoir 1200 PO lors du premier rappel",
+    "Jouer avec la rune Valet de tous les tours (Jack of All Trades)"
+   ],
+   "limits": [
+    "Occupe 4 emplacements d'inventaire dès le premier retour"
+   ],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[01:17] (parole)",
+     "lang": "en",
+     "passage": "Dagger: attack speed, Glowing Mote: CDR, Dark Seal: HP and AP, and lastly Boots, which gives you movement speed, okay? By doing that, you're giving yourself 1, 2, 3, 4, 5 stats on four items, right? Because Dark Seal gives two.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "57-117s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[01:32] (parole)",
+     "lang": "en",
+     "passage": "And allows you to get five Jack of All Trades stacks on your first base. What that will give you, it will give you 10 adaptive force and 5 CDR, which is really really OP, right? To have on your first base."
+    }
+   ],
+   "mentions": [],
+   "action": "Acheter Dague, Éclat lumineux, Sceau noir et Bottes au premier retour en base à 1200 PO.",
+   "observe": "Vérifier que le compteur de la rune Valet de tous les tours affiche 5 charges (octroyant 10 de force adaptative et 5 d'accélération de compétence).",
+   "use": {
+    "when": "Lors du premier back au marchand avec au moins 1200 PO en poche.",
+    "why": "Le Sceau noir apportant 2 stats (PV et AP), combiné à la vitesse d'attaque, la CDR et la vitesse de déplacement des 3 autres items, complète 5 stats sur 4 composants très économiques.",
+    "who": "Joueur de Volibear jungle utilisant la rune Valet de tous les tours.",
+    "how": [
+     "Accumule au moins 1200 PO avant ton premier back.",
+     "Achète Dague, Éclat lumineux, Sceau noir et Bottes.",
+     "Profite du bonus de 10 force adaptative et 5 CDR pour dominer tes prochains skirmishs."
+    ],
+    "notWhen": ""
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-PDRr_YJlDP8 : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-PDRr_YJlDP8 : lu par gemini-3.8-flash (1 image/s) ; passage à vérifier sur la vidéo ([01:32] (parole))."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne, sans contexte d'usage complet ou dépendant de la méta."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-PDRr_YJlDP8-3",
+   "claim": "Selon hybradge : si Lee Sin utilise son Z (Rempart) sur une ward au lieu d'un champion, son délai de récupération n'est pas réduit de moitié, créant une fenêtre d'environ 7 à 9 secondes où il est vulnérable.",
+   "champions": [
+    "Lee Sin"
+   ],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "matchup",
+    "survie"
+   ],
+   "matchup": {
+    "vs": "Lee Sin"
+   },
+   "context": {
+    "queue": "solo",
+    "rank": "Master",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Lee Sin a utilisé son Z sur une balise (ward)"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "maitre",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[15:14] (parole)",
+     "lang": "en",
+     "passage": "If you guys don't know about Lee Sin, right, when he W's to champions, his W CD is halved; when he W's to wards, his W CD is normal, right? So I know his W CD is what, like around 9 seconds, 8 seconds, 7 seconds, something like that, right now?",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "894-954s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-PDRr_YJlDP8",
+     "locator": "[15:28] (parole)",
+     "lang": "en",
+     "passage": "So if he W's to a ward, I can easily commit on him and kill him, right?"
+    }
+   ],
+   "mentions": [],
+   "action": "Engager le combat sur Lee Sin dès qu'il saute sur une balise.",
+   "observe": "Vérifier que Lee Sin ne dispose plus de sa mobilité ni de son bouclier pendant plusieurs secondes.",
+   "use": {
+    "when": "Pendant un affrontement ou un skirmish contre un Lee Sin adverse.",
+    "why": "Le délai de récupération du Z de Lee Sin est réduit de moitié uniquement lorsqu'il cible un champion allié ; sur une ward, le délai reste complet.",
+    "who": "Tout jungler affrontant Lee Sin.",
+    "how": [
+     "Observe le saut de Lee Sin sur une ward (ward).",
+     "Engage immédiatement le combat sur lui sans craindre de saut de retour immédiat.",
+     "Capitalise sur l'absence de son bouclier et de sa mobilité pendant 7 à 9 secondes."
+    ],
+    "notWhen": ""
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-PDRr_YJlDP8 : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-PDRr_YJlDP8 : lu par gemini-3.8-flash (1 image/s) ; passage à vérifier sur la vidéo ([15:28] (parole))."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-dYxdKho6dHg-1",
+   "claim": "Selon Coach Chippys : pour augmenter ton farm en toplane, applique la règle du retour immédiat en sidelane dès qu'un combat ou une action de groupe est terminé, au lieu de perdre du temps à leasher des objectifs, poursuivre des ennemis ou pousser inutilement la midlane.",
+   "champions": [],
+   "roles": [
+    "top"
+   ],
+   "themes": [
+    "lane",
+    "macro"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Tu joues un champion de toplane responsable de la pression en sidelane"
+   ],
+   "limits": [
+    "Ne s'applique pas aux rôles de jungle et support"
+   ],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[00:48]",
+     "lang": "en",
+     "passage": "the rule I want to teach you is when the play is done, you base or go back to side as soon as possible. Any fight that you do, any play that you make should be extremely quick. You don't want to waste any time.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "28-88s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[06:33]",
+     "lang": "en",
+     "passage": "Leashing an objective is not your job. That's for the jungle and the AD carries. The only time I want you to hit an objective and help out is if you're trying to rush Baron or Dragon Soul, anything big like that"
+    }
+   ],
+   "mentions": [
+    "Syndra (exemple)",
+    "Orianna (exemple)"
+   ],
+   "action": "Dès qu'un combat d'équipe se termine, appuie immédiatement sur ton bouton de rappel ou retourne sur ta lane latérale sans aider à taper les dragons ou les toucarts si ce n'est pas nécessaire.",
+   "observe": "Regarde si tu perds des vagues de sbires à cause de déplacements superflus après un combat.",
+   "use": {
+    "when": "Un teamfight ou un skirmish vient de s'achever sur la carte.",
+    "why": "Éviter les temps morts (tempo killing) qui réduisent ton expérience, ton or et ta pression de sidelane.",
+    "who": "Toplaners (et dans une moindre mesure midlaners et ADC)",
+    "how": [
+     "Arrête de participer au nettoyage d'un objectif mineur dès que l'ennemi n'est plus contesté.",
+     "Rappelle à la base ou marche instantanément vers ta sidelane.",
+     "Reprends le farm de la wave sous ta pression."
+    ],
+    "notWhen": "Quand il s'agit de rusher un objectif majeur comme le Nashor ou l'Âme de Dragon avant que l'ennemi n'arrive."
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "intemporel",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-dYxdKho6dHg : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-dYxdKho6dHg : lu par gemini-3.8-flash (1 image/s) ; passage à vérifier sur la vidéo ([06:33])."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-dYxdKho6dHg-2",
+   "claim": "Selon Coach Chippys : réduire tes morts par partie est l'un des moyens les plus directs d'augmenter ton farm global, car chaque mort te fait perdre une quantité significative de sbires et d'expérience.",
+   "champions": [],
+   "roles": [
+    "top"
+   ],
+   "themes": [
+    "survie",
+    "lane"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Tu as un nombre élevé de morts par partie (par exemple 5 à 9 décès)"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[03:20]",
+     "lang": "en",
+     "passage": "Every single time you're dying, it's time that you're not farming. So if you can identify the most common cause of you dying throughout multiple reviews and try to reduce that, try to work on that, your CS is going to naturally get higher.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "180-240s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [
+    "Olaf (exemple)",
+    "Ambessa (exemple)",
+    "Jayce (exemple)",
+    "Gangplank (exemple)"
+   ],
+   "action": "Analyse tes replays pour identifier la cause principale de tes morts (ganks, greed en sidelane, mauvais teamfights) et corrige ce comportement.",
+   "observe": "Compte ton nombre de morts moyen par match sur tes cinq dernières parties.",
+   "use": {
+    "when": "Tu es en phase de lane ou en sidelane et tu t'apprêtes à t'avancer sans vision ou à t'engager dans un combat risqué.",
+    "why": "Mourir supprime le temps où tu pourrais collecter des ressources et te met en retard.",
+    "who": "Tous les joueurs cherchant à améliorer leur régularité et leur farm",
+    "how": [
+     "Identifie si tu meurs principalement aux ganks ou en avançant trop loin en sidelane.",
+     "Ajuste ton positionnement pour éviter cette situation récurrente."
+    ],
+    "notWhen": "Si tu joues un champion très agressif (comme Olaf ou Ambessa) où un ratio de morts légèrement plus élevé est inhérent au style de jeu."
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-dYxdKho6dHg : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-dYxdKho6dHg-3",
+   "claim": "Selon Coach Chippys : en tant que toplaner en solo queue, ne sacrifie pas ton tempo, ton farm et ton XP en essayant de défendre ou d'attaquer la tourelle du milieu à tout prix.",
+   "champions": [],
+   "roles": [
+    "top"
+   ],
+   "themes": [
+    "macro",
+    "lane"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Tu joues en solo queue sur la voie du haut"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[03:51]",
+     "lang": "en",
+     "passage": "as a top laner in solo queue, you shouldn't actually care about mid tower that much. I've seen so many students waste a bunch of time helping their team kill mid, risk their life for mid tower even, drop side pressure to defend mid tower",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "211-271s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[04:42]",
+     "lang": "en",
+     "passage": "Who cares if mid tier one goes down if you're maximizing pressure in side, getting really good farm, maybe even pressuring that tier two, that's going to be more impactful on average as a top laner in a solo queue setting."
+    }
+   ],
+   "mentions": [
+    "Hecarim (exemple)"
+   ],
+   "action": "Ignore les attroupements inutiles autour de la tourelle mid et préfère farmer tes vagues et les camps de la jungle ennemie accessibles.",
+   "observe": "Observe si tu perds du farm de sidelane pour aller aider au milieu.",
+   "use": {
+    "when": "Ton équipe se dispute la première tourelle de la midlane pendant que des waves ou des camps neutres sont disponibles ailleurs.",
+    "why": "Garder une pression latérale constante et un farm élevé a plus d'impact personnel que de perdre du temps sur la mid lane.",
+    "who": "Toplaners en solo queue",
+    "how": [
+     "Laisse ton équipe s'occuper de la pression mid si tu es loin.",
+     "Récupère les camps de jungle proches (comme les krugs ou les corbins) et les waves dans ta sidelane."
+    ],
+    "notWhen": ""
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "intemporel",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-dYxdKho6dHg : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-dYxdKho6dHg : lu par gemini-3.8-flash (1 image/s) ; passage à vérifier sur la vidéo ([04:42])."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-dYxdKho6dHg-4",
+   "claim": "Selon Coach Chippys : pour atteindre un niveau de farm élevé de 9 à 10 sbires par minute, utilise la technique du proxy (passer derrière la tourelle ennemie pour tuer la wave) et prends les camps de la jungle ennemie lorsque tu as le matchup ou l'avantage.",
+   "champions": [],
+   "roles": [
+    "top"
+   ],
+   "themes": [
+    "lane",
+    "jungle"
+   ],
+   "matchup": {
+    "vs": "Neeko"
+   },
+   "context": {
+    "queue": "solo",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Tu disposes d'un champion capable de nettoyer rapidement les vagues et les camps de jungle"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[08:42]",
+     "lang": "en",
+     "passage": "The easiest way to get high farm in the early to mid stages of the game is to proxy and eat camps. Exactly what I'm trying to do here. I don't really want to lane into a Neeko",
+     "mentionOnly": true,
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "502-562s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[05:35]",
+     "lang": "en",
+     "passage": "You can't really get 10 CS per minute unless you're eating jungle camps as well. So you want to be picking those up whenever you can."
+    }
+   ],
+   "mentions": [
+    "Viego (exemple)",
+    "Neeko (exemple)"
+   ],
+   "action": "Intègre le passage derrière les tourelles adverses (proxy) et le vol de camps dans ta routine de toplaner pour booster ton score de farm.",
+   "observe": "Vérifie si ton compteur de CS dépasse les 8 ou 9 par minute en milieu de partie.",
+   "use": {
+    "when": "Tu es en difficulté dans ton matchup de lane (par exemple face à un champion à distance) ou tu cherches à accélérer ton économie.",
+    "why": "Éviter de subir le poke en lane tout en maximisant la quantité de ressources récoltées.",
+    "who": "Toplaners jouant des champions adaptés au proxy et au nettoyage rapide",
+    "how": [
+     "Pousse ou nettoie une wave derrière la tourelle ennemie quand le jungler adverse est visible ailleurs.",
+     "Va sécuriser des camps neutres dans la jungle ennemie (comme les corbins ou les krugs) sur ton chemin."
+    ],
+    "notWhen": "Si le jungler ennemi est positionné pour te tendre un piège et que tu n'as pas la vision."
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-dYxdKho6dHg : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-dYxdKho6dHg : lu par gemini-3.8-flash (1 image/s) ; passage à vérifier sur la vidéo ([05:35])."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-dYxdKho6dHg-5",
+   "claim": "Selon Coach Chippys : utilise l'outil d'entraînement en guise d'échauffement quotidien pour t'entraîner à réussir tes last hits (last-hit) sur les quatre premières waves uniquement avec des attaques de base.",
+   "champions": [],
+   "roles": [
+    "top",
+    "mid",
+    "bottom"
+   ],
+   "themes": [
+    "methode",
+    "lane"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Avant de lancer ta première partie de la journée"
+   ],
+   "limits": [],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-dYxdKho6dHg",
+     "locator": "[12:37]",
+     "lang": "en",
+     "passage": "Just before your first game of the day, a little bit of a warm-up, try to get 25 out of 25 CS on the first four waves, only using auto attacks on your champion. When you hit that, you queue up.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "737-797s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Fais un exercice de 5 minutes dans l'outil d'entraînement avant de jouer en matchmaking pour perfectionner ton last-hit.",
+   "observe": "Compte ton nombre de sbires ratés sous tourelle ou en phase calme en début de partie.",
+   "use": {
+    "when": "Tu te connectes au jeu pour ta session quotidienne et tu souhaites t'échauffer.",
+    "why": "Améliorer naturellement ta technique de last-hit en début de partie sur le long terme.",
+    "who": "Tous les joueurs souhaitant perfectionner leurs bases mécaniques",
+    "how": [
+     "Lance l'outil d'entraînement.",
+     "Tue uniquement les sbires des quatre premières waves avec des attaques de base (sans utiliser de sorts d'attaque si possible).",
+     "Tâche d'obtenir un score de 25 sur 25 avant d'arrêter l'exercice et de lancer une file."
+    ],
+    "notWhen": ""
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "intemporel",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-dYxdKho6dHg : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-bVuMSIMLJcE-2",
+   "claim": "Selon Skill Capped : il faut exploiter la jauge de patience des camps de jungle en tirant les monstres vers le bord de leur cercle de portée et en les achevant juste avant la fin du temps de tolérance, ce qui réduit le temps perdu en déplacement.",
+   "champions": [],
+   "roles": [
+    "jungle"
+   ],
+   "themes": [
+    "jungle"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "non précisé",
+    "region": "non précisée"
+   },
+   "patch": {
+    "known": true,
+    "value": "Saison 15"
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Pendant le combat contre un camp de la jungle"
+   ],
+   "limits": [
+    "La jauge de patience descend rapidement (4 secondes au total)."
+   ],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-bVuMSIMLJcE",
+     "locator": "[10:45]",
+     "lang": "en",
+     "passage": "Instead, they always pull it to the very edge and finish it just before the patience runs out while moving towards where they're going next.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "625-685s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [],
+   "action": "Éloigner le monstre de son point d'apparition initial tout en l'attaquant pour avancer vers le camp suivant.",
+   "observe": "Vérifier si le monstre commence à perdre de la patience trop tôt ou réinitialise sa vie.",
+   "use": {
+    "when": "Tu es en train de tuer un camp de jungle et tu dois te diriger vers le camp d'à côté.",
+    "why": "Pour gagner de précieuses secondes sur les déplacements entre chaque camp au fil de la partie.",
+    "who": "Pour les joueurs jouant le rôle de jungler.",
+    "how": [
+     "Surveille la barre blanche de patience au-dessus du monstre.",
+     "Tire le camp vers le bord du cercle de leash tout en continuant de l'attaquer.",
+     "Commence à marcher vers ton prochain camp avant même que le monstre ne soit complètement mort, en profitant des 4 secondes de patience."
+    ],
+    "notWhen": ""
+   },
+   "published": null,
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "systeme",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-bVuMSIMLJcE : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-hADG2i46dEQ-2",
+   "claim": "Selon Coach Violet : lorsque tu affrontes un mage au bot, profite des fenêtres de recharge (cooldown) de ses sorts principaux, comme le sort Q de Ziggs, pour t'avancer, mettre la pression et placer des attaques ou des sorts sans risque de te faire punir immédiatement.",
+   "champions": [],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "lane",
+    "matchup"
+   ],
+   "matchup": {
+    "vs": "Ziggs"
+   },
+   "context": {
+    "queue": "tous",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "jouer contre un mage qui utilise ses sorts de poke"
+   ],
+   "limits": [
+    "dépend de l'utilisation des sorts par l'adversaire"
+   ],
+   "nature": "opinion",
+   "levelContext": "pro",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-hADG2i46dEQ",
+     "locator": "[12:14]",
+     "lang": "en",
+     "passage": "the moment Ziggs Q is down, he's walking up to look to trade, right? Why can we walk up to trade? It's simply because Ziggs just used his Q, right? And after he uses Q, he's pretty much useless, right?",
+     "mentionOnly": true,
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "714-774s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [
+    "Kai'Sa (exemple)",
+    "Ziggs (exemple)",
+    "Rakan (exemple)"
+   ],
+   "action": "Avance pour échanger ou farmer dès que le mage vient d'utiliser son sort de zone principal.",
+   "observe": "Observe le moment où le mage lance son sort de dégâts principal pour avancer instantanément.",
+   "use": {
+    "when": "le mage adverse vient de lancer son sort principal (comme le Q de Ziggs) et il est en cooldown",
+    "why": "le mage perd l'essentiel de sa capacité de zone et de trade lorsque ses compétences sont en recharge",
+    "who": "rôles ADC en bas face à un mage de poke",
+    "how": [
+     "Observe le tir du sort principal du mage (ex: le Q de Ziggs).",
+     "Avance immédiatement pour mettre la pression ou placer un échange pendant que le sort est en recharge."
+    ],
+    "notWhen": ""
+   },
+   "published": "2026-07-06",
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "meta",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-hADG2i46dEQ : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-hADG2i46dEQ-3",
+   "claim": "Selon Coach Violet : pour minimiser les pertes d'expériences et d'or lorsque ta santé ou ton mana est bas face à un mage, planifie ton back spécifiquement au moment où une wave canon arrive sur la lane.",
+   "champions": [],
+   "roles": [
+    "bottom"
+   ],
+   "themes": [
+    "vagues",
+    "lane",
+    "macro"
+   ],
+   "context": {
+    "queue": "tous",
+    "rank": "non précisé",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": false
+   },
+   "metaDependent": false,
+   "conditions": [
+    "tu dois rentrer en base face à un mage qui repousse rapidement"
+   ],
+   "limits": [
+    "nécessite de réussir à pousser ou synchroniser avec le timing de la vague"
+   ],
+   "nature": "opinion",
+   "levelContext": "pro",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-hADG2i46dEQ",
+     "locator": "[05:42]",
+     "lang": "en",
+     "passage": "It takes people very, very long to push out cannon waves, so he bases on pretty good timer where he doesn't actually lose much CS. So, you know, a great recall timer by Guma, right? He's able to just catch the wave, not lose too much in the process",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "322-382s",
+      "said": true,
+      "supported": true
+     }
+    }
+   ],
+   "mentions": [
+    "Kai'Sa (exemple)",
+    "Ziggs (exemple)"
+   ],
+   "action": "Décale ton rappel sur la vague de canon pour minimiser le nombre de sbires perdus sous ta tourelle.",
+   "observe": "Vérifie l'état de la vague pour voir si un sbire canon est présent avant de déclencher ton rappel.",
+   "use": {
+    "when": "ta barre de vie ou de mana est basse, et tu dois retourner à la boutique sans perdre trop de sbires",
+    "why": "les waves contenant un canon prennent beaucoup de temps à être nettoyées par l'adversaire, ce qui te laisse le temps de revenir",
+    "who": "joueurs de la bot lane",
+    "how": [
+     "Identifie l'arrivée d'une wave avec un canon.",
+     "Pousse la wave rapidement si possible ou effectue ton back pour profiter du temps de nettoyage accru de l'ennemi."
+    ],
+    "notWhen": ""
+   },
+   "published": "2026-07-06",
+   "analyzedAt": "2026-11-01",
+   "status": "provisoire",
+   "lifespan": "intemporel",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-hADG2i46dEQ : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-_rORbB3xpYo-2",
+   "claim": "Selon Shok : contre les champions à distance sans sustain, privilégie l'ordre de sorts Q-W-W puis E pour maximiser les dégâts de poke avec le combo Q-W.",
+   "champions": [
+    "Orianna"
+   ],
+   "roles": [
+    "mid"
+   ],
+   "themes": [
+    "lane",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": true,
+    "value": "14.20"
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Face à un champion à distance sans sustain"
+   ],
+   "limits": [
+    "Le sort W est coûteux en mana aux premiers niveaux"
+   ],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-_rORbB3xpYo",
+     "locator": "[04:10]",
+     "lang": "en",
+     "passage": "basically, when you're against range champs without sustain and especially if they outrange you or if they're longer range than you, most of your damage will come from the QW harass.",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "230-290s",
+      "said": true,
+      "supported": false,
+      "gap": "Le conseil recommande de monter le sort W deux fois d'affilée au niveau 2 et 3, ce qui ne correspond pas aux standards du jeu et n'est pas prononcé par l'auteur."
+     }
+    },
+    {
+     "content": "c-yt-_rORbB3xpYo",
+     "locator": "[04:10]",
+     "lang": "en",
+     "passage": "So what that means is in most range matchups, you're going to go Q, W, W and then E."
+    }
+   ],
+   "mentions": [],
+   "action": "Monte ton W au niveau 2 et 3 face à un adversaire à distance pour placer ton combo de harcèlement.",
+   "observe": "La gestion de ta barre de mana en début de partie à cause du coût élevé du W.",
+   "use": {
+    "when": "Tu joues Orianna mid et ton adversaire direct est un champion à distance sans sustain.",
+    "why": "Le combo Q-W permet d'infliger l'essentiel des dégâts de poke dans ce type de matchup.",
+    "who": "Orianna mid",
+    "how": [
+     "Monte le sort Q au niveau 1.",
+     "Prends le sort W au niveau 2 puis remets un point dedans au niveau 3.",
+     "Utilise le combo Q-W pour poke l'adversaire tout en faisant attention à ton mana."
+    ],
+    "notWhen": ""
+   },
+   "published": "2026-10-12",
+   "analyzedAt": "2026-11-01",
+   "status": "a-revalider",
+   "lifespan": "meta",
+   "nuance": "Conseil de 2026 (patch 14.20) : l'équilibrage a changé depuis, vérifie que ça s'applique encore.",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "sur-generalisation",
+     "why": "c-yt-_rORbB3xpYo : l'extrait 230-290s ne dit pas exactement cela (Le conseil recommande de monter le sort W deux fois d'affilée au niveau 2 et 3, ce qui ne correspond pas aux standards du jeu et n'est pas prononcé par l'auteur.)."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-_rORbB3xpYo : lu par gemini-3-flash-preview (1 image/s) ; passage à vérifier sur la vidéo ([04:10])."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    },
+    {
+     "code": "patch-incompatible",
+     "why": "Orianna/Q, Orianna/W modifié au patch 26.21, après 14.20."
+    }
+   ]
+  },
+  {
+   "id": "u-ai-yt-_rORbB3xpYo-3",
+   "claim": "Selon Shok : contre les champions corps-à-corps, monte tes compétences dans l'ordre Q, E, Q, W pour bénéficier de la réduction de délai de récupération du Q qui coûte peu de mana.",
+   "champions": [
+    "Orianna"
+   ],
+   "roles": [
+    "mid"
+   ],
+   "themes": [
+    "lane",
+    "champion"
+   ],
+   "context": {
+    "queue": "solo",
+    "rank": "Challenger",
+    "region": "non précisé"
+   },
+   "patch": {
+    "known": true,
+    "value": "14.20"
+   },
+   "metaDependent": false,
+   "conditions": [
+    "Face à un champion corps-à-corps équipé de Doran's Shield et Second Souffle"
+   ],
+   "limits": [
+    "Moins efficace si l'adversaire possède beaucoup de sustain et que tu ne relies pas les sorts de manière constante"
+   ],
+   "nature": "opinion",
+   "levelContext": "non-precise",
+   "usage": "reference",
+   "evidence": [
+    {
+     "content": "c-yt-_rORbB3xpYo",
+     "locator": "[04:10]",
+     "lang": "en",
+     "passage": "Now, funnily enough, into melee matchups, you're probably going to go Q, E, Q, W. And that's probably really confusing, you're thinking, you know, why the hell is that?",
+     "autoChecked": {
+      "by": "gemini-3.5-flash-lite",
+      "at": "2026-11-01",
+      "window": "230-290s",
+      "said": true,
+      "supported": true
+     }
+    },
+    {
+     "content": "c-yt-_rORbB3xpYo",
+     "locator": "[04:10]",
+     "lang": "en",
+     "passage": "lower cooldown on Q, which is a super cheap ability, is going to be super important into these like D-shield second wind champions."
+    }
+   ],
+   "mentions": [],
+   "action": "Prends un point en E au niveau 2 puis un deuxième point en Q au niveau 3 contre un corps-à-corps.",
+   "observe": "L'utilisation de ton sort Q à faible coût pour harceler en continu l'adversaire.",
+   "use": {
+    "when": "Tu affrontes un champion corps-à-corps doté d'une régénération importante (Doran's Shield et Second Souffle).",
+    "why": "Le W est trop coûteux en mana face au sustain des corps-à-corps, tandis que le Q offre un meilleur ratio dégâts/coût en mana avec un délai plus court.",
+    "who": "Orianna mid face à un corps-à-corps",
+    "how": [
+     "Monte le Q au niveau 1.",
+     "Prends le E au niveau 2 pour te protéger.",
+     "Prends le deuxième point en Q au niveau 3 avant de débloquer le W."
+    ],
+    "notWhen": ""
+   },
+   "published": "2026-10-12",
+   "analyzedAt": "2026-11-01",
+   "status": "a-revalider",
+   "lifespan": "meta",
+   "nuance": "Conseil de 2026 (patch 14.20) : l'équilibrage a changé depuis, vérifie que ça s'applique encore.",
+   "review": {
+    "human": "en attente"
+   },
+   "flags": [
+    {
+     "code": "verification-legere",
+     "why": "c-yt-_rORbB3xpYo : extrait relu seulement par gemini-3.5-flash-lite ; à confirmer par un modèle complet."
+    },
+    {
+     "code": "lecture-ia",
+     "why": "c-yt-_rORbB3xpYo : lu par gemini-3-flash-preview (1 image/s) ; passage à vérifier sur la vidéo ([04:10])."
+    },
+    {
+     "code": "source-unique",
+     "why": "Avis d'une seule personne : présenté comme tel."
+    },
+    {
+     "code": "traduction",
+     "why": "Terme à risque (shield) dans un passage en en sans note de traduction."
+    },
+    {
+     "code": "patch-incompatible",
+     "why": "Orianna/Q, Orianna/W modifié au patch 26.21, après 14.20."
     }
    ]
   }
