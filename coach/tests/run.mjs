@@ -550,7 +550,9 @@ await t("Vidéos réellement lues : durée conforme et passages retrouvés", "r�
   const vids = L.contents.contents.filter(c => c.reader?.kind === "ia");
   if (!vids.length) throw Object.assign(new Error("ignoré : aucune vidéo lue"), { skip: true });
   const units = L.units.units.filter(u => u.evidence.some(e => vids.some(v => v.id === e.content)));
-  for (const u of units) for (const e of u.evidence) { const txt = await need(e.content); assert(normText(txt).includes(normText(e.passage)), `${u.id} : passage absent de la transcription`); }
+  // Même règle que analyze.mjs et critic.mjs : « … » sépare deux morceaux recopiés mot pour mot
+  const parts = p => String(p).split(/\s*(?:\[\s*(?:\.\.\.|…)\s*\]|\.\.\.|…)\s*/).filter(s => s.trim().length > 8);
+  for (const u of units) for (const e of u.evidence) { const txt = normText(await need(e.content)); assert(parts(e.passage).length && parts(e.passage).every(s => txt.includes(normText(s))), `${u.id} : passage absent de la transcription`); }
   // Règles v1.2 : un passage lu par IA n'est exploitable que confirmé par une personne ou par la seconde lecture de l'extrait
   const checked = u => u.evidence.some(e => e.humanChecked || (e.autoChecked?.said && e.autoChecked?.supported));
   assert(units.every(u => ev(u).status !== "exploitable" || checked(u)), "une unité vidéo non vérifiée est exploitable");

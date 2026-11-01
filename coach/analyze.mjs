@@ -241,7 +241,12 @@ export async function run() {
       const cr = ex.units.length ? await ask(`${pCritique}\n\n---\n${rules}`, `${meta}\n\nUnités proposées :\n${JSON.stringify(ex.units, null, 1)}\n\nUnités existantes liées :\n${JSON.stringify(related, null, 1)}`, CRITIQUE_SCHEMA) : { reviews: [] };
       // Conseil général : un champion vu à l'écran mais nommé ni dans les passages, ni dans le titre, ni dans l'énoncé n'est pas le sujet du conseil
       const named = (ch, x) => [c.title, x.claim, ...x.evidence.map(e => e.passage)].some(t => normText(t).includes(normText(ch)));
-      const units = ex.units.map((x, i) => ({ x, r: cr.reviews.find(r => r.index === i) })).filter(({ r }) => r?.verdict !== "rejeter").map(({ x, r }, i) => ({
+      // Citation recopiée mot pour mot (« … » sépare deux morceaux) : sinon le modèle a reformulé ou inventé, la citation est écartée,
+      // et un conseil sans aucune citation retrouvée n'est pas créé (veille du 01/11 18 h 50 bloquée par un tel passage)
+      const whole = normText(got.text);
+      const verbatim = p => { const parts = String(p).split(/\s*(?:\[\s*(?:\.\.\.|…)\s*\]|\.\.\.|…)\s*/).filter(s => s.trim().length > 8); return parts.length > 0 && parts.every(s => whole.includes(normText(s))); };
+      for (const x of ex.units) { const kept = x.evidence.filter(e => verbatim(e.passage)); if (kept.length < x.evidence.length) log.push(`· ${c.id} : ${x.evidence.length - kept.length} citation(s) introuvable(s) dans la transcription, écartée(s)`); x.evidence = kept; }
+      const units = ex.units.map((x, i) => ({ x, r: cr.reviews.find(r => r.index === i) })).filter(({ x, r }) => r?.verdict !== "rejeter" && x.evidence.length).map(({ x, r }, i) => ({
         id: `u-ai-${c.id.replace(/^c-/, "")}-${i + 1}`,
         claim: attribute(r?.verdict === "corriger" && r.correction_claim ? r.correction_claim : x.claim, natureFor(x.nature, c), c),
         champions: x.champions.filter(ch => named(ch, x)), roles: x.roles, themes: x.themes,
