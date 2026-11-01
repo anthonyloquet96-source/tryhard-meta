@@ -1,0 +1,53 @@
+# Déploiement du Worker Cloudflare « mindiff-coach » à chaque publication sur main qui touche son code (bloc B, 01/11/2026).
+# Le Worker ne contient plus de données privées (worker/data.mjs les lit dans Supabase Storage) : il se déploie depuis GitHub.
+# Secrets à créer une fois dans le dépôt (Settings → Secrets and variables → Actions) :
+#   CLOUDFLARE_API_TOKEN  : jeton Cloudflare avec la permission « Workers Scripts : Edit » (et « Workers KV / Account » si demandé)
+#   CLOUDFLARE_ACCOUNT_ID : identifiant du compte Cloudflare (tableau de bord → Workers)
+# Les secrets du Worker lui-même (clé Riot, Supabase…) restent ceux posés par worker/put-secrets.mjs : ce workflow n'y touche pas.
+# Tant que les secrets GitHub n'existent pas, le workflow s'arrête sans rien faire et le déploiement reste manuel (npx wrangler deploy).
+name: Déploiement du Worker
+
+on:
+  push:
+    branches: [main]
+    paths: ["worker/**", "coach/**", "!coach/tests/**", "!coach/cache/**", "!coach/kb/**", "!coach/*.md", ".github/workflows/deploy-worker.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Tests du coach (bloquants)
+        run: node coach/tests/run.mjs
+      - name: Secrets présents ?
+        id: secrets
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then echo "ok=false" >> "$GITHUB_OUTPUT"; echo "Secrets Cloudflare absents : déploiement manuel (npx wrangler deploy)."; else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Déployer
+        if: steps.secrets.outputs.ok == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          command: deploy
+      - name: Vérifier
+        if: steps.secrets.outputs.ok == 'true'
+        run: curl -fsS https://mindiff-coach.mindiff.workers.dev/api/v1/health

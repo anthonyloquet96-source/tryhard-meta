@@ -1390,6 +1390,25 @@ await t("Notifications : chiffrement Web Push (vecteur RFC 8291), signature VAPI
   return "chiffrement identique à la RFC 8291 ; VAPID vérifié ; début, games, match, first blood, tour, dragon, Baron, ace sans doublon ; niveau détaillé (tours, combats) ; rappels du coach.";
 });
 
+await t("Worker : données privées lues dans Supabase Storage (cache, rafraîchissement, panne)", "fixture", async () => {
+  const { createDataLoader, FILES } = await import("../../worker/data.mjs");
+  let calls = 0, fail = false, clock = 0;
+  const fetchImpl = async url => { calls++; if (fail) return { ok: false, status: 503 }; const name = url.split("/").pop().replace(".json", ""); return { ok: true, status: 200, json: async () => (name === "manifest" ? { published: false, at: "t" } : { name, calls }) }; };
+  const L = createDataLoader({ url: "https://sb", serviceKey: "k", fetchImpl, ttlMs: 1000, now: () => clock });
+  const a = await L.get();
+  assert(FILES.every(f => a[f]?.name === f) && a.manifest.published === false && calls === FILES.length + 1, "premier chargement");
+  const b = await L.get();
+  assert(b === a && calls === FILES.length + 1, "cache non utilisé");
+  clock = 5000; fail = true;
+  const c = await L.get(); await new Promise(r => setTimeout(r, 10));
+  assert(c === a && (await L.get()).benchmarks?.name === "benchmarks", "ancienne version perdue pendant une panne");
+  fail = false; clock = 10000; await L.get(); await new Promise(r => setTimeout(r, 10));
+  assert((await L.get()).benchmarks.calls > FILES.length + 1, "pas de rafraîchissement après le TTL");
+  const empty = await createDataLoader({}).get();
+  assert(FILES.every(f => empty[f] === null), "sans configuration : null, pas d'exception");
+  return "chargement unique, cache, ancienne version gardée en panne, rafraîchissement après le TTL, null sans configuration.";
+});
+
 // ---------- Rapport
 const ok = results.filter(r => r.ok).length;
 for (const r of results) console.log(`${r.skipped ? "–" : r.ok ? "✔" : "✘"} ${r.name} [${r.kind}]\n    ${r.detail}`);
