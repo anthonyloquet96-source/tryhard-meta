@@ -2,6 +2,9 @@
 
 Chaque passage d'amélioration y est consigné : ce qui a été lu, ajouté et corrigé, ce qui reste incertain, et les changements de règles proposés (jamais appliqués sans votre relecture).
 
+## 2026-11-01 — déploiement automatique du Worker en place
+- Jeton Cloudflare « MINDIFF GitHub deploy worker » (modèle Edit Cloudflare Workers, limité au compte d'Anthony, sans expiration) créé par Anthony ; secrets `CLOUDFLARE_API_TOKEN` (collé par Anthony) et `CLOUDFLARE_ACCOUNT_ID` dans le dépôt. Premier déploiement par `deploy-worker.yml` réussi (tests 53/60, 7 ignorés faute de cache privé en CI ; santé 200). Désormais chaque fusion sur main redéploie le Worker ; plus besoin du « vas-y ».
+
 ## 2026-11-01 — tour 4 du brainstorm : patch, apprentissage d'un champion, moment à revoir
 - **Tour 4 avec GPT-6** (même conversation) : garder le patch et le parcours champion, fusionner « après ta mort » et « bascule » en une carte, reporter le résumé du lundi (redondant avec « Ta progression »). Règle retenue : une compétence à travailler, une preuve de progrès, une situation à revoir ; trois cartes principales au plus par écran.
 - **Constat** : « après ta mort » (`effect`, 2 min) et les tournants (`turns`) existaient déjà dans `tactics.mjs`, mais enfouis dans le Replay. Rien de neuf côté calcul.
