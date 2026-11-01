@@ -20,7 +20,7 @@
 //     échec seulement après deux cycles de suite sans maîtrise ni progrès ;
 //   - morts avant 14 min : plus proposées automatiquement (risque de jeu passif), visibles au diagnostic.
 
-import { CATALOG, GUARDRAILS } from "./metrics.mjs";
+import { CATALOG, GUARDRAILS, PATCH_BREAKS } from "./metrics.mjs";
 
 export const GOAL_VERSION = "goals-3";
 export const RULES = {
@@ -71,7 +71,17 @@ export function referenceFor(key, role, references = null, baseline = null) {
 export function baselineWindow(games, role) {
   const w = games.filter(g => g.valid && g.role === role).slice(0, RULES.baselineGames);
   const ts = w.map(g => g.start_ms).filter(v => v != null);
-  return { games: w, info: { games: w.length, from_ms: ts.length ? Math.min(...ts) : null, to_ms: ts.length ? Math.max(...ts) : null, match_ids: w.map(g => g.match_id) } };
+  const patches = w.map(g => g.patch).filter(Boolean).sort((a, b) => patchNum(a) - patchNum(b));
+  return { games: w, info: { games: w.length, from_ms: ts.length ? Math.min(...ts) : null, to_ms: ts.length ? Math.max(...ts) : null, match_ids: w.map(g => g.match_id), patch: patches.at(-1) || null } };
+}
+// « 16.22 » → 16022, pour comparer des patchs ; affichage au format du jeu (« 26.22 »)
+const patchNum = p => { const [a, b] = String(p).split(".").map(Number); return a * 1000 + (b || 0); };
+const patchName = p => String(p).replace(/^1([56])\./, "2$1.");
+// Premier patch qui casse la mesure de l'objectif entre sa fenêtre de départ et cette partie (null si aucun, ou départ inconnu)
+export function patchBreak(goal, game) {
+  const base = goal.baseline_window?.patch;
+  if (!base || !game.patch) return null;
+  return Object.keys(PATCH_BREAKS).filter(p => PATCH_BREAKS[p].includes(goal.metric) && patchNum(p) > patchNum(base) && patchNum(game.patch) >= patchNum(p)).sort((a, b) => patchNum(a) - patchNum(b))[0] || null;
 }
 
 // Garde-fous du poste pour un objectif : niveau de départ (médiane, écart typique, quart bas orienté) sur la fenêtre de départ.
@@ -266,9 +276,11 @@ export function evaluateGoal(goal, games, now = Date.now()) {
   if (end != null && after.some(g => g.start_ms <= end)) throw Object.assign(new Error("Partie d'évaluation antérieure à la fin de la fenêtre de départ."), { code: "fuite-chronologique" });
   const dir = goal.direction === "higher" ? 1 : -1;
   const rows = [], counted = [];
-  let inRole = 0, offRole = 0, validObs = 0, met = 0;
+  let inRole = 0, offRole = 0, validObs = 0, met = 0, broken = null;
   for (const g of after) {
     if (!g.valid) { rows.push({ match_id: g.match_id, counted: false, reason: g.invalid_reason }); continue; }
+    // Le jeu a changé la mesure : les parties suivantes ne sont plus comparables au départ, le cycle s'arrête ici
+    if ((broken = patchBreak(goal, g))) { rows.push({ match_id: g.match_id, counted: false, reason: "patch" }); break; }
     if (g.role !== goal.role) { offRole++; rows.push({ match_id: g.match_id, counted: false, reason: "autre-role" }); if (offRole >= goal.evaluation_games && inRole === 0) break; continue; }
     if (inRole >= goal.evaluation_games) break;
     inRole++; counted.push(g);
@@ -293,11 +305,12 @@ export function evaluateGoal(goal, games, now = Date.now()) {
     else if (regressSd <= -RULES.regressionSd) outcome = "needs_review";
     else if (deltaSd >= RULES.progressSd) outcome = "improving";
     else outcome = goal.previous_outcome === "stable" ? "failed" : "stable";
-  } else if (offRole >= goal.evaluation_games && inRole === 0) outcome = "inconclusive";
+  } else if (broken || (offRole >= goal.evaluation_games && inRole === 0)) outcome = "inconclusive";
   for (const r of rows) if (r.counted) r.guardrail_breach = breach.length > 0;
   let next = goal;
   if ((inRole || offRole) && goal.status === "active") next = transition(goal, "evaluating", now);
   if (outcome) next = { ...transition(next.status === "evaluating" ? next : transition(next, "evaluating", now), outcome, now), outcome };
-  const review = outcome === "needs_review" ? (breach.length ? `garde-fou dégradé : ${breach.map(k => CATALOG[k].label.toLowerCase()).join(", ")}` : "recul sur la métrique travaillée") : null;
+  const review = outcome === "needs_review" ? (breach.length ? `garde-fou dégradé : ${breach.map(k => CATALOG[k].label.toLowerCase()).join(", ")}` : "recul sur la métrique travaillée")
+    : outcome === "inconclusive" ? (broken ? `le patch ${patchName(broken)} a changé cette mesure, la comparaison avec ton départ ne serait pas juste` : "pas assez de parties valides au même poste") : null;
   return { goal: { ...next, progress: { counted: inRole, valid: validObs, met, needed: goal.success_required, window: goal.evaluation_games, delta_sd: deltaSd, guardrails: guard, review } }, evaluations: rows, outcome };
 }

@@ -9,6 +9,11 @@ import { FINAL_ITEMS } from "./final-items.mjs";
 // metrics-2 (01/11/2026) : wards détruites et control wards avant 20 min, premier grand objet, or qui dort, temps mort.
 // Les repères mesurés (metric_references) des métriques inchangées restent valables : le Worker lit toutes ces versions.
 export const METRIC_VERSION = "metrics-2";
+// Patchs qui cassent la comparaison d'une métrique (tour 4 du brainstorm GPT-6, 01/11/2026) : sbires qui rapportent autrement,
+// wards revues, objets complets refondus… Rempli à la main à la lecture des notes de patch (format Riot « 16.22 »), jamais deviné.
+// Un objectif en cours dont une partie d'évaluation tombe sur un tel patch est clos « sans verdict » plutôt que jugé sur une mesure
+// qui a changé ; sa cible reste celle fixée au départ.
+export const PATCH_BREAKS = {};
 export const REFERENCE_VERSIONS = ["metrics-2", "metrics-1"];
 
 // Catégories de compétences (brainstorm du 01/11/2026 avec GPT-6) : un objectif entraîne une compétence, pas une statistique.

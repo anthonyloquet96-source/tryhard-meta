@@ -820,6 +820,16 @@ await t("COACH-008 Cycle de vie (goals-2) : maîtrise, progrès, stable, alerte,
   // Chronologie : partie d'évaluation antérieure ou égale à la fin de la fenêtre de départ → refus
   let leak = false; try { evaluateGoal({ ...goal, baseline_window: { to_ms: 1003 } }, [G(1, 70), G(2, 70), G(3, 70)]); } catch (e) { leak = e.code === "fuite-chronologique"; }
   assert(leak, "fuite chronologique acceptée");
+  // Patch qui casse la mesure entre le départ et l'évaluation : cycle clos sans verdict, cible inchangée ; un autre patch ne change rien
+  const { PATCH_BREAKS } = await import("../metrics.mjs");
+  PATCH_BREAKS["16.23"] = ["cs_at_10"];
+  const P = (i, cs10, patch) => ({ ...G(i, cs10), patch });
+  const pg = { ...goal, baseline_window: { ...goal.baseline_window, patch: "16.22" } };
+  const cut = ev([P(1, 70, "16.22"), P(2, 70, "16.22"), P(3, 70, "16.23"), P(4, 70, "16.23"), P(5, 70, "16.23")], pg);
+  assert(cut.outcome === "inconclusive" && cut.goal.progress.counted === 2 && /26\.23/.test(cut.goal.progress.review) && cut.goal.target === 65, `patch cassant : ${cut.outcome} ${cut.goal.progress.review}`);
+  assert(ev([1, 2, 3, 4, 5].map(i => P(i, 70, "16.23")), { ...pg, metric: "cs_at_10", baseline_window: { ...pg.baseline_window, patch: "16.23" } }).outcome === "achieved", "patch déjà présent au départ compté comme cassant");
+  assert(ev([1, 2, 3, 4, 5].map(i => P(i, 70, "16.23")), goal).outcome === "achieved", "départ sans patch connu : cycle bloqué");
+  delete PATCH_BREAKS["16.23"];
   // Transitions, archivage, un seul objectif ouvert
   let bad = false; try { transition(goal, "achieved"); } catch (e) { bad = e.code === "transition-interdite"; }
   assert(bad && transition(imp.goal, "archived").status === "archived", "transitions");
